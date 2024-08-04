@@ -1,5 +1,7 @@
 # Hypothesis Testing
 
+<img src="figs/comics/ch7.jpeg" style="display: block; margin: auto;" />
+
 Chapters 5 and 6 covered estimation, which is when we use data to make a "good guess" about a parameter, either as a point estimate or an interval estimate. Now, we will move on to **testing**, a different type of statistics.
 
 In a statistical test, we make a guess about a parameter *before* collecting data.  Then, we analyze our observed data to see if it is consistent with our guess.
@@ -62,7 +64,7 @@ We've seen the quantity on the right before.  If we take the standardized versio
 $$T \;=\; \frac{\bar{X} - \mu}{S/\sqrt{n}} \;\sim\; T_{n-1}.$$
 The T with $n-1$ degrees of freedom represents all of the possibilities in the case where $H_0$ is true.  We call this the null distribution.
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -114,7 +116,7 @@ The **rejection region** is a region of the null distribution that has area $\al
 
 In the case of our T test, the rejection region is a $T_{39}$ curve, and the most extreme evidence against the null is in the tails.  So we take $\alpha$ and split it up equally into the tails.
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -156,7 +158,7 @@ Our observed test statistic $t_{obs} = 2.664$ is greater than 2.023, so it falls
 ## integer(0)
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 Basically, we don't expect to see such an extreme positive test statistic under the null.  So we have evidence that the true mean seedling height is not actually 1.5 cm.
 
@@ -175,7 +177,7 @@ The test statistic represents the degree of evidence we have in our data against
 ## integer(0)
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 One important consideration is that we have to calculate the area in *both* tails, not just the upper tail.  So we need the area above 2.664 and the area below -2.664.  In this way, we can consider the possibility of our test statistic being far from 0 in *both* directions.
 
@@ -201,7 +203,7 @@ polygon(c(x[x>=2.657], 2.657), c(y[x>=2.657], y[x==max(x)]), col="dodgerblue") +
         polygon(c(x[x<=-2.657], -2.657), c(y[x<=-2.657], y[x==max(x)]), col="dodgerblue")
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -291,7 +293,7 @@ hist(flux)
 qqnorm(flux); qqline(flux)
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
 ```r
 par(mfrow = c(1, 1))
@@ -348,7 +350,7 @@ qt(0.975, df = 7)
 ## [1] 2.364624
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -471,7 +473,7 @@ Let's analyze the one-sided hypotheses above using a T test with $\alpha = 0.05$
 
 Previously, when we performed a two-sided test, we found a rejection region by taking the significance level $\alpha$ and splitting it up into two tails, each with area $\alpha/2$.
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -483,7 +485,7 @@ $$H_0: \mu \le 8 \quad \text{versus} \quad H_A: \mu > 8.$$
 
 When we build a rejection region, it will still have area $\alpha$.  But, it will be entirely in the upper tail of the null distribution.  Negative test statistics don't give us evidence that $\mu > 8$, only positive test statistics do.  So our rejection region will cut off area 0.05 in the upper tail of the $T_{19}$ curve.
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -525,7 +527,7 @@ qt(0.95, df = 19)
 We see that our observed test statistic 1.219 is smaller than the rejection region threshold of 1.729.  So the statistic is not in the rejection region, and it does not give us sufficient evidence against the null.
 </span>
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -547,7 +549,7 @@ pt(1.219, df = 19, lower.tail = F)
 ## [1] 0.1188814
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -566,7 +568,7 @@ Notice that if we had done a two-sided test with $H_A: \mu \neq 8$, we would've 
 ## integer(0)
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -580,7 +582,7 @@ Notice that if we had done a two-sided test with $H_A: \mu \neq 8$, we would've 
 ## integer(0)
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-21-2.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-22-2.png" width="672" />
 
 ---
 
@@ -626,7 +628,7 @@ This is the same test statistic as the one we used for the T test.  But now, we 
 
 We use a rejection region or p-value to make a decision about our hypotheses.  The rejection region has area $\alpha = 0.05$ in both tails, since we're doing a two-sided test.  So each tail will have area $\alpha/2 = 0.025$.
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -660,7 +662,7 @@ For our test at the 5% level, we decide to reject if the test statistic is less 
 ## integer(0)
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-25-1.png" width="672" />
 
 ---
 
@@ -671,7 +673,7 @@ We can also make a decision by calculating a p-value.  The Z test p-value is cal
 ## integer(0)
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-26-1.png" width="672" />
 
 ```
 ## integer(0)

@@ -1,5 +1,9 @@
 # Hypothesis Testing
 
+```{r,echo=F, fig.align="center"}
+knitr::include_graphics("figs/comics/ch7.jpeg")
+```
+
 Chapters 5 and 6 covered estimation, which is when we use data to make a "good guess" about a parameter, either as a point estimate or an interval estimate. Now, we will move on to **testing**, a different type of statistics.
 
 In a statistical test, we make a guess about a parameter *before* collecting data.  Then, we analyze our observed data to see if it is consistent with our guess.

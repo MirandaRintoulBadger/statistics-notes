@@ -215,6 +215,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="hypothesis-testing" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Hypothesis Testing<a href="hypothesis-testing.html#hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figs/comics/ch7.jpeg" style="display: block; margin: auto;" /></p>
 <p>Chapters 5 and 6 covered estimation, which is when we use data to make a “good guess” about a parameter, either as a point estimate or an interval estimate. Now, we will move on to <strong>testing</strong>, a different type of statistics.</p>
 <p>In a statistical test, we make a guess about a parameter <em>before</em> collecting data. Then, we analyze our observed data to see if it is consistent with our guess.</p>
 <div id="one-sample-t-test" class="section level2 hasAnchor" number="7.1">
@@ -258,7 +259,7 @@ The test statistic is a random variable, since it is based on observations in a 
 We’ve seen the quantity on the right before. If we take the standardized version of <span class="math inline">\(\bar{X}\)</span>, computed with the sample sd <span class="math inline">\(S\)</span>, we get a T distribution curve with <span class="math inline">\(n-1\)</span> degrees of freedom. If the null hypothesis is true, then
 <span class="math display">\[T \;=\; \frac{\bar{X} - \mu}{S/\sqrt{n}} \;\sim\; T_{n-1}.\]</span>
 The T with <span class="math inline">\(n-1\)</span> degrees of freedom represents all of the possibilities in the case where <span class="math inline">\(H_0\)</span> is true. We call this the null distribution.</p>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <p>We think of the values in the middle of the peak as being consistent with the null hypothesis. Values in the tails are “extreme” and not consistent with the null.</p>
 <div class="infobox deff">
@@ -293,7 +294,7 @@ This is the quantitative evidence we have against <span class="math inline">\(H_
 <p>The <strong>rejection region</strong> is a region of the null distribution that has area <span class="math inline">\(\alpha\)</span>. It is the area that corresponds to the strongest evidence against the null.</p>
 </div>
 <p>In the case of our T test, the rejection region is a <span class="math inline">\(T_{39}\)</span> curve, and the most extreme evidence against the null is in the tails. So we take <span class="math inline">\(\alpha\)</span> and split it up equally into the tails.</p>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <p>If our observed test statistic is in one of these regions, we have strong evidence against the null. So test statistics that are far from 0 indicate that our null is probably false.</p>
 <div class="infobox pond">
@@ -308,7 +309,7 @@ This is the quantitative evidence we have against <span class="math inline">\(H_
 <hr />
 <p>Our observed test statistic <span class="math inline">\(t_{obs} = 2.664\)</span> is greater than 2.023, so it falls in the rejection region in the upper tail.</p>
 <pre><code>## integer(0)</code></pre>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Basically, we don’t expect to see such an extreme positive test statistic under the null. So we have evidence that the true mean seedling height is not actually 1.5 cm.</p>
 <hr />
 <p>The other way to complete a hypothesis test is by computing a p-value.</p>
@@ -317,7 +318,7 @@ This is the quantitative evidence we have against <span class="math inline">\(H_
 </div>
 <p>The test statistic represents the degree of evidence we have in our data against the null hypothesis. Anything outside of the test statistic, further into the tails, represents having stronger evidence against the null.</p>
 <pre><code>## integer(0)</code></pre>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>One important consideration is that we have to calculate the area in <em>both</em> tails, not just the upper tail. So we need the area above 2.664 and the area below -2.664. In this way, we can consider the possibility of our test statistic being far from 0 in <em>both</em> directions.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="hypothesis-testing.html#cb9-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">by =</span> .<span class="dv">01</span>)</span>
 <span id="cb9-2"><a href="hypothesis-testing.html#cb9-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dt</span>(x, <span class="at">df =</span> <span class="dv">39</span>)</span>
@@ -331,7 +332,7 @@ This is the quantitative evidence we have against <span class="math inline">\(H_
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="hypothesis-testing.html#cb11-1" tabindex="-1"></a><span class="fu">segments</span>(<span class="fl">2.657</span>, <span class="dv">0</span>, <span class="fl">2.657</span>, .<span class="dv">4</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>)</span>
 <span id="cb11-2"><a href="hypothesis-testing.html#cb11-2" tabindex="-1"></a><span class="fu">polygon</span>(<span class="fu">c</span>(x[x<span class="sc">&gt;=</span><span class="fl">2.657</span>], <span class="fl">2.657</span>), <span class="fu">c</span>(y[x<span class="sc">&gt;=</span><span class="fl">2.657</span>], y[x<span class="sc">==</span><span class="fu">max</span>(x)]), <span class="at">col=</span><span class="st">&quot;dodgerblue&quot;</span>) <span class="sc">+</span></span>
 <span id="cb11-3"><a href="hypothesis-testing.html#cb11-3" tabindex="-1"></a>        <span class="fu">polygon</span>(<span class="fu">c</span>(x[x<span class="sc">&lt;=-</span><span class="fl">2.657</span>], <span class="sc">-</span><span class="fl">2.657</span>), <span class="fu">c</span>(y[x<span class="sc">&lt;=-</span><span class="fl">2.657</span>], y[x<span class="sc">==</span><span class="fu">max</span>(x)]), <span class="at">col=</span><span class="st">&quot;dodgerblue&quot;</span>)</span></code></pre></div>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <p>We can find an area/probability on the T distribution by using the R function <code>pt</code> (probability T). The syntax is very similar to <code>pnorm</code>, but we do need to specify the T degrees of freedom. The seedlings p-value is
 <span class="math display">\[pval \;=\; P(T_{39} &lt; -2.664) \;+\; P(T_{39} &gt; 2.664) = 0.011.\]</span></p>
@@ -381,7 +382,7 @@ For the T test to be valid, we need to assume the observations are independent, 
 <span id="cb18-2"><a href="hypothesis-testing.html#cb18-2" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="hypothesis-testing.html#cb18-3" tabindex="-1"></a><span class="fu">hist</span>(flux)</span>
 <span id="cb18-4"><a href="hypothesis-testing.html#cb18-4" tabindex="-1"></a><span class="fu">qqnorm</span>(flux); <span class="fu">qqline</span>(flux)</span></code></pre></div>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="hypothesis-testing.html#cb19-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 <p><span style="color:#8601AF">
 Although the sample size is small, we don’t see any serious departures from normality. So a T test will be an appropriate test for this data.
@@ -409,7 +410,7 @@ If <span class="math inline">\(H_0\)</span> is true, then <span class="math inli
 <pre><code>## [1] -2.364624</code></pre>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="hypothesis-testing.html#cb25-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">7</span>)</span></code></pre></div>
 <pre><code>## [1] 2.364624</code></pre>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <p><span style="color:#8601AF">
 The rejection region is the area below -2.365 and the area above 2.365. Our test statistic 2.051 is between the two values, so it falls in the middle of the <span class="math inline">\(T_7\)</span> peak, and so we do not reject the null. We can also find a p-value by calculating the area outside of 2.051 on the <span class="math inline">\(T_7\)</span> curve, in both tails.
@@ -539,12 +540,12 @@ If <span class="math inline">\(H_0\)</span> is actually true, the correct decisi
 <hr />
 <p>Let’s analyze the one-sided hypotheses above using a T test with <span class="math inline">\(\alpha = 0.05\)</span>. The null distribution for a one-sided test is still <span class="math inline">\(T_{n-1}\)</span>, or <span class="math inline">\(T_{19}\)</span> in this case. But the rejection region is different.</p>
 <p>Previously, when we performed a two-sided test, we found a rejection region by taking the significance level <span class="math inline">\(\alpha\)</span> and splitting it up into two tails, each with area <span class="math inline">\(\alpha/2\)</span>.</p>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <p>But with our one-sided hypotheses, we are only looking for a positive effect.</p>
 <p><span class="math display">\[H_0: \mu \le 8 \quad \text{versus} \quad H_A: \mu &gt; 8.\]</span></p>
 <p>When we build a rejection region, it will still have area <span class="math inline">\(\alpha\)</span>. But, it will be entirely in the upper tail of the null distribution. Negative test statistics don’t give us evidence that <span class="math inline">\(\mu &gt; 8\)</span>, only positive test statistics do. So our rejection region will cut off area 0.05 in the upper tail of the <span class="math inline">\(T_{19}\)</span> curve.</p>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <p>Since there is 0.05 area above and 0.95 area below, this rejection region is defined by the 95th percentile of the null distribution, which can be found with <code>qt</code>.</p>
 <p>The p-value is also calculated differently for a one-sided test. When we did a two-sided test, we had to find the area outside of <span class="math inline">\(t_{obs}\)</span> in both tails. For our one-sided test, which is looking for a positive result, we only need to consider the upper tail. So we just need the area above <span class="math inline">\(t_{obs}\)</span>. Bigger positive test statistics give us stronger evidence against the null.</p>
@@ -569,7 +570,7 @@ To make a 5% level rejection region in the upper tail of our null distribution, 
 <p><span style="color:#8601AF">
 We see that our observed test statistic 1.219 is smaller than the rejection region threshold of 1.729. So the statistic is not in the rejection region, and it does not give us sufficient evidence against the null.
 </span></p>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <ul>
 <li>Calculate a corresponding p-value.</li>
@@ -579,18 +580,18 @@ Since we are specifically looking for a positive result, a bigger test statistic
 </span></p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="hypothesis-testing.html#cb35-1" tabindex="-1"></a><span class="fu">pt</span>(<span class="fl">1.219</span>, <span class="at">df =</span> <span class="dv">19</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 0.1188814</code></pre>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <p>We conclude that the mean pumpkin weight is not significantly greater than 8 lbs.</p>
 </div>
 <hr />
 <p>Notice that if we had done a two-sided test with <span class="math inline">\(H_A: \mu \neq 8\)</span>, we would’ve had to find the p-value by calculating the area outside <span class="math inline">\(t_{obs}\)</span> in both tails. This would give us a p-valuue that is twice as big as the one-sided p-value.</p>
 <pre><code>## integer(0)</code></pre>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <pre><code>## integer(0)</code></pre>
 <pre><code>## integer(0)</code></pre>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-22-2.png" width="672" /></p>
 <hr />
 <p>In general, the test statistic and null distribution are the same for a one-sided versus a two-sided test. But the p-value calculation is different.</p>
 <div class="infobox deff">
@@ -620,7 +621,7 @@ Since we are specifically looking for a positive result, a bigger test statistic
 <p>This is the same test statistic as the one we used for the T test. But now, we are making the assumption that the value 2.664 was drawn from a standard normal bell curve.</p>
 <hr />
 <p>We use a rejection region or p-value to make a decision about our hypotheses. The rejection region has area <span class="math inline">\(\alpha = 0.05\)</span> in both tails, since we’re doing a two-sided test. So each tail will have area <span class="math inline">\(\alpha/2 = 0.025\)</span>.</p>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <p>We can calculate the rejection region in R by finding the 2.5 and 97.5 percentiles of the normal curve.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="hypothesis-testing.html#cb43-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>)</span></code></pre></div>
@@ -630,11 +631,11 @@ Since we are specifically looking for a positive result, a bigger test statistic
 <p>Notice that the value 1.96 is the same as the critial value we would use to build a 95% Z confidence interval.</p>
 <p>For our test at the 5% level, we decide to reject if the test statistic is less than -1.96 or greater than 1.96. Our test statistic of 2.664 falls in this upper rejection region. Because the test statistic is very far in the tails, it is considered “extreme” compared to the normal curve. So, we decide to reject the null.</p>
 <pre><code>## integer(0)</code></pre>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <hr />
 <p>We can also make a decision by calculating a p-value. The Z test p-value is calculated with the standard normal. It is the area outside of our test statistic on the standard normal curve. Since we’re doing a two-sided test, we calculate this area in both tails.</p>
 <pre><code>## integer(0)</code></pre>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="hypothesis-testing.html#cb50-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="fl">2.664</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 0.007721756</code></pre>
