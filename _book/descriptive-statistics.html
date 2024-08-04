@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Descriptive Statistics | Statistics 371 Full Notes</title>
+  <meta name="description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Descriptive Statistics | Statistics 371 Full Notes" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Descriptive Statistics | Statistics 371 Full Notes" />
+  
+  <meta name="twitter:description" content="Introductory Applied Statistics for the Life Sciences" />
+  
+
+<meta name="author" content="Miranda Rintoul" />
+
+
+<meta name="date" content="2024-08-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="probability.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction To Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#statistics"><i class="fa fa-check"></i><b>1.1</b> Statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#key-terms"><i class="fa fa-check"></i><b>1.2</b> Key terms</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#types-of-data"><i class="fa fa-check"></i><b>1.3</b> Types of data</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#course-outline"><i class="fa fa-check"></i><b>1.4</b> Course outline</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histograms"><i class="fa fa-check"></i><b>2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>2.2</b> Location</a></li>
+<li class="chapter" data-level="2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#spread"><i class="fa fa-check"></i><b>2.3</b> Spread</a></li>
+<li class="chapter" data-level="2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#box-plots"><i class="fa fa-check"></i><b>2.4</b> Box plots</a></li>
+<li class="chapter" data-level="2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#multiple-datasets"><i class="fa fa-check"></i><b>2.5</b> Multiple datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> Probability</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#sampling"><i class="fa fa-check"></i><b>3.1</b> Sampling</a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#probability-basics"><i class="fa fa-check"></i><b>3.2</b> Probability basics</a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>3.3</b> Conditional probability</a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>3.4</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="random-variables.html"><a href="random-variables.html"><i class="fa fa-check"></i><b>4</b> Random Variables</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="random-variables.html"><a href="random-variables.html#random-variable-basics"><i class="fa fa-check"></i><b>4.1</b> Random variable basics</a></li>
+<li class="chapter" data-level="4.2" data-path="random-variables.html"><a href="random-variables.html#expectation-and-variance"><i class="fa fa-check"></i><b>4.2</b> Expectation and variance</a></li>
+<li class="chapter" data-level="4.3" data-path="random-variables.html"><a href="random-variables.html#binomial-random-variables"><i class="fa fa-check"></i><b>4.3</b> Binomial random variables</a></li>
+<li class="chapter" data-level="4.4" data-path="random-variables.html"><a href="random-variables.html#rules-of-expectation-and-variance"><i class="fa fa-check"></i><b>4.4</b> Rules of expectation and variance</a></li>
+<li class="chapter" data-level="4.5" data-path="random-variables.html"><a href="random-variables.html#normal-random-variables"><i class="fa fa-check"></i><b>4.5</b> Normal random variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>5</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="estimation.html"><a href="estimation.html#estimation-1"><i class="fa fa-check"></i><b>5.1</b> Estimation</a></li>
+<li class="chapter" data-level="5.2" data-path="estimation.html"><a href="estimation.html#sampling-distributions"><i class="fa fa-check"></i><b>5.2</b> Sampling distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="estimation.html"><a href="estimation.html#central-limit-theorem"><i class="fa fa-check"></i><b>5.3</b> Central Limit Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#z-confidence-interval"><i class="fa fa-check"></i><b>6.1</b> Z confidence interval</a></li>
+<li class="chapter" data-level="6.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-interpretation"><i class="fa fa-check"></i><b>6.2</b> Confidence interval interpretation</a></li>
+<li class="chapter" data-level="6.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#t-confidence-interval"><i class="fa fa-check"></i><b>6.3</b> T confidence interval</a></li>
+<li class="chapter" data-level="6.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#proportion-ci"><i class="fa fa-check"></i><b>6.4</b> Proportion CI</a></li>
+<li class="chapter" data-level="6.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-confidence-interval"><i class="fa fa-check"></i><b>6.5</b> Bootstrap confidence interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-t-test"><i class="fa fa-check"></i><b>7.1</b> One-sample T test</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 371 Full Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="descriptive-statistics" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Descriptive Statistics<a href="descriptive-statistics.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figs/comics/ch2.png" height="400px" style="display: block; margin: auto;" /></p>
+<p>Descriptive statistics are tools we use to summarize a set of data. It is usually an “exploratory” step that we perform before a more formal statistical method. Descriptive summaries can be graphical, or numeric.</p>
+<div id="histograms" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Histograms<a href="descriptive-statistics.html#histograms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sixteen dairy cows were fed a diet supplemented with a vitamin concentrate. Here is the milk fat concentration (g/kg) in a sample from each cow:
+<span class="math display">\[20, 38, 44, 49, 42, 21, 48, 47, 21, 22, 23, 26, 26, 44, 48, 29\]</span>
+What information about this data do we want to know?</p>
+<div class="infobox deff">
+<p>A good visual tool for numeric data is the <strong>histogram</strong>. The data is divided into bins, and then a bar is drawn such that the height of the bar corresponds to the number of observations in that bin.</p>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="descriptive-statistics.html#cb1-1" tabindex="-1"></a>milkfat <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">38</span>, <span class="dv">44</span>, <span class="dv">49</span>, <span class="dv">42</span>, <span class="dv">21</span>, <span class="dv">48</span>, <span class="dv">47</span>, <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">26</span>, <span class="dv">26</span>, <span class="dv">44</span>, <span class="dv">48</span>, <span class="dv">29</span>)</span>
+<span id="cb1-2"><a href="descriptive-statistics.html#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="descriptive-statistics.html#cb1-3" tabindex="-1"></a><span class="fu">hist</span>(milkfat, <span class="at">main =</span> <span class="st">&quot;Histogram of Milk Fat Data&quot;</span>, <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>)</span></code></pre></div>
+<p><img src="02-desc-stats_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>When building a histogram, our main choice is how wide the bins should be. We can make them very wide, or very narrow.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="descriptive-statistics.html#cb2-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="co"># View 2 plots at once</span></span>
+<span id="cb2-2"><a href="descriptive-statistics.html#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="descriptive-statistics.html#cb2-3" tabindex="-1"></a><span class="fu">hist</span>(milkfat, <span class="at">main =</span> <span class="st">&quot;Histogram of Milk Fat Data&quot;</span>, <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>,</span>
+<span id="cb2-4"><a href="descriptive-statistics.html#cb2-4" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">4</span>)</span>
+<span id="cb2-5"><a href="descriptive-statistics.html#cb2-5" tabindex="-1"></a><span class="fu">hist</span>(milkfat, <span class="at">main =</span> <span class="st">&quot;Histogram of Milk Fat Data&quot;</span>, <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>,</span>
+<span id="cb2-6"><a href="descriptive-statistics.html#cb2-6" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">50</span>)</span></code></pre></div>
+<p><img src="02-desc-stats_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="descriptive-statistics.html#cb3-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<p>We want to have a “happy medium”. Bins that are too wide summarize too much, and are not very informative. Bins that are too narrow are more difficult to read and interpret.</p>
+<p>We can set the histogram breaks with R’s <code>seq()</code> function. <code>breaks = seq(14, 49, 7)</code> means we want the breakpoints to go from 14 to 49, and we want the bins to be 7 units wide. The breaks are 14, 21, 28, etc.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="descriptive-statistics.html#cb4-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb4-2"><a href="descriptive-statistics.html#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="descriptive-statistics.html#cb4-3" tabindex="-1"></a><span class="co"># Bins of width 5, from 20 to 50</span></span>
+<span id="cb4-4"><a href="descriptive-statistics.html#cb4-4" tabindex="-1"></a><span class="fu">hist</span>(milkfat, <span class="at">main =</span> <span class="st">&quot;Histogram of Milk Fat Data&quot;</span>,</span>
+<span id="cb4-5"><a href="descriptive-statistics.html#cb4-5" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">5</span>))</span>
+<span id="cb4-6"><a href="descriptive-statistics.html#cb4-6" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="descriptive-statistics.html#cb4-7" tabindex="-1"></a><span class="co"># Bins of width 7, from 14 to 49</span></span>
+<span id="cb4-8"><a href="descriptive-statistics.html#cb4-8" tabindex="-1"></a><span class="fu">hist</span>(milkfat, <span class="at">main =</span> <span class="st">&quot;Histogram of Milk Fat Data&quot;</span>,</span>
+<span id="cb4-9"><a href="descriptive-statistics.html#cb4-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">14</span>, <span class="dv">49</span>, <span class="dv">7</span>))</span></code></pre></div>
+<p><img src="02-desc-stats_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>The choice of bins can have a substantial effect on the shape of the histogram.</p>
+<hr />
+<p>Histograms allow us to view the shape of our data.</p>
+<div class="infobox deff">
+<ul>
+<li><p><strong>Unimodal</strong> data has a single peak, and <strong>bimodal</strong> data has two.</p></li>
+<li><p><strong>Normal</strong> data has an approximate “bell-curve” shape, where most of the data is in the middle of the graph, and a small amount of data is at the edges.</p></li>
+<li><p><strong>Uniform</strong> data is roughly flat.</p></li>
+<li><p>Data can be either <strong>symmetric</strong>, <strong>left-skewed</strong>, or <strong>right-skewed</strong>.</p></li>
+</ul>
+</div>
+<p>This data is normal, bimodal and symmetric:</p>
+<p><img src="figs/desc/normal_hist.png" /><!-- --></p>
+<p>This data is uniform (and so it must be symmetric):</p>
+<p><img src="figs/desc/unif_hist.png" /><!-- --></p>
+<p>The milk fat data is a good example of bimodal data. There is some sort of process going on that makes the data split into two groups.</p>
+<p><img src="figs/desc/milkfat_hist.png" /><!-- --></p>
+<p>For asymmetric data, we always refer to the direction of the <em>tail</em>. So left-skewed data has most of the values on the right side of the graph, with a tail going off to the left:</p>
+<p><img src="figs/desc/left_skew.png" /><!-- --></p>
+<p>And right-skewed data has most of the values on the left side of the graph, with a tail going off to the right:</p>
+<p><img src="figs/desc/right_skew.png" /><!-- --></p>
+</div>
+<div id="location" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Location<a href="descriptive-statistics.html#location" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now, let’s start looking at how we can define numbers that summarize our data in a meaningful way. There are two types of numeric summaries that are commonly used: measures of location and measures of spread.</p>
+<div class="infobox deff">
+<ul>
+<li><p><strong>Location</strong> is the “middle” or the “center” of the data.</p></li>
+<li><p><strong>Spread</strong> is how much variability there is in the data.</p></li>
+</ul>
+</div>
+<p><img src="figs/desc/location_vs_spread.png" /><!-- --></p>
+<p>Many measures of center are concerned with how much data is to the left or to the right of a certain point.</p>
+<div class="infobox deff">
+<p>The <strong>median</strong> is the point that divides the data in half. 50% of the data is to the left of the median, and 50% is to the right of the median.</p>
+</div>
+<p>The specific definition depends on whether we have an even or odd number of observations.</p>
+<ul>
+<li><p>If the data has an odd number of observations, the median is the middle value in the sorted data.</p></li>
+<li><p>If the data has an even number of observations, the median is halfway between the two middle values of the sorted data.</p></li>
+</ul>
+<hr />
+<div class="infobox deff">
+<p><strong>Quartiles</strong> are a generalization of the median that divide the data into four equal-sized groups.</p>
+</div>
+<ul>
+<li><p>The 1st quartile is the observation such that 25% of observations are smaller, and 75% are larger.</p></li>
+<li><p>The second quartile is the 50/50 point of the data, which is exactly the same as the median.</p></li>
+<li><p>The 3rd quartile is the observation such that 75% of observations are smaller, and 25% are larger.</p></li>
+</ul>
+<p>Suppose we know the median, so we know how to divide the data in half. The 1st quartile is the median of the first half of the data, and the 3rd quartile is the median of the second half of the data.</p>
+<p>We can visualize quartiles with a histogram. Since the area of the histogram bars is proportional to the number of obesrvations, the quartiles divide the histogram area into four roughly equal pieces. In this example, Q1 = 0.231, Q2 = 0.455, Q3 = 0.718.</p>
+<p><img src="figs/desc/hist_quartiles.png" /><!-- --></p>
+<hr />
+<div class="infobox deff">
+<p><strong>Percentiles</strong> or <strong>quantiles</strong> are a generalization of the idea of a median or quartiles. They can divide up the data into any percentage.</p>
+<p>Percentiles are always defined in terms of how much data is below.</p>
+</div>
+<p>The 35th percentile is the value such that 35% of the observations are smaller, and 65% are greater. An equivalent way of defining median the is the 50th percentile.</p>
+<p>The two extreme cases are the minimum of the data, which is the 0th percentile, and the maximum of the data, which is the 100th percentile.</p>
+<p>In R, we use functions called <code>median</code> and <code>quantile</code>. When using the <code>quantile</code> function, the <code>probs</code> argument lets us specific which specific percentile we want. The default behavior is to give the quartiles.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="descriptive-statistics.html#cb5-1" tabindex="-1"></a><span class="fu">median</span>(milkfat)</span></code></pre></div>
+<pre><code>## [1] 33.5</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="descriptive-statistics.html#cb7-1" tabindex="-1"></a><span class="fu">quantile</span>(milkfat)</span></code></pre></div>
+<pre><code>##    0%   25%   50%   75%  100% 
+## 20.00 22.75 33.50 44.75 49.00</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="descriptive-statistics.html#cb9-1" tabindex="-1"></a><span class="fu">quantile</span>(milkfat, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.32</span>, <span class="fl">0.58</span>, <span class="fl">0.97</span>))</span></code></pre></div>
+<pre><code>##   32%   58%   97% 
+## 25.40 40.80 48.55</code></pre>
+<p>While the definition of a quantile is consistent, different sources might use different algorithms for computing them. For our purposes, it’s fine to just use the default R quantile calculations.</p>
+<hr />
+<p>The <strong>mean</strong> is a different types of location measure. Instead of looking at percentages of data, it represents the average of our data. It is the sum of the observations, divided by the sample size.</p>
+<p>If our data is [13, 16, 12, 20, 17] then the mean is
+<span class="math display">\[\frac{13 + 16 + 12 + 20 + 17}{5} = 15.6.\]</span></p>
+<p>In general, we use the greek letter Sigma to represent a sum of numbers. Let’s let variables <span class="math inline">\(x_1, x_2, \ldots , x_n\)</span> refer to <span class="math inline">\(n\)</span> numeric data points. The sum of all the <span class="math inline">\(x\)</span> values from 1 to <span class="math inline">\(n\)</span> is
+<span class="math display">\[\sum_{i=1}^n x_i \quad = \quad x_1 + x_2 + \cdots + x_n.\]</span>
+<span class="math inline">\(i\)</span> acts as an index that counts from 1 to <span class="math inline">\(n\)</span>.</p>
+<div class="infobox deff">
+<p>The mean of <span class="math inline">\(x_1, x_2, \ldots , x_n\)</span> is the sum divided by the sample size <span class="math inline">\(n\)</span>.
+<span class="math display">\[\bar{x} \quad = \quad \frac{\sum_{i=1}^n x_i}{n} \quad = \quad \frac{1}{n}\sum_{i=1}^n x_i\]</span></p>
+</div>
+<p>The mean is extremely useful in statistics, so it has its own special name, <span class="math inline">\(\bar{x}\)</span> (“x - bar”). In general, putting a bar over a variable represents taking the average of whatever that variable represents.</p>
+<p>The mean and median are considered good ways of summarizing data, but can sometimes be misleading.</p>
+<div class="infobox exer">
+<p>Consider some roughly symmetric, bimodal data (like the milk fat!) Find the mean and median of the milk fat data:
+<span class="math display">\[20, 38, 44, 49, 42, 21, 48, 47, 21, 22, 23, 26, 26, 44, 48, 29\]</span></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="descriptive-statistics.html#cb11-1" tabindex="-1"></a><span class="fu">mean</span>(milkfat); <span class="fu">median</span>(milkfat)</span></code></pre></div>
+<pre><code>## [1] 34.25</code></pre>
+<pre><code>## [1] 33.5</code></pre>
+<p><span style="color:#8601AF">
+According to R, the milkfat data has mean 34.25 and median 33.5. This can also be done by hand. The mean and median are similar, because the milkfat data is roughly symmetric.
+</span></p>
+</div>
+<p>If we plot these summary values against the data histogram, we see that they aren’t close to the actual data values!</p>
+<p><img src="figs/desc/milkfat_med_mean.png" /><!-- --></p>
+<p>Remember that whenever we make a summary, we are losing information. It’s important to use a combination of graphical and numeric summaries to fully understand a set of data.</p>
+<hr />
+<p>Now, let’s talk about the relationship between the median and mean. This has to do with the shape of the data.</p>
+<p>For symmetric data, the mean and median are about the same.</p>
+<p><img src="figs/desc/symmetric_med_mean.png" /><!-- --></p>
+<p>For left-skewed data, the mean tends to be smaller than the median.</p>
+<p><img src="figs/desc/left_med_mean.png" /><!-- --></p>
+<p>For right-skewed data, the mean tends to be larger than the median.</p>
+<p><img src="figs/desc/right_med_mean.png" /><!-- --></p>
+<p>The extreme values in the skewed datasets “pull” the mean in the direction of the tail. We say that the mean is sensitive to extreme values, or outliers. The median, which only cares about the middle values in the data, is more stable, or robust.</p>
+<div class="infobox deff">
+<p>Measures or methods that are <strong>sensitive</strong> to outliers might change drastically depending on whether or not an outlier is present. Measures that are <strong>robust</strong> to outliers will not chznge very much if an outlier is present.</p>
+</div>
+<div class="infobox pond">
+<p>Why might it be advantageous to use a sensitive measure?</p>
+</div>
+<div class="infobox exer">
+<p>Suppose in the milk fat data, the value 49 is mistakenly recorded as 94.
+<span class="math display">\[20, 38, 44, \mathbf{94}, 42, 21, 48, 47, 21, 22, 23, 26, 26, 44, 48, 29\]</span>
+How do the mean and median change? Compare with the original mean of 34.25 and the original median of 33.5.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="descriptive-statistics.html#cb14-1" tabindex="-1"></a>milkfat_error <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">38</span>, <span class="dv">44</span>, <span class="dv">94</span>, <span class="dv">42</span>, <span class="dv">21</span>, <span class="dv">48</span>, <span class="dv">47</span>, <span class="dv">21</span>,</span>
+<span id="cb14-2"><a href="descriptive-statistics.html#cb14-2" tabindex="-1"></a>           <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">26</span>, <span class="dv">26</span>, <span class="dv">44</span>, <span class="dv">48</span>, <span class="dv">29</span>)</span>
+<span id="cb14-3"><a href="descriptive-statistics.html#cb14-3" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="descriptive-statistics.html#cb14-4" tabindex="-1"></a><span class="fu">mean</span>(milkfat_error)</span></code></pre></div>
+<pre><code>## [1] 37.0625</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="descriptive-statistics.html#cb16-1" tabindex="-1"></a><span class="fu">median</span>(milkfat_error)</span></code></pre></div>
+<pre><code>## [1] 33.5</code></pre>
+<p><span style="color:#8601AF">
+The mean is much higher now, since the very large value of 94 skews the average of the data points. The median, however, does not change. The median is only concerned with the middle values, so if we take the maximum of the data and change it into a bigget number, the median doesn’t change.
+</span></p>
+</div>
+<div class="infobox pond">
+<p>Try to define your own numeric summary of a dataset’s location. What is it measuring? Is it robust or sensitive to outliers?</p>
+</div>
+</div>
+<div id="spread" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Spread<a href="descriptive-statistics.html#spread" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Descriptive statistics about location are most useful when paired with information about spread. Location and spread are both useful and very different characteristics of a dataset.</p>
+<p><img src="figs/desc/location_vs_spread.png" /><!-- --></p>
+<p>Consider two sets of data:
+<span class="math display">\[\{-1, 0, 1\},\quad\quad \{-30, 0, 30\}\]</span></p>
+<p>Both datasets have the same center - the mean and median of both are 0. But we get a sense that the second is much more “spread out” than the first. There are a number of ways to formally quantify this spread.</p>
+<div class="infobox deff">
+<p>The most basic of spread is the <strong>range</strong>, which is the difference between the maximum and minimum values in a dataset.</p>
+</div>
+<p>We can also think of this as the “footprint” of how much space the entire dataset takes up on the number line. The range is very sensitive to extreme values, because by definition it is calculated with the two most extreme values. Consider the following data:
+<span class="math display">\[3, 45, 47, 48, 50, 51, 53, 56, 58\]</span>
+The value 3 is a very noticeable outlier, and the rest of the data is clustered pretty close together. The range is <span class="math inline">\(58-3 = 55\)</span>.</p>
+<hr />
+<p>The inter-quartile range (IQR) is similar to the range. Instead of considering the two extreme ends, it is concerned with the middle 50% of the data.</p>
+<div class="infobox deff">
+<p>The <strong>inter-quartile range</strong> is defined as the difference between the 75th and 25th percentile (3rd quartile - 1st quartile).</p>
+</div>
+<p>The IQR is much less sensitive to outliers.
+<span class="math display">\[3, 45, 47, 48, 50, 51, 53, 56, 58\]</span>
+The example above has a range of 55 and an IQR of 6 (according to R).</p>
+<p>Let’s find the IQR and range of the milkfat data.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="descriptive-statistics.html#cb18-1" tabindex="-1"></a><span class="fu">IQR</span>(milkfat)</span></code></pre></div>
+<pre><code>## [1] 22</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="descriptive-statistics.html#cb20-1" tabindex="-1"></a><span class="fu">range</span>(milkfat)</span></code></pre></div>
+<pre><code>## [1] 20 49</code></pre>
+<p>The IQR is <span class="math inline">\(22\)</span> and the range is <span class="math inline">\(49-20 = 29\)</span>. For this data, the IQR and range are somewhat similar, since there aren’t a lot of extreme values in the milkfat data.</p>
+<hr />
+<p>The most common measure of spread in statistics is the <strong>standard deviation</strong> (sd). This measure doesn’t look at finding the range across differnt values. Instead, it’s concerned with whether the data is close to its mean. The sd tells us how far apart the observations are from the mean, on average.</p>
+<p>Suppose we have data <span class="math inline">\(x_1, x_2, \ldots , x_n\)</span> that have mean <span class="math inline">\(\bar{x}\)</span>. The distance from point <span class="math inline">\(x_1\)</span> to the mean is <span class="math inline">\(x_1 - \bar{x}\)</span>. We want the average distance, so the sensible thing to do is to add up all of the distances, and divide by <span class="math inline">\(n\)</span>.</p>
+<p><span class="math display">\[\frac{1}{n}\sum_{i=1}^n(x_i - \bar{x})\]</span></p>
+<p>But there’s a problem here. From the definition of the mean, we have that the sum of the direct distances <span class="math inline">\(\sum(x_i - \bar{x})\)</span> must always be 0. These distances are either positive or negative, depending on whether the point is above or below the mean, and they all cancel each other out. The measure defined above is equal to 0 for any set of data, so it is not terribly useful.</p>
+<div class="infobox pond">
+<p>Try to calculate <span class="math inline">\(\sum(x_i - \bar{x})\)</span> for the dataset {-5, -1, 3, 6} and see what happens.</p>
+</div>
+<p>Instead of working with direct distances, we look at <em>squared</em> distances. The squared distance from <span class="math inline">\(x_1\)</span> to the mean is <span class="math inline">\((x_1 - \bar{x})^2\)</span>. This quantity is always positive, so when we add it all up and divide by <span class="math inline">\(n\)</span>:</p>
+<p><span class="math display">\[\frac{1}{n}\sum_{i=1}^n(x_i - \bar{x})^2\]</span></p>
+<p>we get a positive number. The last step is to “undo” the squaring we did. So we take a square root of the entire thing.</p>
+<div class="infobox deff">
+<p>The standard deviation of a set of data is given by
+<span class="math display">\[s = \sqrt{\frac{1}{n}\sum_{i=1}^n(x_i - \bar{x})^2}.\]</span></p>
+</div>
+<p>The un-rooted version is called <strong>variance</strong>.</p>
+<div class="infobox deff">
+<p>The variance of a set of data is given by
+<span class="math display">\[s^2 = \frac{1}{n}\sum_{i=1}^n(x_i - \bar{x})^2.\]</span></p>
+</div>
+<p>So the square root of the variance is sd, and sd squared is variance. The two measures provide the exact same information. However, sd is in the original units of the data, and variance is in squared units.</p>
+<p>Standard deviation is interpreted as the average distance from the data points to their mean. Variance is interpreted as the average squared distance from the data points to their mean. We have R functions for each.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="descriptive-statistics.html#cb22-1" tabindex="-1"></a><span class="fu">sd</span>(milkfat)</span></code></pre></div>
+<pre><code>## [1] 11.59598</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="descriptive-statistics.html#cb24-1" tabindex="-1"></a><span class="fu">var</span>(milkfat)</span></code></pre></div>
+<pre><code>## [1] 134.4667</code></pre>
+<p><span class="math inline">\(11.596^2 = 134.467\)</span>.</p>
+<hr />
+<div class="infobox exer">
+<p>Which measures of spread - range, IQR, sd - will be robust to outliers? Which ones will be more sensitive? Check your intuition by finding these measures for the original milkfat data and the milkfat error data.
+<span class="math display">\[\text{original: }20, 38, 44, 49, 42, 21, 48, 47, 21, 22, 23, 26, 26, 44, 48, 29\]</span>
+<span class="math display">\[\text{error: }20, 38, 44, \mathbf{94}, 42, 21, 48, 47, 21, 22, 23, 26, 26, 44, 48, 29\]</span></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="descriptive-statistics.html#cb26-1" tabindex="-1"></a><span class="fu">range</span>(milkfat); <span class="fu">range</span>(milkfat_error)</span></code></pre></div>
+<pre><code>## [1] 20 49</code></pre>
+<pre><code>## [1] 20 94</code></pre>
+<p><span style="color:#8601AF">
+The original data has range <span class="math inline">\(49-20 = 29\)</span>, and the error data has range <span class="math inline">\(94-20 = 74.\)</span>
+</span></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="descriptive-statistics.html#cb29-1" tabindex="-1"></a><span class="fu">IQR</span>(milkfat); <span class="fu">IQR</span>(milkfat_error)</span></code></pre></div>
+<pre><code>## [1] 22</code></pre>
+<pre><code>## [1] 22</code></pre>
+<p><span style="color:#8601AF">
+Both datasets have IQR 22.
+</span></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="descriptive-statistics.html#cb32-1" tabindex="-1"></a><span class="fu">sd</span>(milkfat); <span class="fu">sd</span>(milkfat_error)</span></code></pre></div>
+<pre><code>## [1] 11.59598</code></pre>
+<pre><code>## [1] 18.6957</code></pre>
+<p><span style="color:#8601AF">
+The original sd is 11.596, and the error sd is 18.696.<br />
+</span></p>
+</div>
+<p>We see that the range changed drastically due to the value 49 changing to 94. However, the IQR did not change at all. The error had to do with the maximum value, and the IQR is not concerned with the maximum, just the middle 50%. The standard deviation is also greater for the error data, since 94 is very far from the center, and pulls up the average distance.</p>
+<div class="infobox pond">
+<p>Try to define your own numeric summary of a dataset’s spread. What is it measuring? Is it robust or sensitive to outliers?</p>
+</div>
+</div>
+<div id="box-plots" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Box plots<a href="descriptive-statistics.html#box-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="infobox deff">
+<p>A box plot is visualizes the quartiles of the data with a box, and shows outliers as points.</p>
+</div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="descriptive-statistics.html#cb35-1" tabindex="-1"></a><span class="fu">boxplot</span>(milkfat)</span></code></pre></div>
+<p><img src="02-desc-stats_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>First, a box is drawn around the IQR (1st to 3rd quartile) of the data. We have some kind of threshold, which is usually 1.5(IQR). Lines (or whiskers) are drawn out to
+<span class="math display">\[[Q1 - 1.5(IQR),\; Q3 + 1.5(IQR)].\]</span>
+Anything outside of this interval is considered to be an outlier, and it is drawn as a point. Notice the boxplot above has no points, so there are no outliers.</p>
+<p>Here’s another way to make a boxplot.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="descriptive-statistics.html#cb36-1" tabindex="-1"></a><span class="fu">boxplot</span>(milkfat, <span class="at">horizontal =</span> <span class="cn">TRUE</span>, <span class="at">xlab =</span> <span class="st">&quot;Milk Fat&quot;</span>)</span></code></pre></div>
+<p><img src="02-desc-stats_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>Note that R will not draw lines past where the data actually is. The upper whisker extends to 49, which is less than Q3 + 1.5(IQR). That’s because 49 is the maximum value in the data and it would be misleading for the line to go beyond that point. The exact cutoff for an outlier can also be set by hand.</p>
+<p>This is an example of what it would look like if a dataset did have an outlier:</p>
+<p><img src="02-desc-stats_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<hr />
+<p>Box plots are useful for summarizing multiple groups of data. Suppose researchers are studying the effectiveness of 3 different academic programs. Ten students from each program are evaluated on an exam, and produce the following scores</p>
+<p><span class="math display">\[\begin{align*}
+\text{Program A}:&amp;\quad 67, 78, 88, 65, 77, 72, 73, 82, 85, 90 \\
+\text{Program B}:&amp;\quad 77, 61, 85, 75, 77, 73, 81, 74, 83, 89 \\
+\text{Program C}:&amp;\quad 84, 82, 79, 76, 88, 90, 91, 85, 82, 94
+\end{align*}\]</span></p>
+<p>We can make side-by-side boxplots by putting all three sets of data into the <code>boxplot</code> function. It’s also good to include helpful labels.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="descriptive-statistics.html#cb37-1" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">67</span>, <span class="dv">78</span>, <span class="dv">88</span>, <span class="dv">65</span>, <span class="dv">77</span>, <span class="dv">72</span>, <span class="dv">73</span>, <span class="dv">82</span>, <span class="dv">85</span>, <span class="dv">90</span>)</span>
+<span id="cb37-2"><a href="descriptive-statistics.html#cb37-2" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">77</span>, <span class="dv">61</span>, <span class="dv">85</span>, <span class="dv">75</span>, <span class="dv">77</span>, <span class="dv">73</span>, <span class="dv">81</span>, <span class="dv">74</span>, <span class="dv">83</span>, <span class="dv">89</span>)</span>
+<span id="cb37-3"><a href="descriptive-statistics.html#cb37-3" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">84</span>, <span class="dv">82</span>, <span class="dv">79</span>, <span class="dv">76</span>, <span class="dv">88</span>, <span class="dv">90</span>, <span class="dv">91</span>, <span class="dv">85</span>, <span class="dv">82</span>, <span class="dv">94</span>)</span>
+<span id="cb37-4"><a href="descriptive-statistics.html#cb37-4" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="descriptive-statistics.html#cb37-5" tabindex="-1"></a><span class="fu">boxplot</span>(A, B, C, <span class="at">main =</span> <span class="st">&quot;Exam Scores by Program&quot;</span>,</span>
+<span id="cb37-6"><a href="descriptive-statistics.html#cb37-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#D81B60&quot;</span>, <span class="st">&quot;#1E88E5&quot;</span>, <span class="st">&quot;#FFC107&quot;</span>),</span>
+<span id="cb37-7"><a href="descriptive-statistics.html#cb37-7" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>))</span></code></pre></div>
+<p><img src="02-desc-stats_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p>With this plot, we can get a very good overall summary of the differences in the programs. A and B are pretty similar, and C has a higher center.</p>
+</div>
+<div id="multiple-datasets" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Multiple datasets<a href="descriptive-statistics.html#multiple-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that we’re familiar with tools for summarizing data, let’s consider the problem of comparing two sets of data. In addition to the 16 cows that received the vitamin supplement, suppose the researchers also observed 17 milk fat values on cows at the same farm that did not receive the supplement.</p>
+<p><span class="math display">\[20, 21, 22, 22, 23, 24, 18, 27, 25, 25, 19, 21, 28, 18, 17, 21, 23\]</span></p>
+<p>Let’s compare this data with our original milk fat data. Let’s see what happens if we make default histograms of the data.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="descriptive-statistics.html#cb38-1" tabindex="-1"></a>milkfat_supp <span class="ot">&lt;-</span> milkfat</span>
+<span id="cb38-2"><a href="descriptive-statistics.html#cb38-2" tabindex="-1"></a>milkfat_nosupp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">24</span>, <span class="dv">18</span>, <span class="dv">27</span>, <span class="dv">25</span>,</span>
+<span id="cb38-3"><a href="descriptive-statistics.html#cb38-3" tabindex="-1"></a>                    <span class="dv">25</span>, <span class="dv">19</span>, <span class="dv">21</span>, <span class="dv">28</span>, <span class="dv">18</span>, <span class="dv">17</span>, <span class="dv">21</span>, <span class="dv">23</span>)</span>
+<span id="cb38-4"><a href="descriptive-statistics.html#cb38-4" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="descriptive-statistics.html#cb38-5" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))  <span class="co"># View 2 plots at once</span></span>
+<span id="cb38-6"><a href="descriptive-statistics.html#cb38-6" tabindex="-1"></a><span class="fu">hist</span>(milkfat_supp, <span class="at">main =</span> <span class="st">&quot;Supplement Milk Fat&quot;</span>,</span>
+<span id="cb38-7"><a href="descriptive-statistics.html#cb38-7" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>)</span>
+<span id="cb38-8"><a href="descriptive-statistics.html#cb38-8" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="descriptive-statistics.html#cb38-9" tabindex="-1"></a><span class="fu">hist</span>(milkfat_nosupp, <span class="at">main =</span> <span class="st">&quot;No Supplement Milk Fat&quot;</span>,</span>
+<span id="cb38-10"><a href="descriptive-statistics.html#cb38-10" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>)</span></code></pre></div>
+<p><img src="02-desc-stats_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p>This is very misleading! Both x axes cover a different range of values, and the bin widths are different. We need to manually specify the bins for each histogram to keep things consistent. Let’s make bins of size 3, going from 16 to 49.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="descriptive-statistics.html#cb39-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))  <span class="co"># View 2 plots at once</span></span>
+<span id="cb39-2"><a href="descriptive-statistics.html#cb39-2" tabindex="-1"></a><span class="fu">hist</span>(milkfat_supp, <span class="at">main =</span> <span class="st">&quot;Supplement Milk Fat&quot;</span>,</span>
+<span id="cb39-3"><a href="descriptive-statistics.html#cb39-3" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">8</span>),</span>
+<span id="cb39-4"><a href="descriptive-statistics.html#cb39-4" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">16</span>, <span class="dv">49</span>, <span class="dv">3</span>))</span>
+<span id="cb39-5"><a href="descriptive-statistics.html#cb39-5" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="descriptive-statistics.html#cb39-6" tabindex="-1"></a><span class="fu">hist</span>(milkfat_nosupp, <span class="at">main =</span> <span class="st">&quot;No Supplement Milk Fat&quot;</span>,</span>
+<span id="cb39-7"><a href="descriptive-statistics.html#cb39-7" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">8</span>),</span>
+<span id="cb39-8"><a href="descriptive-statistics.html#cb39-8" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">16</span>, <span class="dv">49</span>, <span class="dv">3</span>))</span></code></pre></div>
+<p><img src="02-desc-stats_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>With these plots, we can much more easily see that the center of the no supplement data is below that of the supplemented milk fat data. The no supplement histogram is also less spread out.</p>
+<hr />
+<p>We can also build comparative boxplots. As we saw in the academic program example, we don’t need to use the <code>boxplot</code> function multiple times, we just need to specify both of our data sets.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="descriptive-statistics.html#cb40-1" tabindex="-1"></a><span class="fu">boxplot</span>(milkfat_supp, milkfat_nosupp, <span class="at">main =</span> <span class="st">&quot;Milk Fat&quot;</span>,</span>
+<span id="cb40-2"><a href="descriptive-statistics.html#cb40-2" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;Supplement&quot;</span>, <span class="st">&quot;No Supplement&quot;</span>))</span></code></pre></div>
+<p><img src="02-desc-stats_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>Finally, we can also compare numeric summaries. It’s useful to be thorough and calculate measures of center and spread for both sets of data.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="descriptive-statistics.html#cb41-1" tabindex="-1"></a><span class="fu">mean</span>(milkfat_supp); <span class="fu">mean</span>(milkfat_nosupp)</span></code></pre></div>
+<pre><code>## [1] 34.25</code></pre>
+<pre><code>## [1] 22</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="descriptive-statistics.html#cb44-1" tabindex="-1"></a><span class="fu">median</span>(milkfat_supp); <span class="fu">median</span>(milkfat_nosupp)</span></code></pre></div>
+<pre><code>## [1] 33.5</code></pre>
+<pre><code>## [1] 22</code></pre>
+<p>The mean and median are much lower for the no supplement data, which is also visually apparent in the histograms and boxplots.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="descriptive-statistics.html#cb47-1" tabindex="-1"></a><span class="fu">sd</span>(milkfat_supp); <span class="fu">sd</span>(milkfat_nosupp)</span></code></pre></div>
+<pre><code>## [1] 11.59598</code></pre>
+<pre><code>## [1] 3.142451</code></pre>
+<p>The no supplement data also has considerably less spread. Milk fat percentage is more consistent for cows that are not given a vitamin supplement.</p>
+<hr />
+<p>Finally, there are some cases where we want to combine two or more sets of data into one. We can combine our two R data vectors to get one big vector with all 33 observations.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="descriptive-statistics.html#cb50-1" tabindex="-1"></a>combined <span class="ot">&lt;-</span> <span class="fu">c</span>(milkfat_supp, milkfat_nosupp)</span>
+<span id="cb50-2"><a href="descriptive-statistics.html#cb50-2" tabindex="-1"></a>combined</span></code></pre></div>
+<pre><code>##  [1] 20 38 44 49 42 21 48 47 21 22 23 26 26 44 48 29 20 21 22 22 23 24 18 27 25
+## [26] 25 19 21 28 18 17 21 23</code></pre>
+<p>From here we can create all of the usual summaries for our combined data, like <code>mean(combined)</code>, <code>hist(combined)</code>, and so on..</p>
+<div class="infobox pond">
+<p>Can we calculate the combined mean from the two individual means? What about the combined median?</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-desc-stats.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Probability | Statistics 371 Full Notes</title>
+  <meta name="description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Probability | Statistics 371 Full Notes" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Probability | Statistics 371 Full Notes" />
+  
+  <meta name="twitter:description" content="Introductory Applied Statistics for the Life Sciences" />
+  
+
+<meta name="author" content="Miranda Rintoul" />
+
+
+<meta name="date" content="2024-08-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="descriptive-statistics.html"/>
+<link rel="next" href="random-variables.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction To Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#statistics"><i class="fa fa-check"></i><b>1.1</b> Statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#key-terms"><i class="fa fa-check"></i><b>1.2</b> Key terms</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#types-of-data"><i class="fa fa-check"></i><b>1.3</b> Types of data</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#course-outline"><i class="fa fa-check"></i><b>1.4</b> Course outline</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histograms"><i class="fa fa-check"></i><b>2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>2.2</b> Location</a></li>
+<li class="chapter" data-level="2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#spread"><i class="fa fa-check"></i><b>2.3</b> Spread</a></li>
+<li class="chapter" data-level="2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#box-plots"><i class="fa fa-check"></i><b>2.4</b> Box plots</a></li>
+<li class="chapter" data-level="2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#multiple-datasets"><i class="fa fa-check"></i><b>2.5</b> Multiple datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> Probability</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#sampling"><i class="fa fa-check"></i><b>3.1</b> Sampling</a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#probability-basics"><i class="fa fa-check"></i><b>3.2</b> Probability basics</a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>3.3</b> Conditional probability</a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>3.4</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="random-variables.html"><a href="random-variables.html"><i class="fa fa-check"></i><b>4</b> Random Variables</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="random-variables.html"><a href="random-variables.html#random-variable-basics"><i class="fa fa-check"></i><b>4.1</b> Random variable basics</a></li>
+<li class="chapter" data-level="4.2" data-path="random-variables.html"><a href="random-variables.html#expectation-and-variance"><i class="fa fa-check"></i><b>4.2</b> Expectation and variance</a></li>
+<li class="chapter" data-level="4.3" data-path="random-variables.html"><a href="random-variables.html#binomial-random-variables"><i class="fa fa-check"></i><b>4.3</b> Binomial random variables</a></li>
+<li class="chapter" data-level="4.4" data-path="random-variables.html"><a href="random-variables.html#rules-of-expectation-and-variance"><i class="fa fa-check"></i><b>4.4</b> Rules of expectation and variance</a></li>
+<li class="chapter" data-level="4.5" data-path="random-variables.html"><a href="random-variables.html#normal-random-variables"><i class="fa fa-check"></i><b>4.5</b> Normal random variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>5</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="estimation.html"><a href="estimation.html#estimation-1"><i class="fa fa-check"></i><b>5.1</b> Estimation</a></li>
+<li class="chapter" data-level="5.2" data-path="estimation.html"><a href="estimation.html#sampling-distributions"><i class="fa fa-check"></i><b>5.2</b> Sampling distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="estimation.html"><a href="estimation.html#central-limit-theorem"><i class="fa fa-check"></i><b>5.3</b> Central Limit Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#z-confidence-interval"><i class="fa fa-check"></i><b>6.1</b> Z confidence interval</a></li>
+<li class="chapter" data-level="6.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-interpretation"><i class="fa fa-check"></i><b>6.2</b> Confidence interval interpretation</a></li>
+<li class="chapter" data-level="6.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#t-confidence-interval"><i class="fa fa-check"></i><b>6.3</b> T confidence interval</a></li>
+<li class="chapter" data-level="6.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#proportion-ci"><i class="fa fa-check"></i><b>6.4</b> Proportion CI</a></li>
+<li class="chapter" data-level="6.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-confidence-interval"><i class="fa fa-check"></i><b>6.5</b> Bootstrap confidence interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-t-test"><i class="fa fa-check"></i><b>7.1</b> One-sample T test</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 371 Full Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probability" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Probability<a href="probability.html#probability" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figs/comics/ch3.jpg" height="480px" style="display: block; margin: auto;" /></p>
+<p>We often need to take a small sample in order to learn something about a larger population. However, sampling introduces uncertainty, since we don’t know exactly which items will appear in our sample.</p>
+<div class="infobox deff">
+<p><strong>Probability</strong> is the mathematics of randomness and uncertainty.</p>
+</div>
+<p>By using tools from probability theory, we will have a formal, principled background for doing statistics with a random sample. In this section, we’ll learn the basic fundamentals of probability.</p>
+<div id="sampling" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Sampling<a href="probability.html#sampling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>How is probability related to statistics? The difference between the two sciences is subtle. In statistics, we are using an observed sample to make inference about an unkonwn population. For example: we have a six-sided die, and we don’t know if it’s fair or not. To figure this out, we roll the die a very large number of times, and record the results. The rolls are the random sample, and the population parameter is the true likelihood of each of the different faces.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Statistics</th>
+<th align="center">Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Population</td>
+<td align="center">Unknown</td>
+<td align="center">Known</td>
+</tr>
+<tr class="even">
+<td align="center">Sample</td>
+<td align="center">Known</td>
+<td align="center">Unknown</td>
+</tr>
+</tbody>
+</table>
+<p>Probability is more abstract. In probability, we assume we know the full population, but we don’t know the value of a random sample. For example: a deck of cards has 4/52 aces. If we shuffle a deck and draw five cards, we don’t know what we are going to get, but we are interested in knowing how many aces we might draw. 4/52 is the population parameter (the likelihood of an ace) and the hand of five cards is the unknown sample.</p>
+<hr />
+<p>There are several different ways to draw a sample from a population.</p>
+<div class="infobox deff">
+<p>A sample is drawn <strong>with replacement</strong> if an item is replaced back into the population before the next element is drawn.</p>
+</div>
+<p>For example, we could draw a sample of 5 from a deck of cards with replacement. We would draw a card, and then shuffle it back into the deck, 5 times. There are several consequences of sampling with replacement:</p>
+<ul>
+<li>We might draw the same element multiple times.</li>
+<li>The population stays the same at every step - it’s the same deck of 52 cards.</li>
+<li>The item we draw won’t affect the next item, since we’re shuffling it back in.</li>
+<li>The items are <strong>independent</strong> of each other.</li>
+</ul>
+<p>We’ll define independence formally later. Just think of independent items as having no influence or affect on each other.</p>
+<hr />
+<div class="infobox deff">
+<p>If we do not replace the element back into the population, then we are sampling <strong>without replacement</strong>. Each item is set aside after it is drawn.</p>
+</div>
+<p>In the card example, if we were drawing a sample without replacement, would simply draw 5 cards at once. Nothing gets shuffled back in. Sampling without replacement has several key differences to sampling with replacement.</p>
+<ul>
+<li>We can’t draw the same element multiple times. Every item in our samle will be distinct.</li>
+<li>The population is different at every step. When we sample the second item, we’re sampling from a sub-population that does not contain the first item.</li>
+<li>The draws affect each other. For example, the first item influences what you can get for the second item.</li>
+<li>As a result, the draws from sampling without replacement are not independent.</li>
+</ul>
+<p>For the first several examples, we’re going to look at drawing a single object (or recording a single result) from a population. If <span class="math inline">\(n = 1\)</span>, then sampling with or without replacement doesn’t matter.</p>
+</div>
+<div id="probability-basics" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Probability basics<a href="probability.html#probability-basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s imagine drawing a SRS of size 1 from a population. This just means we pick any item at random, and every item is equally likely to be chosen. Probabilities come fairly directly from the population itself.</p>
+<p>If we draw a card from a standard deck, there’s a 0.25 probability that we get a spade card, since <span class="math inline">\(\frac{13}{52} = 0.25\)</span> items are spades. In general, the probability of seeing a certain type of item is the same as the proportion of that type of item in the population.</p>
+<p>Sometimes, we can represent populations with a histogram. This histogram shows the MPG of 55 hybrid vehicles. For simplicity, assume there aren’t any items directly on the histogram breakpoints.</p>
+<p><img src="03-probability_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Normally, a histogram represents an observed sample from a population. For this exercise, we’re pretending that the 55 vehicles are the entire population.</p>
+<div class="infobox exer">
+<p>If we sample one vehicle at random, what is the probability that the vehicle has MPG above 30?</p>
+<p><span style="color:#8601AF">
+The relevant number of items is the sum of the bars above 30: 5+7+8+7+3+2 = 32. So our probability is <span class="math inline">\(\frac{32}{55} = 0.582\)</span>.
+</span></p>
+</div>
+<div class="infobox deff">
+<p>The qualitative descrption of what we’re “looking for” is called an <strong>event</strong>.</p>
+</div>
+<p>For example, we could define event <span class="math inline">\(A\)</span> as “MPG above 30”. Giving the event a quick name like this makes it much easier to do math related to probability.</p>
+<hr />
+<p>Let’s look at the fundamental properties of probability.</p>
+<ul>
+<li><p>Probability is always between 0 and 1. 0 represents impossibility, and 1 represents certainty. For clarity, it’s good to keep probabilities as decimals or fractions rather than percentages. In more mathematical notation for any event <span class="math inline">\(A\)</span>,
+<span class="math display">\[0 \le P(A) \le 1\]</span></p></li>
+<li><p>When we draw an item, the event is guaranteed to be either true, or false. For example, a car can have MPG above 30 or below 30 (but not both).</p></li>
+<li><p>As a direct result of this, the probability that an event does not occur is 1 minus the probability that it does occur. This is called the “complement rule”. In more mathematical notation,
+<span class="math display">\[P(A) = 1 - P(\text{not }A)\]</span></p></li>
+</ul>
+<p>For example, we saw that <span class="math inline">\(\frac{32}{55}\)</span> vehicles have MPG above 30. <span class="math inline">\(\frac{23}{55}\)</span> vehicles <em>do not</em> have MPG above 30, and <span class="math inline">\(1 - \frac{23}{55} = \frac{32}{55}\)</span>.</p>
+<hr />
+<p>We can define multiple events for a single draw from a population. Let’s look at how those events can interact.</p>
+<div class="infobox deff">
+<p>The statement “A <strong>AND</strong> B” means that <em>both</em> A and B have occurred.</p>
+</div>
+<p>The item we draw is described by both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. We can visualize this as the overlap between circles in a Venn diagram.</p>
+<p><img src="figs/probability/intersection.png" /><!-- --></p>
+<p>In the vehicle MPG example, the probability of an item being above 30 and below 40 MPG is <span class="math inline">\(P(\text{above 30 AND below 40}) = \frac{12}{55}\)</span>.</p>
+<p><img src="03-probability_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<hr />
+<div class="infobox deff">
+<p>The statement “A <strong>OR</strong> B” means that <em>either</em> A, or B, or <em>both</em> have occurred.</p>
+</div>
+<p>In a mathematical context, “OR” includes the case where both things are true. If you are offered “cream or sugar” with your coffee, you can ask for both.</p>
+<p>The item we draw is described by either <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> or both. We can visualize this as the entire “footprint” of the A and B circles.</p>
+<p><img src="figs/probability/union.png" /><!-- --></p>
+<p>The probability of a vehicle being above 50 OR below 20 is <span class="math inline">\(P(\text{above 50 OR below 20}) = \frac{10}{55}\)</span></p>
+<p><img src="03-probability_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>As another example, <span class="math inline">\(P(\text{above 40 OR above 50}) = \frac{20}{55}\)</span>.</p>
+<p><img src="03-probability_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>There are 5 cars for which “above 40” and “above 50” are both true, but we have to be careful not to count those twice.</p>
+<p>In general, the probability of <span class="math inline">\(A\)</span> OR <span class="math inline">\(B\)</span> is
+<span class="math display">\[P(A \text{ OR } B) \;=\; P(A) + P(B) - P(A \text{ AND } B).\]</span>
+When we add the items from A and B, we have double-counted the items that are in both A and B. So we subtract <span class="math inline">\(A \text{ AND } B\)</span> once.</p>
+<hr />
+<div class="infobox deff">
+<p>We say that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>disjoint</strong> or <strong>mutually exclusive</strong> if they have no overlap. There are no items in the population for which <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are both simultaneously true.</p>
+</div>
+<p><img src="figs/probability/disjoint.png" /><!-- --></p>
+<p>In the vehicles example, the events “above 50” and “below 20” are disjoint. It is impossible to have a car MPG that is both above 50 and below 20.</p>
+<p><img src="03-probability_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>For disjoint <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, we have <span class="math inline">\(P(A \text{ AND }B)\)</span> = 0.</p>
+<div class="infobox exer">
+<p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are disjoint, how can we simplify <span class="math inline">\(P(A \text{ OR }B)\)</span>?</p>
+<p><span style="color:#8601AF">
+In general,
+<span class="math display">\[P(A \text{ OR } B) \;=\; P(A) + P(B) - P(A \text{ AND } B).\]</span>
+But for disjoint events, the overlap between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is empty. We can say
+<span class="math display">\[P(A \text{ OR } B) \;=\; P(A) + P(B)\]</span>
+for disjoint <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.
+</span></p>
+</div>
+<hr />
+<p>Let’s look at a new example. We’ve seen how a histogram can represent a population. Sometimes, populations are represented in a “two-way table” (or “contengency table”) like the one below. This helps us understand the wau two events interact with each other.</p>
+<p>Many people have mammograms to screen for breast cancer. This two-way table gives the mammogram findings and true breast cancer diagnosis for a population of 10,000 hypothetical patients:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Cancer: Yes</th>
+<th>Cancer: No</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mamm. Positive</td>
+<td>97</td>
+<td>594</td>
+<td>691</td>
+</tr>
+<tr class="even">
+<td>Mamm. Negative</td>
+<td>3</td>
+<td>9306</td>
+<td>9309</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>100</td>
+<td>9900</td>
+<td>10000</td>
+</tr>
+</tbody>
+</table>
+<p>Each patient can have either a positive or negative mammogram. Additionally, each patient either has or does not have cancer in reality. Consider drawing one patient at random from the 10,000.</p>
+<div class="infobox exer">
+<ul>
+<li>If we sample a patient at random, what is the probability that they have breast cancer?</li>
+</ul>
+<p><span style="color:#8601AF">
+There are <span class="math inline">\(97+3 = 100\)</span> patients who have breast cancer, so <span class="math inline">\(P(\text{Cancer: Yes})\)</span> is <span class="math inline">\(\frac{100}{100000} = 0.01\)</span>.
+</span></p>
+<ul>
+<li>What is the probability that they have breast cancer OR a positive mammogram?</li>
+</ul>
+<p><span style="color:#8601AF">
+To find <span class="math inline">\(P(\text{Cancer: Yes OR Mamm+})\)</span>, there are three groups we have to consider. There are patients who just have a positive mammogram, but no cancer (594), patients who just have cancer (3), and those who have both (97). The probability is <span class="math inline">\(\frac{594+3+97}{10000} = \frac{694}{10000} = 0.07.\)</span> We can also do
+<span class="math display">\[P(\text{Cancer: Yes OR Mamm+}) \;=\; \frac{691}{10000} + \frac{100}{10000} - \frac{97}{10000} \;=\; \frac{694}{10000}\]</span>
+</span></p>
+<ul>
+<li>Are the events “Cancer: Yes” and “Mamm. Negative” disjoint?</li>
+</ul>
+<p><span style="color:#8601AF">
+For “Cancer: Yes” and “Mamm-” to be disjoint, that would mean there were no items in the population for which both of these are true. However, in the lower left cell of the table, we see that there are three patients who both have cancer but received a negative mammogram. If the events were disjoint, the cell would have to be 0.
+</span></p>
+</div>
+<div class="infobox pond">
+<p>Can you identify two events in the table above that actually are disjoint?</p>
+</div>
+</div>
+<div id="conditional-probability" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Conditional probability<a href="probability.html#conditional-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s think about how two events can affect each other’s <em>probabilities</em>. From our table:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Cancer: Yes</th>
+<th>Cancer: No</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mamm. Positive</td>
+<td>97</td>
+<td>594</td>
+<td>691</td>
+</tr>
+<tr class="even">
+<td>Mamm. Negative</td>
+<td>3</td>
+<td>9306</td>
+<td>9309</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>100</td>
+<td>9900</td>
+<td>10000</td>
+</tr>
+</tbody>
+</table>
+<p>Suppose we draw a patient that has a positive mammogram. What is the probability that they have cancer? This is diffeerent from the overall probability of having cancer.</p>
+<p>In general, <strong>conditional probability</strong> represents how knowing one thing can potentially change the probability of a different event. It’s a bit tricky to grasp at first, but very important!</p>
+<p>We can think of conditional probability as changing or shifting the population of interest. For example, instead of being interested in the overall breast cancer rate, we might be interested in the breast cancer rate of patients with a positive mammogram. The 691 individuals with Mamm+ are our new population.</p>
+<p>Here’s how we find <span class="math inline">\(P(A)\)</span> normally:</p>
+<p><img src="figs/probability/regular_prob.png" width="80%" /></p>
+<p>Here’s how we find <span class="math inline">\(P(A)\)</span> <em>given</em> that <span class="math inline">\(B\)</span> is true. <span class="math inline">\(B\)</span> is our new “universe” of possibilities.</p>
+<p><img src="figs/probability/conditional_prob.png" width="80%" /></p>
+<p>Formally, we write the probability of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> as <span class="math inline">\(P(A \;|\; B)\)</span>. How do we calculate this? According to the picture above, the numerator should be all of the items in <span class="math inline">\(B\)</span> for which <span class="math inline">\(A\)</span> is also true. Then the denominator is just everything in <span class="math inline">\(B\)</span>.</p>
+<div class="infobox deff">
+<p>The <strong>conditional probability</strong> of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> is
+<span class="math display">\[P(A \;|\; B) \;=\; \frac{\mathbb{P}(A \text{ and } B)}{\mathbb{P}(B)}.\]</span>
+Likewise, the conditional probability of <span class="math inline">\(B\)</span> given <span class="math inline">\(A\)</span> is
+<span class="math display">\[P(B \;|\; A) \;=\; \frac{\mathbb{P}(A \text{ and } B)}{\mathbb{P}(A)}.\]</span></p>
+</div>
+<p><span class="math inline">\(P(A \;|\; B)\)</span> and <span class="math inline">\(P(B \;|\; A)\)</span> are not the same thing!</p>
+<div class="infobox pond">
+<p>What is <span class="math inline">\(P(A \;|\; B)\)</span> if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are disjoint?</p>
+<p>What is <span class="math inline">\(P(A \;|\; B)\)</span> if all of the items in <span class="math inline">\(B\)</span> are within <span class="math inline">\(A\)</span>?</p>
+<p><img src="figs/probability/subset.png" width="35%" /></p>
+</div>
+</div>
+<div id="independence" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Independence<a href="probability.html#independence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We use conditional probability to think about how events relate to each other. But some events ought to not affect each other at all. What is the probability of a patient having breast cancer, given they were born on a Tuesday? It should be the same as the overall probability of breast cancer.</p>
+<div class="infobox deff">
+<p>Two events are <strong>independent</strong> if they have no influence on each other’s probabilities. If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent, then knowing that <span class="math inline">\(B\)</span> has happened has no affect on whethre <span class="math inline">\(A\)</span> happens, and vice versa:
+<span class="math display">\[P(A \;|\; B) \;=\; P(A) \quad \text{and} \quad P(B \;|\; A) \;=\; P(B)\]</span>
+Another way of defining independence is that the probability of both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> happening is just the product of their individual probabilities. For independent <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>,
+<span class="math display">\[P(A \text{ AND } B) \;=\; P(A)P(B)\]</span></p>
+</div>
+<p>All three of the above equalities are equivalent definintions of independence. For any <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, they are either all true, or all false. So if we want to check if events are independent, just pick one of the equalities, and see whether it is true.</p>
+<p>Let’s reconsider our table of patients.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Cancer: Yes</th>
+<th>Cancer: No</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mamm. Positive</td>
+<td>97</td>
+<td>594</td>
+<td>691</td>
+</tr>
+<tr class="even">
+<td>Mamm. Negative</td>
+<td>3</td>
+<td>9306</td>
+<td>9309</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>100</td>
+<td>9900</td>
+<td>10000</td>
+</tr>
+</tbody>
+</table>
+<div class="infobox exer">
+<ul>
+<li>What is the probability that a random patient actually has breast cancer, given she had a positive mammogram? i.e., find <span class="math inline">\(P((\text{Cancer: Yes } | \text{ Mamm+}))\)</span>.</li>
+</ul>
+<p><span style="color:#8601AF">
+The probability <span class="math inline">\(P((\text{Cancer: Yes } | \text{ Mamm+}))\)</span> is calculated by only considering the patients who had a positive mammogram (because that is what we assume is true). So, our population is the 691 individuals with a positive mammogram. Out of those, 97 actually have breast cancer. So
+<span class="math display">\[P((\text{Cancer: Yes } | \text{ Mamm+})) \;=\; \frac{97}{691} \;=\; 0.14.\]</span>
+14% of patients with a positive mammogram actually have cancer. We can also calculate this with
+<span class="math display">\[P((\text{Cancer: Yes } | \text{ Mamm+})) \;=\; \frac{P((\text{Cancer: Yes And Mamm+}))}{P(\text{ Mamm+})}\]</span>
+</span></p>
+<ul>
+<li>What is the probability of a positive mammogram, given that the patient actually had breast cancer?</li>
+</ul>
+<p><span style="color:#8601AF">
+This is asking us to calculate <span class="math inline">\(P((\text{Mamm+} | \text{Cancer: Yes}))\)</span>, which is the opposite conditional probability. Now, our population is the 100 patients who actually have breast cancer. Out of those, 97 had a positive test result. So <span class="math inline">\(P((\text{Mamm+} | \text{Cancer: Yes})) = 0.97\)</span>. We can say that this mammogram test has a 97% true positive rate.
+</span></p>
+<ul>
+<li>Show that the event Mamm+ is not independent from the event Cancer: Yes.</li>
+</ul>
+<p><span style="color:#8601AF">
+To show that the two events are not independent, we can compare the rate of cancer in Mamm+ patients to the rate of cancer in the general population. Mathematically, we’re checking if <span class="math inline">\(P((\text{Cancer: Yes } | \text{ Mamm+})) = P(\text{Cancer: Yes})\)</span>. We see that they are not equal:
+<span class="math display">\[P((\text{Cancer: Yes } | \text{ Mamm+})) = 0.14 \;=\; 0.01 = P(\text{Cancer: Yes})\]</span>
+</span></p>
+</div>
+<p>Patients with a positive mammogram are much more likely to actually have cancer than the general population, which should intuitively make sense. If they actually were independent, that would mean the test would give us no information whatsoever about whether the patient has cancer!</p>
+<hr />
+<div class="infobox warn">
+<p>One very common mistake is to confuse the concepts of independence and being disjoint. These are two completely different things, and in fact, non-empty disjoint events are never independent!</p>
+</div>
+<ul>
+<li><p>The events “Cancer: Yes” and “Born on Tuesday” are independent because each one does not influence how likely the other one is to occur. Cancer isn’t more or less prevalent based on the day of the week of birth. <span class="math inline">\(P(\text{Cancer: Yes} \;|\; \text{Born on Tues}) = P(\text{Cancer: Yes}).\)</span></p></li>
+<li><p>The events “Cancer: Yes” and “Cancer: No” are disjoint because there is no patient who both has and does not have cancer. They cannot happen simultaneously. <span class="math inline">\(P(\text{Cancer: Yes} \;|\; \text{Cancer: No}) = 0.\)</span></p></li>
+</ul>
+<p>“Cancer: Yes” and “Cancer: No” are certainly not independent. If we know that a patient does not have cancer, it is impossible for them to have cancer. Independent events give no information about each other, disjoint events give perfect information about each other.</p>
+<hr />
+<p>“Independence” can also apply to different items in a sample. Does the first person in the sample influence the second person?</p>
+<p>Let’s move on from talking about drawing a single item to drawing multiple items from a population. In this case, the distinction between sampling with or without replacement is important.</p>
+<p>Recall that a sample is drawn <strong>with replacement</strong> if an element is replaced back into the population before the next element is drawn. If we do not replace the element back into the population, then we are sampling <strong>without replacement.</strong></p>
+<hr />
+<p>Here is the histogram of the MPG of 55 hybrid vehicles:</p>
+<p><img src="03-probability_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="infobox exer">
+<ul>
+<li>Find the probability that in a sample of 2 cars, both cars have mpg above 50, both with and without replacement.</li>
+</ul>
+<p><span style="color:#8601AF">
+When we sample with replacement, we are always sampling from the same original population. The probability that the first car has mpg above 50 is <span class="math inline">\(\frac{5}{55}\)</span>. Before we sample the next vehicle, we put that first vehicle back into the population, “restoring” it back to what the histogram shows. So the probability that the second car has mpg above 50 is also <span class="math inline">\(\frac{5}{55}\)</span>. The probability that both have mpg above 50 is the product, <span class="math inline">\(\frac{5}{55}\cdot\frac{5}{55}\)</span>.
+</span></p>
+<p><span style="color:#8601AF">
+When we sample without replacement, our population changes. The probability that the first car has mpg above 50 is still <span class="math inline">\(\frac{5}{55}\)</span>. But now, that car has been removed from the population. There are now only 54 cars remaining, 4 of which have mpg above 50. So, the probability that both have mpg above 50 (sampling without replacement) is <span class="math inline">\(\frac{5}{55}\cdot\frac{4}{54}\)</span>. We update the values in the fraction to represent the item being removed from the population.
+</span></p>
+<ul>
+<li>In which sampling scenario do we have independence between the two cars?</li>
+</ul>
+<p><span style="color:#8601AF">
+When we sample with replacement, the result of the first car doesn’t affect the second draw, since we’re putting the sampled object back into the population. So, we have independence between the two draws.<br />
+</span></p>
+<p><span style="color:#8601AF">
+When we sample without replacement, we don’t have independence. The result we get for the first draw affects the probabilities of the second draw.
+</span></p>
+</div>
+<hr />
+<p>In statistics, we always want to have items in our sample be independent from each other. That way, we can avoid any confounding factors that could give us inaccurate conclusions.</p>
+<p>The bad news is that in practice, we almost always have to sample without replacement. This means that the items in our sample are not independent.</p>
+<p>The good news is that, like many things, independence doesn’t have to be perfect for statistics to work. Let’s look at two examples of sampling: one from a large population and one from a small population.</p>
+<hr />
+<ul>
+<li><p>There are 52 cards in a deck, and 13 are hearts. The probability that the first card is a heart is <span class="math inline">\(\frac{13}{52} = 0.25\)</span>. The probability of the second card being hearts is <span class="math inline">\(\frac{12}{51} = 0.235\)</span>. The probability changes between the two steps, which means the card draws are not independent of each other.</p></li>
+<li><p>Now consider a huge population of 100 decks shuffled together. There are 5200 cards, 1300 of which are hearts. The probability of the first card drawn being a heart is <span class="math inline">\(\frac{1300}{5200} = 0.25\)</span>. The probability that the second card is also hearts is <span class="math inline">\(\frac{1299}{5199} = 0.2499\)</span>. The probabilities are still different, but the difference is extremely small.</p></li>
+</ul>
+<p>Just removing one item out of 5200 has a small effect on such a large population. In this case, sampling without replacement is a pretty good approximation for sampling with replacement.</p>
+<p>So, when doing statistics in practice, we want to make sure that our sample is small relative to the size of the original population. If that is the case, then the items in our sample are “close enough” to being independent of each other, evne if that is not exactly true.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="descriptive-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="random-variables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-probability.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

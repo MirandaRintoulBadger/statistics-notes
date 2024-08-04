@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Confidence Intervals | Statistics 371 Full Notes</title>
+  <meta name="description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Confidence Intervals | Statistics 371 Full Notes" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Confidence Intervals | Statistics 371 Full Notes" />
+  
+  <meta name="twitter:description" content="Introductory Applied Statistics for the Life Sciences" />
+  
+
+<meta name="author" content="Miranda Rintoul" />
+
+
+<meta name="date" content="2024-08-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="estimation.html"/>
+<link rel="next" href="hypothesis-testing.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction To Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#statistics"><i class="fa fa-check"></i><b>1.1</b> Statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#key-terms"><i class="fa fa-check"></i><b>1.2</b> Key terms</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#types-of-data"><i class="fa fa-check"></i><b>1.3</b> Types of data</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#course-outline"><i class="fa fa-check"></i><b>1.4</b> Course outline</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histograms"><i class="fa fa-check"></i><b>2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>2.2</b> Location</a></li>
+<li class="chapter" data-level="2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#spread"><i class="fa fa-check"></i><b>2.3</b> Spread</a></li>
+<li class="chapter" data-level="2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#box-plots"><i class="fa fa-check"></i><b>2.4</b> Box plots</a></li>
+<li class="chapter" data-level="2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#multiple-datasets"><i class="fa fa-check"></i><b>2.5</b> Multiple datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> Probability</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#sampling"><i class="fa fa-check"></i><b>3.1</b> Sampling</a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#probability-basics"><i class="fa fa-check"></i><b>3.2</b> Probability basics</a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>3.3</b> Conditional probability</a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>3.4</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="random-variables.html"><a href="random-variables.html"><i class="fa fa-check"></i><b>4</b> Random Variables</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="random-variables.html"><a href="random-variables.html#random-variable-basics"><i class="fa fa-check"></i><b>4.1</b> Random variable basics</a></li>
+<li class="chapter" data-level="4.2" data-path="random-variables.html"><a href="random-variables.html#expectation-and-variance"><i class="fa fa-check"></i><b>4.2</b> Expectation and variance</a></li>
+<li class="chapter" data-level="4.3" data-path="random-variables.html"><a href="random-variables.html#binomial-random-variables"><i class="fa fa-check"></i><b>4.3</b> Binomial random variables</a></li>
+<li class="chapter" data-level="4.4" data-path="random-variables.html"><a href="random-variables.html#rules-of-expectation-and-variance"><i class="fa fa-check"></i><b>4.4</b> Rules of expectation and variance</a></li>
+<li class="chapter" data-level="4.5" data-path="random-variables.html"><a href="random-variables.html#normal-random-variables"><i class="fa fa-check"></i><b>4.5</b> Normal random variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>5</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="estimation.html"><a href="estimation.html#estimation-1"><i class="fa fa-check"></i><b>5.1</b> Estimation</a></li>
+<li class="chapter" data-level="5.2" data-path="estimation.html"><a href="estimation.html#sampling-distributions"><i class="fa fa-check"></i><b>5.2</b> Sampling distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="estimation.html"><a href="estimation.html#central-limit-theorem"><i class="fa fa-check"></i><b>5.3</b> Central Limit Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#z-confidence-interval"><i class="fa fa-check"></i><b>6.1</b> Z confidence interval</a></li>
+<li class="chapter" data-level="6.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-interpretation"><i class="fa fa-check"></i><b>6.2</b> Confidence interval interpretation</a></li>
+<li class="chapter" data-level="6.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#t-confidence-interval"><i class="fa fa-check"></i><b>6.3</b> T confidence interval</a></li>
+<li class="chapter" data-level="6.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#proportion-ci"><i class="fa fa-check"></i><b>6.4</b> Proportion CI</a></li>
+<li class="chapter" data-level="6.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-confidence-interval"><i class="fa fa-check"></i><b>6.5</b> Bootstrap confidence interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-t-test"><i class="fa fa-check"></i><b>7.1</b> One-sample T test</a></li>
+<li class="chapter" data-level="7.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors"><i class="fa fa-check"></i><b>7.2</b> Errors</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 371 Full Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="confidence-intervals" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Confidence Intervals<a href="confidence-intervals.html#confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figs/comics/ch6.jpg" style="display: block; margin: auto;" /></p>
+<p>We’ve seen how to calculate a <em>point estimate</em>, which is a single “guess” about a parameter from our data. For example, use the observed sample mean <span class="math inline">\(\bar{x}\)</span> to estimate the population mean <span class="math inline">\(\mu\)</span>. In this section, we’ll discuss <em>interval estimation</em>. Instead of a single guess, we’ll make a range of guesses that hopefully contain the true parameter.</p>
+<div id="z-confidence-interval" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Z confidence interval<a href="confidence-intervals.html#z-confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s look at a new example. To study the early growth of pine trees, a nursery worker records the heights (in cm) of 40 one-year-old red pine seedlings grown under identical conditions. <span class="math display">\[\begin{align*}
+&amp;2.6, 1.9, 1.8, 1.6, 1.4, 2.2, 1.2, 1.6, 1.6, 1.5, 1.4, 1.6, 2.3, 1.5, 1.1, 1.6 \\
+&amp;2.0, 1.5, 1.7, 1.5, 1.6, 2.1, 2.2, 1.0, 1.2, 1.2, 1.8, 1.7, 0.8, 1.5, 2.0, 2.2, 1.5, \\
+&amp;1.6, 2.2, 2.1, 1.6, 1.7, 1.7, 1.2
+\end{align*}\]</span></p>
+<p>Let’s use R to explore our data by finding some basic numeric summaries and making a few visuals.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="confidence-intervals.html#cb1-1" tabindex="-1"></a>seedlings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.6</span>, <span class="fl">1.9</span>, <span class="fl">1.8</span>, <span class="fl">1.6</span>, <span class="fl">1.4</span>, <span class="fl">2.2</span>, <span class="fl">1.2</span>, <span class="fl">1.6</span>, <span class="fl">1.6</span>,</span>
+<span id="cb1-2"><a href="confidence-intervals.html#cb1-2" tabindex="-1"></a>               <span class="fl">1.5</span>, <span class="fl">1.4</span>, <span class="fl">1.6</span>, <span class="fl">2.3</span>, <span class="fl">1.5</span>, <span class="fl">1.1</span>, <span class="fl">1.6</span>, <span class="fl">2.0</span>, <span class="fl">1.5</span>,</span>
+<span id="cb1-3"><a href="confidence-intervals.html#cb1-3" tabindex="-1"></a>               <span class="fl">1.7</span>, <span class="fl">1.5</span>, <span class="fl">1.6</span>, <span class="fl">2.1</span>, <span class="fl">2.2</span>, <span class="fl">1.0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.8</span>,</span>
+<span id="cb1-4"><a href="confidence-intervals.html#cb1-4" tabindex="-1"></a>               <span class="fl">1.7</span>, <span class="fl">0.8</span>, <span class="fl">1.5</span>, <span class="fl">2.0</span>, <span class="fl">2.2</span>, <span class="fl">1.5</span>, <span class="fl">1.6</span>, <span class="fl">2.2</span>, <span class="fl">2.1</span>,</span>
+<span id="cb1-5"><a href="confidence-intervals.html#cb1-5" tabindex="-1"></a>               <span class="fl">1.6</span>, <span class="fl">1.7</span>, <span class="fl">1.7</span>, <span class="fl">1.2</span>)</span>
+<span id="cb1-6"><a href="confidence-intervals.html#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="confidence-intervals.html#cb1-7" tabindex="-1"></a><span class="fu">mean</span>(seedlings)</span></code></pre></div>
+<pre><code>## [1] 1.6625</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="confidence-intervals.html#cb3-1" tabindex="-1"></a><span class="fu">sd</span>(seedlings)</span></code></pre></div>
+<pre><code>## [1] 0.38676</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="confidence-intervals.html#cb5-1" tabindex="-1"></a><span class="fu">hist</span>(seedlings)</span></code></pre></div>
+<p><img src="06-confints_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="confidence-intervals.html#cb6-1" tabindex="-1"></a><span class="fu">qqnorm</span>(seedlings); <span class="fu">qqline</span>(seedlings)</span></code></pre></div>
+<p><img src="06-confints_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<p>Our data is approximately normal, with mean 1.663 and standard deviation 0.387. As usual, we are interested in doing inference on the population mean. How can we improve the basic estimate of 1.663?</p>
+<hr />
+<p>We’re going to build an interval estimate for <span class="math inline">\(\mu\)</span> that is based on the point estimate <span class="math inline">\(\bar{x}\)</span>.</p>
+<p><img src="06-confints_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>We hope that the true value of <span class="math inline">\(\mu\)</span> is somehwere in this interval. How should we achieve this goal? A wider interval will have an easier time covering the true parameter. But if the interval is too wide, it’s not informative. We can pretty safely say that the mean seedling height is between 0 cm and 1,000,000 cm, but that doesn’t help us at all.</p>
+<p>So, there is an inherent tradeoff with interval width, between the interval’s precision and its ability to cover the true parameter.</p>
+<hr />
+<p>The formula for our interval estimate for <span class="math inline">\(\mu\)</span> will look something like this:
+<span class="math display">\[\text{Interval estimate} \;=\; (\bar{X} - \text { Margin}, \; \bar{X} + \text{ Margin})\]</span>
+where <span class="math inline">\(\bar{X}\)</span> is the sample mean. Notice that the interval is centered around <span class="math inline">\(\bar{X}\)</span>, ahd the Margin that we pick is equal to one-half the interval’s total width.</p>
+<p>What should this margin be? In other words, how “far away” should we go from <span class="math inline">\(\bar{X}\)</span> to get a useful interval estimate? Let’s try using a margin of 2 for the mean seedling height.
+<span class="math display">\[1.663 \pm 2 \;=\; (1.663 - 2,\; 1.663 + 2) \;=\; (-0.337, 3.663)\]</span>
+We estimate that the true mean is betwee n-0.337 abd 3.663 cm. A more general formula for an interval of with margin 2 is
+<span class="math display">\[\bar{X} \pm \text 2 \; = \; (\bar{X} - 2,\; \bar{X} + 2).\]</span>
+Remember, our goal is to have a high probability of covering the true parameter <span class="math inline">\(\mu\)</span>. Since the interval is random, we can then use the sampling distribution of <span class="math inline">\(\bar{X}\)</span> to find the probability that <span class="math inline">\(\mu\)</span> is in the interval.
+<span class="math display">\[P(\text{we cover the right value}) \;=\; P(\bar{X} - 2 \;&lt;\; \mu \;&lt;\; \bar{X} + 2) \;=\; ?\]</span>
+But this probability might turn out to be small. Choosing a margin of 2 is a little bit arbitrary. It might make sense for some contexts, but we can have data at all orders of magnitude. For example, if we use a margin of 2 lbs to estimate the mean weight of male black bears, our interval would be too narrow and the above coverage probability would be small.</p>
+<hr />
+<p>We want to think about this interval problem in the <em>opposite</em> way. We choose a desired coverage probability, then find the margin that is required. We’re switching things so that the coverage probability is known, and the margin is the unknown we must solve for.
+<span class="math display">\[P(\text{we cover the right value}) \;=\; P(\bar{X} - ? \;&lt;\; \mu \;&lt;\; \bar{X} + ?) \;=\; 1-\alpha\]</span></p>
+<div class="infobox deff">
+<p>A <strong>confidence interval</strong> (CI) is an interval estimate with a pre-specified coverage probability <span class="math inline">\(1- \alpha\)</span>.</p>
+</div>
+<p>The quantity <span class="math inline">\(\alpha\)</span> (alpha) can be interpreted as our willingness to make a mistake, and it’s something that we choose ourselves. We set <span class="math inline">\(\alpha\)</span> to be a small probability, so that the coverage probability <span class="math inline">\(1 - \alpha\)</span> is large.</p>
+<p>The formula for the confidence interval margin <span class="math inline">\(?\)</span> is based on the center and spread of our data. It uses quantiles of the standard normal distribution to guarantee our desired coverage probability.</p>
+<hr />
+<p>Let’s build a CI for the true mean seedling height. Let’s use an <span class="math inline">\(\alpha\)</span> of <span class="math inline">\(0.05\)</span>, which gives us a coverage probability of <span class="math inline">\(1 - \alpha = 0.95\)</span>. This is also called a “95% confidence interval”.</p>
+<p>How are we going to get that specific coverage probability? Let’s start by looking at a probability of 0.95 on the standard normal bell curve.</p>
+<p><img src="06-confints_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>The shaded area is 0.95, and it is symmetric on both sides. So, the remaining area of 0.05 is split up equally into the two tails. Each tail has area <span class="math inline">\(0.025 = \alpha/2\)</span>.</p>
+<p>How do we find the two endpoints that give us this area? We’re saying that we want to find a z-score that cuts off a specific amount of area. This is exactly the definition of a quantile of the normal distribution, and we can find them with R <code>qnorm</code>. The lower point is the 0.025 percentile, and the upper point is the (1-0.025) = 0.975 percentile.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="confidence-intervals.html#cb7-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>)</span></code></pre></div>
+<pre><code>## [1] -1.959964</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="confidence-intervals.html#cb9-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code></pre></div>
+<pre><code>## [1] 1.959964</code></pre>
+<p>Note that we get the positive and negative version of the exact same number, 1.96. This is because the standard normal curve is perfectly symmetric around 0. So we actually only need to run one of the two baove lines of code.</p>
+<hr />
+<p>We’ve found that
+<span class="math display">\[P(-1.96 \;&lt;\; Z \;&lt;\; 1.96) \;=\; 0.95.\]</span>
+-1.96 and 1.96 are called critical values.</p>
+<p><img src="06-confints_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="infobox deff">
+<p>A <strong>critical value</strong> is a quantile on a known distribution (such as the standard normal) which is used to guarantee a specific interval coverage probability.</p>
+</div>
+<p>If we were to make a “95% confidence interval on <span class="math inline">\(Z\)</span>”, we would use
+<span class="math display">\[(-1.96, 1.96).\]</span></p>
+<hr />
+<p>So how does this relate to our original problem of making a 95% confidence interval for <span class="math inline">\(\mu\)</span>? Recall that the sampling distribution for <span class="math inline">\(\bar{X}\)</span> is normal and it is a function of <span class="math inline">\(\mu\)</span>.
+<span class="math display">\[\bar{X} \sim N\Big(\mu, \frac{\sigma^2}{n} \Big)\]</span>
+(this is either exact, or approximate with the CLT). Because we’re assuming <span class="math inline">\(\bar{X}\)</span> is normal, we can standardize it just like any other normal RV. We subtract the mean <span class="math inline">\(\mu\)</span>, then divide by standard deviation <span class="math inline">\(\sigma/\sqrt{n}\)</span> (which is called standard error).
+<span class="math display">\[Z \;=\; \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \;\sim\; N(0, 1^2)\]</span>
+We’ve essentially come up with a new way of defining a standard normal RV in terms of the sample mean <span class="math inline">\(\bar{X}\)</span> and the population mean <span class="math inline">\(\mu\)</span>.</p>
+<p>When we have a probability statement about <span class="math inline">\(Z\)</span>, we can replace <span class="math inline">\(Z\)</span> with <span class="math inline">\(\frac{\bar{X} - \mu}{\sigma/\sqrt{n}}\)</span>, since the two are equivalent.</p>
+<hr />
+<p>So,
+<span class="math display">\[P(-1.96 \;&lt;\; Z \;&lt;\; 1.96) \;=\; 0.95.\]</span>
+becomes
+<span class="math display">\[P(-1.96 \;&lt;\; \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \;&lt;\; 1.96) \;=\; 0.95\]</span>
+The very last step we have to do is solve for <span class="math inline">\(\mu\)</span> in the middle. This will give us the endpoints of our 95% confidence interval. We get
+<span class="math display">\[P(\bar{X} - 1.96\frac{\sigma}{\sqrt{n}} \;&lt;\; \mu \;&lt;\; \bar{X} + 1.96\frac{\sigma}{\sqrt{n}}) \;=\; 0.95.\]</span>
+This matches the confidence interval “template” we saw before
+<span class="math display">\[P(\bar{X} - ? \;&lt;\; \mu \;&lt;\; \bar{X} + ?)\]</span>
+This is a <strong>Z confidence interval</strong>, because the coverage probability comes from quantiles (critical values) of a standard normal. Our margin for 95% confidence is <span class="math inline">\(1.96\frac{\sigma}{\sqrt{n}}\)</span>.</p>
+<p>The lower bound of our interval is <span class="math inline">\(\bar{X} - 1.96\frac{\sigma}{\sqrt{n}}\)</span>. The upper bound is <span class="math inline">\(\bar{X} + 1.96\frac{\sigma}{\sqrt{n}}\)</span>. Since the interval is symmetric around <span class="math inline">\(\bar{X}\)</span>, we can write it in a more shorthand way with the plus-or-minus (<span class="math inline">\(\pm\)</span>) symbol.</p>
+<div class="infobox deff">
+<p>A 95% Z confidence interval for <span class="math inline">\(\mu\)</span> is given by
+<span class="math display">\[\bar{X} \pm 1.96\cdot \frac{\sigma}{\sqrt{n}}.\]</span></p>
+</div>
+<hr />
+<p>Before we actually make a Z CI, there are a few assumptions we need to make.</p>
+<ul>
+<li><p>The observations need to be independent (usually by taking a SRS).</p></li>
+<li><p>We have a large enough <span class="math inline">\(n\)</span> so <span class="math inline">\(\bar{X} \;\dot{\sim}\; N\)</span>. This is why we’re able to use the z critical values to get a certain confidence level.</p></li>
+<li><p>We either know <span class="math inline">\(\sigma\)</span>, or <span class="math inline">\(s\)</span> is likely to be very close to <span class="math inline">\(\sigma\)</span>.</p></li>
+</ul>
+<p>For the last assumption, we want to have a fairly large sample (this is separate from the CLT sample size threshold). Technically, the Z CI is only exact when we know the population sd <span class="math inline">\(\sigma\)</span>, but if <span class="math inline">\(n\)</span> is large, the Z CI is a very good approximate tool. This is called a “large sample” Z CI.</p>
+<hr />
+<p>Let’s go back to the pine seedlings data. When we did the exploratory analysis earlier, we found that the data was approximately normal, with <span class="math inline">\(n = 40\)</span>, <span class="math inline">\(\bar{x} = 1.663\)</span>, and <span class="math inline">\(s = 0.387\)</span>. We assume the observations are independent, and since the data is fairly normal with a large <span class="math inline">\(n\)</span>, the above assumptions are met.</p>
+<div class="infobox exer">
+<p>Build a 95% CI for the seedlings data with the following steps.</p>
+<ul>
+<li>Find the standard error of <span class="math inline">\(\bar{X}\)</span>, approximating <span class="math inline">\(\sigma\)</span> with <span class="math inline">\(s\)</span>.</li>
+</ul>
+<p><span style="color:#8601AF">
+The standard error for <span class="math inline">\(\bar{X}\)</span> is <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>, which we can approximate with <span class="math inline">\(\frac{s}{\sqrt{n}} = \frac{0.387}{\sqrt{40}} = 0.0611\)</span>.
+</span></p>
+<ul>
+<li>Use a z critical value of 1.96 to find the margin of this CI.</li>
+</ul>
+<p><span style="color:#8601AF">
+The margin for our Z confidence interval is <span class="math inline">\(z_{\alpha/2}\cdot \frac{s}{\sqrt{n}}\)</span>, which is the critical value (associated with 95% confidence) multiplied by the standard error (the variability of the point estimate <span class="math inline">\(\bar{X}\)</span>). For us, this is <span class="math inline">\(1.96\cdot 0.0611 = 0.12\)</span>.
+</span></p>
+<ul>
+<li>Add/subtract the margin from <span class="math inline">\(\bar{x}\)</span> to make the 95% Z CI for <span class="math inline">\(\mu\)</span>.</li>
+</ul>
+<p><span style="color:#8601AF">
+The full Z CI formula is <span class="math inline">\(\bar{x} \pm z_{\alpha/2}\cdot \frac{s}{\sqrt{n}}\)</span>. So, we subtract the margin from <span class="math inline">\(\bar{x}\)</span> to get the lower bound, and add the margin to <span class="math inline">\(\bar{x}\)</span> to get the upper bound. We get a CI of
+<span class="math display">\[1.663 \pm 0.12 \;=\; (1.663 - 0.12,\; 1.663 + 0.12) \;=\; (1.543, 1.783).\]</span>
+We are 95% confident that the true mean seedling height <span class="math inline">\(\mu\)</span> is in the interval (1.543, 1.783).
+</span></p>
+</div>
+<div class="infobox pond">
+<p>What happens if you repeat the above exercise with the lower z critical value of -1.96?</p>
+</div>
+<hr />
+<p>When we were building a 95% interval specifically, we chose <span class="math inline">\(\alpha = 0.05\)</span> at the beginning, to get critical values -1.96 and 1.96. But we can generalize this method to any <span class="math inline">\(\alpha\)</span> and any coverage probability. If we want a coverage probability of <span class="math inline">\(1-\alpha\)</span>, we start by looking at that area on a standard normal curve.</p>
+<p><img src="06-confints_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>The area in the center is <span class="math inline">\(1-\alpha\)</span>, so the area in the tails is <span class="math inline">\(\alpha\)</span>. It gets split up evenly such that each individual tail has area <span class="math inline">\(\alpha/2\)</span>. For example, if we wanted 90% confidence, our <span class="math inline">\(\alpha\)</span> would be 0.1 and <span class="math inline">\(\alpha/2\)</span> would be 0.05. So we’d need to find the standard normal quantiles that cut off 5% of the area in each tail, which end up being -1.645 and 1.645.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="confidence-intervals.html#cb11-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.05</span>)</span></code></pre></div>
+<pre><code>## [1] -1.644854</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="confidence-intervals.html#cb13-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>## [1] 1.644854</code></pre>
+<div class="infobox pond">
+<p>When our <span class="math inline">\(\alpha\)</span> value gets smaller, are the critical values closer to or further from 0? What does that mean for the width of our final confidence interval?</p>
+</div>
+<p>We use <span class="math inline">\(z_{\alpha/2}\)</span> to refer to the critical value that’s needed for a <span class="math inline">\(100(1-\alpha)\)</span>% confidence interval. Conventionally, this refers to the upper (positive) critical value. If we’re finding this with R’s <code>qnorm</code>, then we need to put <span class="math inline">\(1 - \alpha/2\)</span> inside the <code>qnorm</code>. For example:</p>
+<ul>
+<li><span class="math inline">\(z_{0.025} = 1.96\)</span></li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="confidence-intervals.html#cb15-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code></pre></div>
+<pre><code>## [1] 1.959964</code></pre>
+<ul>
+<li><span class="math inline">\(z_{0.05} = 1.645\)</span></li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="confidence-intervals.html#cb17-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>## [1] 1.644854</code></pre>
+<ul>
+<li><span class="math inline">\(z_{0.01} = 2.326\)</span></li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="confidence-intervals.html#cb19-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.99</span>)</span></code></pre></div>
+<pre><code>## [1] 2.326348</code></pre>
+<p>Of course, the normal curve is symmetric around 0, so using <span class="math inline">\(\alpha/2\)</span> in the <code>qnorm</code> statement would just give you a negative version of the same critical value.</p>
+<div class="infobox deff">
+<p>In general, a <span class="math inline">\(100(1-\alpha)%\)</span> Z confidence interval for <span class="math inline">\(\mu\)</span> is given by
+<span class="math display">\[\bar{X} \pm z_{\alpha/2}\cdot \frac{\sigma}{\sqrt{n}}.\]</span></p>
+</div>
+<div class="infobox exer">
+<p>Consider building a 99% confidence interval for the seedlings data.</p>
+<ul>
+<li>What is our <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\alpha/2\)</span>?</li>
+</ul>
+<p><span style="color:#8601AF">
+99% confidence means <span class="math inline">\(1 - \alpha = 0.99\)</span> and so <span class="math inline">\(\alpha = 0.01\)</span>. Then <span class="math inline">\(\alpha/2 = 0.005\)</span>. This is the area we need to “cut off” in the tails of the standard normal curve.
+</span></p>
+<ul>
+<li>Construct the interval with this new confidence level. What parts of the interval formula stay the same as the 95% interval we made before?</li>
+</ul>
+<p><span style="color:#8601AF">
+The point estimate <span class="math inline">\(\bar{x} = 1.663\)</span> and the standard error <span class="math inline">\(\frac{s}{\sqrt{n}} = \frac{0.387}{\sqrt{40}} = 0.12\)</span> don’t have anything to do with the confidence level. So we use the same values as before. But, we need to use a new z critical value. We want to cut off 0.005 area in each tail, so we need the 0.5 and 99.5 percentiles.
+</span></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="confidence-intervals.html#cb21-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.995</span>)</span></code></pre></div>
+<pre><code>## [1] 2.575829</code></pre>
+<p><span style="color:#8601AF">
+We find <span class="math inline">\(z_{0.005} = 2.576\)</span>. Our 99% CI becomes
+<span class="math display">\[\bar{x} \pm z_{0.05}\cdot \frac{s}{\sqrt{n}} \;=\; 1.663 \pm 2.576\cdot 0.12 \;=\; (1.354, 1.972).\]</span>
+</span></p>
+<ul>
+<li>Is the 99% confidence interval wider or narrower than the 95% interval?</li>
+</ul>
+<p><span style="color:#8601AF">
+The 99% confidence interval is considerably wider than the 95% confidence interval.
+</span></p>
+</div>
+<hr />
+</div>
+<div id="confidence-interval-interpretation" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Confidence interval interpretation<a href="confidence-intervals.html#confidence-interval-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>How do we interpret a confidence interval after we build it? It’s a range of guesses as to the true parameter value, and the confidence level indicates how good we feel about those guesses. A formal interpretation of the interval above is, “We are 99% confident that the true value for mean seedling height is between 1.354 and 1.972.”</p>
+<div class="infobox warn">
+<p>A very common mistake when interpreting CIs is to use the term “probability”. For the type of statistics we’re doing, the parameter (such as <span class="math inline">\(\mu\)</span>) is treated as a <em>fixed, unknown, constant</em>. It is unknown but it is <em>not</em> a random number.</p>
+<p>Consider the interval we just made. Hopefully we can agree that 1.354 is a constant. The upper bound 1.972 is also a constant. The parameter <span class="math inline">\(\mu\)</span> is also a constant. So, the statement
+<span class="math display">\[1.354 &lt; \mu &lt; 1.972\]</span>
+is either true or false - we don’t know which, because we don’t know the value of <span class="math inline">\(\mu\)</span>. The interval either contains or does not contain <span class="math inline">\(\mu\)</span>.</p>
+<p>So, a statement like
+<span class="math display">\[P(1.354 &lt; \mu &lt; 1.972) \;=\; 0.99\]</span>
+is nonsensical, since there is nothing random in the stateement. You <strong>should not</strong> say that there is a “99% chance” of <span class="math inline">\(\mu\)</span> being in the interval.</p>
+</div>
+<hr />
+<p>So where does the 99% come in? While numbers like (1.354, 1.972) are fixed, the CI <em>formula</em> is random. It’s a function of the random variable <span class="math inline">\(\bar{X}\)</span>.
+<span class="math display">\[\bar{X} \pm 1.96\cdot \frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>What this means is that 99% of samples from <span class="math inline">\(X\)</span> will produce an interval that covers <span class="math inline">\(\mu\)</span>.</p>
+<p>This image from Wikipedia demonstrates this idea with 50% confidence intervals.</p>
+<p><img src="figs/confint/ci_example.png" style="display: block; margin: auto;" /></p>
+<p>The curve on top is the population, and the 20 rows each correspond to a different sample from the population. Each sample was used to make a 50% CI. If we focus on any individual sample, the CI either does or does not contain <span class="math inline">\(\mu\)</span>. For example, the first CT covers <span class="math inline">\(\mu\)</span>, and the fourth interval does not.</p>
+<p>But if we look at the results across samples, we see that half of the 20 total intervals cover <span class="math inline">\(\mu\)</span>, and half do not. This is where the 50% confidence comes from.</p>
+<hr />
+<p>In general, setting <span class="math inline">\(\alpha\)</span> means “we are <span class="math inline">\(100(1-\alpha)%\)</span> confident that the interval covers the true parameter.” We can refer to <span class="math inline">\(100(1-\alpha)\)</span> as the confidence level.</p>
+<p>One common choice for <span class="math inline">\(\alpha\)</span> is 0.05, which corresponds to a confidence level of <span class="math inline">\(100(1-0.05) = 100(0.95) = 95\)</span>. Other common choices are 90% <span class="math inline">\((\alpha = 0.1)\)</span>, 98% <span class="math inline">\((\alpha = 0.02)\)</span>, and 99% <span class="math inline">\((\alpha = 0.01)\)</span>.</p>
+<p>When we choose our <span class="math inline">\(\alpha\)</span> we are basically stipulating how “careful” we want to be. If we choose a small <span class="math inline">\(\alpha\)</span>, we have a higher confidence level. This gives a critical value that is further from 0, leading to a wider interval. If we want to have very high confidence, we need our interval to cover a lot of ground.</p>
+<p>Choosing a small <span class="math inline">\(\alpha\)</span> leads to a more “conservative” analysis. We are less likely to make a spurious conclusion, but we are also less likely to detect a true positive result.</p>
+<p>The more “risky” avenue is to make <span class="math inline">\(\alpha\)</span> large. A large <span class="math inline">\(\alpha\)</span> means we have a lower confidence level, which gives us a narrower interval. This is advantageous because it is more precise, and therefore more informative than an interval that is wider. But it does come at a cost. If we want to have a very small and precise interval, we have to accept that we’re less likely to actually catch the true parameter value.</p>
+</div>
+<div id="t-confidence-interval" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> T confidence interval<a href="confidence-intervals.html#t-confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Z CI is just one specific example of the broader confidence interval method. Different types of CIs share similarities in how they are constructed.</p>
+<div class="infobox deff">
+<p>Many CIs have the form
+<span class="math display">\[\text{point estimate }\pm \text{ critical value }\times \text{ standard error}.\]</span>
+The term <span class="math inline">\((\text{critical value }\times \text{ standard error})\)</span> is our margin, technically called , and it is 1/2 the CI width.</p>
+</div>
+<p>We’ll look at a new method called the T confidence interval that also has the above structure.</p>
+<hr />
+<p>One of the key assumptions when building a Z confidence interval is that we know the population sd <span class="math inline">\(\sigma\)</span> (or <span class="math inline">\(n\)</span> is large enough that <span class="math inline">\(s\)</span> is very close to <span class="math inline">\(\sigma\)</span>). Why is this assumption necessary? Recall the way we originally found critical values from the standard normal curve. We can use Z critical values for inference on <span class="math inline">\(\mu\)</span> specifically because
+<span class="math display">\[Z \;=\; \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(0, 1^2).\]</span></p>
+<p>We almost never know the true value of <span class="math inline">\(\sigma\)</span>, so we have to use the quantity
+<span class="math display">\[T \;=\; \frac{\bar{X} - \mu}{s/\sqrt{n}}.\]</span>
+But what if our <span class="math inline">\(n\)</span> is too small, and <span class="math inline">\(s\)</span> is not very close to <span class="math inline">\(\sigma\)</span>? The quantity <span class="math inline">\(T\)</span> above <em>does not</em> have a standard normal distribution. So the theory we used to build the Z CI falls apart. If we want to build a confidence interval in this context, we need to come up with different critical values. We use critical values from a T distribution.</p>
+<div class="infobox deff">
+<p>The <strong>Student’s T distribution</strong> is a bell-curve shaped distribution that is centered at 0. It is very similar to the standard normal curve, but it has additional varibility that depends on <span class="math inline">\(n\)</span>, the sample size.</p>
+</div>
+<p><img src="06-confints_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>We can see that the T curve has fatther tails and a smaller peak compared to the Z curve.</p>
+<p>The T distribution was discovered by a statistician named W.S. Gossett. He worked for Guiness at the time, who was afraid of Gossett being poached by a competitor. They only allowed him to publish his findings under the pseudonym “Student”.</p>
+<hr />
+<p>When working with the T distribution, we need to specify degrees of freedom.</p>
+<div class="infobox deff">
+<p>“<strong>Degrees of freedom</strong>” represents how much information our data has, and is necessary for certain statistical methods. Degrees of freedom are always related to sample size.</p>
+</div>
+<p>A sample of size <span class="math inline">\(n\)</span> corresponds to T degrees of freedom <span class="math inline">\(n-1\)</span>. So, we would write
+<span class="math display">\[T \;=\; \frac{\bar{X} - \mu}{s/\sqrt{n}} \sim T(n-1).\]</span></p>
+<p>The degrees of freedom (df) control how similar the T curve is to the standard normal Z curve.</p>
+<p><img src="06-confints_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>When the df is small, the T curve will have more area in the tails, and therefore more spread. As the df increases, there is more area in the center. So with large df, the tails of the curve get thinner, the peak gets higher, and the curve looks more similar to a standard normal. If we somehow have <span class="math inline">\(\infty\)</span> degrees of freedom, then the T curve is identical to the Z curve.</p>
+<hr />
+<p>So when we have approximately normal data with an unknown <span class="math inline">\(\sigma\)</span>, we can build a CI using critical values of the T distribution. These critical values are found in the same was as the Z critical values. We want to find the specific values that have area <span class="math inline">\(1-\alpha\)</span> between them, with area <span class="math inline">\(\alpha/2\)</span> in each tail.</p>
+<p><img src="06-confints_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>We can find these critical values in R with the <code>qt</code> (quantile T) function. Suopose we have a sample of size <span class="math inline">\(n = 8\)</span> and we want to build a 98% T CI. In this case we have <span class="math inline">\(n = 1 = 7\)</span> degrees of freedom, <span class="math inline">\(\alpha = 0.02\)</span>, and <span class="math inline">\(\alpha/2 = 0.01\)</span>. So we want <span class="math inline">\(t_{7, 0.01}\)</span>, which is the 99th percentile on the T with 7 degrees of freedom.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="confidence-intervals.html#cb23-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.99</span>, <span class="at">df =</span> <span class="dv">7</span>)</span></code></pre></div>
+<pre><code>## [1] 2.997952</code></pre>
+<p>Note that, like the normal curve, the T curve is symmetric around 0. So you can use either the upper or lower critical value.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="confidence-intervals.html#cb25-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.01</span>, <span class="at">df =</span> <span class="dv">7</span>)</span></code></pre></div>
+<pre><code>## [1] -2.997952</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="confidence-intervals.html#cb27-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.99</span>, <span class="at">df =</span> <span class="dv">7</span>)</span></code></pre></div>
+<pre><code>## [1] 2.997952</code></pre>
+<hr />
+<p>Let’s go through the components of a T CI for <span class="math inline">\(\mu\)</span>. The point estimate is still the sample mean <span class="math inline">\(\bar{X}\)</span>. The standard error is estimated with <span class="math inline">\(\frac{s}{\qrt{n}}\)</span> since we do not know <span class="math inline">\(\sigma\)</span>. And the critical value is the <span class="math inline">\(\alpha/2\)</span> quantile on the T curve with <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
+<div class="infobox deff">
+<p>In general, a <span class="math inline">\(100(1-\alpha)%\)</span> T confidence interval for <span class="math inline">\(\mu\)</span> is given by
+<span class="math display">\[\bar{X} \pm t_{n-1, \alpha/2}\cdot \frac{s}{\sqrt{n}}.\]</span></p>
+</div>
+<p>Note the similarities between the two methods: <span class="math display">\[\begin{align*}
+\text{Z CI}: \bar{X} &amp;\pm z_{\alpha/2}\cdot \frac{\sigma}{\sqrt{n}}
+\text{T CI}: \bar{X} &amp;\pm t_{n-1, \alpha/2}\cdot \frac{s}{\sqrt{n}}
+\end{align*}\]</span></p>
+<p>They have the same structure, but different critical values and standard errors.</p>
+<hr />
+<p>Let’s make a Let’s build a 95% T confidence interval for the pine seedlings data. The seedlings data is approximately normal with <span class="math inline">\(n = 40\)</span>, <span class="math inline">\(\bar{x} = 1.663\)</span>, and <span class="math inline">\(s = 0.387\)</span>.</p>
+<div class="infobox exer">
+<ul>
+<li>Find the appropriate T degrees of freedom and critical value, and build a 95% T CI.</li>
+</ul>
+<p><span style="color:#8601AF">
+Our T df is <span class="math inline">\(n - 1 = 39\)</span>, and our <span class="math inline">\(\alpha = 0.05\)</span>. So we need the <span class="math inline">\(\alpha/2 = 0.025\)</span> critical value on the T with 39 degrees of freedom. This critical value is 2.023, according to R.
+</span></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="confidence-intervals.html#cb29-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">39</span>)</span></code></pre></div>
+<pre><code>## [1] 2.022691</code></pre>
+<p><span style="color:#8601AF">
+So, our interval is
+<span class="math display">\[\bar{x} \pm t_{n-1, \alpha/2}\cdot \frac{s}{\sqrt{n}} \;=\; 1.663 \pm 2.032\cdot \frac{0.387}{\sqrt{40}}\]</span>
+<span class="math display">\[(1.539, 1.787)\]</span>
+</span></p>
+<ul>
+<li>How does the T critical value you found compare to 1.96, which is the Z critical value for 95% confidence?</li>
+</ul>
+<p><span style="color:#8601AF">
+Our T critical value was 2.023 which is slightly larger than the Z critical value 1.96.
+</span></p>
+<ul>
+<li>How does this CI compare to the 95% Z CI (1.543, 1.783) on the same data?
+<span style="color:#8601AF">
+Our new T interval of (1.539, 1.787) is slightly larger than the Z CI from before. This makes sense, because we used a larger critical value, resulting in a larger margin of error and therefore a wider interval.
+</span></li>
+</ul>
+</div>
+<hr />
+<p>In this case, the T and Z confidence interval methods are very similar. How should we decide which one to use? The choice of statistical method depends on what assumptions we’re willing to make about the data. The primary difference between the T and Z CIs is that the T does not require us to assume we know <span class="math inline">\(\sigma\)</span>.</p>
+<p>More specifically, we can build a Z CI when</p>
+<ul>
+<li><p>The data is approximately normal and <span class="math inline">\(\sigma\)</span> is known.</p></li>
+<li><p>OR the data is approximately normal and <span class="math inline">\(n\)</span> is large enough (<span class="math inline">\(&gt; 30\)</span>) that the T distribution resembles the standard normal.</p></li>
+</ul>
+<p>If the data is normal, <span class="math inline">\(n\)</span> is small, and <span class="math inline">\(\sigma\)</span> must be approximated with <span class="math inline">\(s\)</span>, we want to ues a T CI. Note that both of these methods require us to assume normality.</p>
+<p>A T CI is a more general method than a Z CI. If it is appropriate to make a Z CI on a certain set of data, such as the seedlings, then it would also be appropriate to make a T CI.</p>
+<div class="infobox pond">
+<p>Is there any situation where a T CI is narrower than a large-sample Z CI built on the same data with the same <span class="math inline">\(\alpha\)</span>?</p>
+</div>
+<hr />
+<p>There is also an R shortcut for creating a T confidence interval. The function <code>t.test</code> performs a T test on data (which we’ll learn later) and builds a corresponding T confidence interval. We just put in the name of our data and specify the argument <code>conf.level</code> to set the confidence level.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="confidence-intervals.html#cb31-1" tabindex="-1"></a>seedlings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.6</span>, <span class="fl">1.9</span>, <span class="fl">1.8</span>, <span class="fl">1.6</span>, <span class="fl">1.4</span>, <span class="fl">2.2</span>, <span class="fl">1.2</span>, <span class="fl">1.6</span>, <span class="fl">1.6</span>,</span>
+<span id="cb31-2"><a href="confidence-intervals.html#cb31-2" tabindex="-1"></a>               <span class="fl">1.5</span>, <span class="fl">1.4</span>, <span class="fl">1.6</span>, <span class="fl">2.3</span>, <span class="fl">1.5</span>, <span class="fl">1.1</span>, <span class="fl">1.6</span>, <span class="fl">2.0</span>, <span class="fl">1.5</span>,</span>
+<span id="cb31-3"><a href="confidence-intervals.html#cb31-3" tabindex="-1"></a>               <span class="fl">1.7</span>, <span class="fl">1.5</span>, <span class="fl">1.6</span>, <span class="fl">2.1</span>, <span class="fl">2.2</span>, <span class="fl">1.0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.8</span>,</span>
+<span id="cb31-4"><a href="confidence-intervals.html#cb31-4" tabindex="-1"></a>               <span class="fl">1.7</span>, <span class="fl">0.8</span>, <span class="fl">1.5</span>, <span class="fl">2.0</span>, <span class="fl">2.2</span>, <span class="fl">1.5</span>, <span class="fl">1.6</span>, <span class="fl">2.2</span>, <span class="fl">2.1</span>,</span>
+<span id="cb31-5"><a href="confidence-intervals.html#cb31-5" tabindex="-1"></a>               <span class="fl">1.6</span>, <span class="fl">1.7</span>, <span class="fl">1.7</span>, <span class="fl">1.2</span>)</span>
+<span id="cb31-6"><a href="confidence-intervals.html#cb31-6" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="confidence-intervals.html#cb31-7" tabindex="-1"></a><span class="fu">t.test</span>(seedlings, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  seedlings
+## t = 27.186, df = 39, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  1.538808 1.786192
+## sample estimates:
+## mean of x 
+##    1.6625</code></pre>
+<p>You should be able to make CIs with the more “by hand” method, but the R function is a good way to check your work.</p>
+</div>
+<div id="proportion-ci" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Proportion CI<a href="confidence-intervals.html#proportion-ci" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>At the end of chapter 5, we discussed some of the properties of the sample proportion <span class="math inline">\(\hat{p}\)</span>. Just like we can use <span class="math inline">\(\bar{X}\)</span> to make an interval estimate for <span class="math inline">\(\mu\)</span>, we can use <span class="math inline">\(\hat{p}\)</span> to make an interval estimate when the parameter of interest is the population proportion <span class="math inline">\(\pi\)</span>.</p>
+<p>Let’s look at such an example. A studey reported that out of 132 young athletes who suffered ACL (anterior cruciate ligament) injuries, 87 were to the left knee and 45 were to the right knee. Our parameter of interest is <span class="math inline">\(\pi\)</span>, the population proportion of ACL injuries to the right knee.</p>
+<p>We already know how to find a point estimate for <span class="math inline">\(\pi\)</span>, which is the observed right-knee proportion <span class="math inline">\(\hat{p} = \frac{45}{132}\)</span>. We are going to use Z critical values and the standard error of <span class="math inline">\(\hat{p}\)</span> to build this up into an interval estimate.</p>
+<hr />
+<p>In order to guarantee a specific confidence level, we have to know the distribution of <span class="math inline">\(\hat{p}\)</span> so that we can use it to find critical values. Unfortunately, the exact distribution of <span class="math inline">\(\hat{p}\)</span> is difficult to work with. But, we have a good approximation.</p>
+<p>The Central Limit Theorem says that if we have a large enough sample size, <span class="math inline">\(\hat{p}\)</span> is approximately normal, with mean <span class="math inline">\(\pi\)</span> and variance <span class="math inline">\(\frac{\pi(1-\pi)}{n}\)</span>.</p>
+<p><span class="math display">\[\hat{p} \;\dot{\sim}\; N\Big(\pi, \frac{\pi(1-\pi)}{n}\Big)\]</span></p>
+<p>We can safely use this approximation when the number of “successes” and “failures” in our sample are both greater than 5.</p>
+<hr />
+<p>Since <span class="math inline">\(\hat{p}\)</span> is approximately normal, we can apply standardization by subracting the mean and dividing by the standard error.
+<span class="math display">\[Z \;=\; \frac{\hat{p} - \pi}{\sqrt{\frac{\pi(1-\pi)}{n}}} \;\;\dot{\sim}\;\; N(0, 1)\]</span>
+The method that we had used to build a 95% Z CI for <span class="math inline">\(\mu\)</span> can also apply here. So, we use Z critical values when making a proportion CI.</p>
+<div class="infobox deff">
+<p>An approximate <span class="math inline">\(100(1-\alpha)\%\)</span> Z CI for <span class="math inline">\(\pi\)</span> is:
+<span class="math display">\[\hat{p} \pm z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\]</span></p>
+</div>
+<p>The formula above follows the same general template we have for making CIs:</p>
+<p><span class="math display">\[\text{point estimate }\pm \text{ critical value }\times \text{ standard error}.\]</span></p>
+<p>The standard error is the variability of <span class="math inline">\(\hat{p}\)</span> across samples, and the critical value comes from a standard normal distribution. The interpretation of the CI is the same as before. We are <span class="math inline">\(100(1-\alpha)\%\)</span> confident that the true proportion lies within the interval.</p>
+<hr />
+<p>In the ACL injuries example, 45 out of 132 ACL injuries are to the right knee. Let’s make an 80% Z CI for <span class="math inline">\(\pi\)</span>, the true proportion of right-knee injuries.</p>
+<div class="infobox exer">
+<ul>
+<li>Is the normal approximation reasonable in this case?</li>
+</ul>
+<p><span style="color:#8601AF">
+The normal approximation is safe if we have over 5 successes and over 5 failures in our data. We have 45 right-knee injuries, and <span class="math inline">\(132-45 = 87\)</span> left-knee injuries, which is more than enough to assume normality.
+</span></p>
+<ul>
+<li>Find <span class="math inline">\(\hat{p}\)</span>, the estimated standard error of <span class="math inline">\(\hat{p}\)</span>, and the Z critical value.</li>
+</ul>
+<p><span style="color:#8601AF">
+Our point estimate <span class="math inline">\(\hat{p}\)</span> is the sample proportion <span class="math inline">\(\frac{45}{132} = 0.341\)</span>. The estimated standard error of <span class="math inline">\(\hat{p}\)</span> is
+<span class="math display">\[\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \;=\; \sqrt{\frac{0.341(1-0.341)}{132}} \;=\; 0.041.\]</span>
+The Z critical value is <span class="math inline">\(z_{0.1}\)</span>, since <span class="math inline">\(\alpha = 0.2\)</span> and we need to cut off <span class="math inline">\(\alpha/2\)</span> area in each tail.
+</span></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="confidence-intervals.html#cb33-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.9</span>)</span></code></pre></div>
+<pre><code>## [1] 1.281552</code></pre>
+<ul>
+<li>Build and interpret the 80% CI.</li>
+</ul>
+<p><span style="color:#8601AF">
+Our final CI is
+<span class="math display">\[\hat{p} \pm z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \;=\; 0.341 \pm 1.282\cdot 0.041\]</span>
+<span class="math display">\[(0.288, 0.394)\]</span>
+We are 80% confident that the true proportion of right-knee injuries is in the interval (0.288, 0.394).
+</span></p>
+</div>
+</div>
+<div id="bootstrap-confidence-interval" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Bootstrap confidence interval<a href="confidence-intervals.html#bootstrap-confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s now look at another way to build an interval estimate for the mean <span class="math inline">\(\mu\)</span>. We’ve discussed two methods so far, the Z and T CI. Both of these require the normality assumption.
+<span class="math display">\[Z: \bar{X} \pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}},\quad\quad T: \bar{X} \pm t_{n-1,\alpha/2}\frac{S}{\sqrt{n}}\]</span>
+In other words, we either have normal data or we have large enough <span class="math inline">\(n\)</span> such that <span class="math inline">\(\bar{X}\)</span> is normal. This lets us use the standard normal and T critical values to guarantee a specific confidence level.</p>
+<p>If we tried to build one of these CIs on non-normal data, the critical values would no longer be accurate, and the results could be misleading. But we have a “trick” to come up with our own critical values, even when the data is not normal.</p>
+<hr />
+<p>Let’s look at some example data. Researchers took a sample of 15 children in foster care expected of being exposed to secondhand smoke. The amount of cotanine (a metabolite of nicotine) in the urine was measured:
+<span class="math display">\[29, 30, 53, 75, 34, 21, 12, 58, 117, 119, 115, 134, 253, 289, 287\]</span>
+(Normally, cotanine should be below 75 units.) Let’s explore the data by finding basic numeric summaries and making a few plots.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="confidence-intervals.html#cb35-1" tabindex="-1"></a>cotanine <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">29</span>, <span class="dv">30</span>, <span class="dv">53</span>, <span class="dv">75</span>, <span class="dv">34</span>, <span class="dv">21</span>, <span class="dv">12</span>, <span class="dv">58</span>,</span>
+<span id="cb35-2"><a href="confidence-intervals.html#cb35-2" tabindex="-1"></a>              <span class="dv">117</span>, <span class="dv">119</span>, <span class="dv">115</span>, <span class="dv">134</span>, <span class="dv">253</span>, <span class="dv">289</span>, <span class="dv">287</span>)</span>
+<span id="cb35-3"><a href="confidence-intervals.html#cb35-3" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="confidence-intervals.html#cb35-4" tabindex="-1"></a><span class="fu">mean</span>(cotanine); <span class="fu">sd</span>(cotanine)</span></code></pre></div>
+<pre><code>## [1] 108.4</code></pre>
+<pre><code>## [1] 95.60021</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="confidence-intervals.html#cb38-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="co"># View 2 plots at once</span></span>
+<span id="cb38-2"><a href="confidence-intervals.html#cb38-2" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="confidence-intervals.html#cb38-3" tabindex="-1"></a><span class="fu">hist</span>(cotanine)</span>
+<span id="cb38-4"><a href="confidence-intervals.html#cb38-4" tabindex="-1"></a><span class="fu">qqnorm</span>(cotanine); <span class="fu">qqline</span>(cotanine)</span></code></pre></div>
+<p><img src="06-confints_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="confidence-intervals.html#cb39-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<p>The data appears to have a meaningful right skew. With a sample size of only 15, the normality assumption is probably not safe. So what does this mean? The quantities
+<span class="math display">\[Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}}, \quad \quad T = \frac{\bar{X} - \mu}{s/\sqrt{n}}\]</span>
+do not have a normal and T distribution, respectively. So we can’t build an interval with Z or T critical values. Instead, we’re going to <em>estimate</em> the sampling distribution of <span class="math inline">\(T\)</span> using a technique called the <strong>bootstrap</strong>. We’re going to pull ourselves up by our bootstraps, but it’s actually going to work in this case!</p>
+<hr />
+<p>Let’s sketch out the broad idea first. We want to know the sampling distribution of <span class="math inline">\(T\)</span>, in other words, what are all of the possible values of <span class="math inline">\(T\)</span>? In a perfect world, we could take sample after sample from the population and calculate <span class="math inline">\(T\)</span> for all of the different samples.</p>
+<p>We can’t do that, because we don’t have the full population. But we do have our sample, which represents the full population. The idea is that if we repeatedly sample with replacement from the sample, we are approximating what it would be like to sample from the population. For example,</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="confidence-intervals.html#cb40-1" tabindex="-1"></a><span class="co"># Take a sample of size 15 from cotanine data</span></span>
+<span id="cb40-2"><a href="confidence-intervals.html#cb40-2" tabindex="-1"></a><span class="fu">sample</span>(cotanine, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">replace =</span> T)</span></code></pre></div>
+<pre><code>##  [1] 289  58  21 134 134 253  12  30 117 119 117 289 287 134  30</code></pre>
+<p>Some values in the original data can appear more than once, and some might appear not at all. These 15 points are a <em>re-sample</em> of our original data, and they approximate a sample of size 15 from the full cotanine population. It’s important that we sample with replacement, otherwise we would just get our original data!</p>
+<hr />
+<div class="infobox deff">
+<p>The bootstrapping procedure is as follows.</p>
+<ol style="list-style-type: decimal">
+<li><p>Collect an original sample and calculate the sample mean <span class="math inline">\(\bar{x}\)</span>.</p></li>
+<li><p>Draw an SRS of size <span class="math inline">\(n\)</span>, <em>with replacement</em>, from the original sample. Call these observations <span class="math inline">\(x_1^*, x_2^*,\ldots, x_n^*\)</span>. Use the <span class="math inline">\(*\)</span> symbol to refer to re-sampled data.</p></li>
+<li><p>Compute the mean and sd of the re-sampled data, <span class="math inline">\(\bar{x}^*\)</span> and <span class="math inline">\(s^*\)</span>.</p></li>
+<li><p>Compute the statistic
+<span class="math display">\[\hat{t} = \frac{\bar{x}^* - \bar{x}}{s^*/\sqrt{n}}\]</span></p></li>
+<li><p>Repeat 2-4 many, many, times.</p></li>
+</ol>
+</div>
+<p>Notice how thge expression for <span class="math inline">\(\hat{t}\)</span> is calculated very similarly to <span class="math inline">\(T\)</span>. Each <span class="math inline">\(\hat{t}\)</span> value is an approximation for <span class="math inline">\(T\)</span>, based on a random resample. By repeating the process over and over (maybe 5000-10000 times), all of the <span class="math inline">\(\hat{t}\)</span> values create an approximation of the true sampling distribution of <span class="math inline">\(T\)</span>.</p>
+<hr />
+<p>The code below runs the bootstrap procedure on the cotanine data. You do not need to fully understand every line of this code, since this will typically be provided to you. When you run this code, you should see a vector of size 5000 called <code>t_hat</code> in your R environment. This is where we store all of our bootstrap values.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="confidence-intervals.html#cb42-1" tabindex="-1"></a><span class="co"># 1. Enter data and calculate original mean, n</span></span>
+<span id="cb42-2"><a href="confidence-intervals.html#cb42-2" tabindex="-1"></a>cotanine <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">29</span>, <span class="dv">30</span>, <span class="dv">53</span>, <span class="dv">75</span>, <span class="dv">34</span>, <span class="dv">21</span>, <span class="dv">12</span>, <span class="dv">58</span>,</span>
+<span id="cb42-3"><a href="confidence-intervals.html#cb42-3" tabindex="-1"></a>              <span class="dv">117</span>, <span class="dv">119</span>, <span class="dv">115</span>, <span class="dv">134</span>, <span class="dv">253</span>, <span class="dv">289</span>, <span class="dv">287</span>)</span>
+<span id="cb42-4"><a href="confidence-intervals.html#cb42-4" tabindex="-1"></a>x_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(cotanine)</span>
+<span id="cb42-5"><a href="confidence-intervals.html#cb42-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(cotanine)</span>
+<span id="cb42-6"><a href="confidence-intervals.html#cb42-6" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="confidence-intervals.html#cb42-7" tabindex="-1"></a><span class="co"># Create a vector to store t_hat values</span></span>
+<span id="cb42-8"><a href="confidence-intervals.html#cb42-8" tabindex="-1"></a>t_hat <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">5000</span>)</span>
+<span id="cb42-9"><a href="confidence-intervals.html#cb42-9" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="confidence-intervals.html#cb42-10" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">371</span>)  <span class="co"># set RNG</span></span>
+<span id="cb42-11"><a href="confidence-intervals.html#cb42-11" tabindex="-1"></a><span class="co"># Bootstrap loop</span></span>
+<span id="cb42-12"><a href="confidence-intervals.html#cb42-12" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5000</span>){</span>
+<span id="cb42-13"><a href="confidence-intervals.html#cb42-13" tabindex="-1"></a>  <span class="co"># 2. Draw a SRS of size n from data</span></span>
+<span id="cb42-14"><a href="confidence-intervals.html#cb42-14" tabindex="-1"></a>  x_star <span class="ot">&lt;-</span> <span class="fu">sample</span>(cotanine, <span class="at">size =</span> n, <span class="at">replace =</span> T)</span>
+<span id="cb42-15"><a href="confidence-intervals.html#cb42-15" tabindex="-1"></a>  </span>
+<span id="cb42-16"><a href="confidence-intervals.html#cb42-16" tabindex="-1"></a>  <span class="co"># 3. Calculate resampled mean and sd</span></span>
+<span id="cb42-17"><a href="confidence-intervals.html#cb42-17" tabindex="-1"></a>  x_bar_star <span class="ot">&lt;-</span> <span class="fu">mean</span>(x_star)</span>
+<span id="cb42-18"><a href="confidence-intervals.html#cb42-18" tabindex="-1"></a>  s_star <span class="ot">&lt;-</span> <span class="fu">sd</span>(x_star)</span>
+<span id="cb42-19"><a href="confidence-intervals.html#cb42-19" tabindex="-1"></a>  </span>
+<span id="cb42-20"><a href="confidence-intervals.html#cb42-20" tabindex="-1"></a>  <span class="co"># 4. Calculate t_hat, and store it in vector</span></span>
+<span id="cb42-21"><a href="confidence-intervals.html#cb42-21" tabindex="-1"></a>  t_hat[i] <span class="ot">&lt;-</span> (x_bar_star <span class="sc">-</span> x_bar) <span class="sc">/</span> (s_star<span class="sc">/</span><span class="fu">sqrt</span>(n))</span>
+<span id="cb42-22"><a href="confidence-intervals.html#cb42-22" tabindex="-1"></a>}</span></code></pre></div>
+<p>Next, let’s make a histogram of these values.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="confidence-intervals.html#cb43-1" tabindex="-1"></a><span class="fu">hist</span>(t_hat, <span class="at">main =</span> <span class="st">&quot;Bootstrap t-hat values&quot;</span>)</span></code></pre></div>
+<p><img src="06-confints_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>This is the approximate sampling distribution of <span class="math inline">\(T = \frac{\bar{X} - \mu}{s/\sqrt{n}}\)</span>. This histogram is essentially taking the place of the T distribution curve we used before. Instead of using critical values from <code>qt</code>, we use quantiles of this histogram as our critical values.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="confidence-intervals.html#cb44-1" tabindex="-1"></a><span class="fu">hist</span>(t_hat, <span class="at">main =</span> <span class="st">&quot;Bootstrap t-hat values&quot;</span>)</span>
+<span id="cb44-2"><a href="confidence-intervals.html#cb44-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="sc">-</span><span class="fl">3.056</span>, <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb44-3"><a href="confidence-intervals.html#cb44-3" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fl">1.77</span>, <span class="at">col =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="06-confints_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>The proportion of <span class="math inline">\(\hat{t}\)</span> values inside the critical values (dashed lines) is <span class="math inline">\(1-\alpha\)</span>.</p>
+<p>Let’s build a 95% bootstrap CI on the cotanine data. We have <span class="math inline">\(\alpha = 0.05\)</span>, so we need to cut off <span class="math inline">\(\alpha/2 = 0.025\)</span> of the <span class="math inline">\(\hat{t}\)</span> values in each tail. So, we need the 2.5 and 97.5 quantiles of the <code>t_hat</code> vector.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="confidence-intervals.html#cb45-1" tabindex="-1"></a><span class="co"># I recommend names = F for a cleaner output</span></span>
+<span id="cb45-2"><a href="confidence-intervals.html#cb45-2" tabindex="-1"></a><span class="fu">quantile</span>(t_hat, <span class="at">probs =</span> <span class="fl">0.025</span>, <span class="at">names =</span> F)</span></code></pre></div>
+<pre><code>## [1] -3.05647</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="confidence-intervals.html#cb47-1" tabindex="-1"></a><span class="fu">quantile</span>(t_hat, <span class="at">probs =</span> <span class="fl">0.975</span>, <span class="at">names =</span> F)</span></code></pre></div>
+<pre><code>## [1] 1.769825</code></pre>
+<p>Our lower critical value is <span class="math inline">\(\hat{t}_{1-\alpha/2} = -3.056\)</span> and our upper critical value is <span class="math inline">\(\hat{t}_{\alpha/2} = 1.77\)</span>. Notice that, unlike the Z and T critical values, these ones are not symmetric around 0. In general, our lower critical value is <span class="math inline">\(\hat{t}_{1-\alpha/2}\)</span> and our upper critical value is <span class="math inline">\(\hat{t}_{\alpha/2}\)</span>.</p>
+<hr />
+<p>Once we have the critical values, the point estimate and standard error are exactly the same as those in the T confidence interval.</p>
+<div class="infobox deff">
+<p>A <span class="math inline">\(100(1-\alpha)\%\)</span> bootstrap CI for <span class="math inline">\(\mu\)</span> is given by
+<span class="math display">\[\Big(\bar{X} - \hat{t}_{\alpha/2}\frac{S}{\sqrt{n}},\;\; \bar{X} - \hat{t}_{1 - \alpha/2}\frac{S}{\sqrt{n}}\Big).\]</span>
+Note that we subtract the upper critical value to get the lower bound, and subtract the lower critical value to get the upper bound.</p>
+</div>
+<p>The mean of the cotanine data is 108.4 and the standard deviation is 95.6 So, if we use the bootstrap formula the critical values we found before, we get
+<span class="math display">\[\Big(108.4 -1.77\frac{95.6}{\sqrt{15}}, \; 108.4 + 3.056\frac{95.6}{\sqrt{15}}\Big) \;=\; (64.71, 183.834).\]</span>
+We are 95% confident that the true cotanine level is in this range. If we had built a CI with the usual T CI formula, we would have gotten (55.46, 161.34), which is quite different. I trust the bootstrap result more, because of the concerns of non-normality.</p>
+<p>Although the bootstrap does not require normal data, you can still use it on normal data. The bootstrap is strictly more general than the Z or T CI methods.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="estimation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hypothesis-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-confints.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
