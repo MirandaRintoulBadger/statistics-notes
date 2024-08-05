@@ -1,7 +1,7 @@
 # Introduction To Statistics {#intro}
 
-```{r,echo=F, out.height="300px", fig.align="center"}
-knitr::include_graphics("figs/comics/ch1.jpeg")
+```{r,echo=F, out.height="200px", fig.align="center"}
+knitr::include_graphics("figs/comics/ch1.jpg")
 ```
 
 ## Statistics

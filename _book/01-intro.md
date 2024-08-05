@@ -1,6 +1,6 @@
 # Introduction To Statistics {#intro}
 
-<img src="figs/comics/ch1.jpeg" height="300px" style="display: block; margin: auto;" />
+<img src="figs/comics/ch1.jpg" height="200px" style="display: block; margin: auto;" />
 
 ## Statistics
 
