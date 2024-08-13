@@ -251,7 +251,39 @@ We cannot say that we "accept" the null hypothesis.  Since we start by assuming 
 
 ---
 
-Our seedlings example specifically tested $\mu = 1.5$.  
+We can use R to automatically check our with the `t.test` function.  Input the data, set a significance level, and make sure to set $\mu_0 = 1.5$.
+
+
+```r
+seedlings <- c(2.6, 1.9, 1.8, 1.6, 1.4, 2.2, 1.2, 1.6, 1.6,
+               1.5, 1.4, 1.6, 2.3, 1.5, 1.1, 1.6, 2.0, 1.5,
+               1.7, 1.5, 1.6, 2.1, 2.2, 1.0, 1.2, 1.2, 1.8,
+               1.7, 0.8, 1.5, 2.0, 2.2, 1.5, 1.6, 2.2, 2.1,
+               1.6, 1.7, 1.7, 1.2)
+
+t.test(seedlings, mu = 1.5, alternative = "two.sided",
+       conf.level = 0.95)
+```
+
+```
+## 
+## 	One Sample t-test
+## 
+## data:  seedlings
+## t = 2.6573, df = 39, p-value = 0.01136
+## alternative hypothesis: true mean is not equal to 1.5
+## 95 percent confidence interval:
+##  1.538808 1.786192
+## sample estimates:
+## mean of x 
+##    1.6625
+```
+
+The results are the same as what we got by hand, up to rounding.
+
+---
+
+Our seedlings example specifically tested $\mu = 1.5$, so let's talk about how to use this method more generally.
 
 :::: {.infobox .deff data-latex=""}
 In general, hypotheses for a one-sample T test will look like
@@ -260,6 +292,8 @@ The test statistic is
 $$T = \frac{\bar{X} - \mu_0}{S/\sqrt{n}}$$
 and we complete our test with a rejection region or p-value on the T with $n-1$ degrees of freedom.
 ::::
+
+
 
 Let's consider a new exmaple. Researchers are exploring methods for preventing frost damage to orchards. The mean soil heat flux for plots covered with grass is $\mu_0 = 30$ units. An alternative method is to use coal dust to cover. Heat flux measurements of 8 plots covered with coal dust yielded the following data:
 
@@ -293,7 +327,7 @@ hist(flux)
 qqnorm(flux); qqline(flux)
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 ```r
 par(mfrow = c(1, 1))
@@ -350,7 +384,7 @@ qt(0.975, df = 7)
 ## [1] 2.364624
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -473,7 +507,7 @@ Let's analyze the one-sided hypotheses above using a T test with $\alpha = 0.05$
 
 Previously, when we performed a two-sided test, we found a rejection region by taking the significance level $\alpha$ and splitting it up into two tails, each with area $\alpha/2$.
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -485,7 +519,7 @@ $$H_0: \mu \le 8 \quad \text{versus} \quad H_A: \mu > 8.$$
 
 When we build a rejection region, it will still have area $\alpha$.  But, it will be entirely in the upper tail of the null distribution.  Negative test statistics don't give us evidence that $\mu > 8$, only positive test statistics do.  So our rejection region will cut off area 0.05 in the upper tail of the $T_{19}$ curve.
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -527,7 +561,7 @@ qt(0.95, df = 19)
 We see that our observed test statistic 1.219 is smaller than the rejection region threshold of 1.729.  So the statistic is not in the rejection region, and it does not give us sufficient evidence against the null.
 </span>
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -549,7 +583,7 @@ pt(1.219, df = 19, lower.tail = F)
 ## [1] 0.1188814
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -568,7 +602,7 @@ Notice that if we had done a two-sided test with $H_A: \mu \neq 8$, we would've 
 ## integer(0)
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -582,7 +616,7 @@ Notice that if we had done a two-sided test with $H_A: \mu \neq 8$, we would've 
 ## integer(0)
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-22-2.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-23-2.png" width="672" />
 
 ---
 
@@ -628,7 +662,7 @@ This is the same test statistic as the one we used for the T test.  But now, we 
 
 We use a rejection region or p-value to make a decision about our hypotheses.  The rejection region has area $\alpha = 0.05$ in both tails, since we're doing a two-sided test.  So each tail will have area $\alpha/2 = 0.025$.
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-24-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -662,7 +696,7 @@ For our test at the 5% level, we decide to reject if the test statistic is less 
 ## integer(0)
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-26-1.png" width="672" />
 
 ---
 
@@ -673,7 +707,7 @@ We can also make a decision by calculating a p-value.  The Z test p-value is cal
 ## integer(0)
 ```
 
-<img src="07-hyptesting_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-27-1.png" width="672" />
 
 ```
 ## integer(0)
@@ -727,6 +761,297 @@ Notice that the alternative hypothesis covers infinitely many different values o
 Let's specify $\mu_A = 1.6$.  Power is the probability that we correctly reject $\mu_0 = 1.5$, if the true mean were actually 1.6.  Essentially, we are evaluating whether our hypothesis test can do a good job detecting a change of 0.1 cm.
 
 ---
+
+A hypothesis test is based on the distribution of the test statistic (such as $Z$) under the null.  But for calculating power, it is more convenient to consider the sampling distribution of the sample mean itself, $\bar{X}.$  Our test statistic is a function of $\bar{X}$:
+$$Z \;=\; \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}}.$$
+There are some values of $\bar{X}$ that lead to us rejecting the null when we plug them into the test statistic formula.
+
+What are all the possible values of $\bar{X}$?  We know that the general sampling distribution for a sample mean (assuming normality) is 
+$$\bar{X} \sim N\Big(\mu, \sigma^2\Big).$$
+If the null hypothesis is true, then that means $\mu = \mu_0 = 1.5$.  But if the alternative is true, then $\mu = \mu_A = 1.6$.  So the sampling distribution of $\bar{X}$ is different depending on whether the null or alternative is true.  \begin{align}
+\text{Null distribution of }\bar{X}: \quad & N\Big(\mu_0,\; \frac{\sigma^2}{n}\Big) \;=\; N\Big(1.5,\; \frac{0.387^2}{40}\Big) \\
+\text{Alt distribution of }\bar{X}: \quad & N\Big(\mu_A,\; \frac{\sigma^2}{n}\Big) \;=\; N\Big(1.6,\; \frac{0.387^2}{40}\Big)
+\end{align}
+
+---
+
+Here is a visual of the null distribution of $\bar{X}$:
+
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+
+Here is the null with the alternative:
+
+
+```
+## integer(0)
+```
+
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+
+The null and alternative distributions are the same curve, shifted relative to each other.  The centers are 0.1 cm apart, which is the difference between $\mu_0$ and $\mu_A$.
+
+---
+
+Our goal is to calculate power, which is the probability that we correctly reject $H_0$, given that $H_A$ is true.  First, we need to identify when we reject the null.  What values of $\bar{X}$ lead us to reject the null hypothesis?  If $\bar{X}$ is far enough away from 1.5, then we will eventually reject $\mu_0 = 1.5$.
+
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+
+We can think of the vertical lines as "critical values" for $\bar{X}$.  It is analogous to a rejection region, but it is on the sampling distribution of $\bar{X}$ instead of the distribution of the test statistic $Z$.  
+
+If $\bar{X}$ falls into the shaded areas, then it is considered an extreme enough result that we want to reject the null value of 1.5.  This region is on the null distribution and it has area $\alpha$.  But power is the probability that we reject the null, given the *alternative* is true.  So we need to find the probability that $\bar{X}$ falls in this region, based on the alternative curve.
+
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+
+We have the same critical thresholds as before, but we are looking at the area on the alternative distribution.  This area is our power, i.e. our true positive rate.
+
+---
+
+Let's calculate the power of a 5% level Z test on the pine seedlings data, assuming $\mu_0 = 1.5$ and $\mu_A = 1.6$. Our first step is to find the rejection region in terms of $\bar{X}$ The rejection region of the $Z$ test statistic is 
+$$Z \le -1.96,\quad Z \ge 1.96$$
+$$\frac{\bar{X} - 1.5}{0.387/\sqrt{40}} \;\le\; -1.96,\quad \frac{\bar{X} - 1.5}{0.387/\sqrt{40}} \;\ge\; 1.96$$
+
+:::: {.infobox .exer data-latex=""}
+Use the Z statistic rejection region to find the rejection region in terms of $\bar{X}$.
+
+<span style="color:#8601AF">
+To find the corresponding rejection thresholds for $\bar{X}$, we need to solve for $\bar{X}$.
+\begin{align*}
+\frac{\bar{X} - 1.5}{0.387/\sqrt{40}} &\le -1.96 \\
+\bar{X} - 1.5 &\le -1.96\cdot \frac{0.387}{\sqrt{40}} \\
+\bar{X} &\le -1.96\cdot \frac{0.387}{\sqrt{40}} + 1.5 \\
+\bar{X} &\le 1.38
+\end{align*}
+</span>
+
+<span style="color:#8601AF">
+If $\bar{X}$ is less than 1.38, then it is far enough away from 1.5 to reject $H_0$.  Following the same reasoning, we find that we would also reject if $\bar{X} \ge 1.62$.  So 1.38 and 1.62 define the "rejection region" for $\bar{X}$.
+</span>
+::::
+
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+
+Now, we need to find 
+\begin{align*}
+\text{Power} &= 
+\mathbb{P}(\text{Reject }H_0 \;|\; H_A) \\
+&= \mathbb{P}(\bar{X} \le 1.38 \;|\; H_A) \;+\; \mathbb{P}(\bar{X} \ge 1.62 \;|\; H_A)
+\end{align*}
+
+We need to find the area outside of 1.38 and 1.62 on the alternative distribution.  This boils down to finding a normal probability on 
+$$N\Big(1.6,\; \frac{0.387^2}{40}\Big).$$
+
+:::: {.infobox .exer data-latex=""}
+- Finish calculating the power of the pine seedlings Z test with $\alpha = 0.05$, $\mu_0 = 1.5$, and $\mu_A = 1.6$.
+
+<span style="color:#8601AF">
+We reject the null hypothesis if $\bar{X}$ is less than 1.38 or greater than 1.62.  Power is the probability that we reject under the alternative hypothesis, so we need to calculate the probability/area below 1.38 and above 1.62 on the alternative distribution of $\bar{X}$.
+</span>
+
+
+```r
+pnorm(1.38, 1.6, 0.387/sqrt(40)) +
+  pnorm(1.62, 1.6, 0.387/sqrt(40), lower.tail = F)
+```
+
+```
+## [1] 0.3720525
+```
+
+<span style="color:#8601AF">
+Our power is 0.372.  If the true mean height is 1.62, then we will only reject the null value of 1.5 37.2% of the time.  Our test has very low power for detecting a difference of 0.1 cm.
+</span>
+
+- What is the type II error rate $\beta$?
+
+<span style="color:#8601AF">
+The type II error rate is the probability that we incorrectly fail to reject the null when the null is actually false.  This is 1 - power, or $1-0.372 = 0.628$.  If the true mean height is 1.62, then we fail to reject the null value of 1.5 62.8% of the time.
+</span>
+
+::::
+
+---
+
+Our test has very low power.  How can we improve it?  Let's look at all of the terms that affect power.
+
+- When $\mu_0$ and $\mu_A$ are farther apart, the test is more powerful.  The null and alternative distribution have more separation.
+- When $\alpha$ is larger, the test is more powerful.  A large $\alpha$ means we are more willing to reject $H_0$.
+- When $\sigma$ is smaller and $n$ is larger, the test is more powerful.  The null and alternative distributions are more concentrated around $\mu_0$ and $\mu_A$, respectively.
+
+Which of these terms can we manipulate ourselves?  We choose $\mu_0$ and $mu_A$ based on what we want our test to do (e.g., detect a difference of 0.1 cm).  So it wouldn't make sense to change them to be further apart.
+
+We can set $\alpha$ to be larger, but it is not good practice to set a very high false positive rate just to make our test more powerful.  We should stick with $\alpha = 0.05$ because we already decided it is appropriate.
+
+We can't change $\sigma$, since that's a population parameter.  The last term that we can manipulate is $n$, the sample size.  Statisticians will typically choose a desired power level, and solve for the sample size required to achieve that power.
+
+---
+
+:::: {.infobox .deff data-latex=""}
+It can be shown that the sample size required to have power $1-\beta$ for a two-sided test is 
+$$n \;=\; \Big(\frac{\sigma(z_{\alpha/2}+z_{\beta})}{\mu_0 - \mu_A}\Big)^2.$$
+::::
+
+In the pine seedlings example, we are testing 
+$$H_0: \mu = 1.5 \quad\text{versus}\quad H_A: \mu \neq 1.5$$
+with $\alpha = 0.05$, $\mu_A = 1.6$ and $\sigma$ assumed to be 0.387.
+
+:::: {.infobox .exer data-latex=""}
+What sample size is required to have a power of at least 0.8?
+
+<span style="color:#8601AF">
+$\sigma, \mu_0$, and $\mu_A$ are already given directly.  So we just need to find the z-scores $z_{\alpha/2}$ and $z_{\beta}$.  $z_{\alpha/2}$ cuts of area $\alpha/2 = 0.025$ in upper tail of the standard normal curve.  This is 1.96.
+</span>
+
+
+```r
+qnorm(0.975)
+```
+
+```
+## [1] 1.959964
+```
+
+Since $\beta = 1-0.8 = 0.8$, $z_{\beta}$ will cut off area 0.2 in the upper tail of the standard normal curve.  This is 0.842.
+
+
+```r
+qnorm(0.8)
+```
+
+```
+## [1] 0.8416212
+```
+
+So, the sample size required for our test to have power 0.8 is
+
+$$n \;=\; \Big(\frac{\sigma(z_{\alpha/2}+z_{\beta})}{\mu_0 - \mu_A}\Big)^2 \;=\; \Big(\frac{0.387(1.96+0.842)}{1.5 - 1.6}\Big)^2 \;=\; 117.6.$$
+Since our sample size has to be a whole number, we round up to 118 in order to get a guaranteed power of 0.8.
+::::
+
+:::: {.infobox .pond data-latex=""}
+How would the power calculation and the sample size calculation change if we were doing a one-sided test instead of a two-sided test?
+::::
+
+## Bootstrap test
+
+Just like a T and Z confidence interval, the T and Z hypothesis test methods both require the assumption that $\bar{X}$ is normal.  If we have non-normal data, then we can use the bootstrap method to approximate the sampling distribution of the T test statistic.  We are making an empirical approximation of the null distribution of
+$$T = \frac{\bar{X} - \mu_0}{S/\sqrt{n}}$$
+instead of using a T curve.
+
+Here is the outline of a bootstrap hypothesis test:
+
+1. Write a null and alternative hypothesis regarding $\mu$.
+
+2. Compute $t_{obs}$ from the sample data.
+
+3. Use the bootstrap to accumulate a large number ($B$) of $\hat{t}$ values and approximate the null distribution.
+
+4. Calculate a p-value based on how many $\hat{t}$ values are more extreme than $t_{obs}$.
+
+Steps 1 and 2 are exactly the same as the T test.  The third step, the bootstrap, is exactly the same as the bootstrap procedure for a CI.
+
+So if we zoom in on step 3 above:
+
+1. Collect an original sample and calculate the sample mean $\bar{x}$.
+
+2. Draw an SRS of size $n$, *with replacement*, from the original sample. Call these observations $x_1^*, x_2^*,\ldots, x_n^*$.  Use the $*$ symbol to refer to re-sampled data.
+
+3. Compute the mean and sd of the re-sampled data, $\bar{x}^*$ and $s^*$.
+
+4. Compute the statistic
+$$\hat{t} = \frac{\bar{x}^* - \bar{x}}{s^*/\sqrt{n}}$$
+
+5. Repeat 2-4 many, many, times.
+
+---
+
+For the T and Z hypothesis tests, the null distribution was a smooth curve and we calculated a p-value based on the area under that curve.  But for the bootstrap, the null distribution is represented by a collection of discrete values.  So, our p-value calculation is based on the proportion of bootstrap $\hat{t}$ values that are more extreme than our observed test statistic.
+
+:::: {.infobox .deff data-latex=""}
+Specifically, let $m_u$ be the count of $\hat{t}$ values such that $\hat{t} > t_{obs}$, and let $m_{\ell}$ be the count of $\hat{t}$ values such that $\hat{t} < t_{obs}$.
+
+- If $H_A: \mu < \mu_0$, then we want to look at the $\hat{t}$ values less than $t_{obs}$, so the p-value is $m_{\ell} / B$.
+- If $H_A: \mu > \mu_0$, then we want to look at the $\hat{t}$ values greater than $t_{obs}$, so the p-value is $m_{u} / B$.
+- If $H_A: \mu \neq \mu_0$, we are interested in both directions, so the p-value is 
+$$\frac{2\cdot \min(m_u, m_{\ell})}{B}.$$ 
+::::
+
+Note that in the two-sided case, we have to calculate both one-sided p-values, and take 2 times whichever is smaller.
+
+---
+
+Let's perform a 5% level bootstrap test on the pine seedlings data, of the hypotheses
+$$H_0: \mu = 1.5 \quad\text{versus}\quad H_A: \mu \neq 1.5.$$
+Even though the seedlings data is normal, the bootstrap will still work.
+
+Our observed test statistic is the same as before, $t_{obs} = 2.664$.  Now let's run the bootstrap code to generate 5000 $\hat{t}$ values.  You don't need to understand every bit of this code.
+
+
+```r
+# 1. Enter data and calculate original mean, n
+seedlings <- c(2.6, 1.9, 1.8, 1.6, 1.4, 2.2, 1.2, 1.6, 1.6,
+               1.5, 1.4, 1.6, 2.3, 1.5, 1.1, 1.6, 2.0, 1.5,
+               1.7, 1.5, 1.6, 2.1, 2.2, 1.0, 1.2, 1.2, 1.8,
+               1.7, 0.8, 1.5, 2.0, 2.2, 1.5, 1.6, 2.2, 2.1,
+               1.6, 1.7, 1.7, 1.2)
+x_bar <- mean(seedlings)
+n <- length(seedlings)
+
+# Create a vector to store t_hat values
+t_hat <- numeric(5000)
+
+set.seed(371)  # set RNG
+# Bootstrap loop
+for(i in 1:5000){
+  # 2. Draw a SRS of size n from data
+  x_star <- sample(seedlings, size = n, replace = T)
+  
+  # 3. Calculate resampled mean and sd
+  x_bar_star <- mean(x_star)
+  s_star <- sd(x_star)
+  
+  # 4. Calculate t_hat, and store it in vector
+  t_hat[i] <- (x_bar_star - x_bar) / (s_star/sqrt(n))
+}
+```
+
+Next, we'll use R to count how many of those $\hat{t}$ values are less than and greater than $t_{obs} = 2.664$.
+
+
+```r
+sum(t_hat < 2.664)
+```
+
+```
+## [1] 4981
+```
+
+```r
+sum(t_hat > 2.664)
+```
+
+```
+## [1] 19
+```
+
+We have $m_{\ell} = 4981$ and $m_u = 19$.  So $t_{obs}$ is on the upper end of the generated null distribution.  We can visualize the bootstrap null distribution and test statistic with a histogram.
+
+<img src="07-hyptesting_files/figure-html/unnamed-chunk-39-1.png" width="672" />
+
+The minimum of $m_{\ell}$ and $m_u$ is $m_u = 19$.  So the bootstrap p-value is given by 
+$$2 \cdot \frac{19}{5000} \;=\; 0.0076.$$
+This is a small p-value that leads to us rejecting the null.  The result is very similar to the T and Z tests done on the same data.
+
+
+:::: {.infobox .pond data-latex=""}
+Why are the results of the T, Z, and bootstrap tests all very similar for this set of data?  Must this always be the case?
+::::
+
+
+
+
+
+
+
 
 
 

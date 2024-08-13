@@ -680,7 +680,7 @@ sample(cotanine, size = 15, replace = T)
 ```
 
 ```
-##  [1]  30 115 134  58  58  21  53 115  53 287  12  12 289 287 115
+##  [1] 115  75 134  30  53 115  30  58  12  29  53  21 287  53  53
 ```
 
 Some values in the original data can appear more than once, and some might appear not at all.  These 15 points are a *re-sample* of our original data, and they approximate a sample of size 15 from the full cotanine population.  It's important that we sample with replacement, otherwise we would just get our original data!
@@ -702,7 +702,7 @@ $$\hat{t} = \frac{\bar{x}^* - \bar{x}}{s^*/\sqrt{n}}$$
 5. Repeat 2-4 many, many, times.
 ::::
 
-Notice how thge expression for $\hat{t}$ is calculated very similarly to $T$.  Each $\hat{t}$ value is an approximation for $T$, based on a random resample.  By repeating the process over and over (maybe 5000-10000 times), all of the $\hat{t}$ values create an approximation of the true sampling distribution of $T$.
+Notice how the expression for $\hat{t}$ is calculated very similarly to $T$.  Each $\hat{t}$ value is an approximation for $T$, based on a random resample.  By repeating the process over and over (maybe 5000-10000 times), all of the $\hat{t}$ values create an approximation of the true sampling distribution of $T$.
 
 ---
 

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Other ONe-Sample Tests | Statistics 371 Full Notes</title>
+  <meta name="description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Other ONe-Sample Tests | Statistics 371 Full Notes" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Other ONe-Sample Tests | Statistics 371 Full Notes" />
+  
+  <meta name="twitter:description" content="Introductory Applied Statistics for the Life Sciences" />
+  
+
+<meta name="author" content="Miranda Rintoul" />
+
+
+<meta name="date" content="2024-08-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="hypothesis-testing.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistics 371 Full Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction To Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#statistics"><i class="fa fa-check"></i><b>1.1</b> Statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#key-terms"><i class="fa fa-check"></i><b>1.2</b> Key terms</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#types-of-data"><i class="fa fa-check"></i><b>1.3</b> Types of data</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#course-outline"><i class="fa fa-check"></i><b>1.4</b> Course outline</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histograms"><i class="fa fa-check"></i><b>2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>2.2</b> Location</a></li>
+<li class="chapter" data-level="2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#spread"><i class="fa fa-check"></i><b>2.3</b> Spread</a></li>
+<li class="chapter" data-level="2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#box-plots"><i class="fa fa-check"></i><b>2.4</b> Box plots</a></li>
+<li class="chapter" data-level="2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#multiple-datasets"><i class="fa fa-check"></i><b>2.5</b> Multiple datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> Probability</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#sampling"><i class="fa fa-check"></i><b>3.1</b> Sampling</a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#probability-basics"><i class="fa fa-check"></i><b>3.2</b> Probability basics</a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>3.3</b> Conditional probability</a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>3.4</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="random-variables.html"><a href="random-variables.html"><i class="fa fa-check"></i><b>4</b> Random Variables</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="random-variables.html"><a href="random-variables.html#random-variable-basics"><i class="fa fa-check"></i><b>4.1</b> Random variable basics</a></li>
+<li class="chapter" data-level="4.2" data-path="random-variables.html"><a href="random-variables.html#expectation-and-variance"><i class="fa fa-check"></i><b>4.2</b> Expectation and variance</a></li>
+<li class="chapter" data-level="4.3" data-path="random-variables.html"><a href="random-variables.html#binomial-random-variables"><i class="fa fa-check"></i><b>4.3</b> Binomial random variables</a></li>
+<li class="chapter" data-level="4.4" data-path="random-variables.html"><a href="random-variables.html#rules-of-expectation-and-variance"><i class="fa fa-check"></i><b>4.4</b> Rules of expectation and variance</a></li>
+<li class="chapter" data-level="4.5" data-path="random-variables.html"><a href="random-variables.html#normal-random-variables"><i class="fa fa-check"></i><b>4.5</b> Normal random variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>5</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="estimation.html"><a href="estimation.html#estimation-1"><i class="fa fa-check"></i><b>5.1</b> Estimation</a></li>
+<li class="chapter" data-level="5.2" data-path="estimation.html"><a href="estimation.html#sampling-distributions"><i class="fa fa-check"></i><b>5.2</b> Sampling distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="estimation.html"><a href="estimation.html#central-limit-theorem"><i class="fa fa-check"></i><b>5.3</b> Central Limit Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#z-confidence-interval"><i class="fa fa-check"></i><b>6.1</b> Z confidence interval</a></li>
+<li class="chapter" data-level="6.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-interpretation"><i class="fa fa-check"></i><b>6.2</b> Confidence interval interpretation</a></li>
+<li class="chapter" data-level="6.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#t-confidence-interval"><i class="fa fa-check"></i><b>6.3</b> T confidence interval</a></li>
+<li class="chapter" data-level="6.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#proportion-ci"><i class="fa fa-check"></i><b>6.4</b> Proportion CI</a></li>
+<li class="chapter" data-level="6.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-confidence-interval"><i class="fa fa-check"></i><b>6.5</b> Bootstrap confidence interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-t-test"><i class="fa fa-check"></i><b>7.1</b> One-sample T test</a></li>
+<li class="chapter" data-level="7.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors"><i class="fa fa-check"></i><b>7.2</b> Errors</a></li>
+<li class="chapter" data-level="7.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sided-tests"><i class="fa fa-check"></i><b>7.3</b> One-sided tests</a></li>
+<li class="chapter" data-level="7.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-z-test"><i class="fa fa-check"></i><b>7.4</b> One-sample Z test</a></li>
+<li class="chapter" data-level="7.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#power"><i class="fa fa-check"></i><b>7.5</b> Power</a></li>
+<li class="chapter" data-level="7.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#bootstrap-test"><i class="fa fa-check"></i><b>7.6</b> Bootstrap test</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html"><i class="fa fa-check"></i><b>8</b> Other ONe-Sample Tests</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html#one-sample-proportion-test"><i class="fa fa-check"></i><b>8.1</b> One-sample proportion test</a></li>
+<li class="chapter" data-level="8.2" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html#median-test"><i class="fa fa-check"></i><b>8.2</b> Median test</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 371 Full Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="other-one-sample-tests" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Other ONe-Sample Tests<a href="other-one-sample-tests.html#other-one-sample-tests" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figs/comics/ch8.jpg" width="300px" style="display: block; margin: auto;" /></p>
+<p>Chapter 7 covered three different methods (T test, Z test, and bootstrap test) for testing the value of the population mean, <span class="math inline">\(\mu\)</span>. However, we might have a different parameter of interest. In this section, we’ll cover two other tests, which can be used if we want to test a population proportion or population median.</p>
+<div id="one-sample-proportion-test" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> One-sample proportion test<a href="other-one-sample-tests.html#one-sample-proportion-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>How can we test a proportion parameter <span class="math inline">\(\pi\)</span>? In chapter 6, we looked at ACL injury data for several athletes. We might want to study whether ACL injuries are equally likely to occur to the left or right knee.</p>
+<p>We can represent this research question as formal statistical hypotheses. Our parameter of interest is <span class="math inline">\(\pi\)</span>, which is the true proportion of right knee injuries (as opposed to left). The hypotheses are
+<span class="math display">\[H_0: \pi = 0.5 \quad \text{versus} \quad H_A: \pi \neq 0.5.\]</span>
+The null is the case where 50% of ACL injuries are to the right knee, i.e. right and left knee injuries are equally likely. The alternative represents the case where the left and right knees are not equally likely to sustain an ACL injury.</p>
+<p>To make inference on a population proportion <span class="math inline">\(\pi\)</span>, we need to study the observed proportion <span class="math inline">\(\hat{p}\)</span>. In our data, we found that 45 out of 132 ACL injuries occurred to the right knee. Does <span class="math inline">\(\frac{45}{132}\)</span> give us evidence against the null? As before, we want to make a test statistic to compare <span class="math inline">\(\hat{p}\)</span> to <span class="math inline">\(0.5\)</span>. If <span class="math inline">\(H_0\)</span> is true, then we expect
+<span class="math display">\[\frac{\hat{p} - 0.5}{\text{standard error of }\hat{p}}\]</span>
+to be a small number.</p>
+<hr />
+<p>Let’s go into the details of how exactly the test statistic is calculated. When we built a Z CI for the proportion, we used the CLT to approximate <span class="math inline">\(\hat{p}\)</span> as normal. We’ll do the same thing here, and develop a Z test for <span class="math inline">\(\pi\)</span>. For sufficiently large <span class="math inline">\(n\)</span>,
+<span class="math display">\[\hat{p}\; \dot{\sim}\; N\Big(\pi, \frac{\pi(1-\pi)}{n}\Big).\]</span>
+This approximation is accurate when the number of observations in each group (right and left) are both greater than 5. We have 45 and 87 observations, which is plenty.</p>
+<p>When we perform a hypothesis test, we start by assuming that the null is true. In this case, we have a null value of <span class="math inline">\(\pi_0 = 0.5\)</span>. So with <span class="math inline">\(n = 132\)</span>, and assuming <span class="math inline">\(H_0\)</span>, the distribution of <span class="math inline">\(\hat{p}\)</span> becomes
+<span class="math display">\[\hat{p}\; \dot{\sim}\; N\Big(0.5,\; \frac{0.5(1-0.5)}{132}\Big).\]</span>
+Remember that this specific normal distribution holds when <span class="math inline">\(H_0\)</span> is true. We can standardize this quantity to get
+<span class="math display">\[Z \;=\; \frac{\hat{p} - 0.5}{\sqrt{\frac{0.5(1-0.5)}{132}}} \;\dot{\sim}\; N(0, 1^2),\]</span>
+If <span class="math inline">\(H_0\)</span> is true, then the statistic <span class="math inline">\(Z\)</span> follows a standard normal distribution. So, we calculate an observed value of <span class="math inline">\(Z\)</span> from our data, and use the standard normal curve as our null distribution. If our observed <span class="math inline">\(Z\)</span> is far enough in the tails of the normal curve, then we have evidence against <span class="math inline">\(H_0\)</span>.</p>
+<p>This test is approximate, but it still gives accurate results about <span class="math inline">\(\pi\)</span>.</p>
+<hr />
+<p>In the ACL injuries data, we have <span class="math inline">\(n = 132\)</span> and <span class="math inline">\(\hat{p} = \frac{45}{132}\)</span> for the observed proportion of right knee injuries. We are trying to test the hypotheses
+<span class="math display">\[H_0: \pi = 0.5 \quad \text{versus} \quad H_A: \pi \neq 0.5\]</span>
+where <span class="math inline">\(\pi\)</span> is the true proportion of right knee injuries.</p>
+<div class="infobox exer">
+<p>Complete the Z hypothesis test on the ACL injuries data with <span class="math inline">\(\alpha = 0.1\)</span>.</p>
+<ul>
+<li>Find the observed test statistic <span class="math inline">\(z_{obs}\)</span>.</li>
+</ul>
+<p><span style="color:#8601AF">
+Our observed proportion <span class="math inline">\(\hat{p} = \frac{45}{132}\)</span>. So, the observed test statistic is
+<span class="math display">\[z_{obs} \;=\; \frac{\frac{45}{132} - 0.5}{\sqrt{\frac{0.5(1-0.5)}{132}}} \;=\; -3.656.\]</span>
+Our test statistic is in the lower tail of the standard normal null distribution.
+</span></p>
+<p><img src="08-other-onepop_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<ul>
+<li>Calculate the two-sided p-value using the standard normal distribution. What conclusions do we make at the 10% level?</li>
+</ul>
+<p><span style="color:#8601AF">
+The p-value is the area outside of our test statistic on the null <span class="math inline">\(N(0, 1^2)\)</span> distribution. We also have to multiply this area by 2, to get the area outside the test statistic in both tails (since we’re doing a two-sided test).
+</span></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="other-one-sample-tests.html#cb1-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">3.656</span>)</span></code></pre></div>
+<pre><code>## [1] 0.0002561814</code></pre>
+<p><span style="color:#8601AF">
+R returns a very small p-value of 0.0003. This p-value is much smaller than our chosen <span class="math inline">\(\alpha\)</span> of 0.1, so we reject <span class="math inline">\(H_0\)</span>. We have evidence that <span class="math inline">\(\pi\)</span> is not equal to 0.5, so we conclude that the left and right knees are not equally likely to sustain ACL injuries.
+</span></p>
+</div>
+<div class="infobox deff">
+<p>In general, to test hypotheses
+<span class="math display">\[H_0: \pi = \pi_0 \quad \text{versus} \quad H_A: \pi \neq \pi_0\]</span>
+we use a Z test statistic
+<span class="math display">\[Z = \frac{\hat{p} - \pi_0}{\sqrt{\frac{\pi_0(1-\pi_0)}{n}}}.\]</span>
+We complete our test by calculating a rejection region or p-value on the <span class="math inline">\(N(0, 1^2)\)</span> distribution.</p>
+</div>
+<p>We can also perform a one-sided proportion Z test. In this case, the test statistic formula is the same, but we calculate a p-value according to the direction of our alternative hypothesis.</p>
+<hr />
+<p>Let’s discuss the relationship between a proportion Z test and a proportion Z CI. There is an important subtlety that we need to pay attention to.</p>
+<p>When working with a population mean <span class="math inline">\(\mu\)</span>, the conclusions from a hypothesis test will always correspond exactly to the conclusions from a CI. For example, if a 95% T CI contains the value <span class="math inline">\(\mu_0\)</span>, then a 5% level T test would fail to reject <span class="math inline">\(\mu_0\)</span>.</p>
+<div class="infobox warn">
+<p>This is not exactly true when working with a proportion. The proportion test and CI will almost always agree with each other, but that is not necessarily the case. This is because the standard error is computed differently.</p>
+</div>
+<p>When we are testing <span class="math inline">\(H_0: \pi = \pi_0\)</span>, the standard error (the denominator of our test statistic) is
+<span class="math display">\[\sqrt{\frac{\pi_0(1-\pi_0)}{n}}.\]</span>
+This is because we are making the initial assumption that the true proportion is <span class="math inline">\(\pi_0\)</span>. But for the proportion CI, we are not making any initial assumptions about the true parameter value. The standard error for a proportion Z CI is
+<span class="math display">\[\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}.\]</span></p>
+<p>So it is theoretically possible for a proportion test and CI to disagree, even with the same <span class="math inline">\(\alpha\)</span> value.</p>
+</div>
+<div id="median-test" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Median test<a href="other-one-sample-tests.html#median-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When the population of interest is a population median (the middle value of the population), we have a technique called the sign test. The sign teset is a bit different than the hypothesis tests we’ve covered so far, but it has the same general structure. We calculate a test statistic from our data, then find a p-value based on a null distribution.</p>
+<hr />
+<p>A city is considering starting a recycling program. If at least half of the households in the city produce 4.6 lbs or more recycleables per week, this program is worthwhile. \~\ A sample of 11 households yields the following data for pounds of recycleables in the trash:
+<span class="math display">\[14.2,\; 5.3,\; 2.9,\; 4.2,\; 1.2,\; 4.3,\; 1.1,\; 2.6,\; 6.7,\; 7.8,\; 25.9\]</span></p>
+<p>Let’s explore this data visually by looking at a histogram and qq-plot.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="other-one-sample-tests.html#cb3-1" tabindex="-1"></a>recycling <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">14.2</span>, <span class="fl">5.3</span>, <span class="fl">2.9</span>, <span class="fl">4.2</span>, <span class="fl">1.2</span>, <span class="fl">4.3</span>,</span>
+<span id="cb3-2"><a href="other-one-sample-tests.html#cb3-2" tabindex="-1"></a>               <span class="fl">1.1</span>, <span class="fl">2.6</span>, <span class="fl">6.7</span>, <span class="fl">7.8</span>, <span class="fl">25.9</span>)</span>
+<span id="cb3-3"><a href="other-one-sample-tests.html#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="other-one-sample-tests.html#cb3-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="co"># View 2 plots at once</span></span>
+<span id="cb3-5"><a href="other-one-sample-tests.html#cb3-5" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="other-one-sample-tests.html#cb3-6" tabindex="-1"></a><span class="fu">hist</span>(recycling)</span>
+<span id="cb3-7"><a href="other-one-sample-tests.html#cb3-7" tabindex="-1"></a><span class="fu">qqnorm</span>(recycling); <span class="fu">qqline</span>(recycling)</span></code></pre></div>
+<p><img src="08-other-onepop_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="other-one-sample-tests.html#cb4-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<p>The data appears to be very right-skewed, and the sample size is so small that the CLT probably won’t help us with normality. We’ve learned one method for analyzing non-normal data, the bootstrap. The bootstrap test is for a population mean <span class="math inline">\(|mu\)</span>.</p>
+<p>However, our research question is more appropriately stated in terms of the population median, <span class="math inline">\(M\)</span>. The statement, “at least half of the households in the city produce 4.6 lbs or more recycleables per week” is equivalent to the mathematical statement that the median recycables is greater than 4.6.</p>
+<p>So, in formal statistical hypotheses, we want to perform the one-sided test of
+<span class="math display">\[H_0: M \le 4.6\quad\quad\text{versus}\quad\quad H_A: M &gt; 4.6\]</span>
+where <span class="math inline">\(M\)</span> is the true population median of weekly recyclables. <span class="math inline">\(H_0\)</span> represents the case where the recycling program isn’t worthwhile, and <span class="math inline">\(H_A\)</span> represents the case that it is worthwhile.</p>
+<hr />
+<p>We use a tool called the sign test to analyze the hypotheses above. Let’s do this on the recycling data, with significance level <span class="math inline">\(\alpha = 0.05\)</span>. The test statistic for the sign test is not calculated directly based on the values of the data. Instead, we are only concerned with whether the data points are above or below 4.6.</p>
+<p>We start by assuming that our null hypothesis is true and the true median is 4.6. What would the data look like, under this assumption. We would expect about half of our 11 observations to be below 4.6, and about half of them to be above. This is based on the assumption that 4.6 divides the population exactly in half.</p>
+<div class="infobox deff">
+<p>In the sign test for the median, the test statistic <span class="math inline">\(B\)</span> is the count of all observations greater than the hypothesized median.</p>
+</div>
+<p>In our recycling data:
+<span class="math display">\[14.2,\; 5.3,\; 2.9,\; 4.2,\; 1.2,\; 4.3,\; 1.1,\; 2.6,\; 6.7,\; 7.8,\; 25.9\]</span>
+we see that there are five values above 4.6 and six below, so the value of the observed test statistic is <span class="math inline">\(b_{obs} = 5\)</span>.</p>
+<p>The null distribution that we use to calculate a p-value is the binomial distribution. Recall that a binomial RV is the count of successes in a fixed number of independent, binary trials.</p>
+<p>We treat each of the 11 observations as a binary trial. Each observation is either greater than 4.6, or less than 4.6. They are independent and identical, since they are assumed to be iid draws from a population. So for our binomial null distribution, we use <span class="math inline">\(n = 11\)</span>.</p>
+<p>Now consider the success probability. We consider a “success” to be an observation greater than 4.6. What is the probability of this happening, under the null hypothesis? The null says that 4.6 is the median, which means each observation has a 50-50 chance of being above or below. So the success probability is <span class="math inline">\(\pi = 0.5\)</span>.</p>
+<p>Our null distribution is <span class="math inline">\(Binom(11, 0.5)\)</span>.</p>
+<div class="infobox warn">
+<p>Each data point must either be below or above the hypothesized median. If there is a data point that is exactly equal to the null median (4.6 in this case), then it cannot be used for the test. The data point must be ignored, and <span class="math inline">\(n\)</span> is adjusted accordingly.</p>
+<p>For example, if we had 11 observations, and one of them was 4.6, we would use <span class="math inline">\(Binom(10, 0.5)\)</span> as the null distribution.</p>
+</div>
+<hr />
+<p>We observed <span class="math inline">\(b = 5\)</span>, but a sample of 11 could have anywhere fro 0 to 11 values greater than 4.6. Under the null hypothesis, the probabilities of the different values follow a binomial distribution.</p>
+<p><img src="08-other-onepop_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>For the recycling data, 5 households have recyclable weight over 4.6, so our observed test statistic is <span class="math inline">\(b_{obs} = 5\)</span>.</p>
+<p><img src="08-other-onepop_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre><code>## integer(0)</code></pre>
+<p>We cannot easily define a rejection region based on <span class="math inline">\(\alpha = 0.05\)</span>, since the binomial probabilities are discrete and we cannot section off a specific amount of area. However, we can still calculate a p-value based on the binomial probabilities.</p>
+<p>What values are “more extreme” in this case? Our alternative is <span class="math inline">\(M &gt; 4.6\)</span>, so if we see more values above 4.6, that gives us stronger evidence for the alternative and against the null. In our case, test statistic value greater than 5 give us stronger evidence against the null.</p>
+<p><img src="08-other-onepop_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre><code>## integer(0)</code></pre>
+<p>Our p-value is the probability that <span class="math inline">\(B \sim Binom(11, 0.5)\)</span> realizes to a value greater than or equal to 5. So we need to add the probabilities for <span class="math inline">\(b = 5, b = 6, \ldots, b = 11\)</span> on the <span class="math inline">\(Binom(11, 0.5)\)</span> distribution.</p>
+<div class="infobox exer">
+<p>Complete the sign test by finding a p-value. Decide whether to reject or fail to reject the null with <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p><span style="color:#8601AF">
+Our test statistic is 5, and our null distribution is <span class="math inline">\(B \sim Binom(11, 0.5)\)</span>. For our hypotheses, larger values of the test statistic give us stronger evidence against the null, so the p-value is <span class="math inline">\(P(B \ge 5)\)</span>. We can use R <code>dbinom</code> to calculate and add several binomial probabilities.
+</span></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="other-one-sample-tests.html#cb7-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">11</span>, <span class="dv">11</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<pre><code>## [1] 0.7255859</code></pre>
+<p><span style="color:#8601AF">
+We have a large p-value of 0.726. We have very weak evidence against the null so we would fail to reject. There is not sufficient evidence that the recycling program would be worthwhile.
+</span></p>
+</div>
+<hr />
+<p>Let’s compare this non-significant result to a more extreme example. Suppose we have the same hypotheses about the median recyclables per week:
+<span class="math display">\[H_0: M \le 4.6\quad\quad\text{versus}\quad\quad H_A: M &gt; 4.6\]</span>
+but our data looked different:
+<span class="math display">\[15.8,\; 13.2,\; 9.9,\; 4.9,\; 1.1,\; 1.3,\; 5.1,\; 12.6,\; 5.6,\; 8.2,\; 22.9\]</span></p>
+<p>In this example, there are 9 observations greater than 4.6, so our observed test statistic is <span class="math inline">\(b_{obs} = 9\)</span>. Now, our one-sided p-value is <span class="math inline">\(P(B \ge 9)\)</span>, where <span class="math inline">\(B \sim Binom(11, 0.5)\)</span>.</p>
+<p><img src="08-other-onepop_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre><code>## integer(0)</code></pre>
+<p>R gives us a p-value of 0.033, so we would decide to reject the null hypothesis at the 5% level. This second set of data is not consistent with the idea that <span class="math inline">\(M \le 4.6\)</span>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="other-one-sample-tests.html#cb10-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">9</span><span class="sc">:</span><span class="dv">11</span>, <span class="dv">11</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<pre><code>## [1] 0.03271484</code></pre>
+<hr />
+<p>Lastly, let’s look at what we would do if we had two-sided hypotheses. If our hypotheses were
+<span class="math display">\[H_0: M = 4.6\quad\quad\text{versus}\quad\quad H_A: M \neq 4.6\]</span>
+then we would not be looking specifically in the positive direction. So, the p-value calculation would have to consider both sides (above and below the test statistic). The final p-value would depend on which of the two is “more extreme”.</p>
+<p>To find a two-sided p-value for the sign test, find <em>both</em> <span class="math inline">\(P(B \le b_{obs})\)</span> and <span class="math inline">\(P(B \ge b_{obs})\)</span>. The final p-value is <span class="math inline">\(2\times\)</span> whichever of the two is smaller. For example, if we observed 5 observations greater than 4.6 out of 11 total observations, we would need to find <span class="math inline">\(P(B \le 5)\)</span> and <span class="math inline">\(P(B \ge 5)\)</span>.</p>
+<p>The test statistic is still <span class="math inline">\(b_{obs} = 5\)</span> since the test statistic calculation does not change according to the direction of our hypotheses. It is still the count of values above 4.6.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="other-one-sample-tests.html#cb12-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">11</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<pre><code>## [1] 0.5</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="other-one-sample-tests.html#cb14-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">11</span>, <span class="dv">11</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<pre><code>## [1] 0.7255859</code></pre>
+<p><span class="math inline">\(P(B \le 5) = 0.5\)</span> and <span class="math inline">\(P(B \ge 5) = 0.726\)</span>. So, our p-value is <span class="math inline">\(2\times 0.5 = 1\)</span>. This is the largest a p-value can be!</p>
+<div class="infobox deff">
+<p>In general, a sign test will test the value of the true population median <span class="math inline">\(M\)</span> against a null median <span class="math inline">\(M_0\)</span>. The test statistic <span class="math inline">\(b_{obs}\)</span> is the count of observations above <span class="math inline">\(M_0\)</span>, and the null distribution is <span class="math inline">\(Binom(n, 0.5)\)</span>. The p-value calculation depends on the direction of the hypotheses.</p>
+<ul>
+<li><p>If the alternative is <span class="math inline">\(M &lt; M_0\)</span>, the p-value is <span class="math inline">\(P(B \le b_{obs})\)</span>.</p></li>
+<li><p>If the alternative is <span class="math inline">\(M &gt; M_0\)</span>, the p-value is <span class="math inline">\(P(B \ge b_{obs})\)</span>.</p></li>
+<li><p>If the alternative is <span class="math inline">\(M \neq M_0\)</span>, the p-value is
+<span class="math display">\[2\times \min\Big(P(B \le b_{obs}), \;P(B \ge b_{obs})\Big).\]</span></p></li>
+</ul>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hypothesis-testing.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/08-other-onepop.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

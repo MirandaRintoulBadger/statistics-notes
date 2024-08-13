@@ -49,3 +49,9 @@ errors
 one-sided-tests
 one-sample-z-test
 power
+bootstrap-test
+other-one-sample-tests
+one-sample-proportion-test
+median-test
+two-sample-testing
+equal-variances-t-test

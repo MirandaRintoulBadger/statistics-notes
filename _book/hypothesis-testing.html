@@ -23,7 +23,7 @@
 <meta name="author" content="Miranda Rintoul" />
 
 
-<meta name="date" content="2024-08-01" />
+<meta name="date" content="2024-08-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Statistics 371 Full Notes</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
@@ -192,6 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sided-tests"><i class="fa fa-check"></i><b>7.3</b> One-sided tests</a></li>
 <li class="chapter" data-level="7.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-z-test"><i class="fa fa-check"></i><b>7.4</b> One-sample Z test</a></li>
 <li class="chapter" data-level="7.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#power"><i class="fa fa-check"></i><b>7.5</b> Power</a></li>
+<li class="chapter" data-level="7.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#bootstrap-test"><i class="fa fa-check"></i><b>7.6</b> Bootstrap test</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -352,7 +353,29 @@ This is the quantitative evidence we have against <span class="math inline">\(H_
 <p>We cannot say that we “accept” the null hypothesis. Since we start by assuming <span class="math inline">\(H_0\)</span> is true, our test can’t find evidence for <span class="math inline">\(H_0\)</span>, only against it. The null is not guaranteed to be true regardless of our test result.</p>
 </div>
 <hr />
-<p>Our seedlings example specifically tested <span class="math inline">\(\mu = 1.5\)</span>.</p>
+<p>We can use R to automatically check our with the <code>t.test</code> function. Input the data, set a significance level, and make sure to set <span class="math inline">\(\mu_0 = 1.5\)</span>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="hypothesis-testing.html#cb17-1" tabindex="-1"></a>seedlings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.6</span>, <span class="fl">1.9</span>, <span class="fl">1.8</span>, <span class="fl">1.6</span>, <span class="fl">1.4</span>, <span class="fl">2.2</span>, <span class="fl">1.2</span>, <span class="fl">1.6</span>, <span class="fl">1.6</span>,</span>
+<span id="cb17-2"><a href="hypothesis-testing.html#cb17-2" tabindex="-1"></a>               <span class="fl">1.5</span>, <span class="fl">1.4</span>, <span class="fl">1.6</span>, <span class="fl">2.3</span>, <span class="fl">1.5</span>, <span class="fl">1.1</span>, <span class="fl">1.6</span>, <span class="fl">2.0</span>, <span class="fl">1.5</span>,</span>
+<span id="cb17-3"><a href="hypothesis-testing.html#cb17-3" tabindex="-1"></a>               <span class="fl">1.7</span>, <span class="fl">1.5</span>, <span class="fl">1.6</span>, <span class="fl">2.1</span>, <span class="fl">2.2</span>, <span class="fl">1.0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.8</span>,</span>
+<span id="cb17-4"><a href="hypothesis-testing.html#cb17-4" tabindex="-1"></a>               <span class="fl">1.7</span>, <span class="fl">0.8</span>, <span class="fl">1.5</span>, <span class="fl">2.0</span>, <span class="fl">2.2</span>, <span class="fl">1.5</span>, <span class="fl">1.6</span>, <span class="fl">2.2</span>, <span class="fl">2.1</span>,</span>
+<span id="cb17-5"><a href="hypothesis-testing.html#cb17-5" tabindex="-1"></a>               <span class="fl">1.6</span>, <span class="fl">1.7</span>, <span class="fl">1.7</span>, <span class="fl">1.2</span>)</span>
+<span id="cb17-6"><a href="hypothesis-testing.html#cb17-6" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="hypothesis-testing.html#cb17-7" tabindex="-1"></a><span class="fu">t.test</span>(seedlings, <span class="at">mu =</span> <span class="fl">1.5</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb17-8"><a href="hypothesis-testing.html#cb17-8" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  seedlings
+## t = 2.6573, df = 39, p-value = 0.01136
+## alternative hypothesis: true mean is not equal to 1.5
+## 95 percent confidence interval:
+##  1.538808 1.786192
+## sample estimates:
+## mean of x 
+##    1.6625</code></pre>
+<p>The results are the same as what we got by hand, up to rounding.</p>
+<hr />
+<p>Our seedlings example specifically tested <span class="math inline">\(\mu = 1.5\)</span>, so let’s talk about how to use this method more generally.</p>
 <div class="infobox deff">
 <p>In general, hypotheses for a one-sample T test will look like
 <span class="math display">\[H_0: \mu = \mu_0 \quad\text{versus}\quad H_A: \mu \neq \mu_0.\]</span>
@@ -361,7 +384,7 @@ The test statistic is
 and we complete our test with a rejection region or p-value on the T with <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
 </div>
 <p>Let’s consider a new exmaple. Researchers are exploring methods for preventing frost damage to orchards. The mean soil heat flux for plots covered with grass is <span class="math inline">\(\mu_0 = 30\)</span> units. An alternative method is to use coal dust to cover. Heat flux measurements of 8 plots covered with coal dust yielded the following data:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="hypothesis-testing.html#cb17-1" tabindex="-1"></a>flux <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">28.7</span>, <span class="fl">29.9</span>, <span class="fl">30.0</span>, <span class="fl">31.0</span>, <span class="fl">31.7</span>, <span class="fl">32.4</span>, <span class="fl">33.0</span>, <span class="fl">35.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="hypothesis-testing.html#cb19-1" tabindex="-1"></a>flux <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">28.7</span>, <span class="fl">29.9</span>, <span class="fl">30.0</span>, <span class="fl">31.0</span>, <span class="fl">31.7</span>, <span class="fl">32.4</span>, <span class="fl">33.0</span>, <span class="fl">35.1</span>)</span></code></pre></div>
 <div class="infobox exer">
 <p>Researchers are interested to see if the mean heat flux is different for coal dust than it is for grass. Perform a hypothesis test at <span class="math inline">\(\alpha=0.05\)</span> to answer this question.</p>
 <ul>
@@ -378,12 +401,12 @@ where <span class="math inline">\(\mu\)</span> is the true mean heat flux for co
 <p><span style="color:#8601AF">
 For the T test to be valid, we need to assume the observations are independent, which we can’t check formally. We also need to check normality, which we can do with a histogram and qq-plot of the data.
 </span></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="hypothesis-testing.html#cb18-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="co"># View 2 plots at once</span></span>
-<span id="cb18-2"><a href="hypothesis-testing.html#cb18-2" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="hypothesis-testing.html#cb18-3" tabindex="-1"></a><span class="fu">hist</span>(flux)</span>
-<span id="cb18-4"><a href="hypothesis-testing.html#cb18-4" tabindex="-1"></a><span class="fu">qqnorm</span>(flux); <span class="fu">qqline</span>(flux)</span></code></pre></div>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="hypothesis-testing.html#cb19-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="hypothesis-testing.html#cb20-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="co"># View 2 plots at once</span></span>
+<span id="cb20-2"><a href="hypothesis-testing.html#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="hypothesis-testing.html#cb20-3" tabindex="-1"></a><span class="fu">hist</span>(flux)</span>
+<span id="cb20-4"><a href="hypothesis-testing.html#cb20-4" tabindex="-1"></a><span class="fu">qqnorm</span>(flux); <span class="fu">qqline</span>(flux)</span></code></pre></div>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="hypothesis-testing.html#cb21-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 <p><span style="color:#8601AF">
 Although the sample size is small, we don’t see any serious departures from normality. So a T test will be an appropriate test for this data.
 </span></p>
@@ -393,7 +416,7 @@ Although the sample size is small, we don’t see any serious departures from no
 <p><span style="color:#8601AF">
 Let’s first get the summary statistics from our data.
 </span></p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="hypothesis-testing.html#cb20-1" tabindex="-1"></a><span class="fu">mean</span>(flux); <span class="fu">sd</span>(flux)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="hypothesis-testing.html#cb22-1" tabindex="-1"></a><span class="fu">mean</span>(flux); <span class="fu">sd</span>(flux)</span></code></pre></div>
 <pre><code>## [1] 31.475</code></pre>
 <pre><code>## [1] 2.033821</code></pre>
 <p><span style="color:#8601AF">
@@ -406,16 +429,16 @@ The observed test statistic is
 <p><span style="color:#8601AF">
 If <span class="math inline">\(H_0\)</span> is true, then <span class="math inline">\(t_{obs}\)</span> was drawn from a T distribution with <span class="math inline">\(n-1 = 7\)</span> degrees of freedom. We have <span class="math inline">\(\alpha = 0.05\)</span>, so our rejection region will have area <span class="math inline">\(\alpha\)</span> in the tails of the <span class="math inline">\(T_{n-1}\)</span> curve. We need to cut off area <span class="math inline">\(0.025\)</span> in each individual tail.
 </span></p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="hypothesis-testing.html#cb23-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df =</span> <span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="hypothesis-testing.html#cb25-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df =</span> <span class="dv">7</span>)</span></code></pre></div>
 <pre><code>## [1] -2.364624</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="hypothesis-testing.html#cb25-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="hypothesis-testing.html#cb27-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">7</span>)</span></code></pre></div>
 <pre><code>## [1] 2.364624</code></pre>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <p><span style="color:#8601AF">
 The rejection region is the area below -2.365 and the area above 2.365. Our test statistic 2.051 is between the two values, so it falls in the middle of the <span class="math inline">\(T_7\)</span> peak, and so we do not reject the null. We can also find a p-value by calculating the area outside of 2.051 on the <span class="math inline">\(T_7\)</span> curve, in both tails.
 </span></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="hypothesis-testing.html#cb28-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="fl">2.051</span>, <span class="at">df =</span> <span class="dv">7</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="hypothesis-testing.html#cb30-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="fl">2.051</span>, <span class="at">df =</span> <span class="dv">7</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 0.07941309</code></pre>
 <p><span style="color:#8601AF">
 The p-value 0.079 is greater than our <span class="math inline">\(\alpha = 0.05\)</span> so we do not reject the null. We do not have significant evidence that the mean heat flux of coal dust is different from 30.
@@ -540,12 +563,12 @@ If <span class="math inline">\(H_0\)</span> is actually true, the correct decisi
 <hr />
 <p>Let’s analyze the one-sided hypotheses above using a T test with <span class="math inline">\(\alpha = 0.05\)</span>. The null distribution for a one-sided test is still <span class="math inline">\(T_{n-1}\)</span>, or <span class="math inline">\(T_{19}\)</span> in this case. But the rejection region is different.</p>
 <p>Previously, when we performed a two-sided test, we found a rejection region by taking the significance level <span class="math inline">\(\alpha\)</span> and splitting it up into two tails, each with area <span class="math inline">\(\alpha/2\)</span>.</p>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <p>But with our one-sided hypotheses, we are only looking for a positive effect.</p>
 <p><span class="math display">\[H_0: \mu \le 8 \quad \text{versus} \quad H_A: \mu &gt; 8.\]</span></p>
 <p>When we build a rejection region, it will still have area <span class="math inline">\(\alpha\)</span>. But, it will be entirely in the upper tail of the null distribution. Negative test statistics don’t give us evidence that <span class="math inline">\(\mu &gt; 8\)</span>, only positive test statistics do. So our rejection region will cut off area 0.05 in the upper tail of the <span class="math inline">\(T_{19}\)</span> curve.</p>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <p>Since there is 0.05 area above and 0.95 area below, this rejection region is defined by the 95th percentile of the null distribution, which can be found with <code>qt</code>.</p>
 <p>The p-value is also calculated differently for a one-sided test. When we did a two-sided test, we had to find the area outside of <span class="math inline">\(t_{obs}\)</span> in both tails. For our one-sided test, which is looking for a positive result, we only need to consider the upper tail. So we just need the area above <span class="math inline">\(t_{obs}\)</span>. Bigger positive test statistics give us stronger evidence against the null.</p>
@@ -562,7 +585,7 @@ Suppose the farmer calculates the following test statistic.
 <p><span style="color:#8601AF">
 To make a 5% level rejection region in the upper tail of our null distribution, we need to find the 95th percentile of <span class="math inline">\(T_{19}\)</span>. This is 1.729, according to R.
 </span></p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="hypothesis-testing.html#cb32-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.95</span>, <span class="at">df =</span> <span class="dv">19</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="hypothesis-testing.html#cb34-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.95</span>, <span class="at">df =</span> <span class="dv">19</span>)</span></code></pre></div>
 <pre><code>## [1] 1.729133</code></pre>
 <ul>
 <li>Complete the T test. Do we reject or fail to reject <span class="math inline">\(H_0\)</span>?</li>
@@ -570,7 +593,7 @@ To make a 5% level rejection region in the upper tail of our null distribution, 
 <p><span style="color:#8601AF">
 We see that our observed test statistic 1.219 is smaller than the rejection region threshold of 1.729. So the statistic is not in the rejection region, and it does not give us sufficient evidence against the null.
 </span></p>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <ul>
 <li>Calculate a corresponding p-value.</li>
@@ -578,20 +601,20 @@ We see that our observed test statistic 1.219 is smaller than the rejection regi
 <p><span style="color:#8601AF">
 Since we are specifically looking for a positive result, a bigger test statistic will give us stronger evidence against the null. So, when calculating a p-value, we need to find the area above <span class="math inline">\(t_{obs}\)</span> on our null distribution. This is 0.119. Notice in the R code below, we don’t multiply the probability by two.
 </span></p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="hypothesis-testing.html#cb35-1" tabindex="-1"></a><span class="fu">pt</span>(<span class="fl">1.219</span>, <span class="at">df =</span> <span class="dv">19</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="hypothesis-testing.html#cb37-1" tabindex="-1"></a><span class="fu">pt</span>(<span class="fl">1.219</span>, <span class="at">df =</span> <span class="dv">19</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 0.1188814</code></pre>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <p>We conclude that the mean pumpkin weight is not significantly greater than 8 lbs.</p>
 </div>
 <hr />
 <p>Notice that if we had done a two-sided test with <span class="math inline">\(H_A: \mu \neq 8\)</span>, we would’ve had to find the p-value by calculating the area outside <span class="math inline">\(t_{obs}\)</span> in both tails. This would give us a p-valuue that is twice as big as the one-sided p-value.</p>
 <pre><code>## integer(0)</code></pre>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <pre><code>## integer(0)</code></pre>
 <pre><code>## integer(0)</code></pre>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-22-2.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-23-2.png" width="672" /></p>
 <hr />
 <p>In general, the test statistic and null distribution are the same for a one-sided versus a two-sided test. But the p-value calculation is different.</p>
 <div class="infobox deff">
@@ -621,23 +644,23 @@ Since we are specifically looking for a positive result, a bigger test statistic
 <p>This is the same test statistic as the one we used for the T test. But now, we are making the assumption that the value 2.664 was drawn from a standard normal bell curve.</p>
 <hr />
 <p>We use a rejection region or p-value to make a decision about our hypotheses. The rejection region has area <span class="math inline">\(\alpha = 0.05\)</span> in both tails, since we’re doing a two-sided test. So each tail will have area <span class="math inline">\(\alpha/2 = 0.025\)</span>.</p>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
 <p>We can calculate the rejection region in R by finding the 2.5 and 97.5 percentiles of the normal curve.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="hypothesis-testing.html#cb43-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="hypothesis-testing.html#cb45-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>)</span></code></pre></div>
 <pre><code>## [1] -1.959964</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="hypothesis-testing.html#cb45-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="hypothesis-testing.html#cb47-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 <p>Notice that the value 1.96 is the same as the critial value we would use to build a 95% Z confidence interval.</p>
 <p>For our test at the 5% level, we decide to reject if the test statistic is less than -1.96 or greater than 1.96. Our test statistic of 2.664 falls in this upper rejection region. Because the test statistic is very far in the tails, it is considered “extreme” compared to the normal curve. So, we decide to reject the null.</p>
 <pre><code>## integer(0)</code></pre>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <hr />
 <p>We can also make a decision by calculating a p-value. The Z test p-value is calculated with the standard normal. It is the area outside of our test statistic on the standard normal curve. Since we’re doing a two-sided test, we calculate this area in both tails.</p>
 <pre><code>## integer(0)</code></pre>
-<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <pre><code>## integer(0)</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="hypothesis-testing.html#cb50-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="fl">2.664</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="hypothesis-testing.html#cb52-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="fl">2.664</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 0.007721756</code></pre>
 <p>We get a p-value of 0.008, which is smaller than the T test p-value. We still come to the conclusion that we reject the null and conclude that the mean seedling height is significantly different from 1.5 cm.</p>
 <p>This was an example of a two-sided Z hypothesis test. but we can also test one-sided hypotheses by looking at a specific direction when finding the rejection region and p-value.</p>
@@ -671,6 +694,190 @@ Since we are specifically looking for a positive result, a bigger test statistic
 Notice that the alternative hypothesis covers infinitely many different values of <span class="math inline">\(\mu\)</span>. So in order to calculate power, we need to specify a value of <span class="math inline">\(\mu\)</span> under the alternative, <span class="math inline">\(\mu_A\)</span>.</p>
 <p>Let’s specify <span class="math inline">\(\mu_A = 1.6\)</span>. Power is the probability that we correctly reject <span class="math inline">\(\mu_0 = 1.5\)</span>, if the true mean were actually 1.6. Essentially, we are evaluating whether our hypothesis test can do a good job detecting a change of 0.1 cm.</p>
 <hr />
+<p>A hypothesis test is based on the distribution of the test statistic (such as <span class="math inline">\(Z\)</span>) under the null. But for calculating power, it is more convenient to consider the sampling distribution of the sample mean itself, <span class="math inline">\(\bar{X}.\)</span> Our test statistic is a function of <span class="math inline">\(\bar{X}\)</span>:
+<span class="math display">\[Z \;=\; \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}}.\]</span>
+There are some values of <span class="math inline">\(\bar{X}\)</span> that lead to us rejecting the null when we plug them into the test statistic formula.</p>
+<p>What are all the possible values of <span class="math inline">\(\bar{X}\)</span>? We know that the general sampling distribution for a sample mean (assuming normality) is
+<span class="math display">\[\bar{X} \sim N\Big(\mu, \sigma^2\Big).\]</span>
+If the null hypothesis is true, then that means <span class="math inline">\(\mu = \mu_0 = 1.5\)</span>. But if the alternative is true, then <span class="math inline">\(\mu = \mu_A = 1.6\)</span>. So the sampling distribution of <span class="math inline">\(\bar{X}\)</span> is different depending on whether the null or alternative is true. <span class="math display">\[\begin{align}
+\text{Null distribution of }\bar{X}: \quad &amp; N\Big(\mu_0,\; \frac{\sigma^2}{n}\Big) \;=\; N\Big(1.5,\; \frac{0.387^2}{40}\Big) \\
+\text{Alt distribution of }\bar{X}: \quad &amp; N\Big(\mu_A,\; \frac{\sigma^2}{n}\Big) \;=\; N\Big(1.6,\; \frac{0.387^2}{40}\Big)
+\end{align}\]</span></p>
+<hr />
+<p>Here is a visual of the null distribution of <span class="math inline">\(\bar{X}\)</span>:</p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p>Here is the null with the alternative:</p>
+<pre><code>## integer(0)</code></pre>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>The null and alternative distributions are the same curve, shifted relative to each other. The centers are 0.1 cm apart, which is the difference between <span class="math inline">\(\mu_0\)</span> and <span class="math inline">\(\mu_A\)</span>.</p>
+<hr />
+<p>Our goal is to calculate power, which is the probability that we correctly reject <span class="math inline">\(H_0\)</span>, given that <span class="math inline">\(H_A\)</span> is true. First, we need to identify when we reject the null. What values of <span class="math inline">\(\bar{X}\)</span> lead us to reject the null hypothesis? If <span class="math inline">\(\bar{X}\)</span> is far enough away from 1.5, then we will eventually reject <span class="math inline">\(\mu_0 = 1.5\)</span>.</p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>We can think of the vertical lines as “critical values” for <span class="math inline">\(\bar{X}\)</span>. It is analogous to a rejection region, but it is on the sampling distribution of <span class="math inline">\(\bar{X}\)</span> instead of the distribution of the test statistic <span class="math inline">\(Z\)</span>.</p>
+<p>If <span class="math inline">\(\bar{X}\)</span> falls into the shaded areas, then it is considered an extreme enough result that we want to reject the null value of 1.5. This region is on the null distribution and it has area <span class="math inline">\(\alpha\)</span>. But power is the probability that we reject the null, given the <em>alternative</em> is true. So we need to find the probability that <span class="math inline">\(\bar{X}\)</span> falls in this region, based on the alternative curve.</p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>We have the same critical thresholds as before, but we are looking at the area on the alternative distribution. This area is our power, i.e. our true positive rate.</p>
+<hr />
+<p>Let’s calculate the power of a 5% level Z test on the pine seedlings data, assuming <span class="math inline">\(\mu_0 = 1.5\)</span> and <span class="math inline">\(\mu_A = 1.6\)</span>. Our first step is to find the rejection region in terms of <span class="math inline">\(\bar{X}\)</span> The rejection region of the <span class="math inline">\(Z\)</span> test statistic is
+<span class="math display">\[Z \le -1.96,\quad Z \ge 1.96\]</span>
+<span class="math display">\[\frac{\bar{X} - 1.5}{0.387/\sqrt{40}} \;\le\; -1.96,\quad \frac{\bar{X} - 1.5}{0.387/\sqrt{40}} \;\ge\; 1.96\]</span></p>
+<div class="infobox exer">
+<p>Use the Z statistic rejection region to find the rejection region in terms of <span class="math inline">\(\bar{X}\)</span>.</p>
+<p><span style="color:#8601AF">
+To find the corresponding rejection thresholds for <span class="math inline">\(\bar{X}\)</span>, we need to solve for <span class="math inline">\(\bar{X}\)</span>.
+<span class="math display">\[\begin{align*}
+\frac{\bar{X} - 1.5}{0.387/\sqrt{40}} &amp;\le -1.96 \\
+\bar{X} - 1.5 &amp;\le -1.96\cdot \frac{0.387}{\sqrt{40}} \\
+\bar{X} &amp;\le -1.96\cdot \frac{0.387}{\sqrt{40}} + 1.5 \\
+\bar{X} &amp;\le 1.38
+\end{align*}\]</span>
+</span></p>
+<p><span style="color:#8601AF">
+If <span class="math inline">\(\bar{X}\)</span> is less than 1.38, then it is far enough away from 1.5 to reject <span class="math inline">\(H_0\)</span>. Following the same reasoning, we find that we would also reject if <span class="math inline">\(\bar{X} \ge 1.62\)</span>. So 1.38 and 1.62 define the “rejection region” for <span class="math inline">\(\bar{X}\)</span>.
+</span></p>
+</div>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>Now, we need to find
+<span class="math display">\[\begin{align*}
+\text{Power} &amp;=
+\mathbb{P}(\text{Reject }H_0 \;|\; H_A) \\
+&amp;= \mathbb{P}(\bar{X} \le 1.38 \;|\; H_A) \;+\; \mathbb{P}(\bar{X} \ge 1.62 \;|\; H_A)
+\end{align*}\]</span></p>
+<p>We need to find the area outside of 1.38 and 1.62 on the alternative distribution. This boils down to finding a normal probability on
+<span class="math display">\[N\Big(1.6,\; \frac{0.387^2}{40}\Big).\]</span></p>
+<div class="infobox exer">
+<ul>
+<li>Finish calculating the power of the pine seedlings Z test with <span class="math inline">\(\alpha = 0.05\)</span>, <span class="math inline">\(\mu_0 = 1.5\)</span>, and <span class="math inline">\(\mu_A = 1.6\)</span>.</li>
+</ul>
+<p><span style="color:#8601AF">
+We reject the null hypothesis if <span class="math inline">\(\bar{X}\)</span> is less than 1.38 or greater than 1.62. Power is the probability that we reject under the alternative hypothesis, so we need to calculate the probability/area below 1.38 and above 1.62 on the alternative distribution of <span class="math inline">\(\bar{X}\)</span>.
+</span></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="hypothesis-testing.html#cb55-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">1.38</span>, <span class="fl">1.6</span>, <span class="fl">0.387</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">40</span>)) <span class="sc">+</span></span>
+<span id="cb55-2"><a href="hypothesis-testing.html#cb55-2" tabindex="-1"></a>  <span class="fu">pnorm</span>(<span class="fl">1.62</span>, <span class="fl">1.6</span>, <span class="fl">0.387</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">40</span>), <span class="at">lower.tail =</span> F)</span></code></pre></div>
+<pre><code>## [1] 0.3720525</code></pre>
+<p><span style="color:#8601AF">
+Our power is 0.372. If the true mean height is 1.62, then we will only reject the null value of 1.5 37.2% of the time. Our test has very low power for detecting a difference of 0.1 cm.
+</span></p>
+<ul>
+<li>What is the type II error rate <span class="math inline">\(\beta\)</span>?</li>
+</ul>
+<p><span style="color:#8601AF">
+The type II error rate is the probability that we incorrectly fail to reject the null when the null is actually false. This is 1 - power, or <span class="math inline">\(1-0.372 = 0.628\)</span>. If the true mean height is 1.62, then we fail to reject the null value of 1.5 62.8% of the time.
+</span></p>
+</div>
+<hr />
+<p>Our test has very low power. How can we improve it? Let’s look at all of the terms that affect power.</p>
+<ul>
+<li>When <span class="math inline">\(\mu_0\)</span> and <span class="math inline">\(\mu_A\)</span> are farther apart, the test is more powerful. The null and alternative distribution have more separation.</li>
+<li>When <span class="math inline">\(\alpha\)</span> is larger, the test is more powerful. A large <span class="math inline">\(\alpha\)</span> means we are more willing to reject <span class="math inline">\(H_0\)</span>.</li>
+<li>When <span class="math inline">\(\sigma\)</span> is smaller and <span class="math inline">\(n\)</span> is larger, the test is more powerful. The null and alternative distributions are more concentrated around <span class="math inline">\(\mu_0\)</span> and <span class="math inline">\(\mu_A\)</span>, respectively.</li>
+</ul>
+<p>Which of these terms can we manipulate ourselves? We choose <span class="math inline">\(\mu_0\)</span> and <span class="math inline">\(mu_A\)</span> based on what we want our test to do (e.g., detect a difference of 0.1 cm). So it wouldn’t make sense to change them to be further apart.</p>
+<p>We can set <span class="math inline">\(\alpha\)</span> to be larger, but it is not good practice to set a very high false positive rate just to make our test more powerful. We should stick with <span class="math inline">\(\alpha = 0.05\)</span> because we already decided it is appropriate.</p>
+<p>We can’t change <span class="math inline">\(\sigma\)</span>, since that’s a population parameter. The last term that we can manipulate is <span class="math inline">\(n\)</span>, the sample size. Statisticians will typically choose a desired power level, and solve for the sample size required to achieve that power.</p>
+<hr />
+<div class="infobox deff">
+<p>It can be shown that the sample size required to have power <span class="math inline">\(1-\beta\)</span> for a two-sided test is
+<span class="math display">\[n \;=\; \Big(\frac{\sigma(z_{\alpha/2}+z_{\beta})}{\mu_0 - \mu_A}\Big)^2.\]</span></p>
+</div>
+<p>In the pine seedlings example, we are testing
+<span class="math display">\[H_0: \mu = 1.5 \quad\text{versus}\quad H_A: \mu \neq 1.5\]</span>
+with <span class="math inline">\(\alpha = 0.05\)</span>, <span class="math inline">\(\mu_A = 1.6\)</span> and <span class="math inline">\(\sigma\)</span> assumed to be 0.387.</p>
+<div class="infobox exer">
+<p>What sample size is required to have a power of at least 0.8?</p>
+<p><span style="color:#8601AF">
+<span class="math inline">\(\sigma, \mu_0\)</span>, and <span class="math inline">\(\mu_A\)</span> are already given directly. So we just need to find the z-scores <span class="math inline">\(z_{\alpha/2}\)</span> and <span class="math inline">\(z_{\beta}\)</span>. <span class="math inline">\(z_{\alpha/2}\)</span> cuts of area <span class="math inline">\(\alpha/2 = 0.025\)</span> in upper tail of the standard normal curve. This is 1.96.
+</span></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="hypothesis-testing.html#cb57-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code></pre></div>
+<pre><code>## [1] 1.959964</code></pre>
+<p>Since <span class="math inline">\(\beta = 1-0.8 = 0.8\)</span>, <span class="math inline">\(z_{\beta}\)</span> will cut off area 0.2 in the upper tail of the standard normal curve. This is 0.842.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="hypothesis-testing.html#cb59-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.8</span>)</span></code></pre></div>
+<pre><code>## [1] 0.8416212</code></pre>
+<p>So, the sample size required for our test to have power 0.8 is</p>
+<p><span class="math display">\[n \;=\; \Big(\frac{\sigma(z_{\alpha/2}+z_{\beta})}{\mu_0 - \mu_A}\Big)^2 \;=\; \Big(\frac{0.387(1.96+0.842)}{1.5 - 1.6}\Big)^2 \;=\; 117.6.\]</span>
+Since our sample size has to be a whole number, we round up to 118 in order to get a guaranteed power of 0.8.</p>
+</div>
+<div class="infobox pond">
+<p>How would the power calculation and the sample size calculation change if we were doing a one-sided test instead of a two-sided test?</p>
+</div>
+</div>
+<div id="bootstrap-test" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Bootstrap test<a href="hypothesis-testing.html#bootstrap-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Just like a T and Z confidence interval, the T and Z hypothesis test methods both require the assumption that <span class="math inline">\(\bar{X}\)</span> is normal. If we have non-normal data, then we can use the bootstrap method to approximate the sampling distribution of the T test statistic. We are making an empirical approximation of the null distribution of
+<span class="math display">\[T = \frac{\bar{X} - \mu_0}{S/\sqrt{n}}\]</span>
+instead of using a T curve.</p>
+<p>Here is the outline of a bootstrap hypothesis test:</p>
+<ol style="list-style-type: decimal">
+<li><p>Write a null and alternative hypothesis regarding <span class="math inline">\(\mu\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\(t_{obs}\)</span> from the sample data.</p></li>
+<li><p>Use the bootstrap to accumulate a large number (<span class="math inline">\(B\)</span>) of <span class="math inline">\(\hat{t}\)</span> values and approximate the null distribution.</p></li>
+<li><p>Calculate a p-value based on how many <span class="math inline">\(\hat{t}\)</span> values are more extreme than <span class="math inline">\(t_{obs}\)</span>.</p></li>
+</ol>
+<p>Steps 1 and 2 are exactly the same as the T test. The third step, the bootstrap, is exactly the same as the bootstrap procedure for a CI.</p>
+<p>So if we zoom in on step 3 above:</p>
+<ol style="list-style-type: decimal">
+<li><p>Collect an original sample and calculate the sample mean <span class="math inline">\(\bar{x}\)</span>.</p></li>
+<li><p>Draw an SRS of size <span class="math inline">\(n\)</span>, <em>with replacement</em>, from the original sample. Call these observations <span class="math inline">\(x_1^*, x_2^*,\ldots, x_n^*\)</span>. Use the <span class="math inline">\(*\)</span> symbol to refer to re-sampled data.</p></li>
+<li><p>Compute the mean and sd of the re-sampled data, <span class="math inline">\(\bar{x}^*\)</span> and <span class="math inline">\(s^*\)</span>.</p></li>
+<li><p>Compute the statistic
+<span class="math display">\[\hat{t} = \frac{\bar{x}^* - \bar{x}}{s^*/\sqrt{n}}\]</span></p></li>
+<li><p>Repeat 2-4 many, many, times.</p></li>
+</ol>
+<hr />
+<p>For the T and Z hypothesis tests, the null distribution was a smooth curve and we calculated a p-value based on the area under that curve. But for the bootstrap, the null distribution is represented by a collection of discrete values. So, our p-value calculation is based on the proportion of bootstrap <span class="math inline">\(\hat{t}\)</span> values that are more extreme than our observed test statistic.</p>
+<div class="infobox deff">
+<p>Specifically, let <span class="math inline">\(m_u\)</span> be the count of <span class="math inline">\(\hat{t}\)</span> values such that <span class="math inline">\(\hat{t} &gt; t_{obs}\)</span>, and let <span class="math inline">\(m_{\ell}\)</span> be the count of <span class="math inline">\(\hat{t}\)</span> values such that <span class="math inline">\(\hat{t} &lt; t_{obs}\)</span>.</p>
+<ul>
+<li>If <span class="math inline">\(H_A: \mu &lt; \mu_0\)</span>, then we want to look at the <span class="math inline">\(\hat{t}\)</span> values less than <span class="math inline">\(t_{obs}\)</span>, so the p-value is <span class="math inline">\(m_{\ell} / B\)</span>.</li>
+<li>If <span class="math inline">\(H_A: \mu &gt; \mu_0\)</span>, then we want to look at the <span class="math inline">\(\hat{t}\)</span> values greater than <span class="math inline">\(t_{obs}\)</span>, so the p-value is <span class="math inline">\(m_{u} / B\)</span>.</li>
+<li>If <span class="math inline">\(H_A: \mu \neq \mu_0\)</span>, we are interested in both directions, so the p-value is
+<span class="math display">\[\frac{2\cdot \min(m_u, m_{\ell})}{B}.\]</span></li>
+</ul>
+</div>
+<p>Note that in the two-sided case, we have to calculate both one-sided p-values, and take 2 times whichever is smaller.</p>
+<hr />
+<p>Let’s perform a 5% level bootstrap test on the pine seedlings data, of the hypotheses
+<span class="math display">\[H_0: \mu = 1.5 \quad\text{versus}\quad H_A: \mu \neq 1.5.\]</span>
+Even though the seedlings data is normal, the bootstrap will still work.</p>
+<p>Our observed test statistic is the same as before, <span class="math inline">\(t_{obs} = 2.664\)</span>. Now let’s run the bootstrap code to generate 5000 <span class="math inline">\(\hat{t}\)</span> values. You don’t need to understand every bit of this code.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="hypothesis-testing.html#cb61-1" tabindex="-1"></a><span class="co"># 1. Enter data and calculate original mean, n</span></span>
+<span id="cb61-2"><a href="hypothesis-testing.html#cb61-2" tabindex="-1"></a>seedlings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.6</span>, <span class="fl">1.9</span>, <span class="fl">1.8</span>, <span class="fl">1.6</span>, <span class="fl">1.4</span>, <span class="fl">2.2</span>, <span class="fl">1.2</span>, <span class="fl">1.6</span>, <span class="fl">1.6</span>,</span>
+<span id="cb61-3"><a href="hypothesis-testing.html#cb61-3" tabindex="-1"></a>               <span class="fl">1.5</span>, <span class="fl">1.4</span>, <span class="fl">1.6</span>, <span class="fl">2.3</span>, <span class="fl">1.5</span>, <span class="fl">1.1</span>, <span class="fl">1.6</span>, <span class="fl">2.0</span>, <span class="fl">1.5</span>,</span>
+<span id="cb61-4"><a href="hypothesis-testing.html#cb61-4" tabindex="-1"></a>               <span class="fl">1.7</span>, <span class="fl">1.5</span>, <span class="fl">1.6</span>, <span class="fl">2.1</span>, <span class="fl">2.2</span>, <span class="fl">1.0</span>, <span class="fl">1.2</span>, <span class="fl">1.2</span>, <span class="fl">1.8</span>,</span>
+<span id="cb61-5"><a href="hypothesis-testing.html#cb61-5" tabindex="-1"></a>               <span class="fl">1.7</span>, <span class="fl">0.8</span>, <span class="fl">1.5</span>, <span class="fl">2.0</span>, <span class="fl">2.2</span>, <span class="fl">1.5</span>, <span class="fl">1.6</span>, <span class="fl">2.2</span>, <span class="fl">2.1</span>,</span>
+<span id="cb61-6"><a href="hypothesis-testing.html#cb61-6" tabindex="-1"></a>               <span class="fl">1.6</span>, <span class="fl">1.7</span>, <span class="fl">1.7</span>, <span class="fl">1.2</span>)</span>
+<span id="cb61-7"><a href="hypothesis-testing.html#cb61-7" tabindex="-1"></a>x_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(seedlings)</span>
+<span id="cb61-8"><a href="hypothesis-testing.html#cb61-8" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(seedlings)</span>
+<span id="cb61-9"><a href="hypothesis-testing.html#cb61-9" tabindex="-1"></a></span>
+<span id="cb61-10"><a href="hypothesis-testing.html#cb61-10" tabindex="-1"></a><span class="co"># Create a vector to store t_hat values</span></span>
+<span id="cb61-11"><a href="hypothesis-testing.html#cb61-11" tabindex="-1"></a>t_hat <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">5000</span>)</span>
+<span id="cb61-12"><a href="hypothesis-testing.html#cb61-12" tabindex="-1"></a></span>
+<span id="cb61-13"><a href="hypothesis-testing.html#cb61-13" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">371</span>)  <span class="co"># set RNG</span></span>
+<span id="cb61-14"><a href="hypothesis-testing.html#cb61-14" tabindex="-1"></a><span class="co"># Bootstrap loop</span></span>
+<span id="cb61-15"><a href="hypothesis-testing.html#cb61-15" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5000</span>){</span>
+<span id="cb61-16"><a href="hypothesis-testing.html#cb61-16" tabindex="-1"></a>  <span class="co"># 2. Draw a SRS of size n from data</span></span>
+<span id="cb61-17"><a href="hypothesis-testing.html#cb61-17" tabindex="-1"></a>  x_star <span class="ot">&lt;-</span> <span class="fu">sample</span>(seedlings, <span class="at">size =</span> n, <span class="at">replace =</span> T)</span>
+<span id="cb61-18"><a href="hypothesis-testing.html#cb61-18" tabindex="-1"></a>  </span>
+<span id="cb61-19"><a href="hypothesis-testing.html#cb61-19" tabindex="-1"></a>  <span class="co"># 3. Calculate resampled mean and sd</span></span>
+<span id="cb61-20"><a href="hypothesis-testing.html#cb61-20" tabindex="-1"></a>  x_bar_star <span class="ot">&lt;-</span> <span class="fu">mean</span>(x_star)</span>
+<span id="cb61-21"><a href="hypothesis-testing.html#cb61-21" tabindex="-1"></a>  s_star <span class="ot">&lt;-</span> <span class="fu">sd</span>(x_star)</span>
+<span id="cb61-22"><a href="hypothesis-testing.html#cb61-22" tabindex="-1"></a>  </span>
+<span id="cb61-23"><a href="hypothesis-testing.html#cb61-23" tabindex="-1"></a>  <span class="co"># 4. Calculate t_hat, and store it in vector</span></span>
+<span id="cb61-24"><a href="hypothesis-testing.html#cb61-24" tabindex="-1"></a>  t_hat[i] <span class="ot">&lt;-</span> (x_bar_star <span class="sc">-</span> x_bar) <span class="sc">/</span> (s_star<span class="sc">/</span><span class="fu">sqrt</span>(n))</span>
+<span id="cb61-25"><a href="hypothesis-testing.html#cb61-25" tabindex="-1"></a>}</span></code></pre></div>
+<p>Next, we’ll use R to count how many of those <span class="math inline">\(\hat{t}\)</span> values are less than and greater than <span class="math inline">\(t_{obs} = 2.664\)</span>.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="hypothesis-testing.html#cb62-1" tabindex="-1"></a><span class="fu">sum</span>(t_hat <span class="sc">&lt;</span> <span class="fl">2.664</span>)</span></code></pre></div>
+<pre><code>## [1] 4981</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="hypothesis-testing.html#cb64-1" tabindex="-1"></a><span class="fu">sum</span>(t_hat <span class="sc">&gt;</span> <span class="fl">2.664</span>)</span></code></pre></div>
+<pre><code>## [1] 19</code></pre>
+<p>We have <span class="math inline">\(m_{\ell} = 4981\)</span> and <span class="math inline">\(m_u = 19\)</span>. So <span class="math inline">\(t_{obs}\)</span> is on the upper end of the generated null distribution. We can visualize the bootstrap null distribution and test statistic with a histogram.</p>
+<p><img src="07-hyptesting_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p>The minimum of <span class="math inline">\(m_{\ell}\)</span> and <span class="math inline">\(m_u\)</span> is <span class="math inline">\(m_u = 19\)</span>. So the bootstrap p-value is given by
+<span class="math display">\[2 \cdot \frac{19}{5000} \;=\; 0.0076.\]</span>
+This is a small p-value that leads to us rejecting the null. The result is very similar to the T and Z tests done on the same data.</p>
+<div class="infobox pond">
+<p>Why are the results of the T, Z, and bootstrap tests all very similar for this set of data? Must this always be the case?</p>
+</div>
 
 </div>
 </div>

@@ -23,7 +23,7 @@
 <meta name="author" content="Miranda Rintoul" />
 
 
-<meta name="date" content="2024-08-01" />
+<meta name="date" content="2024-08-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Statistics 371 Full Notes</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
@@ -189,6 +189,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-t-test"><i class="fa fa-check"></i><b>7.1</b> One-sample T test</a></li>
 <li class="chapter" data-level="7.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors"><i class="fa fa-check"></i><b>7.2</b> Errors</a></li>
+<li class="chapter" data-level="7.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sided-tests"><i class="fa fa-check"></i><b>7.3</b> One-sided tests</a></li>
+<li class="chapter" data-level="7.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-z-test"><i class="fa fa-check"></i><b>7.4</b> One-sample Z test</a></li>
+<li class="chapter" data-level="7.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#power"><i class="fa fa-check"></i><b>7.5</b> Power</a></li>
+<li class="chapter" data-level="7.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#bootstrap-test"><i class="fa fa-check"></i><b>7.6</b> Bootstrap test</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -625,7 +629,7 @@ do not have a normal and T distribution, respectively. So we can’t build an in
 <p>We can’t do that, because we don’t have the full population. But we do have our sample, which represents the full population. The idea is that if we repeatedly sample with replacement from the sample, we are approximating what it would be like to sample from the population. For example,</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="confidence-intervals.html#cb40-1" tabindex="-1"></a><span class="co"># Take a sample of size 15 from cotanine data</span></span>
 <span id="cb40-2"><a href="confidence-intervals.html#cb40-2" tabindex="-1"></a><span class="fu">sample</span>(cotanine, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">replace =</span> T)</span></code></pre></div>
-<pre><code>##  [1] 289  58  21 134 134 253  12  30 117 119 117 289 287 134  30</code></pre>
+<pre><code>##  [1] 115  75 134  30  53 115  30  58  12  29  53  21 287  53  53</code></pre>
 <p>Some values in the original data can appear more than once, and some might appear not at all. These 15 points are a <em>re-sample</em> of our original data, and they approximate a sample of size 15 from the full cotanine population. It’s important that we sample with replacement, otherwise we would just get our original data!</p>
 <hr />
 <div class="infobox deff">
@@ -639,7 +643,7 @@ do not have a normal and T distribution, respectively. So we can’t build an in
 <li><p>Repeat 2-4 many, many, times.</p></li>
 </ol>
 </div>
-<p>Notice how thge expression for <span class="math inline">\(\hat{t}\)</span> is calculated very similarly to <span class="math inline">\(T\)</span>. Each <span class="math inline">\(\hat{t}\)</span> value is an approximation for <span class="math inline">\(T\)</span>, based on a random resample. By repeating the process over and over (maybe 5000-10000 times), all of the <span class="math inline">\(\hat{t}\)</span> values create an approximation of the true sampling distribution of <span class="math inline">\(T\)</span>.</p>
+<p>Notice how the expression for <span class="math inline">\(\hat{t}\)</span> is calculated very similarly to <span class="math inline">\(T\)</span>. Each <span class="math inline">\(\hat{t}\)</span> value is an approximation for <span class="math inline">\(T\)</span>, based on a random resample. By repeating the process over and over (maybe 5000-10000 times), all of the <span class="math inline">\(\hat{t}\)</span> values create an approximation of the true sampling distribution of <span class="math inline">\(T\)</span>.</p>
 <hr />
 <p>The code below runs the bootstrap procedure on the cotanine data. You do not need to fully understand every line of this code, since this will typically be provided to you. When you run this code, you should see a vector of size 5000 called <code>t_hat</code> in your R environment. This is where we store all of our bootstrap values.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="confidence-intervals.html#cb42-1" tabindex="-1"></a><span class="co"># 1. Enter data and calculate original mean, n</span></span>

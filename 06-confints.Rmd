@@ -666,7 +666,7 @@ $$\hat{t} = \frac{\bar{x}^* - \bar{x}}{s^*/\sqrt{n}}$$
 5. Repeat 2-4 many, many, times.
 ::::
 
-Notice how thge expression for $\hat{t}$ is calculated very similarly to $T$.  Each $\hat{t}$ value is an approximation for $T$, based on a random resample.  By repeating the process over and over (maybe 5000-10000 times), all of the $\hat{t}$ values create an approximation of the true sampling distribution of $T$.
+Notice how the expression for $\hat{t}$ is calculated very similarly to $T$.  Each $\hat{t}$ value is an approximation for $T$, based on a random resample.  By repeating the process over and over (maybe 5000-10000 times), all of the $\hat{t}$ values create an approximation of the true sampling distribution of $T$.
 
 ---
 
