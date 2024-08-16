@@ -55,3 +55,6 @@ one-sample-proportion-test
 median-test
 two-sample-testing
 equal-variances-t-test
+unequal-variances-t-test
+two-sample-proportion-test
+two-sample-bootstrap-test
