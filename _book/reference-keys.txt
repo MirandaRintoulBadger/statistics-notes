@@ -58,3 +58,8 @@ equal-variances-t-test
 unequal-variances-t-test
 two-sample-proportion-test
 two-sample-bootstrap-test
+rank-sum-test
+testing-paired-data
+paired-t-test
+signed-rank-test
+median-test-1

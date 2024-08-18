@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Testing Paired Data | Statistics 371 Full Notes</title>
+  <meta name="description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Testing Paired Data | Statistics 371 Full Notes" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Testing Paired Data | Statistics 371 Full Notes" />
+  
+  <meta name="twitter:description" content="Introductory Applied Statistics for the Life Sciences" />
+  
+
+<meta name="author" content="Miranda Rintoul" />
+
+
+<meta name="date" content="2024-08-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="two-sample-testing.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistics 371 Full Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction To Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#statistics"><i class="fa fa-check"></i><b>1.1</b> Statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#key-terms"><i class="fa fa-check"></i><b>1.2</b> Key terms</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#types-of-data"><i class="fa fa-check"></i><b>1.3</b> Types of data</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#course-outline"><i class="fa fa-check"></i><b>1.4</b> Course outline</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histograms"><i class="fa fa-check"></i><b>2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>2.2</b> Location</a></li>
+<li class="chapter" data-level="2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#spread"><i class="fa fa-check"></i><b>2.3</b> Spread</a></li>
+<li class="chapter" data-level="2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#box-plots"><i class="fa fa-check"></i><b>2.4</b> Box plots</a></li>
+<li class="chapter" data-level="2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#multiple-datasets"><i class="fa fa-check"></i><b>2.5</b> Multiple datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> Probability</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#sampling"><i class="fa fa-check"></i><b>3.1</b> Sampling</a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#probability-basics"><i class="fa fa-check"></i><b>3.2</b> Probability basics</a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>3.3</b> Conditional probability</a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>3.4</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="random-variables.html"><a href="random-variables.html"><i class="fa fa-check"></i><b>4</b> Random Variables</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="random-variables.html"><a href="random-variables.html#random-variable-basics"><i class="fa fa-check"></i><b>4.1</b> Random variable basics</a></li>
+<li class="chapter" data-level="4.2" data-path="random-variables.html"><a href="random-variables.html#expectation-and-variance"><i class="fa fa-check"></i><b>4.2</b> Expectation and variance</a></li>
+<li class="chapter" data-level="4.3" data-path="random-variables.html"><a href="random-variables.html#binomial-random-variables"><i class="fa fa-check"></i><b>4.3</b> Binomial random variables</a></li>
+<li class="chapter" data-level="4.4" data-path="random-variables.html"><a href="random-variables.html#rules-of-expectation-and-variance"><i class="fa fa-check"></i><b>4.4</b> Rules of expectation and variance</a></li>
+<li class="chapter" data-level="4.5" data-path="random-variables.html"><a href="random-variables.html#normal-random-variables"><i class="fa fa-check"></i><b>4.5</b> Normal random variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>5</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="estimation.html"><a href="estimation.html#estimation-1"><i class="fa fa-check"></i><b>5.1</b> Estimation</a></li>
+<li class="chapter" data-level="5.2" data-path="estimation.html"><a href="estimation.html#sampling-distributions"><i class="fa fa-check"></i><b>5.2</b> Sampling distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="estimation.html"><a href="estimation.html#central-limit-theorem"><i class="fa fa-check"></i><b>5.3</b> Central Limit Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#z-confidence-interval"><i class="fa fa-check"></i><b>6.1</b> Z confidence interval</a></li>
+<li class="chapter" data-level="6.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-interpretation"><i class="fa fa-check"></i><b>6.2</b> Confidence interval interpretation</a></li>
+<li class="chapter" data-level="6.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#t-confidence-interval"><i class="fa fa-check"></i><b>6.3</b> T confidence interval</a></li>
+<li class="chapter" data-level="6.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#proportion-ci"><i class="fa fa-check"></i><b>6.4</b> Proportion CI</a></li>
+<li class="chapter" data-level="6.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-confidence-interval"><i class="fa fa-check"></i><b>6.5</b> Bootstrap confidence interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-t-test"><i class="fa fa-check"></i><b>7.1</b> One-sample T test</a></li>
+<li class="chapter" data-level="7.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors"><i class="fa fa-check"></i><b>7.2</b> Errors</a></li>
+<li class="chapter" data-level="7.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sided-tests"><i class="fa fa-check"></i><b>7.3</b> One-sided tests</a></li>
+<li class="chapter" data-level="7.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-z-test"><i class="fa fa-check"></i><b>7.4</b> One-sample Z test</a></li>
+<li class="chapter" data-level="7.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#power"><i class="fa fa-check"></i><b>7.5</b> Power</a></li>
+<li class="chapter" data-level="7.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#bootstrap-test"><i class="fa fa-check"></i><b>7.6</b> Bootstrap test</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html"><i class="fa fa-check"></i><b>8</b> Other One-Sample Tests</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html#one-sample-proportion-test"><i class="fa fa-check"></i><b>8.1</b> One-sample proportion test</a></li>
+<li class="chapter" data-level="8.2" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html#median-test"><i class="fa fa-check"></i><b>8.2</b> Median test</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="two-sample-testing.html"><a href="two-sample-testing.html"><i class="fa fa-check"></i><b>9</b> Two-Sample Testing</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="two-sample-testing.html"><a href="two-sample-testing.html#equal-variances-t-test"><i class="fa fa-check"></i><b>9.1</b> Equal variances T test</a></li>
+<li class="chapter" data-level="9.2" data-path="two-sample-testing.html"><a href="two-sample-testing.html#unequal-variances-t-test"><i class="fa fa-check"></i><b>9.2</b> Unequal variances T test</a></li>
+<li class="chapter" data-level="9.3" data-path="two-sample-testing.html"><a href="two-sample-testing.html#two-sample-proportion-test"><i class="fa fa-check"></i><b>9.3</b> Two-sample proportion test</a></li>
+<li class="chapter" data-level="9.4" data-path="two-sample-testing.html"><a href="two-sample-testing.html#two-sample-bootstrap-test"><i class="fa fa-check"></i><b>9.4</b> Two-sample bootstrap test</a></li>
+<li class="chapter" data-level="9.5" data-path="two-sample-testing.html"><a href="two-sample-testing.html#rank-sum-test"><i class="fa fa-check"></i><b>9.5</b> Rank sum test</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="testing-paired-data.html"><a href="testing-paired-data.html"><i class="fa fa-check"></i><b>10</b> Testing Paired Data</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="testing-paired-data.html"><a href="testing-paired-data.html#paired-t-test"><i class="fa fa-check"></i><b>10.1</b> Paired T test</a></li>
+<li class="chapter" data-level="10.2" data-path="testing-paired-data.html"><a href="testing-paired-data.html#signed-rank-test"><i class="fa fa-check"></i><b>10.2</b> Signed rank test</a></li>
+<li class="chapter" data-level="10.3" data-path="testing-paired-data.html"><a href="testing-paired-data.html#median-test-1"><i class="fa fa-check"></i><b>10.3</b> Median test</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 371 Full Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="testing-paired-data" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Testing Paired Data<a href="testing-paired-data.html#testing-paired-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Chapter 9 covers several techniques for comparing two independent samples of data. Now, we will discuss an example where the data has an additional paired structure. Two groups that are paired are not independent, but we can take advantage of the structure when performing an analysis.</p>
+<div id="paired-t-test" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Paired T test<a href="testing-paired-data.html#paired-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Long periods of upper-arm elevation above 30 degrees is thought to be related to several musculoskeletal disorders. Office workers who perform repetitive tasks are particularly vulnerable to this. It is thought that varying work tasks over the course of a day might alleviate this problem.</p>
+<p>Eight office workers were given standard work tasks one day. The next day, the same workers were all given varied work tasks. For each day, the percentage of time that their upper-arm was below 30 degrees was recorded. The data is as follows.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Participant</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center">7</th>
+<th align="center">8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Standard</td>
+<td align="center">81</td>
+<td align="center">87</td>
+<td align="center">86</td>
+<td align="center">59</td>
+<td align="center">66</td>
+<td align="center">70</td>
+<td align="center">73</td>
+<td align="center">92</td>
+</tr>
+<tr class="even">
+<td align="left">Varied</td>
+<td align="center">78</td>
+<td align="center">91</td>
+<td align="center">79</td>
+<td align="center">65</td>
+<td align="center">67</td>
+<td align="center">72</td>
+<td align="center">71</td>
+<td align="center">96</td>
+</tr>
+</tbody>
+</table>
+<p>We can think of the data as being made up of two groups. But we can also think of it as being made up of eight <em>pairs</em>. Each participant has exactly one Standard and exactly one Varied observation.</p>
+<div class="infobox deff">
+<p>Two datasets of equal length are <strong>paired</strong> if each observation in one sample can be “paired” with an observation in the other sample. The two observations in a pair a certain quality.</p>
+</div>
+<p>We want to know if the varied work tasks change the percentage of “arm below 30 degrees” time, on average. We can write hypotheses
+<span class="math display">\[H_0: \mu_{S}-\mu_{V} = 0\quad\quad\text{versus}
+\quad\quad H_A: \mu_{S}-\mu_{V}\neq 0.\]</span></p>
+<hr />
+<p>Let’s begin by graphing the data. When there is a paired structure, it is useful to connect paired observations together.</p>
+<p>I’ll plot the Standard and Varied data on separate sides of the graph, with the response variable on the y axis.</p>
+<p><img src="10-paired-data_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>If the two groups were different, we would expect to see a systematic increase or decrease from Standard to Varied. In our graph, there does not seem to be a very strong pattern. Some lines go up, some go down, and some are about the same.</p>
+<p>It does look like the Varied group has a somewhat higher center, so we need to perform a test to see if this is significant.</p>
+<hr />
+<p>For hypotheses like
+<span class="math display">\[H_0: \mu_{S}-\mu_{V} = 0\quad\quad\text{versus}
+\quad\quad H_A: \mu_{S}-\mu_{V}\neq 0,\]</span>
+we have learned the equal-variances T test, the Welch T test, and the bootstrap. However, none of these methods are appropriate here, because a key assumption is violated.</p>
+<p>The two-sample testing methods assume that all of the data points are independent, and furthermore assume that the two groups are independent. This is not the case for paired data:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Participant</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center">7</th>
+<th align="center">8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Standard</td>
+<td align="center">81</td>
+<td align="center">87</td>
+<td align="center">86</td>
+<td align="center">59</td>
+<td align="center">66</td>
+<td align="center">70</td>
+<td align="center">73</td>
+<td align="center">92</td>
+</tr>
+<tr class="even">
+<td align="left">Varied</td>
+<td align="center">78</td>
+<td align="center">91</td>
+<td align="center">79</td>
+<td align="center">65</td>
+<td align="center">67</td>
+<td align="center">72</td>
+<td align="center">71</td>
+<td align="center">96</td>
+</tr>
+</tbody>
+</table>
+<p>The observations 81 in the Standard group and 78 in the Varied group are both associated with participant 1. This participant is exerting an external effect on these two data points. Both the 81 and 78 are probably influenced by that particular worker’s habits. The same is true for the other seven pairs of data.</p>
+<p>So, we cannot use any of the methods from chapter 9 in this context. Instead, we’re going to take advantage of the paired structure of the data to simplify the problem.</p>
+<hr />
+<p>Our research question is about a difference in the overall means between Standard and Varied. However, we can also think about this in terms of the <em>individual change</em> for each participant. For each of the eight workers, we can calculate the difference in percentage of “low arm”.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Participant</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center">7</th>
+<th align="center">8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Standard</td>
+<td align="center">81</td>
+<td align="center">87</td>
+<td align="center">86</td>
+<td align="center">59</td>
+<td align="center">66</td>
+<td align="center">70</td>
+<td align="center">73</td>
+<td align="center">92</td>
+</tr>
+<tr class="even">
+<td align="left">Varied</td>
+<td align="center">78</td>
+<td align="center">91</td>
+<td align="center">79</td>
+<td align="center">65</td>
+<td align="center">67</td>
+<td align="center">72</td>
+<td align="center">71</td>
+<td align="center">96</td>
+</tr>
+<tr class="odd">
+<td align="left">Difference</td>
+<td align="center">3</td>
+<td align="center">-4</td>
+<td align="center">7</td>
+<td align="center">-6</td>
+<td align="center">-1</td>
+<td align="center">-2</td>
+<td align="center">2</td>
+<td align="center">-4</td>
+</tr>
+</tbody>
+</table>
+<p>A positive difference indicates that the varied work tasks reduced the percentage of “low arm” time. A negative difference indicates that the varied work tasks increased this percentage.</p>
+<p>In R, we can quickly calculate the differences by subtracting the two individual data vectors. R performs element-wise calculations, which is exactly what we want in this situation.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="testing-paired-data.html#cb1-1" tabindex="-1"></a>standard <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">81</span>, <span class="dv">87</span>, <span class="dv">86</span>, <span class="dv">59</span>, <span class="dv">66</span>, <span class="dv">70</span>, <span class="dv">73</span>, <span class="dv">92</span>)</span>
+<span id="cb1-2"><a href="testing-paired-data.html#cb1-2" tabindex="-1"></a>varied <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">78</span>, <span class="dv">91</span>, <span class="dv">79</span>, <span class="dv">65</span>, <span class="dv">67</span>, <span class="dv">72</span>, <span class="dv">71</span>, <span class="dv">96</span>)</span>
+<span id="cb1-3"><a href="testing-paired-data.html#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="testing-paired-data.html#cb1-4" tabindex="-1"></a>diff <span class="ot">&lt;-</span> standard <span class="sc">-</span> varied</span>
+<span id="cb1-5"><a href="testing-paired-data.html#cb1-5" tabindex="-1"></a>diff</span></code></pre></div>
+<pre><code>## [1]  3 -4  7 -6 -1 -2  2 -4</code></pre>
+<p>Instead of taking the average of each group, then finding the difference in means, we are taking the individual differences, then taking the average of those differences. Instead of
+<span class="math display">\[H_0: \mu_{S}-\mu_{V} = 0\quad\quad\text{versus}
+\quad\quad H_A: \mu_{S}-\mu_{V}\neq 0\]</span>
+we can write
+<span class="math display">\[H_0: \mu_D = 0\quad\quad\text{versus}\quad\quad H_A: \mu_D \neq 0\]</span>
+where <span class="math inline">\(\mu_D\)</span> is the true mean difference between Standard and Varied.</p>
+<p>We have reduced our problem to a matter of testing a single mean, which we can do with a T test. A paired test is essentially the same as a one-sample T test, where the sample is the differences between paired groups. When we evaluate the test assumptions and calculate a test statistic, we have to use the paired data.</p>
+<hr />
+<p>Let <span class="math inline">\(\bar{D}\)</span> be the sample mean of <span class="math inline">\(n\)</span> differences and <span class="math inline">\(S_d\)</span> be the sample standard deviation of differences. Then if <span class="math inline">\(H_0\)</span> is true,
+<span class="math display">\[T \;=\; \frac{\bar{D} - 0}{S_D/\sqrt{n}} \;\sim\; t_{n-1}\]</span>
+We use a t distribution with <span class="math inline">\(n-1\)</span> degrees of freedom as a null distribution for calculating a rejection region or p-value.</p>
+<p>Note that <span class="math inline">\(n\)</span> refers to the number of pairs, not the total number of observations across all groups.</p>
+<div class="infobox exer">
+<p>Perform a paired T test on the office worker data, of hypotheses
+<span class="math display">\[H_0: \mu_D = 0\quad\quad\text{versus}\quad\quad H_A: \mu_D \neq 0.\]</span>
+Use <span class="math inline">\(\alpha = 0.1\)</span>.</p>
+<ul>
+<li>Evaluate the necessary assumptions for performing a T test.</li>
+</ul>
+<p><span style="color:#8601AF">
+For a T test, we need to have independence. In this context, we have to assume that the eight pairs (the eight workers) are independent of each other. We also need to have approximately normal data. Since we are doing a paired T test, we will make a qq-plot of the <em>differences</em>.
+</span></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="testing-paired-data.html#cb3-1" tabindex="-1"></a><span class="fu">qqnorm</span>(diff); <span class="fu">qqline</span>(diff)</span></code></pre></div>
+<p><img src="10-paired-data_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><span style="color:#8601AF">
+The data appears to be normal, so a T test is appropriate here.
+</span></p>
+<ul>
+<li>Calculate the test statistic <span class="math inline">\(t_{obs}\)</span>.</li>
+</ul>
+<p><span style="color:#8601AF">
+We first need to find the sample mean and standard deviation of the eight differences.
+</span></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="testing-paired-data.html#cb4-1" tabindex="-1"></a><span class="fu">mean</span>(diff)</span></code></pre></div>
+<pre><code>## [1] -0.625</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="testing-paired-data.html#cb6-1" tabindex="-1"></a><span class="fu">sd</span>(diff)</span></code></pre></div>
+<pre><code>## [1] 4.340425</code></pre>
+<p><span style="color:#8601AF">
+The observed test statistic is
+<span class="math display">\[t_{obs} \;=\; \frac{\bar{D} - 0}{S_D/\sqrt{n}} \;\sim\; t_{n-1} \;=\; \frac{-0.625 - 0}{4.34/\sqrt{8}} \;=\; -0.407.\]</span>
+</span></p>
+<ul>
+<li>Find a two-sided p-value or rejection region with the <span class="math inline">\(t_{n-1}\)</span> distribution.</li>
+</ul>
+<p><span style="color:#8601AF">
+If the null hypothesis is true, then the statistic <span class="math inline">\(-0.407\)</span> was drawn from a t distribution with <span class="math inline">\(n - 1 = 7\)</span> degrees of freedom. We can calculate a p-value by looking at the area on this t curve outside of -0.407, multiplied by 2 for our two-sided hypotheses.
+</span></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="testing-paired-data.html#cb8-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">0.407</span>, <span class="at">df =</span> <span class="dv">7</span>)</span></code></pre></div>
+<pre><code>## [1] 0.6961654</code></pre>
+<p>We have a very large p-value of 0.696. This is much larger than <span class="math inline">\(\alpha = 0.1\)</span> so we fail to reject the null. There is no evidence that varying the work tasks substantially changes the upper-arm angle.</p>
+</div>
+<hr />
+<div class="infobox deff">
+<p>In general, a paired T test is performed on the differences between two paired groups. It tests hypotheses
+<span class="math display">\[H_0: \mu_D = \mu_0 \quad\quad\text{versus}\quad\quad H_A: \mu_D \neq \mu_0.\]</span>
+(or a corresponding one-sided hypothesis). The test statistic is
+<span class="math display">\[T \;=\; \frac{\bar{D} - 0}{S_D/\sqrt{n}}.\]</span>
+The null distribution is a t distribution with <span class="math inline">\(n-1\)</span> degrees of freedom, where <span class="math inline">\(n\)</span> is the number of differences. We find a rejection region or calculate a p-value according to the direction of the hypotheses.</p>
+</div>
+<p>We can also do this in R with the <code>t.test</code> function. We can enter just the differences, or enter both sets of data with <code>paired = T</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="testing-paired-data.html#cb10-1" tabindex="-1"></a><span class="fu">t.test</span>(diff, <span class="at">mu =</span> <span class="dv">0</span>,</span>
+<span id="cb10-2"><a href="testing-paired-data.html#cb10-2" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.9</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  diff
+## t = -0.40728, df = 7, p-value = 0.696
+## alternative hypothesis: true mean is not equal to 0
+## 90 percent confidence interval:
+##  -3.532367  2.282367
+## sample estimates:
+## mean of x 
+##    -0.625</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="testing-paired-data.html#cb12-1" tabindex="-1"></a><span class="fu">t.test</span>(standard, varied,</span>
+<span id="cb12-2"><a href="testing-paired-data.html#cb12-2" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">paired =</span> T,</span>
+<span id="cb12-3"><a href="testing-paired-data.html#cb12-3" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.9</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  standard and varied
+## t = -0.40728, df = 7, p-value = 0.696
+## alternative hypothesis: true mean difference is not equal to 0
+## 90 percent confidence interval:
+##  -3.532367  2.282367
+## sample estimates:
+## mean difference 
+##          -0.625</code></pre>
+<div class="infobox pond">
+<p>Recall how the office worker experiment was performed.</p>
+<p>“Eight office workers were given standard work tasks one day. The next day, the same workers were all given varied work tasks. For each day, the percentage of time that their upper-arm was below 30 degrees was recorded.”</p>
+<p>What are some of the problems with this experimental design? How might these issues interfere with our analysis?</p>
+</div>
+</div>
+<div id="signed-rank-test" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Signed rank test<a href="testing-paired-data.html#signed-rank-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When working with paired data, the paired T test is the preferred tool. But, it relies on the normality assumption. We’ll discuss several options for testing paired data while relaxing the normality assumption.</p>
+<p>One option is to perform a one-sample bootstrap analysis on the differences, which we won’t cover in detail. Other options are the Wilcox test, and the sign test for the median.</p>
+<hr />
+<p>The Wilcoxon signed rank test is a rank-based method that is similar to the rank sum test, but it applies to a single sample of data. This test only requires the independence assumption (i.e. assuming the pairs are independent).</p>
+<p>Let’s demonstrate this test with the office worker data, with <span class="math inline">\(\alpha = 0.1\)</span>. Even though the differences are normal, the Wilcoxon test will still work.</p>
+<p>We start by assigning ranks to the observed differences. But instead of going from strictly smallest to strictly largest, we rank the differences by <em>absolute value</em>, or magnitude.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Participant</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center">7</th>
+<th align="center">8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Difference</td>
+<td align="center">3</td>
+<td align="center">-4</td>
+<td align="center">7</td>
+<td align="center">-6</td>
+<td align="center">-1</td>
+<td align="center">-2</td>
+<td align="center">2</td>
+<td align="center">-4</td>
+</tr>
+<tr class="even">
+<td align="left">Rank</td>
+<td align="center">(4)</td>
+<td align="center">(5.5)</td>
+<td align="center">(8)</td>
+<td align="center">(7)</td>
+<td align="center">(1)</td>
+<td align="center">(2.5)</td>
+<td align="center">(2.5)</td>
+<td align="center">(5.5)</td>
+</tr>
+</tbody>
+</table>
+<p>The point with the smallest magnitude is observation 5, which gets a rank of 1. Then we see that observations 6 and 7 have the same magnitude (since the absolute values of -2 and 2 are both just 2). Since these observations are tied for 2nd and 3rd place, they are each given a rank of 2.5. We rank all eight data points up to the largest magnitude, which is a difference of 7.</p>
+<p>We also need to remove any differences of 0, since they are neither positive nor negative.</p>
+<p>When we used a rank-based method for two independent samples, we were comparing the ranks across two different groups. Now, we are comparing the positive and negative ranks. That is to say, we want to see whether the differences tend to be positive or negative.</p>
+<hr />
+<p>Our hypotheses are:
+<span class="math display">\[\begin{align*}
+H_0:&amp; \text{ The two populations (Standard and Varied) are identical. } \\ \\
+H_A:&amp; \text{ The two populations have the same shape,} \\
+&amp;\text{ but one is shifted relative to the other.}
+\end{align*}\]</span></p>
+<p>If the negative differences have larger ranks, then that suggests a negative trend when moving from standard to varied work tasks. If the positive differences have larger ranks, then that suggests a positive trend.</p>
+<p>If the null were true and our Standard and Varied data came from the same population, the ranks would be assigned randomly. Under the null, the smallest rank is equally likely to be positive or negative, the second smallest is equally likely to be positive or negative, etc.</p>
+<p>The test statistic is based on comparing the observed ranks to the distribution of ranks if they were randomly assigned to the eight differences.</p>
+<hr />
+<p>It isn’t necessary to go into the details of this test. Just like the rank sum test for independent groups, the p-value calculation is not feasible to do by hand, so we use the <code>wilcox.test</code> function in R. We specify <code>paired = T</code>.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="testing-paired-data.html#cb14-1" tabindex="-1"></a>standard <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">81</span>, <span class="dv">87</span>, <span class="dv">86</span>, <span class="dv">59</span>, <span class="dv">66</span>, <span class="dv">70</span>, <span class="dv">73</span>, <span class="dv">92</span>)</span>
+<span id="cb14-2"><a href="testing-paired-data.html#cb14-2" tabindex="-1"></a>varied <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">78</span>, <span class="dv">91</span>, <span class="dv">79</span>, <span class="dv">65</span>, <span class="dv">67</span>, <span class="dv">72</span>, <span class="dv">71</span>, <span class="dv">96</span>)</span>
+<span id="cb14-3"><a href="testing-paired-data.html#cb14-3" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="testing-paired-data.html#cb14-4" tabindex="-1"></a><span class="fu">wilcox.test</span>(standard, varied, <span class="at">paired =</span> T)</span></code></pre></div>
+<pre><code>## Warning in wilcox.test.default(standard, varied, paired = T): cannot compute
+## exact p-value with ties</code></pre>
+<pre><code>## 
+##  Wilcoxon signed rank test with continuity correction
+## 
+## data:  standard and varied
+## V = 14.5, p-value = 0.6737
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<p>We end up with a test statistic of 14.5 and a very large, non-significant p-value. The warning isn’t anything to worry about, it’s just telling us that the test is not exact if there are tied obsrevations.</p>
+<p>The conclusions from the Wilcoxon signed rank test are the same as those from the paired T test. But, if normality holds, the T test is preferable.</p>
+</div>
+<div id="median-test-1" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Median test<a href="testing-paired-data.html#median-test-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can also apply a sign test for the median to the sample of differences. This is very similar to the one-sample sign test we did in chapter 8, and also does not require normality.</p>
+<p>The idea is that, if the Standard and Varied data is the same, then each difference is equally likely to be positive or negative.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Participant</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center">7</th>
+<th align="center">8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Standard</td>
+<td align="center">81</td>
+<td align="center">87</td>
+<td align="center">86</td>
+<td align="center">59</td>
+<td align="center">66</td>
+<td align="center">70</td>
+<td align="center">73</td>
+<td align="center">92</td>
+</tr>
+<tr class="even">
+<td align="left">Varied</td>
+<td align="center">78</td>
+<td align="center">91</td>
+<td align="center">79</td>
+<td align="center">65</td>
+<td align="center">67</td>
+<td align="center">72</td>
+<td align="center">71</td>
+<td align="center">96</td>
+</tr>
+<tr class="odd">
+<td align="left">Difference</td>
+<td align="center">3</td>
+<td align="center">-4</td>
+<td align="center">7</td>
+<td align="center">-6</td>
+<td align="center">-1</td>
+<td align="center">-2</td>
+<td align="center">2</td>
+<td align="center">-4</td>
+</tr>
+</tbody>
+</table>
+<p>In thise case, we have three positive differences and five negative differences.</p>
+<hr />
+<p>We are testing hypotheses
+<span class="math display">\[H_0: M = 0 \quad\quad\text{versus}\quad\quad H_A: M \neq 0\]</span>
+where <span class="math inline">\(M\)</span> is the true median difference. Our test statistic, <span class="math inline">\(B\)</span>, is the count of <em>positive</em> differences in our data, so we have <span class="math inline">\(b_{obs} = 3\)</span>.</p>
+<p>We use a binomial distribution as the null distribution for calculating a p-value. Each difference is treated as an independent binary trial. It is either positive, or negative. Counting the positive differences is the same as counting the “successes” in our binomial process.</p>
+<p>If the null is true, then each difference is equally likely to be positive or negative, and so the “success probability” for any individual point is 0.5.</p>
+<p>The null distribution we use is <span class="math inline">\(Binom(n, 0.5)\)</span>, or <span class="math inline">\(Binom(8, 0.5)\)</span> in this case. Note that if there are any differences of 0, we must discard them and adjust our <span class="math inline">\(n\)</span> accordingly.</p>
+<hr />
+<p>Recall that the p-value is calculated according to the direction of our hypotheses.
+- If the alternative is <span class="math inline">\(M &lt; 0\)</span>, the p-value is <span class="math inline">\(P(B \le b_{obs})\)</span>.</p>
+<ul>
+<li><p>If the alternative is <span class="math inline">\(M &gt; 0\)</span>, the p-value is <span class="math inline">\(P(B \ge b_{obs})\)</span>.</p></li>
+<li><p>If the alternative is <span class="math inline">\(M \neq 0\)</span>, the p-value is
+<span class="math display">\[2\times \min\Big(P(B \le b_{obs}), \;P(B \ge b_{obs})\Big).\]</span></p></li>
+</ul>
+<div class="infobox exer">
+<p>Complete the test of hypotheses
+<span class="math display">\[H_0: M = 0 \quad\quad\text{versus}\quad\quad H_A: M \neq 0\]</span>
+on the office worker data. Use <span class="math inline">\(\alpha = 0.1\)</span> and a test statistic <span class="math inline">\(b_{obs} = 3\)</span>.</p>
+<p><span style="color:#8601AF">
+We have a two-sided hypothesis, which means we are looking for a difference between Standard and Varied in either direction. So, we need to find the probability of being <span class="math inline">\(\ge 3\)</span> and the probability of being <span class="math inline">\(\le 3\)</span> on the <span class="math inline">\(Binom(8, 0.5)\)</span> distribution.
+</span></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="testing-paired-data.html#cb17-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">8</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<pre><code>## [1] 0.3632813</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="testing-paired-data.html#cb19-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">dbinom</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">8</span>, <span class="dv">8</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<pre><code>## [1] 0.8554688</code></pre>
+<p><span style="color:#8601AF">
+We see that <span class="math inline">\(P(B \le 3) = 0.363\)</span> and <span class="math inline">\(P(B \ge 3) = 0.855\)</span>. Our two-sided p-value is
+<span class="math display">\[2\times \min(0.363, 0.855) \;=\; 2\times 0.363 \;=\; 0.726.\]</span>
+Our p-value is much larger than <span class="math inline">\(\alpha = 0.1\)</span>, so we once again fail to reject the null.
+</span></p>
+</div>
+<hr />
+<p>Notice that th e three tests covered in this chapter all came to the same conclusion about the office worker data. But in general, <em>if the assumptions are met</em>, the T test is the preferred tool out of the three.</p>
+<p>Why is this the case? The T test is more powerful because it makes use of more of the information in the data. The T test statistic is calculated with the specific values in our data.</p>
+<p>The Wilcox rank test, however, makes use of less of the information in the data. It is only concerned with the relative ranks of the data points. The median test makes use of even less information. The sign test for the median only cares abouut whether the data is positive or negative.</p>
+<p>So, the T test is better at detecting a potential effect since it makes use of more of the information in the data. This idea applies to other contexts as well, not just paired data. For example, the Wilcox rank sum test for two independent samples is less powerful than the T test for two independent samples.</p>
+<div class="infobox pond">
+<p>What are some reasons that we might choose to perform a less powerful test?</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="two-sample-testing.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/10-paired-data.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

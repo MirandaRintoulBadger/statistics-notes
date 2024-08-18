@@ -170,6 +170,10 @@ If $H_0$ is true and $\mu_{live} - \mu_{dead} = 0$, then the test statistic $T$ 
 
 A one-sample T test has $n - 1$ degrees of freedom.  So the df for a two-sample test is $(n_1 - 1) + (n_2 - 1) = n_1 + n_2 - 2$.
 
+:::: {.infobox .pond data-latex=""}
+Does the fact that we subtracted in the order $\bar{X}_{dead} - \bar{X}_{live}$ as opposed to $\bar{X}_{live} - \bar{X}_{dead}$ matter?  In what situations would we need to pay attention to the order of subtraction?
+::::
+
 In the lizard example, we have 10 dead observations and 12 live observations, so we have 20 degrees of freedom.  To complete our test, we calculate an observed test statistic and check whether it is consistent with the $t_{20}$ curve.
 
 ---
@@ -703,8 +707,224 @@ $$\hat{t} \;=\; \frac{(\bar{x}_1^* - \bar{x}_2^*) \;-\; (\bar{x}_1 - \bar{x}_2)}
 5. Repeat 2-4 many, many, times.
 ::::
 
-The $\hat{t}$ values approximate the sampling distribution of $T$.  We look at the proportion of $\hat{t}$ values that are more extreme than $t_{obs}$ to calculate a p-value.  Let's perform a bootstrap test on the cricket data, with $\alpha = 0.02$.
+The $\hat{t}$ values approximate the sampling distribution of $T$.  We look at the proportion of $\hat{t}$ values that are more extreme than $t_{obs}$ to calculate a p-value. 
 
+---
+
+Let's perform a bootstrap test on the cricket data below, with $\alpha = 0.02$.
+
+|         | $n$ | $\bar{x}$ | $s$   |
+|:-------:|:---:|:---------:|:-----:|
+| Starved | 11  | 17.73     | 19.96 |
+| Fed     | 13  | 35.98     | 33.63 |
+
+The hypotheses are
+$$H_0: \mu_{starved}-\mu_{fed} \ge 0\quad\quad\text{versus}\quad\quad H_A: \mu_{starved}-\mu_{fed} < 0.$$
+First, we calculate an observed test statistic from the data. We have
+$$t_{obs} \;=\; \frac{\bar{x}_{starved}-\bar{x}_{fed} \;-\; 0}{\sqrt{\frac{s_{starved}^2}{n_{starved}} + \frac{s_{fed}^2}{n_{fed}}}} \;=\; \frac{17.73-35.98 \;-\; 0}{\sqrt{\frac{19.96^2}{11} + \frac{33.63^2}{13}}} \;=\; -1.645.$$
+Next, we run the bootstrap. The code below runs the two-sample bootstrap procedure 5000 times on the cricket data.  Just like the one-sample bootstrap, you don't need to understand this particular chunk of code.  But you should know how to use the resulting vector `t_hat` to complete the bootstrap analysis.
+
+
+```r
+# 1. Calculate data summaries and t_obs
+# Let group 1 = starved, group 2 = fed
+xbar1 <- mean(starved)
+n1 <- length(starved)
+
+xbar2 <- mean(fed)
+n2 <- length(fed)
+
+# Create a vector to store t_hat values
+t_hat <- numeric(5000)
+
+set.seed(371)  # set RNG
+# Bootstrap loop
+for(i in 1:5000){
+  # 2. Draw a SRS of size n1/n2 from data, with replacement
+  x1_star <- sample(starved, size = n1, replace = T)
+  x2_star <- sample(fed, size = n2, replace = T)
+  
+  # 3. Calculate resampled mean and sd
+  xbar1_star <- mean(x1_star)
+  s1_star <- sd(x1_star)
+  xbar2_star <- mean(x2_star)
+  s2_star <- sd(x2_star)
+  
+  # 4. Calculate t_hat, and store it in vector
+  t_hat_numer <- (xbar1_star-xbar2_star) - (xbar1-xbar2)
+  t_hat_denom <- sqrt((s1_star^2/n1) + (s2_star^2/n2))
+  
+  t_hat[i] <- t_hat_numer / t_hat_denom
+}
+```
+
+Let's look at a histogram of the boostrap values and the location of the test statistic.
+
+
+```r
+hist(t_hat, main = "Bootstrap Null Dist")
+abline(v = -1.645, lwd = 2, col = "dodgerblue", lty = 2)
+```
+
+<img src="09-two-sample_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+
+We use the histogram of bootstrap values instead of the t distribution curve to complete our test.
+
+The procedure for calculating a bootstrap p-value or confidence interval is exactly the same as the one-sample case.  To get critical values, we look at the $\alpha/2$ and $1 - \alpha/2$ quantiles of the bootstrap values.  To calculate a p-value, we take the proportion of bootstrap values more extreme than $t_{obs}$.
+
+:::: {.infobox .deff data-latex=""}
+Specifically, let $m_u$ be the count of $\hat{t}$ values such that $\hat{t} > t_{obs}$, and let $m_{\ell}$ be the count of $\hat{t}$ values such that $\hat{t} < t_{obs}$.
+
+- If $H_A: \mu_1 - \mu_2 < \mu_0$, then we want to look at the $\hat{t}$ values less than $t_{obs}$, so the p-value is $m_{\ell} / B$.
+- If $H_A: \mu_1 - \mu_2 > \mu_0$, then we want to look at the $\hat{t}$ values greater than $t_{obs}$, so the p-value is $m_{u} / B$.
+- If $H_A: \mu_1 - \mu_2 \neq \mu_0$, we are interested in both directions, so the p-value is 
+$$\frac{2\cdot \min(m_u, m_{\ell})}{B}.$$ 
+::::
+
+:::: {.infobox .exer data-latex=""}
+Complete the bootstrap test of the cricket data, using $\alpha = 0.02$. Calculate a one-sided bootstrap p-value based on $t_{obs} = -1.645$.
+
+<span style="color:#8601AF">
+Since we have a one-sided alternative $\mu_{starved}-\mu_{fed} < 0$, we only need to look at the lower direction.  We need to count the number of bootstrap values less than $t_{obs} = -1.645$.
+</span>
+
+
+```r
+sum(t_hat < -1.645)
+```
+
+```
+## [1] 285
+```
+
+<span style="color:#8601AF">
+We see that 285 out of 5000 bootstrap samples are less than -1.645.  The p-value is the proportion:
+$$\frac{285}{5000} = 0.057.$$
+Our p-value is greater than 0.02, so we do not have sufficient evidence against the null.  We fail to reject.
+</span>
+::::
+
+## Rank sum test
+
+Another option for testing non-normal data is the Wilcoxon Rank Sum Test.  This test is **nonparametric**, which means it does not have a specific parameter of interest.  It works a bit differently from other two-sample tests.
+
+A rank sum test is not directly based on the values in the data.  Instead, it is based on the *ranks* of the data from smallest to largest.  Essentially, if one group has a lot of small observations (low ranks), and one group has a lot of large observations (high ranks), we have evidence that the groups are different.
+
+Consider the cricket data:
+
+\begin{align*}
+&\text{Starved: }1.9, 2.1, 3.8, 9.0, 9.6, 13.0, 14.7, 17.9, 21.7, 29.0, 72.3 \\
+&\text{Fed: }1.5, 1.7, 2.4, 3.6, 5.7, 22.6, 22.8, 39.0, 54.4, 72.1, 73.6, 79.5, 88.9 
+\end{align*}
+
+We need to order the data points from smallest to largest, regardless of group.
+
+\begin{align*}
+\text{Starved: }&\color{gray}{1.9} (3),\; \color{gray}{2.1} (4),\; \color{gray}{3.8} (7),\; \color{gray}{9.0} (9),\; \color{gray}{9.6} (10),\; \color{gray}{13.0} (11),\; \color{gray}{14.7} (12),\\ 
+&\color{gray}{17.9} (13),\; \color{gray}{21.7} (14),\; \color{gray}{29.0} (17),\; \color{gray}{72.3} (21) \\ \\
+\text{Fed: }&\color{gray}{1.5} (1),\; \color{gray}{1.7} (2),\; \color{gray}{2.4} (5),\; \color{gray}{3.6} (6),\; \color{gray}{5.7} (8),\; \color{gray}{22.6} (15),\; \color{gray}{22.8} (16), \\
+& \color{gray}{39.0} (18),\; \color{gray}{54.4} (19),\; \color{gray}{72.1} (20),\; \color{gray}{73.6} (22),\; \color{gray}{79.5} (23),\; \color{gray}{88.9} (24)
+\end{align*}
+
+The smallest observation, which is in Fed, gets a rank of 1.  The second smallest, also in Fed, gets a rank of 2.  The third smallest, which is in Starved, gets a rank of 3.  We rank all of the observations this way, until we get to the largest data point, which is 24.
+
+If there are repeat values, then both observations are assigned the average rank.  For example, if two observations were tied for 3rd and 4th place, they would each be given a rank of 3.5.
+
+We calculate a test statistic based on the sizes of the ranks in the two groups.
+
+---
+
+Previously, for the crickets problem, we used hypotheses
+$$H_0: \mu_{starved}-\mu_{fed} \ge 0\quad\quad\text{versus}\quad\quad H_A: \mu_{starved}-\mu_{fed} < 0.$$
+For a Wilcox rank sum test, we state the hypotheses in terms of the groups' locations in general, not a specific parameter.  They become:\begin{align*}
+H_0:& \text{ The two populations are identical. } \\ \\
+H_A:& \text{ The two populations have the same shape,} \\
+&\text{ but "Starved" is shifted to the left of "Fed".}
+\end{align*}
+
+This test requires the independence assumption, but not the normality assumption.  We also see that both hypotheses imply that the two groups have the same shape.  So, we also need to make this assumption.  We usually evaluate this assumption by looking at histograms of the two groups.
+
+Here is a separate example visually demonstrating the rank sum hypotheses.
+
+<img src="09-two-sample_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+
+---
+
+Now, let's discuss the derivation of the test statistic.  Recall how we ranked the data.  Suppose $H_0$ was true, and the Starved and Fed data were sampled from the same population.  In this case, the smallest point (rank 1) would be equally likely to be in Starved or Fed.  The second smallest point (rank 2) would also be equally likely to be in either group.
+
+Under the null hypothesis, the ranks are randomly assigned to the groups.  We would find evidence against the null if the "Starved" group had most of the small ranks and the "Fed" group had most of the large ranks.
+
+We look at the observed ranks in our data, and calculate a p-value by comparing it to all possible arrangements of ranks.
+
+---
+
+The test statistic comes from the sum of the ranks in the first group, called $R$.  For our data, the sum of the ranks in the starved group is
+$$R_{obs} \;=\; 3 + 4 + 7 + 9 + 10 + 11 + 12 + 13 + 14 + 17 + 21 \;=\; 121.$$
+If the starved group was shifted to the left of fed, then we would expect it to have small ranks, so $R$ should be a relatively small number.
+
+:::: {.infobox .pond data-latex=""}
+Why do we only have to consider the ranks of the first group?
+::::
+
+To evaluate how extreme our data is, we comopare $R_{obs}$ to the most extreme case, which is where the groups are completely separate, and Starved has all of the small ranks.  So it would have the smallest, second smallest, third smallest, etc. observations.  There are 11 data points in Starved, so the smallest possible sum of ranks is 
+$$R_{min} \;=\; 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 \;=\; 66.$$
+There is a shortcut for adding all of the numbers 1-$n$, which is called a "triangle number."
+$$R_{min} \;=\; \frac{n_1(n_1 + 1)}{2}$$
+In our example, $R_{min} = \frac{11\cdot 12}{2} = 66$.
+
+Finally, the test statistic compares the observed sum $R_{obs}$ to the theoretical minimum sum $R_{min}$.  In this way, we can measure how "extreme" our observed ranks are.
+
+:::: {.infobox .deff data-latex=""}
+A Wilcoxon rank sum test statistic is given by 
+$$W_{obs} \;=\; R_{obs} - R_{min}.$$
+::::
+
+This is $W_{obs} = 121 - 66 = 55$ for the crickets data.  A p-value is calculated by compoaring 55 to all possible values of $W = R - R_{min}$.
+
+---
+
+Let's finish the rank sum test on the cricket data, with $\alpha = 0.02$.  We should evaluate the "same shape" assumption by looking at histograms of the data.
+
+
+```r
+bin_breaks <- c(0, 18, 36, 54, 72, 90)
+
+par(mfrow = c(1, 2)) # View 2 plots at once
+# Set xlim, ylim, and breaks to be the same
+hist(starved, main = "Starved", ylim = c(0, 5),
+     breaks = bin_breaks, col = "dodgerblue")
+hist(fed, main = "Fed", ylim = c(0, 5),
+     breaks = bin_breaks, col = "dodgerblue")
+```
+
+<img src="09-two-sample_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+
+It is difficult to tell with so little data, but it is conceivable that the starved and fed populations have the same shape.
+
+The final p-value calculation is complicated and tedious to perform by hand, so we let R do the work for us.  We use the `wilcox.test` function, which has syntax that is very similar to `t.test`.
+
+
+```r
+wilcox.test(starved, fed, mu = 0,
+            alternative = "less", conf.level = 0.98)
+```
+
+```
+## 
+## 	Wilcoxon rank sum exact test
+## 
+## data:  starved and fed
+## W = 55, p-value = 0.1804
+## alternative hypothesis: true location shift is less than 0
+```
+
+We see the R gets the same test statistic of 55.  It returns a p-value of 0.18, which is larger than 0.02 and so we have a non-significant result.
+
+---
+
+When should we use the bootstrap test or rank sum test? The two tests have their own advantages and downsides. The bootstrap test does not make any assumptions about the shape of the data. The bootstrap test is extremely general, since it only relies on the independence assumption.
+
+However, the Wilcoxon rank sum test is more robust to outliers. The conclusions of the test do not change very much if the data has an outlier, unlike the bootstrap.  This is because the rank sum test statistic is only based on the ranks of the observations, but the bootstrap test statistic is based on the specific values of the observations.
 
 
 

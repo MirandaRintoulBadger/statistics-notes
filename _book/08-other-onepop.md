@@ -1,4 +1,4 @@
-# Other ONe-Sample Tests
+# Other One-Sample Tests
 
 <img src="figs/comics/ch8.jpg" width="300px" style="display: block; margin: auto;" />
 

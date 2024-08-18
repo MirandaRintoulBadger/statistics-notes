@@ -1,4 +1,4 @@
-# Other ONe-Sample Tests
+# Other One-Sample Tests
 
 ```{r,echo=F, out.width="300px", fig.align="center"}
 knitr::include_graphics("figs/comics/ch8.jpg")
