@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 11 Analysis of Variance | Statistics 371 Full Notes</title>
+  <meta name="description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 11 Analysis of Variance | Statistics 371 Full Notes" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 11 Analysis of Variance | Statistics 371 Full Notes" />
+  
+  <meta name="twitter:description" content="Introductory Applied Statistics for the Life Sciences" />
+  
+
+<meta name="author" content="Miranda Rintoul" />
+
+
+<meta name="date" content="2024-08-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="testing-paired-data.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistics 371 Full Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction To Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#statistics"><i class="fa fa-check"></i><b>1.1</b> Statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#key-terms"><i class="fa fa-check"></i><b>1.2</b> Key terms</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#types-of-data"><i class="fa fa-check"></i><b>1.3</b> Types of data</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#course-outline"><i class="fa fa-check"></i><b>1.4</b> Course outline</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histograms"><i class="fa fa-check"></i><b>2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>2.2</b> Location</a></li>
+<li class="chapter" data-level="2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#spread"><i class="fa fa-check"></i><b>2.3</b> Spread</a></li>
+<li class="chapter" data-level="2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#box-plots"><i class="fa fa-check"></i><b>2.4</b> Box plots</a></li>
+<li class="chapter" data-level="2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#multiple-datasets"><i class="fa fa-check"></i><b>2.5</b> Multiple datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> Probability</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#sampling"><i class="fa fa-check"></i><b>3.1</b> Sampling</a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#probability-basics"><i class="fa fa-check"></i><b>3.2</b> Probability basics</a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>3.3</b> Conditional probability</a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>3.4</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="random-variables.html"><a href="random-variables.html"><i class="fa fa-check"></i><b>4</b> Random Variables</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="random-variables.html"><a href="random-variables.html#random-variable-basics"><i class="fa fa-check"></i><b>4.1</b> Random variable basics</a></li>
+<li class="chapter" data-level="4.2" data-path="random-variables.html"><a href="random-variables.html#expectation-and-variance"><i class="fa fa-check"></i><b>4.2</b> Expectation and variance</a></li>
+<li class="chapter" data-level="4.3" data-path="random-variables.html"><a href="random-variables.html#binomial-random-variables"><i class="fa fa-check"></i><b>4.3</b> Binomial random variables</a></li>
+<li class="chapter" data-level="4.4" data-path="random-variables.html"><a href="random-variables.html#rules-of-expectation-and-variance"><i class="fa fa-check"></i><b>4.4</b> Rules of expectation and variance</a></li>
+<li class="chapter" data-level="4.5" data-path="random-variables.html"><a href="random-variables.html#normal-random-variables"><i class="fa fa-check"></i><b>4.5</b> Normal random variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>5</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="estimation.html"><a href="estimation.html#estimation-1"><i class="fa fa-check"></i><b>5.1</b> Estimation</a></li>
+<li class="chapter" data-level="5.2" data-path="estimation.html"><a href="estimation.html#sampling-distributions"><i class="fa fa-check"></i><b>5.2</b> Sampling distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="estimation.html"><a href="estimation.html#central-limit-theorem"><i class="fa fa-check"></i><b>5.3</b> Central Limit Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#z-confidence-interval"><i class="fa fa-check"></i><b>6.1</b> Z confidence interval</a></li>
+<li class="chapter" data-level="6.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-interpretation"><i class="fa fa-check"></i><b>6.2</b> Confidence interval interpretation</a></li>
+<li class="chapter" data-level="6.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#t-confidence-interval"><i class="fa fa-check"></i><b>6.3</b> T confidence interval</a></li>
+<li class="chapter" data-level="6.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#proportion-ci"><i class="fa fa-check"></i><b>6.4</b> Proportion CI</a></li>
+<li class="chapter" data-level="6.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-confidence-interval"><i class="fa fa-check"></i><b>6.5</b> Bootstrap confidence interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-t-test"><i class="fa fa-check"></i><b>7.1</b> One-sample T test</a></li>
+<li class="chapter" data-level="7.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors"><i class="fa fa-check"></i><b>7.2</b> Errors</a></li>
+<li class="chapter" data-level="7.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sided-tests"><i class="fa fa-check"></i><b>7.3</b> One-sided tests</a></li>
+<li class="chapter" data-level="7.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-z-test"><i class="fa fa-check"></i><b>7.4</b> One-sample Z test</a></li>
+<li class="chapter" data-level="7.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#power"><i class="fa fa-check"></i><b>7.5</b> Power</a></li>
+<li class="chapter" data-level="7.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#bootstrap-test"><i class="fa fa-check"></i><b>7.6</b> Bootstrap test</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html"><i class="fa fa-check"></i><b>8</b> Other One-Sample Tests</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html#one-sample-proportion-test"><i class="fa fa-check"></i><b>8.1</b> One-sample proportion test</a></li>
+<li class="chapter" data-level="8.2" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html#median-test"><i class="fa fa-check"></i><b>8.2</b> Median test</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="two-sample-testing.html"><a href="two-sample-testing.html"><i class="fa fa-check"></i><b>9</b> Two-Sample Testing</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="two-sample-testing.html"><a href="two-sample-testing.html#equal-variances-t-test"><i class="fa fa-check"></i><b>9.1</b> Equal variances T test</a></li>
+<li class="chapter" data-level="9.2" data-path="two-sample-testing.html"><a href="two-sample-testing.html#unequal-variances-t-test"><i class="fa fa-check"></i><b>9.2</b> Unequal variances T test</a></li>
+<li class="chapter" data-level="9.3" data-path="two-sample-testing.html"><a href="two-sample-testing.html#two-sample-proportion-test"><i class="fa fa-check"></i><b>9.3</b> Two-sample proportion test</a></li>
+<li class="chapter" data-level="9.4" data-path="two-sample-testing.html"><a href="two-sample-testing.html#two-sample-bootstrap-test"><i class="fa fa-check"></i><b>9.4</b> Two-sample bootstrap test</a></li>
+<li class="chapter" data-level="9.5" data-path="two-sample-testing.html"><a href="two-sample-testing.html#rank-sum-test"><i class="fa fa-check"></i><b>9.5</b> Rank sum test</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="testing-paired-data.html"><a href="testing-paired-data.html"><i class="fa fa-check"></i><b>10</b> Testing Paired Data</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="testing-paired-data.html"><a href="testing-paired-data.html#paired-t-test"><i class="fa fa-check"></i><b>10.1</b> Paired T test</a></li>
+<li class="chapter" data-level="10.2" data-path="testing-paired-data.html"><a href="testing-paired-data.html#signed-rank-test"><i class="fa fa-check"></i><b>10.2</b> Signed rank test</a></li>
+<li class="chapter" data-level="10.3" data-path="testing-paired-data.html"><a href="testing-paired-data.html#median-test-1"><i class="fa fa-check"></i><b>10.3</b> Median test</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>11</b> Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#more-than-two-groups"><i class="fa fa-check"></i><b>11.1</b> More than two groups</a></li>
+<li class="chapter" data-level="11.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#variance-decomposition"><i class="fa fa-check"></i><b>11.2</b> Variance decomposition</a></li>
+<li class="chapter" data-level="11.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#anova-test"><i class="fa fa-check"></i><b>11.3</b> ANOVA test</a></li>
+<li class="chapter" data-level="11.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#post-hoc-analysis"><i class="fa fa-check"></i><b>11.4</b> Post-hoc analysis</a></li>
+<li class="chapter" data-level="11.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#non-normal-data"><i class="fa fa-check"></i><b>11.5</b> Non-normal data</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 371 Full Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analysis-of-variance" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Analysis of Variance<a href="analysis-of-variance.html#analysis-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figs/comics/ch11.jpg" width="300px" style="display: block; margin: auto;" /></p>
+<p>In chapter 9, we covered the problem of comparing two independent means. Now, we are going to generalize to the problem of comparing any number of independent means (possibly more than two).</p>
+<div id="more-than-two-groups" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> More than two groups<a href="analysis-of-variance.html#more-than-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Four formulations of rat poison are being tested (1, 2, 3, 4). The poisons work by thinning the blood, so we are interested in the time it takes for blood to coagulate. 24 rats were randomly assigned the 4 poisons, and their blood was drawn and time to coagulation was measured.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Treatment</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">Sample Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="center">62</td>
+<td align="center">60</td>
+<td align="center">63</td>
+<td align="center">59</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">61</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="center">63</td>
+<td align="center">67</td>
+<td align="center">71</td>
+<td align="center">64</td>
+<td align="center">65</td>
+<td align="center">66</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">66</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="center">68</td>
+<td align="center">66</td>
+<td align="center">71</td>
+<td align="center">67</td>
+<td align="center">68</td>
+<td align="center">68</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">68</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="center">56</td>
+<td align="center">62</td>
+<td align="center">60</td>
+<td align="center">61</td>
+<td align="center">63</td>
+<td align="center">64</td>
+<td align="center">63</td>
+<td align="center">59</td>
+<td align="center">61</td>
+</tr>
+</tbody>
+</table>
+<p>We have four groups of data, and four means to compare, instead of the usual two.</p>
+<p>We want to know if the poisons are equally effective, or if some of them are more effective than the others. If <span class="math inline">\(\mu_i\)</span> is the mean coagulation time for poison <span class="math inline">\(i\)</span>, then we can write hypotheses
+<span class="math display">\[\begin{align*}
+H_0: &amp; \; \mu_1 = \mu_2 = \mu_3 = \mu_4 \\
+H_A:&amp; \text{ At least one mean is different.}
+\end{align*}\]</span></p>
+<p>The null is a generalization of the null in the two-sample case, which is <span class="math inline">\(H_0: \mu_1 = \mu_2\)</span>. The alternative covers every case where the null is false.</p>
+<div class="infobox warn">
+<p>Note how the alternative is stated. For the null to be false, only one of the means needs to be different from the other three. So the alternative is “<em>at least one</em> is different”, not “<em>all of the means</em> are different”.</p>
+</div>
+<hr />
+<p>How can we test these hypotheses? In the two-sample case, we can come up with a T test statistic based on the observed means <span class="math inline">\(\bar{X}_1\)</span> and <span class="math inline">\(\bar{X}_2\)</span>. So if we wanted to, we could perform pairwise T tests on every individual pair of means. We’d have to test <span class="math inline">\(\mu_1 = \mu_2\)</span>, and <span class="math inline">\(\mu_1 = \mu_3\)</span>, and <span class="math inline">\(\mu_2 = \mu_3\)</span>, and so on.</p>
+<p>Instead of doing several pairwise tests, we are going to develop a test that will answer the hypotheses all at once. Instead of directly comparing the means, we’re going to re-think this question in terms of the <em>spread</em> of the data.</p>
+<p>If we look at all 24 coagulation time observations, regardless of group:
+<span class="math display">\[62, 60, 63, 59, 63, 67, 71, 64, 65, 66, 68, 66\]</span>
+<span class="math display">\[71, 67, 68, 68, 56, 62, 60, 61, 63, 64, 63, 59\]</span>
+we can see that the data has some natural variability. We typically quantify this with the sample variance <span class="math inline">\(S^2\)</span>, and we can visualize it by looking at the spread of the data points. I’ve colored the observations by the group they belong to, but we’re not considering the groups for now.</p>
+<p><img src="11-anova_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>We’re going to think about the <em>source</em> of the variability. If <span class="math inline">\(H_0\)</span> was false, and the means were different, then we would expect there to be some noticeable patterns across groups. One group might have a lot of small observations, and another group might have a lot of large observations.</p>
+<p>We can visualize this by making a similar scatterplot to the one above, but separating the data points by group. It looks like there might be a substantial group effect for our data, since groups 1 and 4 are a bit lower on average and 2 and 3 are a bit higher on average.</p>
+<p><img src="11-anova_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>On the other hand, if <span class="math inline">\(H_0\)</span> is true and the means are all equal, then the groups don’t matter, and all of the variation would be due to random noise. Both the “group effect” and “random noise” contribute to <span class="math inline">\(S^2\)</span>, and we want to figure out if the group effect is sufficiently large to reject <span class="math inline">\(H_0\)</span>.</p>
+<hr />
+<p>Formally, we call these groups <strong>treatments</strong>. We test whether the four treatment means are diffrent by looking at the variability in the data.</p>
+<p>Is the data spread out due to random chance? Or due to systematic differences in the treatment means? Consider the following (unrelated) example.</p>
+<p>Let’s take two sets of data, and plot them. Initially, they seem to have the same spread.</p>
+<p><img src="11-anova_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Next, we’ll color the observations by group. Each dataset has three groups.</p>
+<p><img src="11-anova_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Now, for each dataset, we’ll separate out the groups.</p>
+<p><img src="11-anova_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>For the first example, the groups seem to matter a lot more. But for the second example, the groups are very similar, so the spread of the data seems to be due to random chance.</p>
+<div class="infobox deff">
+<p>The first graph has more <strong>between-group</strong> variability. This is the variation in treatment means themselves. Larger between-group variability means the treatment means are different, and we have more evidence against the null of all the means being equal.</p>
+<p>The second graph has more <strong>within-group</strong> variability. This is the variation due to random noise. If the within-group varibility is large, we have weak evidence against the null.</p>
+</div>
+<p>The formal comparison of between-group and within-group variance is called an <strong>analysis of variance (ANOVA)</strong>. The core component is the variance decomposition:
+<span class="math display">\[
+\text{Total variability} \; = \; \text{Between-group variability} \; + \; \text{Within-group varibility}
+\]</span></p>
+<p>We compare the two terms on the right side. If the between-group term is big enough compared to the within-group term, we reject <span class="math inline">\(H_0\)</span>.</p>
+</div>
+<div id="variance-decomposition" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Variance decomposition<a href="analysis-of-variance.html#variance-decomposition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To show how we decompose the variability in the data, let’s decompose a single observation. There are three things that “contribute” to the value of an observation: overall mean, treatment mean, and random noise.</p>
+<p>The first observation in our data is 62. The overall mean is 64, and the mean of group 1 is 61. Write
+<span class="math display">\[62 \;=\; 64 - 3 + 1\]</span>
+The -3 is the effect of treatment 1, since treatment 1 has a lower mean than the overall data. The +1 is just extra random noise, meaning the data point is 1 higher than the average point in treatment 1. We can do this for every observation</p>
+<p>In general, the value of an observation can be decomposed as:
+<span class="math display">\[\begin{align*}
+\text{Observation} \;&amp;=\; \text{Grand Mean} \\
+&amp;+ \;\text{Treatment Effect} \\
+&amp;+ \;\text{Random Noise}
+\end{align*}\]</span></p>
+<p>Now, let’s imagine subtracting the grand mean from both sides of the equation. For the data point 62,
+<span class="math display">\[\begin{eqnarray*}
+62 &amp;=&amp; 64 - 3 + 1 \\
+62 - 64 &amp;=&amp; -3 + 1
+\end{eqnarray*}\]</span></p>
+<p>Both sides equal -2. This means that point 62 is 2 less than the average of the data. -3 comes from the effect of group 1, and +1 is random noise. In general,</p>
+<p><span class="math display">\[\begin{align*}
+\text{Deviation from Overall Mean} \;&amp;=\; \\
+&amp;+ \;\text{Treatment Effect} \\
+&amp;+ \;\text{Random Noise}
+\end{align*}\]</span></p>
+<p>Every term in this equation represents a difference. The left side is how much the data point differs from the overall mean of the data. Overall difference = treatment effect + random noise.</p>
+<hr />
+<p>The key of ANOVA is to add this term for every point in our data. We want to decompose the total varibility in the data into the overall effect of treatments, and the overall effect of random noise. Let’s bring in some notation:</p>
+<ul>
+<li><p>Let <span class="math inline">\(i\)</span> refer to treatments, and <span class="math inline">\(j\)</span> refer to observations. So <span class="math inline">\(y_{ij}\)</span> refers to the <span class="math inline">\(j\)</span>th observation from treatment <span class="math inline">\(i\)</span>. In our data, <span class="math inline">\(y_{11} = 62\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(N\)</span> be the total number of observations. In our data, <span class="math inline">\(N = 24\)</span>.</p></li>
+<li><p>The grand mean of the data is <span class="math inline">\(\bar{y}\)</span>. In our data, the overall mean of all 24 points is <span class="math inline">\(\bar{y} = 64\)</span>.</p></li>
+</ul>
+<p>How do we get the total variability in the entire dataset? We introduced the concept of sample variance as <em>average</em> variability.</p>
+<p><span class="math display">\[S^2 \;=\; \frac{1}{N-1}\sum^N(y_{ij} - \bar{y})^2\]</span></p>
+<p>To turn this into <em>total</em> variability, multiply by <span class="math inline">\(N - 1\)</span>.</p>
+<div class="infobox deff">
+<p>In ANOVA, the total variability of our data is given by
+<span class="math display">\[(N-1)S^2 \;=\; \sum^N(y_{ij} - \bar{y})^2.\]</span>
+This is called the <em>total sum of squares</em>, <span class="math inline">\(SS_{Tot}\)</span>. The rightmost term is adding up several squared terms.</p>
+</div>
+<p>For the rat poison data, the overall variance is 14.783.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="analysis-of-variance.html#cb1-1" tabindex="-1"></a>coag_time <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">62</span>, <span class="dv">60</span>, <span class="dv">63</span>, <span class="dv">59</span>,</span>
+<span id="cb1-2"><a href="analysis-of-variance.html#cb1-2" tabindex="-1"></a>               <span class="dv">63</span>, <span class="dv">67</span>, <span class="dv">71</span>, <span class="dv">64</span>, <span class="dv">65</span>, <span class="dv">66</span>,</span>
+<span id="cb1-3"><a href="analysis-of-variance.html#cb1-3" tabindex="-1"></a>               <span class="dv">68</span>, <span class="dv">66</span>, <span class="dv">71</span>, <span class="dv">67</span>, <span class="dv">68</span>, <span class="dv">68</span>,</span>
+<span id="cb1-4"><a href="analysis-of-variance.html#cb1-4" tabindex="-1"></a>               <span class="dv">56</span>, <span class="dv">62</span>, <span class="dv">60</span>, <span class="dv">61</span>, <span class="dv">63</span>, <span class="dv">64</span>, <span class="dv">63</span>, <span class="dv">59</span>)</span>
+<span id="cb1-5"><a href="analysis-of-variance.html#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="analysis-of-variance.html#cb1-6" tabindex="-1"></a><span class="fu">var</span>(coag_time)</span></code></pre></div>
+<pre><code>## [1] 14.78261</code></pre>
+<p>So the total variability is <span class="math inline">\((N - 1)14.783 = (23)14.783 = 340\)</span>. This is a measure of spread of the entire dataset.</p>
+<p>So <span class="math inline">\((N-1)S^2\)</span> (340 in this case) is the quantity we are going to decompose into two parts. This can be broken up into a treatment effect, and a random noise effect.</p>
+<hr />
+<p>Let’s look at the treatment effect. We need a bit more notation.</p>
+<ul>
+<li><p>Let <span class="math inline">\(t\)</span> be the number of treatments (the number of groups). In our data, there are <span class="math inline">\(t = 4\)</span> groups.</p></li>
+<li><p>Let <span class="math inline">\(n_i\)</span> be the number of observations in treatment <span class="math inline">\(i\)</span>. For example, group 1 has <span class="math inline">\(n_1 = 4\)</span> observations.</p></li>
+<li><p>Let <span class="math inline">\(\bar{y}_i\)</span> be the mean of group <span class="math inline">\(i\)</span>. For example, the mean of treatment 1 is <span class="math inline">\(\bar{y}_1 = 61\)</span>.</p></li>
+</ul>
+<p>We want to quantify how much the treatments matter. That is to say, how much the treatment means differ from the overall mean of the entire data. For example, for group 1 we would have
+<span class="math display">\[(\bar{y}_1 - \bar{y})^2.\]</span>
+We square this difference to keep it positive. In general, we can look at this difference for group <span class="math inline">\(i\)</span>. We need to weight this difference by the number of observations in group <span class="math inline">\(i\)</span>. Groups with more observations are more important for calculating this term. So we get
+<span class="math display">\[n_i(\bar{y}_i - \bar{y})^2\]</span>
+as the effect of treatment <span class="math inline">\(i\)</span>. Finally, to get the effects of all of the treatments, we just need to add this up over all of the groups.</p>
+<div class="infobox deff">
+<p>In ANOVA, the effect of the <span class="math inline">\(t\)</span> treatments on the overall variability is given by
+<span class="math display">\[\sum_{i=1}^t n_i(\bar{y}_i - \bar{y})^2.\]</span>
+This is called the <strong>treatment sum of squares</strong>, SS_{trt}. This is the between-group variation.</p>
+</div>
+<p>So the overall variability is decomposed into
+<span class="math display">\[(N-1)S^2 \;=\; \sum_{i=1}^t n_i(\bar{y}_i - \bar{y})^2 \;+\; \text{Effect of random noise}.\]</span></p>
+<hr />
+<p>Let’s look at the final piece, which is the variability due to random noise. We usually refer to this as the “error”. It is the variation in the data that is not explained by the treatment means.</p>
+<p>We need to look at how much the data points vary from their specific treatment mean. For example, the variance of group 1 is
+<span class="math display">\[S^2_1 \;=\; \frac{1}{n_1 - 1}\sum_{j=1}^{n_1}(y_{1j} - \bar{y}_1)^2.\]</span>
+Remember that <span class="math inline">\((y_{1j}\)</span> refers to the <span class="math inline">\(j\)</span>th point of group 1. As before, we want to consider the total variability of each group not just the average variability (variance). So the total variability within group <span class="math inline">\(i\)</span> is
+<span class="math display">\[(n_i - 1)S^2_i \;=\; \sum_{j=1}^{n_i}(y_{ij} - \bar{y}_i)^2\]</span>
+where <span class="math inline">\(S^2_i\)</span> is the variance of group <span class="math inline">\(i\)</span>. To get the total error contribution from all of the groups, we add this up over all of the groups.</p>
+<div class="infobox deff">
+<p>In ANOVA, the effect of random noise is given by
+<span class="math display">\[\sum_{i=1}^t (n_i - 1)S^2_i.\]</span>
+This is called the <strong>error sum of squares</strong>, SS_{E}. This is the within-group variation.</p>
+</div>
+<hr />
+<p>So, we have our key variance decomposition formula that serves as the basis of our ANOVA. We can state this many different ways.</p>
+<div class="infobox deff">
+<p>In an analysis of variance,
+<span class="math display">\[\begin{align*}
+\text{Total variation} \;&amp;=\; \text{Treatment effect} \;+\; \text{Random noise} \\ \\
+\text{Total variation} &amp;= \text{Between-group variation} \;+\; \text{Within-group variation} \\ \\
+SS_{Tot} &amp;= SS_{trt} \;+\; SS_E \\ \\
+(N-1)S^2 &amp;= \sum_{i=1}^t n_i(\bar{y}_i - \bar{y})^2 \;+\; \sum_{i=1}^t (n_i - 1)S^2_i
+\end{align*}\]</span></p>
+</div>
+<p>Here are the individual treatment summaries for the rat poison data.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Group</th>
+<th align="center">Mean</th>
+<th align="center">SD</th>
+<th align="center">Sample Size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">61</td>
+<td align="center">1.83</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">66</td>
+<td align="center">2.83</td>
+<td align="center">6</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">68</td>
+<td align="center">1.67</td>
+<td align="center">6</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">61</td>
+<td align="center">2.62</td>
+<td align="center">8</td>
+</tr>
+<tr class="odd">
+<td align="center">Overall</td>
+<td align="center">64</td>
+<td align="center"></td>
+<td align="center">24</td>
+</tr>
+</tbody>
+</table>
+<div class="infobox exer">
+<p>Using the summaries above, find <span class="math inline">\(SS_{Trt}\)</span> and <span class="math inline">\(SS_E\)</span> for the rat poison data. Make sure they add up to <span class="math inline">\(SS_{Tot} = 340\)</span>.</p>
+<p><span style="color:#8601AF">
+The treatment sum of squares is given by
+<span class="math display">\[SS_{Trt} \;=\; \sum_{i=1}^t n_i(\bar{y}_i - \bar{y})^2.\]</span>
+For our data, this is
+<span class="math display">\[SS_{Trt} \;=\; 4(61-64)^2 + 6(66-64)^2 + 6(68-64)^2 + 8(61-64)^2 \;=\; 228.\]</span>
+The error sum of squares is given by
+<span class="math display">\[SS_E \;=\; \sum_{i=1}^t (n_i - 1)S^2_i.\]</span>
+For our data, this is
+<span class="math display">\[SS_E \;=\; (4-1)1.83^2 + (6-1)2.83^2 + (6-1)1.67^2 + (8-1)2.62^2 \;=\; 112.\]</span>
+We have
+<span class="math display">\[SS_{Trt} + SS_E \;=\; 228 + 112 \;=\; 340 \;=\; SS_{Tot}\]</span>
+which obeys the ANOVA variance decomposition formula. So 340, representing our total variability, can be broken up into 228 from the treatments and 112 due to random noise.
+</span></p>
+</div>
+</div>
+<div id="anova-test" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> ANOVA test<a href="analysis-of-variance.html#anova-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Our ANOVA hypotheses are
+<span class="math display">\[\begin{align*}
+H_0:&amp; \text{ All groups have the same mean.} \\
+H_A:&amp; \text{ At least one mean is different.}
+\end{align*}\]</span></p>
+<p>To perform the test, we decompose the total variability in the data:
+<span class="math display">\[SS_{Tot} \;=\; SS_{trt} \;+\; SS_E\]</span>
+If <span class="math inline">\(SS_{trt}\)</span> is large compared to <span class="math inline">\(SS_E\)</span>, that is evidence against <span class="math inline">\(H_0\)</span>. Let’s complete this test, with <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<hr />
+<p>In the rat poison example, we found that <span class="math inline">\(SS_{trt}\)</span> (228) is larger than <span class="math inline">\(SS_E\)</span> (112). But, this alone is not evidence against <span class="math inline">\(H_0\)</span>. We can’t compare the sum of squares terms directly.</p>
+<p>Technically, the sum of squares terms are not variances, because they represent <em>total</em> variability. Variance is a measure of <em>average</em> variability across all of the data. To turn the total into an average, we need to divide by an appropriate constant, called degrees of freedom.</p>
+<div class="infobox deff">
+<p>The initial variance formula we learned is
+<span class="math display">\[S^2 \;=\; \frac{\sum (x_i - \bar{x})^2}{n-1}.\]</span>
+In general, variance has the following structure.
+<span class="math display">\[\text{Variance } \;=\; \frac{\text{Total variability}}{\text{Degrees of freedom}}\]</span></p>
+</div>
+<p>Each of the sum of squares terms in our ANOVA has its own corresponding degrees of freedom. We divide each SS term by degrees of freedom to get variance terms.</p>
+<hr />
+<p><span class="math inline">\(SS_{Tot}\)</span> has <span class="math inline">\(N-1\)</span> degrees of freedom, since we are taking the variance of all <span class="math inline">\(N\)</span> observations. <span class="math inline">\(SS_{trt}\)</span> has <span class="math inline">\(t-1\)</span> degrees of freedom, since it is the variance of the <span class="math inline">\(t\)</span> treatment means.</p>
+<p><span class="math inline">\(SS_E\)</span> has a slightly different degrees of freedom term. The df is <span class="math inline">\(N - t\)</span>, since we are pooling the variance of <span class="math inline">\(N\)</span> observations across <span class="math inline">\(t\)</span> treatments. Recall the degrees of freedom for a two-sample T test. It is <span class="math inline">\(n_1 + n_2 - 2\)</span>, which is a specific case of <span class="math inline">\(N - t\)</span>.</p>
+<div class="infobox deff">
+<p>These variance terms are called <strong>mean squares</strong>. They are found by taking the sum of squares terms and dividing by the appropriate df.
+<span class="math display">\[MS_{Tot} = \frac{SS_{Tot}}{N-1},\quad\quad MS_{trt} = \frac{SS_{trt}}{t-1},\quad\quad MS_E = \frac{SS_E}{N-t}\]</span></p>
+</div>
+<p><span class="math inline">\(MS_E\)</span> is a generalization of pooled variance used in the two sample T test. It is an estimator of <span class="math inline">\(\sigma^2\)</span>, which is the common variance across all groups.</p>
+<div class="infobox pond">
+<p>What is another name for <span class="math inline">\(MS_{Tot}\)</span>?</p>
+</div>
+<hr />
+<p><span class="math inline">\(MS_{trt}\)</span> represents between-group variance and <span class="math inline">\(MS_E\)</span> represents within-group variance. Our test statistic, called <span class="math inline">\(F\)</span>, directly compares these two values.
+<span class="math display">\[F \;=\; \frac{MS_{trt}}{MS_E}.\]</span>
+If <span class="math inline">\(H_0\)</span> is true and the group means are equal, then <span class="math inline">\(F\)</span> follows the F distribution. Here is a visual of the F distribution from Wikipedia.</p>
+<p><img src="figs/anova/f_dist.png" width="300px" style="display: block; margin: auto;" /></p>
+<p>The F distribution is a positive, continuous distribution. We can see that it generally has a right-skewed shape, with most of the area being closer to 0. In order to work with the F, we need to specify two degrees of freedom terms.</p>
+<p>In ANOVA, the F degrees of freedom corresapond to the terms in the test statistic. The first df is <span class="math inline">\(df_{trt} = t-1\)</span> and the second df is <span class="math inline">\(df_E = N-t\)</span>. So, if <span class="math inline">\(H_0\)</span> is true,
+<span class="math display">\[F \;\sim\; F_{t-1,\; N-t}.\]</span></p>
+<hr />
+<p>Let’s think about how the value of our test statistic relates to our hypotheses. If the group means are different, than we would expect the between-group variance <span class="math inline">\(MS_{trt}\)</span> to be large. So, <span class="math inline">\(F = \frac{MS_{trt}}{MS_E}\)</span> should also be large. A bigger F statistic corresponds to stronger evidence against the null.</p>
+<p>On the other hand, if the means are all equal, then <span class="math inline">\(MS_{trt}\)</span> and <span class="math inline">\({MS_E}\)</span> should be about the same. An F statistic close to 1 is weak evidence against the null.</p>
+<p>So, very large F statistics lead to rejecting <span class="math inline">\(H_0\)</span>. We calculate a p-value by finding the area on the <span class="math inline">\(F_{t-1, \; N-t}\)</span> distribution <em>above</em> (to the right of) <span class="math inline">\(F\)</span>. Because of how the test statistic is constructed, the positive direction always corresponds to stronger evidence against the null. We do not need to consider the area below <span class="math inline">\(F\)</span>.</p>
+<hr />
+<p>Let’s go back to the rat poison example, where we have 24 total observations across 4 treatments. Previously, we found <span class="math inline">\(SS_{trt} = 228\)</span> and <span class="math inline">\(SS_E = 112\)</span>.</p>
+<div class="infobox exer">
+<p>Let’s continue the ANOVA analysis.</p>
+<ul>
+<li>Find the treatment and error degrees of freedom. Identify the null distribution in this case.</li>
+</ul>
+<p><span style="color:#8601AF">
+The treatment degrees of freedom is <span class="math inline">\(t-1 = 4-1 = 3\)</span>. The error degrees of freedom is <span class="math inline">\(N-t = 24-4 = 20\)</span>. So, the null distribution for this ANOVA is an F distribution with 3 and 20 degrees of freedom.
+</span></p>
+<ul>
+<li>Calculate <span class="math inline">\(MS_{trt}\)</span>, <span class="math inline">\(MS_E\)</span>, and the test statistic <span class="math inline">\(f_{obs}\)</span>.</li>
+</ul>
+<p><span style="color:#8601AF">
+<span class="math display">\[MS_{trt} \;=\; \frac{SS_{trt}}{df_{trt}} \;=\; \frac{228}{3} \;=\; 76.\]</span>
+<span class="math display">\[MS_{E} \;=\; \frac{SS_{E}}{df_{E}} \;=\; \frac{112}{20} \;=\; 5.6.\]</span>
+The observed test statistic is the ratio of between-group variance and within-group variance. This is
+<span class="math display">\[f_{obs} \;=\; \frac{MS_{trt}}{MS_E} \;=\; \frac{76}{5.6} \;=\; 13.571.\]</span>
+</span></p>
+</div>
+<hr />
+<p>There are a lot of numbers to keep track of, so it is useful to organize them in an <strong>ANOVA table</strong>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="center">SS</th>
+<th align="center">df</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+<th align="center">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Treatment</td>
+<td align="center">228</td>
+<td align="center">3</td>
+<td align="center">76</td>
+<td align="center">13.571</td>
+<td align="center">?</td>
+</tr>
+<tr class="even">
+<td align="left">Error</td>
+<td align="center">112</td>
+<td align="center">20</td>
+<td align="center">5.6</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">340</td>
+<td align="center">23</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>Each row corresponds to a different source of variability. For each one, we can record the sum of squares, df and mean squares. There is also a spot for the observed F statistic and the corresponding p-value.</p>
+<p>Note that the SS and df columns are additive. <span class="math inline">\(228 + 112 = 340\)</span> and <span class="math inline">\(3 + 20 = 23\)</span>. When we decompose the total variability, we are also decomposing the total degrees of freedom. 3 are being used to calculate between-group variance and 20 are being used to calcualte within-group variance.</p>
+<div class="infobox pond">
+<p>If the SS terms are held constant, what conditions on <span class="math inline">\(N\)</span> and <span class="math inline">\(t\)</span> make the F statistic larger?</p>
+</div>
+<hr />
+<p>The p-value is the probability (area) above 13.571 on the F distribution with 3 and 20 degrees of freedom. We can find this in R using the <code>pf</code> (probability F) function. Remember to set <code>lower.tail = F</code> since we want to find an area to the right.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="analysis-of-variance.html#cb3-1" tabindex="-1"></a><span class="fu">pf</span>(<span class="fl">13.571</span>, <span class="dv">3</span>, <span class="dv">20</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
+<pre><code>## [1] 4.659436e-05</code></pre>
+<p>We get a very small p-value of <span class="math inline">\(4.7\times 10^{-5}\)</span>. This is certainly small enough to reject the null with <span class="math inline">\(\alpha = 0.05\)</span>. Our completed ANOVA table is</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="center">SS</th>
+<th align="center">df</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+<th align="center">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Treatment</td>
+<td align="center">228</td>
+<td align="center">3</td>
+<td align="center">76</td>
+<td align="center">13.571</td>
+<td align="center"><span class="math inline">\(4.7\times 10^{-5}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Error</td>
+<td align="center">112</td>
+<td align="center">20</td>
+<td align="center">5.6</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">340</td>
+<td align="center">23</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>We reject <span class="math inline">\(H_0\)</span>, so we have evidence that
+<span class="math display">\[\mu_1 = \mu_2 = \mu_3 = \mu_4\]</span>
+is false. This suggests at least one of the means is different from the others, but it does not tell us which one(s).</p>
+<hr />
+<div class="infobox deff">
+<p>In general, an ANOVA table is given by</p>
+<table>
+<colgroup>
+<col width="9%" />
+<col width="10%" />
+<col width="6%" />
+<col width="20%" />
+<col width="21%" />
+<col width="31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Source</th>
+<th align="center">SS</th>
+<th align="center">df</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+<th align="center">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Treatment</td>
+<td align="center"><span class="math inline">\(SS_{trt}\)</span></td>
+<td align="center"><span class="math inline">\(t-1\)</span></td>
+<td align="center"><span class="math inline">\(\frac{SS_{trt}}{t-1}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{MS_{trt}}{MS_E}\)</span></td>
+<td align="center"><span class="math inline">\(P(F_{df_{trt},df_E} &gt; F)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Error</td>
+<td align="center"><span class="math inline">\(SS_E\)</span></td>
+<td align="center"><span class="math inline">\(N-t\)</span></td>
+<td align="center"><span class="math inline">\(\frac{SS_E}{N-t}\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">Total</td>
+<td align="center"><span class="math inline">\(SS_{Tot}\)</span></td>
+<td align="center"><span class="math inline">\(N-1\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The initial step is to calculate the sum of squares and df column for each source. From there, the rest of the columns can be filled in. So, it’s important to understand the relationships between the different columns of the table.</p>
+<hr />
+<p>We can perform this test in R using the <code>aov</code> function. Before we do that, we need to load in our data carefully. First, we enter a vector containing all 24 observations.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="analysis-of-variance.html#cb5-1" tabindex="-1"></a>coag_time <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">62</span>, <span class="dv">60</span>, <span class="dv">63</span>, <span class="dv">59</span>,</span>
+<span id="cb5-2"><a href="analysis-of-variance.html#cb5-2" tabindex="-1"></a>               <span class="dv">63</span>, <span class="dv">67</span>, <span class="dv">71</span>, <span class="dv">64</span>, <span class="dv">65</span>, <span class="dv">66</span>,</span>
+<span id="cb5-3"><a href="analysis-of-variance.html#cb5-3" tabindex="-1"></a>               <span class="dv">68</span>, <span class="dv">66</span>, <span class="dv">71</span>, <span class="dv">67</span>, <span class="dv">68</span>, <span class="dv">68</span>,</span>
+<span id="cb5-4"><a href="analysis-of-variance.html#cb5-4" tabindex="-1"></a>               <span class="dv">56</span>, <span class="dv">62</span>, <span class="dv">60</span>, <span class="dv">61</span>, <span class="dv">63</span>, <span class="dv">64</span>, <span class="dv">63</span>, <span class="dv">59</span>)</span></code></pre></div>
+<p>Now, we need to let R know what group each observation belongs to. I’m going to make a second vector with labels that correspond to the group each numeric observation is in. I repeat “treatment 1” four times, “treatment 2” six times, etc.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="analysis-of-variance.html#cb6-1" tabindex="-1"></a>treatment <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;trt1&quot;</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="st">&quot;trt2&quot;</span>, <span class="dv">6</span>),</span>
+<span id="cb6-2"><a href="analysis-of-variance.html#cb6-2" tabindex="-1"></a>               <span class="fu">rep</span>(<span class="st">&quot;trt3&quot;</span>, <span class="dv">6</span>), <span class="fu">rep</span>(<span class="st">&quot;trt4&quot;</span>, <span class="dv">8</span>))</span></code></pre></div>
+<p>Now, we can perform the ANOVA. We use a ~ symbol within the <code>aov</code> function, and we always put the numeric observations on the left side and the groups on the right. I’m going to save the model in an object called “poison_mod”, then I’ll view a summary to see the ANOVA table.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="analysis-of-variance.html#cb7-1" tabindex="-1"></a><span class="co"># Run ANOVA model and save the model object</span></span>
+<span id="cb7-2"><a href="analysis-of-variance.html#cb7-2" tabindex="-1"></a>poison_mod <span class="ot">&lt;-</span> <span class="fu">aov</span>(coag_time <span class="sc">~</span> treatment)</span>
+<span id="cb7-3"><a href="analysis-of-variance.html#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="analysis-of-variance.html#cb7-4" tabindex="-1"></a><span class="co"># View ANOVA table</span></span>
+<span id="cb7-5"><a href="analysis-of-variance.html#cb7-5" tabindex="-1"></a><span class="fu">summary</span>(poison_mod)</span></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## treatment    3    228    76.0   13.57 4.66e-05 ***
+## Residuals   20    112     5.6                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The values in the table returned by R match our analysis that we did by hand.</p>
+<hr />
+<p>Before we continue, we need to discuss the assumptions of an ANOVA test. This test will not work on all types of data. There are three key assumptions.</p>
+<ul>
+<li>The treatment groups and observations must all be independent.</li>
+<li>All of the treatment groups should be approximately normal.</li>
+<li>The treatment groups share a common variance <span class="math inline">\(\sigma^2\)</span>.</li>
+</ul>
+<p>This is a generalization of the assumptions needed for an equal variances two-sample T test. But in this context, we have more than two groups. It would be tedious to separately check each of these assumptions for all of the groups.</p>
+<p>Instead, we’ll perform a residual analysis. The <strong>residuals</strong> refer to the error in our model when we compare it to the real-life data. If the data obeys the assumptions above, the residuals should also obey those assumptions.</p>
+<hr />
+<div class="infobox deff">
+<p>In general, a residual is given by the difference between an actual observed value and the corresponding value in the analysis.</p>
+<p><span class="math display">\[\text{Residual } = \text{ Observed Value } - \text{ Value Predicted by Model}\]</span></p>
+<p>Or
+<span class="math display">\[\text{Residual } = \text{ Observed } - \text{ Fitted}\]</span></p>
+</div>
+<p>An ANOVA is a study of the treatment means. So our “model” is essentially made up of the four treatment means. The residual, or error, is the difference between an observation and its group mean.</p>
+<p>Take <span class="math inline">\(y_{11} = 62\)</span>. We expect the value of a treatment 1 observation to be 61, since that is the mean of treatment 1. But our observed point is 62, which is 1 off of 61, giving a residual of
+<span class="math display">\[62 - 61 \;=\; 1.\]</span>
+More generally, <span class="math inline">\(e_{ij}\)</span> refers to the residual of point <span class="math inline">\(ij\)</span>.
+<span class="math display">\[e_{ij} \;=\; y_{ij} \;-\; \bar{y}_{i}.\]</span></p>
+<p>We’ve also seen the word “error” used to describe the within-group variance, <span class="math inline">\(SS_E\)</span>. As a matter of fact, <span class="math inline">\(SS_E\)</span> is equal to the sum of the squared residuals.
+<span class="math display">\[SS_E \;=\; \sum e_{ij}^2.\]</span>
+<span class="math inline">\(e_{ij}\)</span> quantifies the error for a specific point, and <span class="math inline">\(SS_E\)</span> quantifies the total error in our entire model.</p>
+<hr />
+<p>Let’s return to our assumptions. If the groups are approximately normal, then the residuals should also have a normal shape. Instead of making separate qq-plots for each of the four groups, we can make a single qq-plot with all of our model residuals.</p>
+<p>In R, we can use <code>resid</code> to extract the residuals from the ANOVA object we fit before.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="analysis-of-variance.html#cb9-1" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">resid</span>(poison_mod)); <span class="fu">qqline</span>(<span class="fu">resid</span>(poison_mod))</span></code></pre></div>
+<p><img src="11-anova_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>In our case, the residuals seem to be normal, so the normality assumption is safe.</p>
+<hr />
+<p>If the groups have constant variance, then that means the residuals should be about equally spread out for each group. To check this, we make a plot with fitted values (group means) on the x-axis and the residuals on the y-axis. The R function <code>fitted</code> will extract the fitted values for us.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analysis-of-variance.html#cb10-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(poison_mod), <span class="fu">resid</span>(poison_mod))</span></code></pre></div>
+<p><img src="11-anova_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>We want the vertical spread to be about the same across the different groups. That seems to be the case here.</p>
+<p>We can also check this numerically by looking at the same standard deviations. We want the smallest sd and the largest sd to be within a factor of 2. The smallest sd is 1.67, from group 4. The largest sd is 2.83, from group 2. We see
+<span class="math display">\[0.5 &lt; \frac{1.67}{2.83} &lt; 2\]</span>
+which confirms that the constant variance assumption is appropriate. Here are a few examples of what non-constant variance might look like.</p>
+<p><img src="figs/anova/nonconst_variance.png" width="300px" style="display: block; margin: auto;" /></p>
+<p>In the first picture, the residuals increase as the fitted value increases. In the second graph, there isn’t really a pattern, but the middle group is just less spread out for some reason.</p>
+<hr />
+<p>So, both of the assumptions are met for our data, which means that an ANOVA analysis is appropriate. We can trust the conclusions from the ANOVA table we made on the rat poison data.</p>
+<p>It seems a little weird to fit a model and <em>then</em> check the assumptions. We can always fit a model on any data with this structure, regardless of whether it is appropriate or not. It’s important that we do the residual analysis to “validate” our model. If the assumptions are met, then we can report the conclusions from the analysis.</p>
+</div>
+<div id="post-hoc-analysis" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Post-hoc analysis<a href="analysis-of-variance.html#post-hoc-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We have completed an ANOVA on the rat poison data, and we have a significant result. We conclude that at least one mean is sidgnificantly different from the others.</p>
+<p>But which means are different, in what direction, and by how much? We don’t know any of this information after the initial ANOVA. We need to study the treatments further in a post-hoc analysis.</p>
+<hr />
+<p>A post-hoc analysis (or post-hoc testing) is based on pairwise comparisons. That is to say, we study every possible pair of treatments individually. For the rat poison data, we have four groups, which corresponds to six pairs.
+<span class="math display">\[1 \text{ vs }2, \quad 1 \text{ vs } 3, \quad 1 \text{ vs } 4\]</span>
+<span class="math display">\[2 \text{ vs } 3, \quad 2\text{ vs } 4, \quad 3 \text{ vs } 4\]</span></p>
+<p>Typically, we build CIs for every pair that correspond to the difference in means. We have seen this already, with the two-sample T test in chapter 9.</p>
+<p>Suppose we want to compare grouops 1 and 2. The point estimate for the CI is the difference in observed means <span class="math inline">\(\bar{y}_1 - \bar{y}_2\)</span>. In chapter 9, in the two-sammple context, we used the following formula.</p>
+<p><span class="math display">\[\bar{y}_{1} - \bar{y}_{2} \;\pm\; t_{n_1+n_2-2, \alpha/2} \times s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_{2}}}\]</span></p>
+<p>We use a critical value from the t with <span class="math inline">\(n_1 + n_2 - 2\)</span> degrees of freedom, and we use a pooled standard deviation to get the standard error. The formula above only uses the information from groups 1 and 2.</p>
+<hr />
+<p>The idea with an ANOVA post-hoc analysis is that we don’t need to restrict ourlseves to just looking at groups 1 and 2. We can make use of information from all of the groups to build the CI.</p>
+<p>To complete the ANOVA, we assume all groups have equal variance, which is a fairly powerful assumption. This means that we can use all of the groups for the purpose of estimating the variance. The pooled variance is given by <span class="math inline">\(MS_E\)</span> from our ANOVA table. And when we find our t critical value, we use the error df, <span class="math inline">\(N - t\)</span>. Our new CI formula is
+<span class="math display">\[\bar{y}_{1} - \bar{y}_{2} \;\pm\; t_{N-t, \alpha/2}\times \sqrt{MS_E\Big(\frac{1}{n_1}+\frac{1}{n_{2}}\Big)}.\]</span>
+We are making use of more information, so this method is more powerful than the two-sample T CI from chapter 9.</p>
+<hr />
+<div class="infobox deff">
+<p>The name for this procedure is <strong>Fisher’s Least Significant Difference</strong> or just Fisher’s method. In general, to compare groups <span class="math inline">\(i\)</span> and <span class="math inline">\(i&#39;\)</span> after an ANOVA, use CI
+<span class="math display">\[\bar{y}_{i} - \bar{y}_{i&#39;} \pm t_{N-t, \alpha/2}\times \sqrt{MS_E\Big(\frac{1}{n_i}+\frac{1}{n_{i&#39;}}\Big)}.\]</span></p>
+</div>
+<p>If there are only two treatments, ANOVA is exactly equal to the two-sample equal variances T test. The test statistics have the relationship <span class="math inline">\(T^2 = F\)</span>.</p>
+<div class="infobox pond">
+<p>Think about why <span class="math inline">\(MS_E\)</span> is a generalization of pooled variance from chapter 9.
+<span class="math display">\[MS_E \;=\; \frac{\sum_{i=1}^t (n_i - 1)S^2_i}{N-t}\]</span>
+<span class="math display">\[S^2 \;=\;  \frac{(n_{1}-1)s_{1}^2 \;+\; (n_{2}-1)s_{2}^2}{n_{1} + n_{2} - 2}\]</span></p>
+</div>
+<hr />
+<p>Let’s build a 95% CI to compare groups 1 and 2. We have <span class="math inline">\(\bar{y}_1 = 61\)</span>, <span class="math inline">\(\bar{y}_2 = 66\)</span>, <span class="math inline">\(n_1 = 4, n_2 = 6\)</span>, and <span class="math inline">\(MS_E = 5.6\)</span>. The critical value comes from the t with <span class="math inline">\(N-t = 20\)</span> degrees of freedom.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="analysis-of-variance.html#cb11-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## [1] 2.085963</code></pre>
+<p>For 95% confidence, we use the critical value 2.086. The CI is
+<span class="math display">\[\begin{align*}
+\bar{y}_{1} - \bar{y}_{2} \; &amp;\pm\; t_{N-t, \alpha/2}\times \sqrt{MS_E\Big(\frac{1}{n_1}+\frac{1}{n_{2}}\Big)} \\ \\
+61 - 66 &amp;\pm 2.086\sqrt{5.6\Big(\frac{1}{4}+\frac{1}{6}\Big)} \\ \\
+&amp;= (-8.19, -1.81)
+\end{align*}\]</span></p>
+<p>The confidence interval does not contain 0, which suggests that the means of treatments 1 and 2 are significantly different.</p>
+<hr />
+<p>All six pairwise intervals are given by
+<span class="math display">\[\begin{align*}
+\text{1 vs 2: } 61 -66 \pm 2.086\sqrt{5.6(1/4 + 1/6)} &amp;= (-8.19, -1.81)\; \bigstar \\
+\text{1 vs 3: } 61 -68 \pm 2.086\sqrt{5.6(1/4 + 1/6)} &amp;= (-10.19, -3.81)\; \bigstar \\
+\text{1 vs 4: } 61 -61 \pm 2.086\sqrt{5.6(1/4 + 1/8)} &amp;= (-3.02, 3.02) \\
+\text{2 vs 3: } 66 -68 \pm 2.086\sqrt{5.6(1/6 + 1/6)} &amp;= (-4.85, 0.85) \\
+\text{2 vs 4: } 66 -61 \pm 2.086\sqrt{5.6(1/6 + 1/8)} &amp;= (2.33, 7.67)\; \bigstar \\
+\text{3 vs 4: } 68 -61 \pm 2.086\sqrt{5.6(1/6 + 1/8)} &amp;= (4.33, 9.67)\; \bigstar
+\end{align*}\]</span></p>
+<p>Intervals with <span class="math inline">\(\bigstar\)</span> don’t contain 0. We conclude that 2 and 3 seem to be the same, and 1 and 4 seem to be the same, but 2 and 3 differ from 1 and 4.</p>
+<p>It is useful to summarize the results by sorting the means in a table from highest to lowest. We then assign letter codes based on whether or not the means are significantly different.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Treatment</th>
+<th align="center">Mean</th>
+<th align="center">Letter Code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">68</td>
+<td align="center">A</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">66</td>
+<td align="center">A</td>
+</tr>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">61</td>
+<td align="center">B</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">61</td>
+<td align="center">B</td>
+</tr>
+</tbody>
+</table>
+<p>Every pair with significantly different means have different letters. Two treatments share a letter if they are not significantly different. Note that this might result in some means having more than one letter.</p>
+<hr />
+<p>There is a problem with this procedure that reflects a general problem in the field of statistics. It is considered bad practice to do several tests in a row. Doing a large collection of tests inflates the probabilitiy of making a type I error (false positive) <em>at least once</em>.</p>
+<p>Each test is a new opportunity to make a false positive error. So, if we are doing lots of tests, it is unlikely that they are all done without error.</p>
+<p>When we do a single test with probability <span class="math inline">\(\alpha\)</span>, the probability that we don’t make a type I error is <span class="math inline">\(1 - \alpha\)</span>. Now imagine doing two tests in a row. Assuming the tests are independent, we would have to hit the <span class="math inline">\(1-\alpha\)</span> twice in a row to avoid making any mistakes. This gives us
+<span class="math display">\[(1-\alpha)^2\]</span>
+We can continue doing more and more tests. Each new test is a new case where we want to get the <span class="math inline">\((1-\alpha)\)</span> probability. Generally, if we are doing <span class="math inline">\(m\)</span> hypothesis tests, the probability that all tests are done <em>perfectly</em> with no type I errors is
+<span class="math display">\[(1-\alpha)^m.\]</span>
+This quantity approaches 0 as <span class="math inline">\(m\)</span> gets bigger. In this context, we want to find the probability of making at least one error in our entire analysis. This probability is the complement of the above probability.</p>
+<div class="infobox deff">
+<p>The <strong>familywise error rate</strong> is the probability of making at least one type I (false positive) error across <span class="math inline">\(m\)</span> tests. It is given by
+<span class="math display">\[1 - (1-\alpha)^m\]</span>
+and it approaches 0 as <span class="math inline">\(m\)</span> increases.</p>
+</div>
+<hr />
+<p>Let’s demonstrate with <span class="math inline">\(\alpha = 0.05\)</span>. For a single test, the probability of not making an error is <span class="math inline">\(0.95\)</span>. For two tests, this probability becomes <span class="math inline">\((0.95)^2 = 0.9025.\)</span> So the probability of making at least one error is <span class="math inline">\(1 - 0.9025 = 0.0975\)</span>. Here is a table showing how the familywise error rate (FWER) increases with <span class="math inline">\(m\)</span>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(m\)</span></th>
+<th align="center">FWER</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">0.05</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">0.0975</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">0.2262</td>
+</tr>
+<tr class="even">
+<td align="center">10</td>
+<td align="center">0.4013</td>
+</tr>
+</tbody>
+</table>
+<p>If we are doing 10 tests, there is a 40% chance we make at least 1 error! This is pretty bad if our original desired type I error rate is 0.05. This problem affects our ANOVA post-hoc analysis, since we have to do multiple pairwise comparisons. If we want to do all of the pairwise comparisons for <span class="math inline">\(t\)</span> treatments, we have to do
+<span class="math display">\[m = \frac{t(t-1)}{2}\]</span>
+comparisons.</p>
+<hr />
+<p>We want to find a way to bound our familywise error rate so that it is comparable to our original chosen <span class="math inline">\(\alpha\)</span>. How does this work for our post-hoc CIs?</p>
+<p>The “riskiness” of a CI has to do with its width. A narrow CI is less likely to cover 0, so it is more likely to give a significant result (more powerful). But in the context of multiple comparisons, we want to sacrifice some power in order to do a more conservative test.</p>
+<p>We need our CIs to be wider, since they are more likely to cover 0, i.e. more likely to return a non-significant result. The way that we control this is by changing the critical value.</p>
+<div class="infobox deff">
+<p>In general, the formula for a post-ANOVA CI to compare treatments <span class="math inline">\(i\)</span> and <span class="math inline">\(i&#39;\)</span> is
+<span class="math display">\[\bar{y}_{i} - \bar{y}_{i&#39;} \pm (\text{critical value})\times \sqrt{MS_E\Big(\frac{1}{n_i}+\frac{1}{n_{i&#39;}}\Big)}.\]</span></p>
+</div>
+<p>Fisher’s method is an example where we use the regular <span class="math inline">\(\alpha/2\)</span> t critical value. We will discuss two more methods, Bonferroni and Tukey. Both of these methods use the same general formula, but they have different critical values. The critical values are larger than the Fisher critical value, giving us wider intervals.</p>
+<hr />
+<p>Bonferroni’s method works by directly adjusting our <span class="math inline">\(\alpha\)</span> based on how many comparisons we are doing. We set <span class="math inline">\(\alpha\)</span>, such as 0.05, as our desired FWER. Then the <span class="math inline">\(\alpha\)</span> that we use when building an individual CI is
+<span class="math display">\[\alpha_B \;=\; \frac{\alpha}{m}.\]</span>
+We simply take our <span class="math inline">\(\alpha\)</span> and divide by the number of comparisons. For example, if we wanted to make three comparisons at the 10% level, each of the three CIs would use a significance level of <span class="math inline">\(\frac{0.1}{3} = .0333\)</span>.</p>
+<p>We still use a t critical value with <span class="math inline">\(df_E = N-t\)</span> degrees of freedom. Instead of the <span class="math inline">\(\alpha/2\)</span> critical value, we use the <span class="math inline">\(\alpha/2m\)</span> critical value.</p>
+<div class="infobox exer">
+<p>In the rat poison example, the error df is 20, and we have <span class="math inline">\(m = 6\)</span> comparisons. Find the Bonferroni critical value for FWER$ = 0.05$ and compare it to the Fisher critical value of 2.086.</p>
+<p><span style="color:#8601AF">
+If we want an overall FWER of 0.05, then we set the individual CI level as
+<span class="math display">\[\frac{0.05}{6}.\]</span>
+In R, we write
+</span></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analysis-of-variance.html#cb13-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">12</span>, <span class="at">df =</span> <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## [1] 2.927119</code></pre>
+<p><span style="color:#8601AF">
+We divide by six because of the Bonferroni correction, then additionally divide by 2 since that is the usual procedure for finding critical values. Our Bonferroni critical value is 2.927, which is considerably larger than the original value of 2.086.
+</span></p>
+</div>
+<hr />
+<p>For groups 1 vs 2, the Fisher critical value is 2.086 and the CI is
+<span class="math display">\[61 -66 \pm 2.086\sqrt{5.6(1/4 + 1/6)} \;=\; (-8.19, -1.81)\]</span>
+The Bonferroni critical value is 2.927 and the CI is
+<span class="math display">\[61 -66 \pm 2.927\sqrt{5.6(1/4 + 1/6)} \;=\; (-9.47, -0.53)\]</span>
+Everything in the formula stays the same, except for the critical value. We see that the Bonferroni CI is wider.</p>
+<p>All of our Bonferroni pairwise CIs are given by
+Our pairwise Bonferroni 95% CIs are: <span class="math display">\[\begin{align*}
+\text{1 vs 2: } 61 -66 \pm 2.927\sqrt{5.6(1/4 + 1/6)} &amp;= (-9.47, -0.53)\; \bigstar \\
+\text{1 vs 3: } 61 -68 \pm 2.927\sqrt{5.6(1/4 + 1/6)} &amp;= (-11.47, -2.53)\; \bigstar \\
+\text{1 vs 4: } 61 -61 \pm 2.927\sqrt{5.6(1/4 + 1/8)} &amp;= (-4.24, 4.24) \\
+\text{2 vs 3: } 66 -68 \pm 2.927\sqrt{5.6(1/6 + 1/6)} &amp;= (-6.00, 2.00) \\
+\text{2 vs 4: } 66 -61 \pm 2.927\sqrt{5.6(1/6 + 1/8)} &amp;= (1.26, 8.74)\; \bigstar \\
+\text{3 vs 4: } 68 -61 \pm 2.927\sqrt{5.6(1/6 + 1/8)} &amp;= (3.26, 10.74)\; \bigstar
+\end{align*}\]</span></p>
+<p>In our case, none of the conclusions change. But Bonferroni will sometimes return a non-significant result even when Fisher’s method is significant. If we compare the CIs above to their Fisher method counterparts, we see that these ones are wider. Thus the Bonferroni method produces intervals that are more likely to cover 0.</p>
+<p>The Bonferroni method is not specific to the problem of post-hoc testing. It can be used in any situation where we need to perform multiple tests/comparisons.</p>
+<div class="infobox pond">
+<p>The example above shows CIs, but the Bonferroni method also works with hypothesis tests. If you were given a series of <span class="math inline">\(p-values\)</span> from <span class="math inline">\(m\)</span> tests, how would you use the Bonferroni method to make conclusions with <span class="math inline">\(\alpha = 0.05\)</span>?</p>
+</div>
+<hr />
+<p>Another method for post-ANOVA testing is Tukey’s method. This is a procedure that is specific to the problem of compraing multiple means. The critical value comes from a distribution called the “studentized range distribution”, described by <span class="math inline">\(Q\)</span>.</p>
+<p>We don’t need to know the specifics of this distribution. You need to provide the <span class="math inline">\(\alpha\)</span>, the number of treatments, and and the error df. The critical value used in a Tukey confidence interval is
+<span class="math display">\[\frac{Q_{\alpha, t, df_E}}{\sqrt{2}}.\]</span>
+It is a percentile on this distribution, divided by <span class="math inline">\(\sqrt{2}\)</span>. We can find this with the <code>qtukey</code> function in R. For the rat poison data, we would use</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="analysis-of-variance.html#cb15-1" tabindex="-1"></a><span class="fu">qtukey</span>(<span class="fl">0.95</span>, <span class="dv">4</span>, <span class="dv">20</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 2.798936</code></pre>
+<p>Note that we don’t divide <span class="math inline">\(\alpha\)</span> by 2 in this R function. We get a critical valuue of 2.799, which is larger than our Fisher critical value, but smaller than our Bonferroni critical value.</p>
+<hr />
+<p>Our Tukey CIs are</p>
+<p><span class="math display">\[\begin{align*}
+\text{1 vs 2: } 61 -66 \pm 2.799\sqrt{5.6(1/4 + 1/6)} &amp;= (-9.28, -0.72)\; \bigstar \\
+\text{1 vs 3: } 61 -68 \pm 2.799\sqrt{5.6(1/4 + 1/6)} &amp;= (-11.28, -2.72)\; \bigstar \\
+\text{1 vs 4: } 61 -61 \pm 2.799\sqrt{5.6(1/4 + 1/8)} &amp;= (-4.06, 4.06) \\
+\text{2 vs 3: } 66 -68 \pm 2.799\sqrt{5.6(1/6 + 1/6)} &amp;= (-5.82, 1.82) \\
+\text{2 vs 4: } 66 -61 \pm 2.799\sqrt{5.6(1/6 + 1/8)} &amp;= (1.42, 8.58)\; \bigstar \\
+\text{3 vs 4: } 68 -61 \pm 2.799\sqrt{5.6(1/6 + 1/8)} &amp;= (3.42, 10.58)\; \bigstar \\
+\end{align*}\]</span></p>
+<p>Again, these are exactly the same as the intervals we’ve already made, except for the critical value. The intervals are wider than the Fisher intervals, but narrower than the Bonferroni intervals.</p>
+<hr />
+<p>We’ve seen three procedures that we can use following a significant ANOVA result. How should we choose which one to use?</p>
+<ul>
+<li>When there are more than 2 or 3 groups, Fisher’s is not recommended, because of the high FWER.</li>
+<li>Bonferroni is straightforward to perform, but can have very low power for very large <span class="math inline">\(m\)</span>.</li>
+<li>If we want to perform all pairwise comparisons, Tukey will always be more powerful than Bonferroni.</li>
+<li>If you are only doing some pairwise comparisons, Bonferroni might be more powerful than Tukey.</li>
+</ul>
+<p>In problems for STAT 371, you will be told which of the three methods to use.</p>
+</div>
+<div id="non-normal-data" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Non-normal data<a href="analysis-of-variance.html#non-normal-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The ANOVA requires the normality assumption. Let’s explore another method for comparing means that does not require normality.</p>
+<p>Several measurements of sulfur dioxide (SO<span class="math inline">\(_2\)</span>) concentration are taken for four different power plants. The data is:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Treatment</th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center">Sample Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">438</td>
+<td align="center">619</td>
+<td align="center">732</td>
+<td align="center">638</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">606.8</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">857</td>
+<td align="center">1014</td>
+<td align="center">1153</td>
+<td align="center">883</td>
+<td align="center">1053</td>
+<td align="center"></td>
+<td align="center">992.0</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">925</td>
+<td align="center">786</td>
+<td align="center">1179</td>
+<td align="center">786</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">919.0</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">893</td>
+<td align="center">891</td>
+<td align="center">917</td>
+<td align="center">695</td>
+<td align="center">675</td>
+<td align="center">595</td>
+<td align="center">777.7</td>
+</tr>
+</tbody>
+</table>
+<p>We want to test whether or not the powerplants have the same mean SO<span class="math inline">\(_2\)</span> concentration.</p>
+<hr />
+<p>Let’s fit a regular ANOVA in R and check the normality of the residuals.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="analysis-of-variance.html#cb17-1" tabindex="-1"></a>so2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">438</span>, <span class="dv">619</span>, <span class="dv">732</span>, <span class="dv">638</span>,</span>
+<span id="cb17-2"><a href="analysis-of-variance.html#cb17-2" tabindex="-1"></a>         <span class="dv">857</span>, <span class="dv">1014</span>, <span class="dv">1153</span>, <span class="dv">883</span>, <span class="dv">1053</span>,</span>
+<span id="cb17-3"><a href="analysis-of-variance.html#cb17-3" tabindex="-1"></a>         <span class="dv">925</span>, <span class="dv">786</span>, <span class="dv">1179</span>, <span class="dv">786</span>,</span>
+<span id="cb17-4"><a href="analysis-of-variance.html#cb17-4" tabindex="-1"></a>         <span class="dv">893</span>, <span class="dv">891</span>, <span class="dv">917</span>, <span class="dv">695</span>, <span class="dv">675</span>, <span class="dv">595</span>)</span>
+<span id="cb17-5"><a href="analysis-of-variance.html#cb17-5" tabindex="-1"></a>plants <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;plant1&quot;</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="st">&quot;plant2&quot;</span>, <span class="dv">5</span>),</span>
+<span id="cb17-6"><a href="analysis-of-variance.html#cb17-6" tabindex="-1"></a>            <span class="fu">rep</span>(<span class="st">&quot;plant3&quot;</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="st">&quot;plant4&quot;</span>, <span class="dv">6</span>))</span>
+<span id="cb17-7"><a href="analysis-of-variance.html#cb17-7" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="analysis-of-variance.html#cb17-8" tabindex="-1"></a>plant_mod <span class="ot">&lt;-</span> <span class="fu">aov</span>(so2 <span class="sc">~</span> plants)</span>
+<span id="cb17-9"><a href="analysis-of-variance.html#cb17-9" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="analysis-of-variance.html#cb17-10" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">resid</span>(plant_mod)); <span class="fu">qqline</span>(<span class="fu">resid</span>(plant_mod))</span></code></pre></div>
+<p><img src="11-anova_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>The plot looks okay, but there are some strange patterns in the tail. We may not want to assume normality, which means we cannot use the result of the ANOVA.</p>
+<hr />
+<p>We can use a rank-based method called the Kruskal-Wallis test. This is a generalization of the Wilcox rank sum test in chapter 9. It compares the locations of several groups. The hypotheses are
+<span class="math display">\[\begin{align*}
+H_0: &amp;\text{ All groups have the same distribution.} \\
+H_A: &amp;\text{ The groups have the same shape, but at least one group is} \\
+&amp; \text{  shifted relative to the others.}
+\end{align*}\]</span>
+which is essentially a more generic version of the ANOVA hypotheses about the means.</p>
+<p>It’s not important to go into the details of this test, so we can let R do the work for us with the <code>kruskal.test</code> function. It has the same syntax as <code>aov</code>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="analysis-of-variance.html#cb18-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(so2 <span class="sc">~</span> plants)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  so2 by plants
+## Kruskal-Wallis chi-squared = 9.2913, df = 3, p-value = 0.02566</code></pre>
+<p>We have a p-value of 0.026, which is fairly small. Following a significant Kruskal-Wallis test, we could perform pairwise rank sum tests to investigate the data further.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="testing-paired-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/11-anova.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

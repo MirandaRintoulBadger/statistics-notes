@@ -23,7 +23,7 @@
 <meta name="author" content="Miranda Rintoul" />
 
 
-<meta name="date" content="2024-08-16" />
+<meta name="date" content="2024-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="two-sample-testing.html"/>
-
+<link rel="next" href="analysis-of-variance.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -213,6 +213,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="testing-paired-data.html"><a href="testing-paired-data.html#signed-rank-test"><i class="fa fa-check"></i><b>10.2</b> Signed rank test</a></li>
 <li class="chapter" data-level="10.3" data-path="testing-paired-data.html"><a href="testing-paired-data.html#median-test-1"><i class="fa fa-check"></i><b>10.3</b> Median test</a></li>
 </ul></li>
+<li class="chapter" data-level="11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>11</b> Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#more-than-two-groups"><i class="fa fa-check"></i><b>11.1</b> More than two groups</a></li>
+<li class="chapter" data-level="11.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#variance-decomposition"><i class="fa fa-check"></i><b>11.2</b> Variance decomposition</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -235,6 +240,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="testing-paired-data" class="section level1 hasAnchor" number="10">
 <h1><span class="header-section-number">Chapter 10</span> Testing Paired Data<a href="testing-paired-data.html#testing-paired-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figs/comics/ch10.png" width="300px" style="display: block; margin: auto;" /></p>
 <p>Chapter 9 covers several techniques for comparing two independent samples of data. Now, we will discuss an example where the data has an additional paired structure. Two groups that are paired are not independent, but we can take advantage of the structure when performing an analysis.</p>
 <div id="paired-t-test" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Paired T test<a href="testing-paired-data.html#paired-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -289,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <p>Let’s begin by graphing the data. When there is a paired structure, it is useful to connect paired observations together.</p>
 <p>I’ll plot the Standard and Varied data on separate sides of the graph, with the response variable on the y axis.</p>
-<p><img src="10-paired-data_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="10-paired-data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>If the two groups were different, we would expect to see a systematic increase or decrease from Standard to Varied. In our graph, there does not seem to be a very strong pattern. Some lines go up, some go down, and some are about the same.</p>
 <p>It does look like the Varied group has a somewhat higher center, so we need to perform a test to see if this is significant.</p>
 <hr />
@@ -422,7 +428,7 @@ Use <span class="math inline">\(\alpha = 0.1\)</span>.</p>
 For a T test, we need to have independence. In this context, we have to assume that the eight pairs (the eight workers) are independent of each other. We also need to have approximately normal data. Since we are doing a paired T test, we will make a qq-plot of the <em>differences</em>.
 </span></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="testing-paired-data.html#cb3-1" tabindex="-1"></a><span class="fu">qqnorm</span>(diff); <span class="fu">qqline</span>(diff)</span></code></pre></div>
-<p><img src="10-paired-data_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="10-paired-data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p><span style="color:#8601AF">
 The data appears to be normal, so a T test is appropriate here.
 </span></p>
@@ -672,8 +678,8 @@ Our p-value is much larger than <span class="math inline">\(\alpha = 0.1\)</span
           </div>
         </div>
       </div>
-<a href="two-sample-testing.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="two-sample-testing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis-of-variance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

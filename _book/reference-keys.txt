@@ -63,3 +63,9 @@ testing-paired-data
 paired-t-test
 signed-rank-test
 median-test-1
+analysis-of-variance
+more-than-two-groups
+variance-decomposition
+anova-test
+post-hoc-analysis
+non-normal-data

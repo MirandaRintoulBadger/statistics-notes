@@ -1,5 +1,10 @@
 # Testing Paired Data
 
+```{r,echo=F, out.width="300px", fig.align="center"}
+knitr::include_graphics("figs/comics/ch10.png")
+```
+
+
 Chapter 9 covers several techniques for comparing two independent samples of data.  Now, we will discuss an example where the data has an additional paired structure.  Two groups that are paired are not independent, but we can take advantage of the structure when performing an analysis.
 
 ## Paired T test

@@ -1,5 +1,8 @@
 # Testing Paired Data
 
+<img src="figs/comics/ch10.png" width="300px" style="display: block; margin: auto;" />
+
+
 Chapter 9 covers several techniques for comparing two independent samples of data.  Now, we will discuss an example where the data has an additional paired structure.  Two groups that are paired are not independent, but we can take advantage of the structure when performing an analysis.
 
 ## Paired T test
@@ -29,7 +32,7 @@ Let's begin by graphing the data.  When there is a paired structure, it is usefu
 
 I'll plot the Standard and Varied data on separate sides of the graph, with the response variable on the y axis.
 
-<img src="10-paired-data_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+<img src="10-paired-data_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 If the two groups were different, we would expect to see a systematic increase or decrease from Standard to Varied.  In our graph, there does not seem to be a very strong pattern.  Some lines go up, some go down, and some are about the same.
 
@@ -114,7 +117,7 @@ For a T test, we need to have independence.  In this context, we have to assume 
 qqnorm(diff); qqline(diff)
 ```
 
-<img src="10-paired-data_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="10-paired-data_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 <span style="color:#8601AF">
 The data appears to be normal, so a T test is appropriate here.
