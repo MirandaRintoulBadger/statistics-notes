@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 12 Linear Regression | Statistics 371 Full Notes</title>
+  <meta name="description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 12 Linear Regression | Statistics 371 Full Notes" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 12 Linear Regression | Statistics 371 Full Notes" />
+  
+  <meta name="twitter:description" content="Introductory Applied Statistics for the Life Sciences" />
+  
+
+<meta name="author" content="Miranda Rintoul" />
+
+
+<meta name="date" content="2024-08-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="analysis-of-variance.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistics 371 Full Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction To Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#statistics"><i class="fa fa-check"></i><b>1.1</b> Statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#key-terms"><i class="fa fa-check"></i><b>1.2</b> Key terms</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#types-of-data"><i class="fa fa-check"></i><b>1.3</b> Types of data</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#course-outline"><i class="fa fa-check"></i><b>1.4</b> Course outline</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histograms"><i class="fa fa-check"></i><b>2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>2.2</b> Location</a></li>
+<li class="chapter" data-level="2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#spread"><i class="fa fa-check"></i><b>2.3</b> Spread</a></li>
+<li class="chapter" data-level="2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#box-plots"><i class="fa fa-check"></i><b>2.4</b> Box plots</a></li>
+<li class="chapter" data-level="2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#multiple-datasets"><i class="fa fa-check"></i><b>2.5</b> Multiple datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> Probability</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#sampling"><i class="fa fa-check"></i><b>3.1</b> Sampling</a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#probability-basics"><i class="fa fa-check"></i><b>3.2</b> Probability basics</a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>3.3</b> Conditional probability</a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>3.4</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="random-variables.html"><a href="random-variables.html"><i class="fa fa-check"></i><b>4</b> Random Variables</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="random-variables.html"><a href="random-variables.html#random-variable-basics"><i class="fa fa-check"></i><b>4.1</b> Random variable basics</a></li>
+<li class="chapter" data-level="4.2" data-path="random-variables.html"><a href="random-variables.html#expectation-and-variance"><i class="fa fa-check"></i><b>4.2</b> Expectation and variance</a></li>
+<li class="chapter" data-level="4.3" data-path="random-variables.html"><a href="random-variables.html#binomial-random-variables"><i class="fa fa-check"></i><b>4.3</b> Binomial random variables</a></li>
+<li class="chapter" data-level="4.4" data-path="random-variables.html"><a href="random-variables.html#rules-of-expectation-and-variance"><i class="fa fa-check"></i><b>4.4</b> Rules of expectation and variance</a></li>
+<li class="chapter" data-level="4.5" data-path="random-variables.html"><a href="random-variables.html#normal-random-variables"><i class="fa fa-check"></i><b>4.5</b> Normal random variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>5</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="estimation.html"><a href="estimation.html#estimation-1"><i class="fa fa-check"></i><b>5.1</b> Estimation</a></li>
+<li class="chapter" data-level="5.2" data-path="estimation.html"><a href="estimation.html#sampling-distributions"><i class="fa fa-check"></i><b>5.2</b> Sampling distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="estimation.html"><a href="estimation.html#central-limit-theorem"><i class="fa fa-check"></i><b>5.3</b> Central Limit Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#z-confidence-interval"><i class="fa fa-check"></i><b>6.1</b> Z confidence interval</a></li>
+<li class="chapter" data-level="6.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-interpretation"><i class="fa fa-check"></i><b>6.2</b> Confidence interval interpretation</a></li>
+<li class="chapter" data-level="6.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#t-confidence-interval"><i class="fa fa-check"></i><b>6.3</b> T confidence interval</a></li>
+<li class="chapter" data-level="6.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#proportion-ci"><i class="fa fa-check"></i><b>6.4</b> Proportion CI</a></li>
+<li class="chapter" data-level="6.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-confidence-interval"><i class="fa fa-check"></i><b>6.5</b> Bootstrap confidence interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-t-test"><i class="fa fa-check"></i><b>7.1</b> One-sample T test</a></li>
+<li class="chapter" data-level="7.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors"><i class="fa fa-check"></i><b>7.2</b> Errors</a></li>
+<li class="chapter" data-level="7.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sided-tests"><i class="fa fa-check"></i><b>7.3</b> One-sided tests</a></li>
+<li class="chapter" data-level="7.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-z-test"><i class="fa fa-check"></i><b>7.4</b> One-sample Z test</a></li>
+<li class="chapter" data-level="7.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#power"><i class="fa fa-check"></i><b>7.5</b> Power</a></li>
+<li class="chapter" data-level="7.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#bootstrap-test"><i class="fa fa-check"></i><b>7.6</b> Bootstrap test</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html"><i class="fa fa-check"></i><b>8</b> Other One-Sample Tests</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html#one-sample-proportion-test"><i class="fa fa-check"></i><b>8.1</b> One-sample proportion test</a></li>
+<li class="chapter" data-level="8.2" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html#median-test"><i class="fa fa-check"></i><b>8.2</b> Median test</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="two-sample-testing.html"><a href="two-sample-testing.html"><i class="fa fa-check"></i><b>9</b> Two-Sample Testing</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="two-sample-testing.html"><a href="two-sample-testing.html#equal-variances-t-test"><i class="fa fa-check"></i><b>9.1</b> Equal variances T test</a></li>
+<li class="chapter" data-level="9.2" data-path="two-sample-testing.html"><a href="two-sample-testing.html#unequal-variances-t-test"><i class="fa fa-check"></i><b>9.2</b> Unequal variances T test</a></li>
+<li class="chapter" data-level="9.3" data-path="two-sample-testing.html"><a href="two-sample-testing.html#two-sample-proportion-test"><i class="fa fa-check"></i><b>9.3</b> Two-sample proportion test</a></li>
+<li class="chapter" data-level="9.4" data-path="two-sample-testing.html"><a href="two-sample-testing.html#two-sample-bootstrap-test"><i class="fa fa-check"></i><b>9.4</b> Two-sample bootstrap test</a></li>
+<li class="chapter" data-level="9.5" data-path="two-sample-testing.html"><a href="two-sample-testing.html#rank-sum-test"><i class="fa fa-check"></i><b>9.5</b> Rank sum test</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="testing-paired-data.html"><a href="testing-paired-data.html"><i class="fa fa-check"></i><b>10</b> Testing Paired Data</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="testing-paired-data.html"><a href="testing-paired-data.html#paired-t-test"><i class="fa fa-check"></i><b>10.1</b> Paired T test</a></li>
+<li class="chapter" data-level="10.2" data-path="testing-paired-data.html"><a href="testing-paired-data.html#signed-rank-test"><i class="fa fa-check"></i><b>10.2</b> Signed rank test</a></li>
+<li class="chapter" data-level="10.3" data-path="testing-paired-data.html"><a href="testing-paired-data.html#median-test-1"><i class="fa fa-check"></i><b>10.3</b> Median test</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>11</b> Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#more-than-two-groups"><i class="fa fa-check"></i><b>11.1</b> More than two groups</a></li>
+<li class="chapter" data-level="11.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#variance-decomposition"><i class="fa fa-check"></i><b>11.2</b> Variance decomposition</a></li>
+<li class="chapter" data-level="11.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#anova-test"><i class="fa fa-check"></i><b>11.3</b> ANOVA test</a></li>
+<li class="chapter" data-level="11.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#post-hoc-analysis"><i class="fa fa-check"></i><b>11.4</b> Post-hoc analysis</a></li>
+<li class="chapter" data-level="11.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#non-normal-data"><i class="fa fa-check"></i><b>11.5</b> Non-normal data</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>12</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="linear-regression.html"><a href="linear-regression.html#correlation"><i class="fa fa-check"></i><b>12.1</b> Correlation</a></li>
+<li class="chapter" data-level="12.2" data-path="linear-regression.html"><a href="linear-regression.html#linear-modeling"><i class="fa fa-check"></i><b>12.2</b> Linear modeling</a></li>
+<li class="chapter" data-level="12.3" data-path="linear-regression.html"><a href="linear-regression.html#testing-slope"><i class="fa fa-check"></i><b>12.3</b> Testing slope</a></li>
+<li class="chapter" data-level="12.4" data-path="linear-regression.html"><a href="linear-regression.html#prediction"><i class="fa fa-check"></i><b>12.4</b> Prediction</a></li>
+<li class="chapter" data-level="12.5" data-path="linear-regression.html"><a href="linear-regression.html#coefficient-of-determination"><i class="fa fa-check"></i><b>12.5</b> Coefficient of determination</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 371 Full Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linear-regression" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Linear Regression<a href="linear-regression.html#linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Our statistical methods so far have covered problems where we have a single numeric variable of interest (possibly across multiple groups). Now, we will learn about a way to explore the relationship between two numeric variables.</p>
+<div id="correlation" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Correlation<a href="linear-regression.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sir Francis Galton and Karl Pearson were interested in how children resemble their parents. They gathered data on the heights (in inches) of 1078 father-son pairs. We will consider a subsample of <span class="math inline">\(n = 14\)</span> pairs.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Family</th>
+<th>Father’s Height</th>
+<th>Son’s Height</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>71.3</td>
+<td>68.9</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>65.5</td>
+<td>67.5</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>65.9</td>
+<td>65.4</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>68.6</td>
+<td>68.2</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>71.4</td>
+<td>71.5</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>68.4</td>
+<td>67.6</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>65.0</td>
+<td>65.0</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>66.3</td>
+<td>67.0</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>68.0</td>
+<td>65.3</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>67.3</td>
+<td>65.5</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>67.0</td>
+<td>69.8</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>69.3</td>
+<td>70.9</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>70.1</td>
+<td>68.9</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>66.9</td>
+<td>70.2</td>
+</tr>
+</tbody>
+</table>
+<p>Our data is arranged in pairs. Each observation is a family unit, which has an associated father’s height and son’s height. The best way to view this type of data is with a scatterplot. We’ll put the father’s height on the x axis and son’s height on the y.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="linear-regression.html#cb1-1" tabindex="-1"></a>fathers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">71.3</span>, <span class="fl">65.5</span>, <span class="fl">65.9</span>, <span class="fl">68.6</span>, <span class="fl">71.4</span>, <span class="fl">68.4</span>, <span class="fl">65.0</span>, <span class="fl">66.3</span>,</span>
+<span id="cb1-2"><a href="linear-regression.html#cb1-2" tabindex="-1"></a>             <span class="fl">68.0</span>, <span class="fl">67.3</span>, <span class="fl">67.0</span>, <span class="fl">69.3</span>, <span class="fl">70.1</span>, <span class="fl">66.9</span>)</span>
+<span id="cb1-3"><a href="linear-regression.html#cb1-3" tabindex="-1"></a>sons <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">68.9</span>, <span class="fl">67.5</span>, <span class="fl">65.4</span>, <span class="fl">68.2</span>, <span class="fl">71.5</span>, <span class="fl">67.6</span>, <span class="fl">65.0</span>, <span class="fl">67.0</span>,</span>
+<span id="cb1-4"><a href="linear-regression.html#cb1-4" tabindex="-1"></a>          <span class="fl">65.3</span>, <span class="fl">65.5</span>, <span class="fl">69.8</span>, <span class="fl">70.9</span>, <span class="fl">68.9</span>, <span class="fl">70.2</span>)</span>
+<span id="cb1-5"><a href="linear-regression.html#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="linear-regression.html#cb1-6" tabindex="-1"></a><span class="fu">plot</span>(fathers, sons,</span>
+<span id="cb1-7"><a href="linear-regression.html#cb1-7" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Father Heights&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Son Heights&quot;</span>)</span></code></pre></div>
+<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>It is a bit difficult to tell, but there seems to be a slight positive relationship between father and son heights. Shorter fathers tend to have shorter sons, and taller fathers tend to have taller sons, which matches our understanding of genetics. But not all of the points obey this rule.</p>
+<hr />
+<p>To quantify this visual relationship between our variables, we use a measure called correlation. There are two aspects to correlation, strength and direction. To calculate correlation, we calculate how much the x and y variables vary with each other. Are they closely related? We then take this quantity and divide by the variability of x and y to make it a standardized measure.</p>
+<p>Formally, let Let <span class="math inline">\((x_1, y_1), (x_2, y_2), \ldots , (x_n, y_n)\)</span> be a sample of <span class="math inline">\(n\)</span> points on a scatterplot and let <span class="math inline">\(\bar{x}, s_x, \bar{y}, s_y\)</span> be the sample means and standard deviations of the x and y values.</p>
+<div class="infobox deff">
+<p>The <strong>correlation</strong> between two variables is the strength and direction of the linear relationship. It is given by
+<span class="math display">\[r \;=\; \frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{(n-1)s_xs_y}.\]</span>
+The value of <span class="math inline">\(r\)</span> will always be between -1 and 1.</p>
+</div>
+<p>The numerator term tells us how much x and y vary with each other. If a small/large x value leads to a small/large y value, then the numerator will be a large positive number. If x and y are inversely related (a small x leads to a large y and vice versa), then the numerator will be a large negative number. If there isn’t really a relationship between x and y, then the numerator will be close to 0.</p>
+<p>The denominator term standardizes the measure so that it is always between -1 and 1.</p>
+<hr />
+<p>Let’s look at how to calculate the numerator,
+<span class="math display">\[\sum (x_i-\bar{x})(y_i-\bar{y}).\]</span>
+For each point, we are taking the x value minus the average x value, times the y value minus the average y value. We then add this up for each point.</p>
+<div class="infobox pond">
+<p>What are some of the similarities between the numerator of correlation and the numerator of the variance of a single sample of data?
+<span class="math display">\[\sum(x_i - \bar{x})^2\]</span></p>
+</div>
+<p>The easiest way to calculate this term is with R’s element-wise computations.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="linear-regression.html#cb2-1" tabindex="-1"></a><span class="fu">sum</span>((fathers <span class="sc">-</span> <span class="fu">mean</span>(fathers)) <span class="sc">*</span> (sons <span class="sc">-</span> <span class="fu">mean</span>(sons)))</span></code></pre></div>
+<pre><code>## [1] 35.40857</code></pre>
+<p><code>fathers</code> enumerates over the <span class="math inline">\(x_i\)</span> values, and <code>mean(fathers)</code> is <span class="math inline">\(\bar{x}\)</span>. Then <code>sons</code> enumerates over the <span class="math inline">\(y_i\)</span> values, and <code>mean(sons)</code> is <span class="math inline">\(\bar{y}\)</span>. We see that the numerator term is equal to 35.409. This is positive, which matches the visual positive relationship from the scatterplot.</p>
+<p>Now we have to standardize this number. Let’s find the sample standard deviations of the fathers and sons.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="linear-regression.html#cb4-1" tabindex="-1"></a><span class="fu">sd</span>(fathers)</span></code></pre></div>
+<pre><code>## [1] 2.042784</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="linear-regression.html#cb6-1" tabindex="-1"></a><span class="fu">sd</span>(sons)</span></code></pre></div>
+<pre><code>## [1] 2.168012</code></pre>
+<p>The correlation of the father-son data is given by</p>
+<p><span class="math display">\[r \;=\; \frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{(n-1)s_xs_y} \;=\; \frac{35.409}{(14-1)\cdot 2.043 \cdot 2.168} \;=\; 0.615.\]</span></p>
+<p>The <code>cor</code> function in R calculates correlation automatically and confirms the result.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="linear-regression.html#cb8-1" tabindex="-1"></a><span class="fu">cor</span>(fathers, sons)</span></code></pre></div>
+<pre><code>## [1] 0.6150083</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="linear-regression.html#cb10-1" tabindex="-1"></a><span class="fu">cor</span>(sons, fathers)</span></code></pre></div>
+<pre><code>## [1] 0.6150083</code></pre>
+<hr />
+<p>How should we interpret the size of the correlation? The correlation is -1 or 1 when the points are in a perfect line. This rarely happens with real-world data.</p>
+<p>Generally, if the magnitude of the correlation <span class="math inline">\(|r|\)</span> is greater than <span class="math inline">\(0.8\)</span>, we consider it to be strong correlation. So <span class="math inline">\(r = 0.9\)</span> or <span class="math inline">\(r = -0.85\)</span> are both strong correlation.</p>
+<p>If the magnitude is between 0.5 and 0.8, we consider it to be moderate. The father-son data displays a moderate, positive correlation. If the magnitude is less than <span class="math inline">\(0.5\)</span>, the correlation is considered weak. We might observe a correlation like this just by chance.</p>
+<div class="infobox exer">
+<p>For the following three scatterplots, identify the strength and direction of the correlation.</p>
+<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="12-linear-regression_files/figure-html/unnamed-chunk-5-2.png" width="672" /><img src="12-linear-regression_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<p><span style="color:#8601AF">
+The first plot shows a strong negative correlation. The second plot shows a very weak positive correlation. The third plot shows a perfect positive correlation. In the case of the third plot, the value of x is determined entirely by the value of x, and there is no variation due to other sources.
+</span></p>
+</div>
+<div class="infobox warn">
+<p>When discussing correlation, it is important to note that correlation does not equal causation! The correlation measures the strength of the linear relationship between two variables, but it does not tell us the reason for that relationship.</p>
+<p>Some pairs of variables have high correlation by coincidence. Other times, they might be <em>confounded</em> with a third variable. Ice cream sales is famously highly correlated with crime rate. But it is not the case that ice cream consumption causes crime or crime causes ice cream consumption. Both of those are correlated with high temperature.</p>
+<p>We cannot make conclusions about causality unless our experimental design removes possible confounders. In particular, causal inference is not possible for observational studies. It is only possible for experimental studies that are carefully set up in a specific way.</p>
+</div>
+</div>
+<div id="linear-modeling" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Linear modeling<a href="linear-regression.html#linear-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Our goal is to build a linear model, which is the straight line that does the best job of describing the relationship between x and y.</p>
+<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>In general, a line has a slope and a y-intercept:
+<span class="math display">\[y \;=\; mx + b\]</span>
+In statistics, we use the notation
+<span class="math display">\[y \;=\; \beta_0 + \beta_1 x\]</span></p>
+<p>We need to come up with an intercept and a slope that describe the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are the parameters of interest. This means that we are assuming that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> have a true linear relationship, and we want to make an estimate of this line.</p>
+<hr />
+<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>What is the straight line that best describes the relationship between father’s and son’s heights? There’s no perfect linear model, since the correlation is not perfect. That is to say, the points are not along a perfect straight line. There is extra variation in the <span class="math inline">\(y\)</span> values.</p>
+<p>To account for this extra variability, a linear model on the height data would look like
+<span class="math display">\[\text{Son&#39;s height } \;=\; \beta_0 + \beta_1 \text{ (Father&#39;s height) + Random error}\]</span>
+<span class="math inline">\(\beta_0\)</span> is the height of the son when the father’s height is 0.
+<span class="math inline">\(\beta_1\)</span> is the amount of change in the son’s height for a one inch change in the father’s height. General form:
+<span class="math display">\[y_i \;=\; \beta_0 + \beta_1 x_i + \epsilon_i\]</span></p>
+<ul>
+<li><span class="math inline">\(y_i\)</span> is the value of <span class="math inline">\(y\)</span> with input <span class="math inline">\(x = x_i\)</span></li>
+<li><span class="math inline">\(\beta_0, \beta_1\)</span>, and the error term <span class="math inline">\(\epsilon_i\)</span> are unknown parameters that must be estimated.</li>
+</ul>
+<p>Note that each point <span class="math inline">\(i\)</span> has a unique error term.</p>
+<p>How should we estimate <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>? We want the line to be close to our data points. The line should be able to accurately predict a son’s height (<span class="math inline">\(y\)</span>)if we are given a father’s height (<span class="math inline">\(x\)</span>).</p>
+<hr />
+<p>A popular approach is to minimize the <em>vertical</em> distance from the points to the line. Here is another linear model example from Wikipedia:</p>
+<p><img src="figs/linear/minimize_y.png" height="400px" style="display: block; margin: auto;" /></p>
+<p>When we look at the vertical distance, we are looking at a specific <span class="math inline">\(x\)</span> value. At the point where <span class="math inline">\(x = 1\)</span>, we see that the observed value of <span class="math inline">\(y\)</span> is about 6. However, the line has height 5. That means that our predicted value of <span class="math inline">\(y\)</span> is off by 1.</p>
+<div class="infobox deff">
+<p>Formally, the difference between an observed and predicted value is the <strong>residual</strong>.
+<span class="math display">\[\begin{align*}
+\text{Residual } &amp;= \text{ Observed } - \text{ Fitted} \\
+e_i &amp;= y_i - \hat{y}_i
+\end{align*}\]</span>
+<span class="math inline">\(e_i\)</span> is the residual (error) for point <span class="math inline">\(i\)</span> and <span class="math inline">\(\hat{y}_i\)</span> is the estimate for point <span class="math inline">\(i\)</span> (the height of the line).</p>
+</div>
+<p>Each point has its own residual. Collectively, the residuals represent the error in our linear model, which we want to be as small as possible. We control this by picking “good” values of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> that give us a <span class="math inline">\(\hat{y}_i\)</span> value close to the observed value <span class="math inline">\(y_i\)</span>.</p>
+<hr />
+<div class="infobox deff">
+<p>If <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> are our estimates, the estimated <span class="math inline">\(y\)</span> for a given <span class="math inline">\(x_i\)</span> is
+<span class="math display">\[\hat{y}_i \;=\; \hat{\beta}_0 + \hat{\beta}_1x_i.\]</span></p>
+</div>
+<p>We pick the <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> that give us the smallest residuals. As is typical in statistics, we want to minimize the <em>squared</em> error. <span class="math inline">\((y_i - \hat{y}_i)^2\)</span> is the squared error for point <span class="math inline">\(i\)</span>.</p>
+<div class="infobox deff">
+<p>The total error in a linear model is given by
+<span class="math display">\[\sum_{i=1}^n(y_i - \hat{y}_i)^2 \; = \; \sum_{i=1}^n(y_i - (\hat{\beta}_0+\hat{\beta}_1x_i))^2.\]</span>
+Just like in an ANOVA, we call this the <strong>error sum of squares</strong> or <span class="math inline">\(SS_E\)</span>.</p>
+</div>
+<p>We use calculus to find formulas for <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> that minimize the above equation for <span class="math inline">\(SS_E\)</span>.</p>
+<p><span class="math display">\[\text{Pick } \; \hat{\beta_0},\; \hat{\beta}_1 \; \text{ to minimize}\quad SS_E \;=\; \sum_{i=1}^n(y_i - (\hat{\beta}_0+\hat{\beta}_1x_i))^2\]</span></p>
+<hr />
+<p>The values of <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> that we use are called least squares estimates, since we are minimizing the squared error terms. They are calculated with the correlation <span class="math inline">\(r\)</span> between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> and summary values taken from our data.</p>
+<div class="infobox deff">
+<p>The <strong>least squares</strong> estimates for <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> are given by
+<span class="math display">\[\begin{align*}
+\hat{\beta}_1 \; &amp;= \; r\Big(\frac{s_y}{s_x}\Big) \\ \\
+\hat{\beta}_0 \; &amp;= \; \bar{y} - \hat{\beta}_1\bar{x}
+\end{align*}\]</span>
+This procedure is called <strong>least squares linear regression</strong> or <strong>simple linear regression</strong>.</p>
+</div>
+<p>We use the least squares esimates as our linear model.
+<span class="math display">\[\hat{y}_i \;=\; \hat{\beta}_0 + \hat{\beta}_1x_i\]</span>
+For the father-son height data, we have <span class="math inline">\(\bar{y} = 67.979\)</span>, <span class="math inline">\(\bar{x} = 67.929\)</span>, <span class="math inline">\(s_y = 2.168\)</span>, <span class="math inline">\(s_x = 2.043\)</span>. We calculated the correlation to be <span class="math inline">\(r = 0.615\)</span>.</p>
+<div class="infobox exer">
+<p>Calculate the least-squares estimates of slope and intercept for the height data. Then state and interpret the linear model.</p>
+<p><span style="color:#8601AF">
+The least squares estimate for slope is
+<span class="math display">\[\hat{\beta}_1 \; = \; r\Big(\frac{s_y}{s_x}\Big) \;=\; 0.615\Big(\frac{2.168}{2.043}\Big) \;=\; 0.6526.\]</span>
+The least squares estimate for intercept is
+<span class="math display">\[\hat{\beta}_0 \; = \; \bar{y} - \hat{\beta}_1\bar{x} \;=\; 67.979 - (0.6526)67.929 \;=\; 23.649.\]</span>
+The linear model for son’s height as a function of father’s height is
+<span class="math display">\[\hat{y}_i \;=\; 23.649 + 0.6526x_i\]</span>
+The estimated height of a son from a 0-inch tall father is 23.649 (which is not meaningful). For every one inch increase in a father’s height, we would expect his son’s height to increase by 0.6526 inches.
+</span></p>
+</div>
+<p>We have
+<span class="math display">\[\text{Son&#39;s height} \;=\; 23.621 + 0.653 \text{ (Father&#39;s height)}.\]</span></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="linear-regression.html#cb12-1" tabindex="-1"></a><span class="co"># Father-son height data</span></span>
+<span id="cb12-2"><a href="linear-regression.html#cb12-2" tabindex="-1"></a>fathers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">71.3</span>, <span class="fl">65.5</span>, <span class="fl">65.9</span>, <span class="fl">68.6</span>, <span class="fl">71.4</span>, <span class="fl">68.4</span>, <span class="fl">65.0</span>, <span class="fl">66.3</span>,</span>
+<span id="cb12-3"><a href="linear-regression.html#cb12-3" tabindex="-1"></a>             <span class="fl">68.0</span>, <span class="fl">67.3</span>, <span class="fl">67.0</span>, <span class="fl">69.3</span>, <span class="fl">70.1</span>, <span class="fl">66.9</span>)</span>
+<span id="cb12-4"><a href="linear-regression.html#cb12-4" tabindex="-1"></a>sons <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">68.9</span>, <span class="fl">67.5</span>, <span class="fl">65.4</span>, <span class="fl">68.2</span>, <span class="fl">71.5</span>, <span class="fl">67.6</span>, <span class="fl">65.0</span>, <span class="fl">67.0</span>,</span>
+<span id="cb12-5"><a href="linear-regression.html#cb12-5" tabindex="-1"></a>          <span class="fl">65.3</span>, <span class="fl">65.5</span>, <span class="fl">69.8</span>, <span class="fl">70.9</span>, <span class="fl">68.9</span>, <span class="fl">70.2</span>)</span>
+<span id="cb12-6"><a href="linear-regression.html#cb12-6" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="linear-regression.html#cb12-7" tabindex="-1"></a><span class="co"># Plot data</span></span>
+<span id="cb12-8"><a href="linear-regression.html#cb12-8" tabindex="-1"></a><span class="fu">plot</span>(fathers, sons,</span>
+<span id="cb12-9"><a href="linear-regression.html#cb12-9" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Father Heights&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Son Heights&quot;</span>)</span>
+<span id="cb12-10"><a href="linear-regression.html#cb12-10" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="fl">23.641</span>, <span class="at">b =</span> <span class="fl">0.653</span>)</span></code></pre></div>
+<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>In terms of the vertical distance from the points to the line, this particular line does the best job fitting the data. Any other line would have a bigger <span class="math inline">\(SS_E\)</span> than this one.</p>
+<hr />
+<p>We can also fit a linear model in R with the <code>lm</code> function. We use <code>~</code> to indicate a model fit, and we put the <span class="math inline">\(y\)</span> variable on the left. Instead of just printing it out, I’m going to save my model results in an object called <code>height_mod</code> so that I can refer to it later.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="linear-regression.html#cb13-1" tabindex="-1"></a>fathers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">71.3</span>, <span class="fl">65.5</span>, <span class="fl">65.9</span>, <span class="fl">68.6</span>, <span class="fl">71.4</span>, <span class="fl">68.4</span>, <span class="fl">65.0</span>, <span class="fl">66.3</span>,</span>
+<span id="cb13-2"><a href="linear-regression.html#cb13-2" tabindex="-1"></a>             <span class="fl">68.0</span>, <span class="fl">67.3</span>, <span class="fl">67.0</span>, <span class="fl">69.3</span>, <span class="fl">70.1</span>, <span class="fl">66.9</span>)</span>
+<span id="cb13-3"><a href="linear-regression.html#cb13-3" tabindex="-1"></a>sons <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">68.9</span>, <span class="fl">67.5</span>, <span class="fl">65.4</span>, <span class="fl">68.2</span>, <span class="fl">71.5</span>, <span class="fl">67.6</span>, <span class="fl">65.0</span>, <span class="fl">67.0</span>,</span>
+<span id="cb13-4"><a href="linear-regression.html#cb13-4" tabindex="-1"></a>          <span class="fl">65.3</span>, <span class="fl">65.5</span>, <span class="fl">69.8</span>, <span class="fl">70.9</span>, <span class="fl">68.9</span>, <span class="fl">70.2</span>)</span>
+<span id="cb13-5"><a href="linear-regression.html#cb13-5" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="linear-regression.html#cb13-6" tabindex="-1"></a>height_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(sons <span class="sc">~</span> fathers)</span>
+<span id="cb13-7"><a href="linear-regression.html#cb13-7" tabindex="-1"></a>height_mod</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = sons ~ fathers)
+## 
+## Coefficients:
+## (Intercept)      fathers  
+##     23.6409       0.6527</code></pre>
+<p>The output matches the slope and intercept we calculated by hand (up to rounding). We can view a more detailed description of the model with the <code>summary</code> command.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="linear-regression.html#cb15-1" tabindex="-1"></a><span class="fu">summary</span>(height_mod)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = sons ~ fathers)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.7252 -1.2076 -0.3564  1.2183  2.8928 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)  23.6409    16.4171   1.440   0.1754  
+## fathers       0.6527     0.2416   2.702   0.0192 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.779 on 12 degrees of freedom
+## Multiple R-squared:  0.3782, Adjusted R-squared:  0.3264 
+## F-statistic:   7.3 on 1 and 12 DF,  p-value: 0.01924</code></pre>
+<p>We have an overview of the residuals, a table showing the estimated coefficients, and several more summaries at the bottom. It’s a lot to take in at first, but later on we’ll discuss the most relevant parts of this summary.</p>
+</div>
+<div id="testing-slope" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Testing slope<a href="linear-regression.html#testing-slope" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We’ve seen how to fit a linear model to describe the relationship between two numeric variables. So far, we haven’t actually done any statistics, just mathematical modeling.</p>
+<p>The motivation for fitting a model is that we think <span class="math inline">\(x\)</span> has a linear relationship with <span class="math inline">\(y\)</span>. How can we test this formally? Consider the slope coefficient <span class="math inline">\(\beta_1\)</span>. This is the constant that relates <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in the theoretical linear model:
+<span class="math display">\[y_i \;=\; \beta_0 + \beta_1 x_i + \epsilon_i.\]</span>
+If <span class="math inline">\(\beta_1 = 0\)</span>, that means <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> have no linear relationship. If we remove this term from our equation:
+<span class="math display">\[y_i \;=\; \beta_0 + \epsilon_i\]</span>
+we see that the value of <span class="math inline">\(y\)</span> is given by a constant plus some random error. The variable <span class="math inline">\(x\)</span> does not affect <span class="math inline">\(y\)</span> at all.</p>
+<p>Therefore, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> have a linear relationship exactly when <span class="math inline">\(\beta_1\)</span> is nonzero. This gives us a set of hypotheses where <span class="math inline">\(\beta_1\)</span> is the parameter of interest.
+<span class="math display">\[H_0: \beta_1 = 0\quad\quad\text{versus}\quad\quad H_A: \beta_1 \neq 0\]</span>
+Under <span class="math inline">\(H_0\)</span>, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are unrelated. But under <span class="math inline">\(H_A\)</span>, they have a significant linear relationship.</p>
+<hr />
+<p>To answer the above hypotheses, we will perform a T hypothesis test. Recall the general structure of a T test statistic:
+<span class="math display">\[T \;=\; \frac{\text{estimate from data} - \text{value under }H_0}{\text{estimated standard error of estimate}}\]</span>
+For testing <span class="math inline">\(\beta_1\)</span>, the estimate from our data is <span class="math inline">\(\hat{\beta}_1\)</span> and the value under <span class="math inline">\(H_0\)</span> is 0. The last piece we need is the estimated standard error. We need to know how much uncertainty there is with using <span class="math inline">\(\hat{\beta}_1\)</span> as an estimator of the true slope.</p>
+<p>The standard error of our estimate is in terms of <span class="math inline">\(\sigma\)</span>, which is the standard deviation of the residuals. <span class="math inline">\(\sigma\)</span> represents how spread out the points are around the line. The standard error of <span class="math inline">\(\hat{\beta}_1\)</span> also has to do with the spread of the <span class="math inline">\(x\)</span> variable. If our original <span class="math inline">\(x\)</span> has more spread, then <span class="math inline">\(\hat{\beta}_1\)</span> does a better job as an estimator. The standard error is
+<span class="math display">\[se(\hat{\beta}_1) \;=\; \frac{\sigma}{\sqrt{\sum(x_i-\bar{x})^2}}.\]</span>
+We don’t know the true value of <span class="math inline">\(\sigma\)</span>, so we must estimate it from our data.</p>
+<hr />
+<p>How should we estimate the variance of the points around the line? We already have a measure, <span class="math inline">\(SS_E\)</span>, that gives the <em>total</em> error of the line. To turn it into a variance term, we need to divide it by the appropriate degrees of freedom. The df for a simple linear model is always <span class="math inline">\(n-2\)</span>. Think of <span class="math inline">\(n\)</span> points and subtract <span class="math inline">\(2\)</span> for estimating both the slope and intercept.</p>
+<div class="infobox deff">
+<p>The variance of the observed points around a regression line is the <strong>mean square error</strong>, given by
+<span class="math display">\[S^2 \;=\; MS_E \;=\; \frac{SS_E}{n-2}.\]</span>
+<span class="math inline">\(MS_E\)</span> is an estimator of <span class="math inline">\(\sigma^2\)</span> and <span class="math inline">\(S = \sqrt{MS_E}\)</span> is an estimator of <span class="math inline">\(\sigma\)</span>.</p>
+</div>
+<p>We can find <span class="math inline">\(S\)</span> in the R linear model summary under “Residual standard error”,</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="linear-regression.html#cb17-1" tabindex="-1"></a><span class="fu">summary</span>(height_mod)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = sons ~ fathers)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.7252 -1.2076 -0.3564  1.2183  2.8928 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)  23.6409    16.4171   1.440   0.1754  
+## fathers       0.6527     0.2416   2.702   0.0192 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.779 on 12 degrees of freedom
+## Multiple R-squared:  0.3782, Adjusted R-squared:  0.3264 
+## F-statistic:   7.3 on 1 and 12 DF,  p-value: 0.01924</code></pre>
+<p>So, the estimated standard error of <span class="math inline">\(\hat{\beta}_1\)</span> is
+<span class="math display">\[\hat{se}(\hat{\beta}_1) \;=\; \frac{S}{\sqrt{\sum(x_i-\bar{x})^2}}.\]</span></p>
+<hr />
+<p>The term in the denominator of the standard error is the sum of squares for the <span class="math inline">\(x\)</span> values. This is the total variability in <span class="math inline">\(x\)</span>, or the variability in the father’s heights. There is a “shortcut” to find this term.</p>
+<p>The term we want is the <em>total</em> variability, and we have access to the <em>average</em> variability (the variance). To get the total variabiliy, simply multiply by <span class="math inline">\(n-1\)</span>.
+<span class="math display">\[\text{Variance of X: } s_X^2 \;=\; \frac{1}{n-1}\sum(x_i - \bar{x})^2\]</span>
+<span class="math display">\[\text{Total variability of X: } (n-1)s_X^2 \;=\; \sum(x_i - \bar{x})^2\]</span>
+We can use the term <span class="math inline">\((n-1)s_X^2\)</span> whenever we need to use the total variation of <span class="math inline">\(x\)</span>. The term <span class="math inline">\(s_X^2\)</span> is a basic summary value that can be found with R.</p>
+<p>Finally, the estimated standard error of <span class="math inline">\(\hat{\beta}_1\)</span> is given by
+<span class="math display">\[\hat{se}(\hat{\beta}_1) \;=\; \frac{S}{\sqrt{(n-1)s_X^2}}.\]</span></p>
+<hr />
+<p>So, we can write the T test statistic for testing slope as
+<span class="math display">\[T \;=\; \frac{\hat{\beta}_1 - 0}{S\Big/\sqrt{(n-1)s_X^2}}.\]</span>
+If the null hypothesis is true and <span class="math inline">\(\beta_1 = 0\)</span>, then <span class="math inline">\(T\)</span> follows a t distribution with <span class="math inline">\(n-2\)</span> degrees of freedom. We carry out our one-sample T test as usual, using <code>qt</code> to find a critical value or <code>pt</code> for a p-value.</p>
+<p>For the height model, we estimated slope to be <span class="math inline">\(\hat{\beta}_1 = 0.6526\)</span>. We found <span class="math inline">\(s = \sqrt{MS_E} = 1.78\)</span> from the <code>lm</code> summary output. The variance of the father’s heights is <span class="math inline">\(s^2_X = 4.173\)</span>. Finally, we are working with <span class="math inline">\(n = 14\)</span> points.</p>
+<div class="infobox exer">
+<p>Finish the test of hypotheses
+<span class="math display">\[H_0: \beta_1 = 0\quad\text{versus}\quad H_A: \beta_1 \neq 0\]</span>
+on the father-son height data. Use <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<ul>
+<li>Estimate the standard error of <span class="math inline">\(\hat{\beta}_1\)</span> (which goes in the denominator of our test statistic).</li>
+</ul>
+<p><span style="color:#8601AF">
+The estimated standard error of <span class="math inline">\(\hat{\beta}_1\)</span> is
+<span class="math display">\[\hat{se}(\hat{\beta}_1) \;=\; \frac{S}{\sqrt{(n-1)s_X^2}} \;=\; \frac{1.78}{\sqrt{(14-1)4.173}} \;=\; 0.2417.\]</span>
+This is the error we incur by estimating the slope.
+</span></p>
+<ul>
+<li>Calculate the test statistic <span class="math inline">\(t_{obs}\)</span>.</li>
+</ul>
+<p><span style="color:#8601AF">
+Our observed T test statistic is
+<span class="math display">\[t_{obs} \;=\; \frac{\hat{\beta}_1 - 0}{S\Big/\sqrt{(n-1)s_X^2}} \;=\; \frac{0.6526 - 0}{0.2417} \;=\; 2.7.\]</span>
+</span></p>
+<ul>
+<li>Use the <span class="math inline">\(t_{n-2}\)</span> distribution to make a decision with <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ul>
+<p><span style="color:#8601AF">
+We need to find the area outside of 2.7 on the t curve with <span class="math inline">\(n-2 = 12\)</span> degrees of freedom. To get a two-sided p-value, we multiply this area by 2.
+</span></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="linear-regression.html#cb19-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="fl">2.7</span>, <span class="at">df =</span> <span class="dv">12</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
+<pre><code>## [1] 0.01930937</code></pre>
+<p><span style="color:#8601AF">
+We get a p-value of 0.019, which is sufficient to reject the null at the 5% level. We conclude that there is a significant linear relationship between son’s height and father’s height.
+</span></p>
+</div>
+<p>The slope test results are also contained in the R summary output. The <code>fathers</code> line of the coefficient table gives the estimate, standar error, T test statistic, and p-value for slope.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="linear-regression.html#cb21-1" tabindex="-1"></a><span class="fu">summary</span>(height_mod)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = sons ~ fathers)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.7252 -1.2076 -0.3564  1.2183  2.8928 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)  23.6409    16.4171   1.440   0.1754  
+## fathers       0.6527     0.2416   2.702   0.0192 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.779 on 12 degrees of freedom
+## Multiple R-squared:  0.3782, Adjusted R-squared:  0.3264 
+## F-statistic:   7.3 on 1 and 12 DF,  p-value: 0.01924</code></pre>
+<p>It’s important to keep in mind that this R output will always test <span class="math inline">\(H_0: \beta_1 = 0\)</span>. Other slope tests are possible, but R will always do this one. It also shows the results of testing the intercept, which is not covered in the class.</p>
+<hr />
+<p>We can also build a T CI for <span class="math inline">\(\beta_1\)</span> that corresponds to the T test we just did. It follows the usual confidence interval structure:
+<span class="math display">\[\text{point estimate } \pm \text{ critical value }\times \text{ standard error}.\]</span>
+To build a 95% CI, we would use the <span class="math inline">\(\alpha/2 = 0.025\)</span> critical value on the t with 12 degrees of freedom. This is 2.179.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="linear-regression.html#cb23-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">12</span>)</span></code></pre></div>
+<pre><code>## [1] 2.178813</code></pre>
+<p>So, the 95% CI for slope is
+<span class="math display">\[0.6526 \;\pm\; 2.179(0.242) \;=\; (0.125, 1.180).\]</span>
+This interval does not cover 0, which corresponds to the fact that we rejected <span class="math inline">\(H_0: \beta_1 = 0\)</span>.</p>
+<hr />
+<p>We tested a particular null hypothesis of <span class="math inline">\(\beta_1 = 0\)</span> but we can test other hypotheses as well. We might be interested in testing a particular direction. If we want to know if <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> have a positive relationship, we would use
+<span class="math display">\[H_0: \beta_1 \le 0\quad\text{versus}\quad H_A: \beta_1 &gt; 0.\]</span>
+If we wanted to know if <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> have a negative relationship, we would use
+<span class="math display">\[H_0: \beta_1 \ge 0\quad\text{versus}\quad H_A: \beta_1 &lt; 0.\]</span>
+We can also test a value other than 0. Use <span class="math inline">\(m_0\)</span> to refer to the null value of the slope.</p>
+<div class="infobox deff">
+<p>In general, a T test for the slope of a regression line tests <span class="math inline">\(\beta_1\)</span>:
+<span class="math display">\[H_0: \beta_1 = m_0 \quad\text{versus}\quad H_A: \beta_1 \neq m_0\]</span>
+(or a corresponding one-sided hypothesis). The test statistic is
+<span class="math display">\[T \;=\; \frac{\hat{\beta}_1 - 0}{S\Big/\sqrt{(n-1)s_X^2}}\]</span>
+and the null distribution is a t distribution with <span class="math inline">\(n - 2\)</span> degrees of freedom. We can find a rejection region or calculate a p-value according to the direction of the hypotheses.</p>
+<p>We can also build a corresponding <span class="math inline">\(100(1-\alpha)\%\)</span> T CI:
+<span class="math display">\[\hat{\beta}_1 \;\pm\; t_{\alpha/2, n-2}\times \hat{se}(\hat{\beta}_1)\]</span></p>
+</div>
+<hr />
+<p>Our T hypothesis test for slope requires several assumptions, just like other hypothesis tests. If these assumptions are not met, then the results are not reliable.</p>
+<p>In this context, checking wether a T test is appropriate comes down to checking whether the linear model is a good fit. There are four specific assumptions:</p>
+<ul>
+<li><span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have a linear relationship (not quadratic or otherwise)</li>
+<li>The pairs of observations are independent</li>
+<li>The variance around the fitted line is constant for all <span class="math inline">\(x\)</span></li>
+<li>The random error around the fitted line is normal</li>
+</ul>
+<p>All of these assumptions can be summarized with a single mathematical statement. Reczll that <span class="math inline">\(\epsilon_i\)</span> refers to the true random error for point <span class="math inline">\(i\)</span>. If these errors are iid normal, then the model is a good fit. Specifically, if we assume
+<span class="math display">\[\epsilon_{i} \; \sim \; N(0, \sigma^2)\]</span>
+then the four above statements are true.</p>
+<hr />
+<p>We evaluate these assumptions by analyzing the residuals (the <span class="math inline">\(e_i\)</span>), which are the observed errors in our model. We typically build a plot with fitted values on the x axis and residuals on the y axis. We also make a qq-plot of residuals to assess normality.</p>
+<p>This procedure is very similar to the residual analysis for the ANOVA model in chapter 9. We use the R functions <code>fitted</code> and <code>resid</code> to extract the fitted values and residuals of our model.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="linear-regression.html#cb25-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(height_mod), <span class="fu">resid</span>(height_mod))</span></code></pre></div>
+<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>We want to see a random scatter of points with no apparent patterns, which is shown in the plot above. Problematic patterns to look out for are a “megaphone” shape or some kind of distinct curve.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="linear-regression.html#cb26-1" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">resid</span>(height_mod)); <span class="fu">qqline</span>(<span class="fu">resid</span>(height_mod))</span></code></pre></div>
+<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>The qq-plot of residuals shows that they are normal. Both of these plots look good, so we can conclude that the linear model is a good fit for this data. The results of a T test and other statistics will be accurate.</p>
+</div>
+<div id="prediction" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> Prediction<a href="linear-regression.html#prediction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The other main type of statistics to perform on a linear model is prediction. If a father is 71 inches tall, how tall would we expect his son to be, according to our model?</p>
+<div class="infobox deff">
+<p>In general, we let <span class="math inline">\(x^*\)</span> be the <span class="math inline">\(x\)</span> value we want to predict at. Here <span class="math inline">\(x^* = 71\)</span>. The point estimate for <span class="math inline">\(y\)</span> given <span class="math inline">\(x^*\)</span> is found simply by plugging <span class="math inline">\(x^*\)</span> into the regression line.
+<span class="math display">\[(\text{Fitted value for }x^*) \;=\; \hat{\beta}_0 + \hat{\beta}_1 x^*\]</span></p>
+</div>
+<p>In the father-son height example, the estimated regression line is
+<span class="math display">\[\hat{y}_i \;=\; 23.621 + 0.653 x_i.\]</span>
+We predict that a son from a 71 inch tall father would be
+<span class="math display">\[(\hat{y}_i \;|\; x^* = 71) \;=\; 23.621 + 0.653(71) \;=\; 69.984\]</span>
+inches tall.</p>
+<hr />
+<p>A more interesting problem has to do with the uncertainty in this point estimate. That is to say, we want to know the standard error of <span class="math inline">\((\hat{y}_i \;|\; x^*)\)</span>. Knowing this will let us create a confidence interval for the value of <span class="math inline">\(y\)</span>.</p>
+<p>There are two slightly different types of prediction, which are subtly distinct.</p>
+<ul>
+<li><p>The first type of prediction is to predict the <em>average</em> son’s height for all 71 inch tall fathers. In other words, what is the height of the line at <span class="math inline">\(x^* = 71\)</span>? Formally, this is
+<span class="math display">\[E(\hat{y} \;|\; x^*).\]</span></p></li>
+<li><p>The second type of prediction is to predict the son’s height for a <em>single</em> 71 inch tall father. Formally, this is just
+<span class="math display">\[(\hat{y} \;|\; x^*).\]</span></p></li>
+</ul>
+<p>This is the difference between predicting the “typical” height versus the height for a single, specific individual. There is less uncertainty in the first type of prediction, since we are taking an average. Thus <span class="math inline">\(se\Big(E(\hat{y} \;|\; x^*)\Big)\)</span> is smaller than <span class="math inline">\(se(\hat{y} \;|\; x^*)\)</span>.</p>
+<hr />
+<div class="infobox deff">
+<p>The standard error of <span class="math inline">\(\mathbb{E}(\hat{y} \;|\; x^*)\)</span>, which is the position of the regression line at <span class="math inline">\(x^*\)</span>, is given by
+<span class="math display">\[se(E(\hat{y} \;|\; x^*)) \;=\; \sigma \sqrt{\frac{1}{n} \;+\; \frac{(x^* - \bar{x})^2}{\sum(x_i - \bar{x})^2}}.\]</span></p>
+</div>
+<p>There are a lot of terms in this equation, so let’s look at them one by one.</p>
+<ul>
+<li><p>The standard error increases with <span class="math inline">\(\sigma\)</span>. If the points are more scattered around the line, then our prediction is less reliable. Since <span class="math inline">\(\sigma\)</span> is unknown, we use <span class="math inline">\(S\)</span> to calculate an estimated standard error.</p></li>
+<li><p>The standard error decreases with <span class="math inline">\(n\)</span> (since it’s in the denominator). A bigger sample size lets us make better predictions.</p></li>
+<li><p>The standard error increases with <span class="math inline">\((x^* - \bar{x})^2\)</span>. This is the squared distance between our new <span class="math inline">\(x\)</span> and the center of the original <span class="math inline">\(x\)</span> values. When we make a prediction close to the center of our original data, the prediction is more reliable.</p></li>
+<li><p>The standard error decreases with <span class="math inline">\(\sum(x_i - \bar{x})^2\)</span>. This is the slightly weird one. This term corresponds to the total variability in <span class="math inline">\(x\)</span>. That means that if our <span class="math inline">\(x\)</span> data has more spread, predictions will have <em>less</em> error. If our original <span class="math inline">\(x\)</span> data covers a lot of ground, then the model is better.</p></li>
+</ul>
+<p>Recall the “trick” with the variance of <span class="math inline">\(x\)</span>:
+<span class="math display">\[\text{Total variability of X: } (n-1)s_X^2 \;=\; \sum(x_i - \bar{x})^2.\]</span></p>
+<div class="infobox exer">
+<p>In the father-son example, we have <span class="math inline">\(s = 1.78\)</span>, <span class="math inline">\(n = 14\)</span>, <span class="math inline">\(\bar{x} = 67.929\)</span>, <span class="math inline">\(s^2_X = 4.173\)</span>. Find the standard error of the predicted average son’s height from 71 inch fathers.</p>
+<p><span style="color:#8601AF">
+We need to estimate the standard error by using <span class="math inline">\(s\)</span> in place of <span class="math inline">\(\sigma\)</span>. <span class="math display">\[\begin{align*}
+\hat{se}(E(\hat{y} \;|\; 71)) \;&amp;=\; S \sqrt{\frac{1}{n} \;+\; \frac{(x^* - \bar{x})^2}{\sum(x_i - \bar{x})^2}} \\
+&amp;=\; 1.78\sqrt{\frac{1}{14} \;+\; \frac{(71 - 67.929)^2}{(14-1)4.173}} \\
+&amp;=\; 0.882
+\end{align*}\]</span>
+</span></p>
+</div>
+<hr />
+<p>Now that we have the standard error, we can build a CI for <span class="math inline">\(E(\hat{y} \;|\; 71)\)</span>. The point estimate is the fitted value, 69.984. The critical value is the same as the critical value used in the analysis of <span class="math inline">\(\beta_1\)</span>. We take the <span class="math inline">\(\alpha/2\)</span> critical value from the t with <span class="math inline">\(n-2\)</span> degrees of freedom. If we want to build a 95% CI, the critical value is 2.179.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="linear-regression.html#cb27-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">12</span>)</span></code></pre></div>
+<pre><code>## [1] 2.178813</code></pre>
+<p>The 95% CI for <span class="math inline">\(\mathbb{E}(\hat{y} \;|\;  71))\)</span> is
+<span class="math display">\[69.984 \;\pm\; (2.179)0.882 \;=\; (68.06, 71.91).\]</span>
+We estimate that the average height of sons from 71 inch tall fathers is between 68.06 and 71.91. This also gives us an interval estimate for the line itself.</p>
+<p>Note that this CI is specific to the point <span class="math inline">\(x^* = 71\)</span>. If we want to build a CI for other points, we can’t use the same margin of error. That’s because the standard error term depends on how far <span class="math inline">\(x^*\)</span> is from <span class="math inline">\(\bar{x}\)</span>. The most precise CI occurs when <span class="math inline">\(x^* = \bar{x}\)</span>.</p>
+<div class="infobox deff">
+<p>In general, a <span class="math inline">\(100(1-\alpha)\%\)</span> confidence interval for <span class="math inline">\(E(\hat{y} \;|\;  x^*))\)</span> on a regression line is
+<span class="math display">\[(\hat{y} \;|\;  x^*) \;\pm\; t_{n-2, \alpha/2} \times \hat{se}\Big(E(\hat{y} \;|\;  x^*))\Big).\]</span></p>
+</div>
+<hr />
+<p>Now, we will discuss the second type of prediction, which is to predict the son’s height of a single 71” tall father, which is <span class="math inline">\(\hat{y} \;|\; 71\)</span> (with no expected value). The point estimate is the same, but there is a larger standard error.</p>
+<div class="infobox deff">
+<p>The standard error of <span class="math inline">\(\hat{y} \;|\; x^*\)</span> is
+<span class="math display">\[se(\hat{y}\;|\; x^*) \;=\; \sigma \sqrt{\;1 \;+\; \frac{1}{n} \;+\; \frac{(x^* - \bar{x})^2}{\sum(x_i - \bar{x})^2}}.\]</span></p>
+</div>
+<p>This expression is almost exactly the same as <span class="math inline">\(se\Big(E(\hat{y} \;|\; x^*)\Big)\)</span>, but there is an extra +1 term. This represents the additional variability from using our data to predict the value of a new observation. For the height data, the estimated standard error of <span class="math inline">\(\hat{y} \;|\; 71\)</span> is
+<span class="math display">\[S \sqrt{\;1 \;+\; \frac{1}{n} \;+\; \frac{(x^* - \bar{x})^2}{\sum(x_i - \bar{x})^2}} \;=\; 1.78 \sqrt{\;1 \;+\; \frac{1}{14} \;+\; \frac{(71 - 67.929)^2}{(14-1)4.173}} \;=\; 1.986\]</span>
+which is considerably larger than 0.882. There is much more error in this type of prediction.</p>
+<p>We can follow the same steps as before to build a confidence interval for <span class="math inline">\(\hat{y} \;|\; 71\)</span>. The point estimate (69.984) and critical value (2.179) stay the same. The only difference is in the standard error term. In this context, the interval is called a prediction interval (PI), to differentiate it from the confidence interval we made before.</p>
+<div class="infobox exer">
+<p>Build a 95% PI of <span class="math inline">\(\hat{y} \;|\; 71\)</span> for the height data. Comopare the PI to the CI we made earlier: (68.06, 71.91).</p>
+<p><span style="color:#8601AF">
+The point estimate is the value of <span class="math inline">\(\hat{y}\)</span> for <span class="math inline">\(x = 71\)</span>, which is 69.984. The critical value for 95% confidence is <span class="math inline">\(t_{12, 0.025} = 2.178\)</span>. Finally, we use the standard error of 1.986 that we calculated before. We get a 95% PI of
+<span class="math display">\[69.984 \;\pm\; (2.179)1.986 \;=\; (65.66, 74.31).\]</span>
+We predict that the height of a son from a 71 inch tall father would be in this interval.
+</span></p>
+<p><span style="color:#8601AF">
+Compared to the confidence interval of (68.06, 71.91), this prediction interval is centered at the same value, but it is much wider, representing more uncertainty.
+</span></p>
+</div>
+<div class="infobox deff">
+<p>In general, a <span class="math inline">\(100(1-\alpha)\%\)</span> <strong>prediction interval</strong> for <span class="math inline">\((\hat{y} \;|\;  x^*)\)</span> on a regression line is
+<span class="math display">\[(\hat{y} \;|\;  x^*) \;\pm\; t_{n-2, \alpha/2} \times \hat{se}(\hat{y} \;|\;  x^*).\]</span></p>
+</div>
+<hr />
+<p>We can replicate these results in R with the <code>predict</code> function. By default, if we enter our model, <code>predict</code> will return the fitted values for the original 14 <span class="math inline">\(x\)</span> values.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="linear-regression.html#cb29-1" tabindex="-1"></a><span class="fu">predict</span>(height_mod)</span></code></pre></div>
+<pre><code>##        1        2        3        4        5        6        7        8 
+## 70.17914 66.39342 66.65450 68.41682 70.24441 68.28628 66.06706 66.91559 
+##        9       10       11       12       13       14 
+## 68.02519 67.56830 67.37248 68.87372 69.39588 67.30721</code></pre>
+<p>If we want to specify a new <span class="math inline">\(x\)</span> value, we have to set it up a specific way. We use an R object called a data frame. I’ll save it in an object called <code>new_fathers</code>.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="linear-regression.html#cb31-1" tabindex="-1"></a>new_fathers <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fathers =</span> <span class="dv">71</span>)</span></code></pre></div>
+<p>It’s important that the name of the <span class="math inline">\(x\)</span> variable (in this case, <code>fathers</code>), matches exactly was given to the original linear model:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="linear-regression.html#cb32-1" tabindex="-1"></a>height_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(sons <span class="sc">~</span> fathers)</span></code></pre></div>
+<p>Now we can plug in our new data to get the point estimate for <span class="math inline">\(\hat{y}\)</span> when <span class="math inline">\(x^* = 71\)</span>. If we want to get a CI or a PI, we have to set the <code>interval</code> argument.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="linear-regression.html#cb33-1" tabindex="-1"></a><span class="fu">predict</span>(height_mod, <span class="at">newdata =</span> new_fathers)</span></code></pre></div>
+<pre><code>##        1 
+## 69.98332</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="linear-regression.html#cb35-1" tabindex="-1"></a><span class="fu">predict</span>(height_mod, <span class="at">newdata =</span> new_fathers,</span>
+<span id="cb35-2"><a href="linear-regression.html#cb35-2" tabindex="-1"></a>        <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 69.98332 68.06312 71.90353</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="linear-regression.html#cb37-1" tabindex="-1"></a><span class="fu">predict</span>(height_mod, <span class="at">newdata =</span> new_fathers,</span>
+<span id="cb37-2"><a href="linear-regression.html#cb37-2" tabindex="-1"></a>        <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 69.98332 65.65702 74.30963</code></pre>
+<p>The results match the ones we got by hand. The main benefit of using R is that it is able to quickly compute multiple prediction or confidence intervals at different <span class="math inline">\(x\)</span> values. This is tedious to do by hand, since we would need to calculate a unique standard error for each <span class="math inline">\(x^*\)</span>. In R, we can put all of the <span class="math inline">\(x^*\)</span> values in a vector.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="linear-regression.html#cb39-1" tabindex="-1"></a>new_fathers <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fathers =</span> <span class="fu">c</span>(<span class="dv">69</span>, <span class="dv">70</span>, <span class="dv">71</span>))</span>
+<span id="cb39-2"><a href="linear-regression.html#cb39-2" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="linear-regression.html#cb39-3" tabindex="-1"></a><span class="fu">predict</span>(height_mod, <span class="at">newdata =</span> new_fathers,</span>
+<span id="cb39-4"><a href="linear-regression.html#cb39-4" tabindex="-1"></a>        <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 68.67790 64.62558 72.73023
+## 2 69.33061 65.17224 73.48899
+## 3 69.98332 65.65702 74.30963</code></pre>
+<hr />
+<p>When we use a model for prediction, we have to be responsible about what we are predicting. A linear model might be a good fit for our data, but that doesn’t mean it can apply to all other cases.</p>
+<p>Specifically, we can only make predictions for <span class="math inline">\(x^*\)</span> that are in the range of the observed <span class="math inline">\(x\)</span> values. When we validated our model by performing a residual analysis, we are checking the quality of the model for the data we <em>have</em>. We want to stay within the range of the original <em>x</em> values, <span class="math inline">\([65.0, 71.4]\)</span>.</p>
+<div class="infobox warn">
+<p>Trying to make a prediction outside of the original data is called <strong>extrapolation</strong>, and it should be avoided. We have no reason to believe that the model is correct outside of our data range.</p>
+</div>
+<p>It would not make sense to predict the height of a son from a father who is impossibly short or tall. Also, the model may not be appropriate for reasonable father heights outside of <span class="math inline">\([65.0, 71.4]\)</span>. So we shouldn’t make a prediction for a 72 inch tall father. If we wanted to, we would need to collect more data and expand our model.</p>
+</div>
+<div id="coefficient-of-determination" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Coefficient of determination<a href="linear-regression.html#coefficient-of-determination" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When investigating the relationship between two variables, it is useful to consider how much of <span class="math inline">\(y\)</span> is explained by the <span class="math inline">\(x\)</span> variable. In other words, how much of the variability of <span class="math inline">\(y\)</span> can be explained by our model, and how much is random noise?</p>
+<p>For the height data, the total variability of <span class="math inline">\(y\)</span> (son’s heights) is related to the sample variance.
+<span class="math display">\[\text{Total variability of }y \;=\; (n-1)s^2_Y \;=\; (14-1)4.7 \;=\; 61.1\]</span>
+We know that the total error in our model is given by <span class="math inline">\(SS_E = 37.99\)</span></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="linear-regression.html#cb41-1" tabindex="-1"></a><span class="co"># Calculate the sum of squared residuals</span></span>
+<span id="cb41-2"><a href="linear-regression.html#cb41-2" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">resid</span>(height_mod)<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 37.99205</code></pre>
+<p>Therefore, <span class="math inline">\(\frac{37.99}{61.1} = 0.622\)</span> is the proportion of variability due to error. <span class="math inline">\(1 - 0.622 = 0.378\)</span> is the proportion of variability explained by our <span class="math inline">\(x\)</span> variable. We think that 37.8% of the variability in sons’ heights can be explained by fathers’ heights. The remaining 62.2% is due to other factors (nutrition, mother’s height, location, etc.) These other factors are not part of our model, so they are treated as error.</p>
+<div class="infobox deff">
+<p>Generally, the <strong>coefficient of determination</strong> for a linear model tells us what proportion of the variability of <span class="math inline">\(y\)</span> is explained by <span class="math inline">\(x\)</span> via the linear model. It is given by
+<span class="math display">\[R^2 \;=\; \frac{SS_{Tot} - SS_E}{SS_{Tot}}\]</span></p>
+</div>
+<p>For the father-son height model, <span class="math inline">\(R^2 = 0.378\)</span>. We can also see this in the summary output in the bottom section under “Multiple R-squared”.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="linear-regression.html#cb43-1" tabindex="-1"></a><span class="fu">summary</span>(height_mod)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = sons ~ fathers)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.7252 -1.2076 -0.3564  1.2183  2.8928 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)  23.6409    16.4171   1.440   0.1754  
+## fathers       0.6527     0.2416   2.702   0.0192 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.779 on 12 degrees of freedom
+## Multiple R-squared:  0.3782, Adjusted R-squared:  0.3264 
+## F-statistic:   7.3 on 1 and 12 DF,  p-value: 0.01924</code></pre>
+<hr />
+<p>For a simple linear model, which only has a single <span class="math inline">\(x\)</span> variable, the coefficient of determination is directly related to the correlation between the two variables.
+<span class="math display">\[r^2 \;=\; R^2\]</span>
+The father and son heights have a correlation of 0.615, and <span class="math inline">\(0.615^2 = 0.378.\)</span></p>
+<p>We can also calculate a coefficient of determination for more complex models that have multiple <span class="math inline">\(x\)</span> variables (using <span class="math inline">\(x_1, x_2, \ldots\)</span> to explain <span class="math inline">\(y\)</span>). However, the correlation relationship only holds for simple models with a single <span class="math inline">\(x\)</span> variable.</p>
+<hr />
+<p>While <span class="math inline">\(R^2\)</span> is a useful measure, it does have limitations. There is no objectively “good” value of <span class="math inline">\(R^2\)</span> that we can apply to all situations. In some contexts, <span class="math inline">\(R^2 = 0.378\)</span> would be excellent. In others, it might be terrible.</p>
+<p>In addition, we cannot use <span class="math inline">\(R^2\)</span> to evaluate the quality of model fit. We can calculate <span class="math inline">\(R^2\)</span> and possibly get a large number even if the linear model is inappropriate. The model validation must be done with a residual analysis.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="analysis-of-variance.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/12-linear-regression.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

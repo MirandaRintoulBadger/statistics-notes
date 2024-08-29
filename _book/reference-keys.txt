@@ -69,3 +69,9 @@ variance-decomposition
 anova-test
 post-hoc-analysis
 non-normal-data
+linear-regression
+correlation
+linear-modeling
+testing-slope
+prediction
+coefficient-of-determination
