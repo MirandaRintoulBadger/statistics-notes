@@ -1,5 +1,7 @@
 # Linear Regression
 
+<img src="figs/comics/ch12.jpeg" width="300px" style="display: block; margin: auto;" />
+
 Our statistical methods so far have covered problems where we have a single numeric variable of interest (possibly across multiple groups).  Now, we will learn about a way to explore the relationship between two numeric variables.
 
 ## Correlation
@@ -36,7 +38,7 @@ plot(fathers, sons,
      xlab = "Father Heights", ylab = "Son Heights")
 ```
 
-<img src="12-linear-regression_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+<img src="12-linear-regression_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 It is a bit difficult to tell, but there seems to be a slight positive relationship between father and son heights.  Shorter fathers tend to have shorter sons, and taller fathers tend to have taller sons, which matches our understanding of genetics.  But not all of the points obey this rule.
 
@@ -133,7 +135,7 @@ If the magnitude is between 0.5 and 0.8, we consider it to be moderate.  The fat
 :::: {.infobox .exer data-latex=""}
 For the following three scatterplots, identify the strength and direction of the correlation.
 
-<img src="12-linear-regression_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="12-linear-regression_files/figure-html/unnamed-chunk-5-2.png" width="672" /><img src="12-linear-regression_files/figure-html/unnamed-chunk-5-3.png" width="672" />
+<img src="12-linear-regression_files/figure-html/unnamed-chunk-6-1.png" width="672" /><img src="12-linear-regression_files/figure-html/unnamed-chunk-6-2.png" width="672" /><img src="12-linear-regression_files/figure-html/unnamed-chunk-6-3.png" width="672" />
 
 
 <span style="color:#8601AF">
@@ -153,7 +155,7 @@ We cannot make conclusions about causality unless our experimental design remove
 
 Our goal is to build a linear model, which is the straight line that does the best job of describing the relationship between x and y.
 
-<img src="12-linear-regression_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="12-linear-regression_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
 In general, a line has a slope and a y-intercept:
 $$y \;=\; mx + b$$ 
@@ -164,7 +166,7 @@ We need to come up with an intercept and a slope that describe the relationship 
 
 ---
 
-<img src="12-linear-regression_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="12-linear-regression_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
 
 What is the straight line that best describes the relationship between father's and son's heights?  There's no perfect linear model, since the correlation is not perfect.  That is to say, the points are not along a perfect straight line.  There is extra variation in the $y$ values.
@@ -268,7 +270,7 @@ plot(fathers, sons,
 abline(a = 23.641, b = 0.653)
 ```
 
-<img src="12-linear-regression_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="12-linear-regression_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 In terms of the vertical distance from the points to the line, this particular line does the best job fitting the data.  Any other line would have a bigger $SS_E$ than this one.
 
@@ -546,7 +548,7 @@ This procedure is very similar to the residual analysis for the ANOVA model in c
 plot(fitted(height_mod), resid(height_mod))
 ```
 
-<img src="12-linear-regression_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="12-linear-regression_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 We want to see a random scatter of points with no apparent patterns, which is shown in the plot above.  Problematic patterns to look out for are a "megaphone" shape or some kind of distinct curve.
 
@@ -555,7 +557,7 @@ We want to see a random scatter of points with no apparent patterns, which is sh
 qqnorm(resid(height_mod)); qqline(resid(height_mod))
 ```
 
-<img src="12-linear-regression_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="12-linear-regression_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 
 The qq-plot of residuals shows that they are normal.  Both of these plots look good, so we can conclude that the linear model is a good fit for this data.  The results of a T test and other statistics will be accurate.
 

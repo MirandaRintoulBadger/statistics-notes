@@ -1,5 +1,9 @@
 # Linear Regression
 
+```{r,echo=F, out.width="300px", fig.align="center"}
+knitr::include_graphics("figs/comics/ch12.jpeg")
+```
+
 Our statistical methods so far have covered problems where we have a single numeric variable of interest (possibly across multiple groups).  Now, we will learn about a way to explore the relationship between two numeric variables.
 
 ## Correlation

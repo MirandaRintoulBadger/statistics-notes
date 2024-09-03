@@ -75,3 +75,8 @@ linear-modeling
 testing-slope
 prediction
 coefficient-of-determination
+categorical-data
+a-ksajdflka
+categorical-data-analysis
+goodness-of-fit-test
+independence-test

@@ -23,7 +23,7 @@
 <meta name="author" content="Miranda Rintoul" />
 
 
-<meta name="date" content="2024-08-18" />
+<meta name="date" content="2024-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -228,6 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.3" data-path="linear-regression.html"><a href="linear-regression.html#testing-slope"><i class="fa fa-check"></i><b>12.3</b> Testing slope</a></li>
 <li class="chapter" data-level="12.4" data-path="linear-regression.html"><a href="linear-regression.html#prediction"><i class="fa fa-check"></i><b>12.4</b> Prediction</a></li>
 <li class="chapter" data-level="12.5" data-path="linear-regression.html"><a href="linear-regression.html#coefficient-of-determination"><i class="fa fa-check"></i><b>12.5</b> Coefficient of determination</a></li>
+<li class="chapter" data-level="12.6" data-path="linear-regression.html"><a href="linear-regression.html#categorical-data"><i class="fa fa-check"></i><b>12.6</b> Categorical Data</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -251,6 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="linear-regression" class="section level1 hasAnchor" number="12">
 <h1><span class="header-section-number">Chapter 12</span> Linear Regression<a href="linear-regression.html#linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figs/comics/ch12.jpeg" width="300px" style="display: block; margin: auto;" /></p>
 <p>Our statistical methods so far have covered problems where we have a single numeric variable of interest (possibly across multiple groups). Now, we will learn about a way to explore the relationship between two numeric variables.</p>
 <div id="correlation" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> Correlation<a href="linear-regression.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -344,7 +346,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-5"><a href="linear-regression.html#cb1-5" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="linear-regression.html#cb1-6" tabindex="-1"></a><span class="fu">plot</span>(fathers, sons,</span>
 <span id="cb1-7"><a href="linear-regression.html#cb1-7" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Father Heights&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Son Heights&quot;</span>)</span></code></pre></div>
-<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>It is a bit difficult to tell, but there seems to be a slight positive relationship between father and son heights. Shorter fathers tend to have shorter sons, and taller fathers tend to have taller sons, which matches our understanding of genetics. But not all of the points obey this rule.</p>
 <hr />
 <p>To quantify this visual relationship between our variables, we use a measure called correlation. There are two aspects to correlation, strength and direction. To calculate correlation, we calculate how much the x and y variables vary with each other. Are they closely related? We then take this quantity and divide by the variability of x and y to make it a standardized measure.</p>
@@ -386,7 +388,7 @@ For each point, we are taking the x value minus the average x value, times the y
 <p>If the magnitude is between 0.5 and 0.8, we consider it to be moderate. The father-son data displays a moderate, positive correlation. If the magnitude is less than <span class="math inline">\(0.5\)</span>, the correlation is considered weak. We might observe a correlation like this just by chance.</p>
 <div class="infobox exer">
 <p>For the following three scatterplots, identify the strength and direction of the correlation.</p>
-<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="12-linear-regression_files/figure-html/unnamed-chunk-5-2.png" width="672" /><img src="12-linear-regression_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-6-1.png" width="672" /><img src="12-linear-regression_files/figure-html/unnamed-chunk-6-2.png" width="672" /><img src="12-linear-regression_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
 <p><span style="color:#8601AF">
 The first plot shows a strong negative correlation. The second plot shows a very weak positive correlation. The third plot shows a perfect positive correlation. In the case of the third plot, the value of x is determined entirely by the value of x, and there is no variation due to other sources.
 </span></p>
@@ -400,14 +402,14 @@ The first plot shows a strong negative correlation. The second plot shows a very
 <div id="linear-modeling" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> Linear modeling<a href="linear-regression.html#linear-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Our goal is to build a linear model, which is the straight line that does the best job of describing the relationship between x and y.</p>
-<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>In general, a line has a slope and a y-intercept:
 <span class="math display">\[y \;=\; mx + b\]</span>
 In statistics, we use the notation
 <span class="math display">\[y \;=\; \beta_0 + \beta_1 x\]</span></p>
 <p>We need to come up with an intercept and a slope that describe the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are the parameters of interest. This means that we are assuming that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> have a true linear relationship, and we want to make an estimate of this line.</p>
 <hr />
-<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>What is the straight line that best describes the relationship between father’s and son’s heights? There’s no perfect linear model, since the correlation is not perfect. That is to say, the points are not along a perfect straight line. There is extra variation in the <span class="math inline">\(y\)</span> values.</p>
 <p>To account for this extra variability, a linear model on the height data would look like
 <span class="math display">\[\text{Son&#39;s height } \;=\; \beta_0 + \beta_1 \text{ (Father&#39;s height) + Random error}\]</span>
@@ -483,7 +485,7 @@ The estimated height of a son from a 0-inch tall father is 23.649 (which is not 
 <span id="cb12-8"><a href="linear-regression.html#cb12-8" tabindex="-1"></a><span class="fu">plot</span>(fathers, sons,</span>
 <span id="cb12-9"><a href="linear-regression.html#cb12-9" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Father Heights&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Son Heights&quot;</span>)</span>
 <span id="cb12-10"><a href="linear-regression.html#cb12-10" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="fl">23.641</span>, <span class="at">b =</span> <span class="fl">0.653</span>)</span></code></pre></div>
-<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>In terms of the vertical distance from the points to the line, this particular line does the best job fitting the data. Any other line would have a bigger <span class="math inline">\(SS_E\)</span> than this one.</p>
 <hr />
 <p>We can also fit a linear model in R with the <code>lm</code> function. We use <code>~</code> to indicate a model fit, and we put the <span class="math inline">\(y\)</span> variable on the left. Instead of just printing it out, I’m going to save my model results in an object called <code>height_mod</code> so that I can refer to it later.</p>
@@ -675,10 +677,10 @@ then the four above statements are true.</p>
 <p>We evaluate these assumptions by analyzing the residuals (the <span class="math inline">\(e_i\)</span>), which are the observed errors in our model. We typically build a plot with fitted values on the x axis and residuals on the y axis. We also make a qq-plot of residuals to assess normality.</p>
 <p>This procedure is very similar to the residual analysis for the ANOVA model in chapter 9. We use the R functions <code>fitted</code> and <code>resid</code> to extract the fitted values and residuals of our model.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="linear-regression.html#cb25-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(height_mod), <span class="fu">resid</span>(height_mod))</span></code></pre></div>
-<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>We want to see a random scatter of points with no apparent patterns, which is shown in the plot above. Problematic patterns to look out for are a “megaphone” shape or some kind of distinct curve.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="linear-regression.html#cb26-1" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">resid</span>(height_mod)); <span class="fu">qqline</span>(<span class="fu">resid</span>(height_mod))</span></code></pre></div>
-<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="12-linear-regression_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>The qq-plot of residuals shows that they are normal. Both of these plots look good, so we can conclude that the linear model is a good fit for this data. The results of a T test and other statistics will be accurate.</p>
 </div>
 <div id="prediction" class="section level2 hasAnchor" number="12.4">
@@ -846,6 +848,10 @@ The father and son heights have a correlation of 0.615, and <span class="math in
 <hr />
 <p>While <span class="math inline">\(R^2\)</span> is a useful measure, it does have limitations. There is no objectively “good” value of <span class="math inline">\(R^2\)</span> that we can apply to all situations. In some contexts, <span class="math inline">\(R^2 = 0.378\)</span> would be excellent. In others, it might be terrible.</p>
 <p>In addition, we cannot use <span class="math inline">\(R^2\)</span> to evaluate the quality of model fit. We can calculate <span class="math inline">\(R^2\)</span> and possibly get a large number even if the linear model is inappropriate. The model validation must be done with a residual analysis.</p>
+
+</div>
+<div id="categorical-data" class="section level2 hasAnchor" number="12.6">
+<h2><span class="header-section-number">12.6</span> Categorical Data<a href="linear-regression.html#categorical-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>

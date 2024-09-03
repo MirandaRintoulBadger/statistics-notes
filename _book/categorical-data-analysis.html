@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 13 Categorical Data Analysis | Statistics 371 Full Notes</title>
+  <meta name="description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 13 Categorical Data Analysis | Statistics 371 Full Notes" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Introductory Applied Statistics for the Life Sciences" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 13 Categorical Data Analysis | Statistics 371 Full Notes" />
+  
+  <meta name="twitter:description" content="Introductory Applied Statistics for the Life Sciences" />
+  
+
+<meta name="author" content="Miranda Rintoul" />
+
+
+<meta name="date" content="2024-08-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="linear-regression.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistics 371 Full Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction To Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#statistics"><i class="fa fa-check"></i><b>1.1</b> Statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#key-terms"><i class="fa fa-check"></i><b>1.2</b> Key terms</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#types-of-data"><i class="fa fa-check"></i><b>1.3</b> Types of data</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#course-outline"><i class="fa fa-check"></i><b>1.4</b> Course outline</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histograms"><i class="fa fa-check"></i><b>2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>2.2</b> Location</a></li>
+<li class="chapter" data-level="2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#spread"><i class="fa fa-check"></i><b>2.3</b> Spread</a></li>
+<li class="chapter" data-level="2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#box-plots"><i class="fa fa-check"></i><b>2.4</b> Box plots</a></li>
+<li class="chapter" data-level="2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#multiple-datasets"><i class="fa fa-check"></i><b>2.5</b> Multiple datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> Probability</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#sampling"><i class="fa fa-check"></i><b>3.1</b> Sampling</a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#probability-basics"><i class="fa fa-check"></i><b>3.2</b> Probability basics</a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>3.3</b> Conditional probability</a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>3.4</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="random-variables.html"><a href="random-variables.html"><i class="fa fa-check"></i><b>4</b> Random Variables</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="random-variables.html"><a href="random-variables.html#random-variable-basics"><i class="fa fa-check"></i><b>4.1</b> Random variable basics</a></li>
+<li class="chapter" data-level="4.2" data-path="random-variables.html"><a href="random-variables.html#expectation-and-variance"><i class="fa fa-check"></i><b>4.2</b> Expectation and variance</a></li>
+<li class="chapter" data-level="4.3" data-path="random-variables.html"><a href="random-variables.html#binomial-random-variables"><i class="fa fa-check"></i><b>4.3</b> Binomial random variables</a></li>
+<li class="chapter" data-level="4.4" data-path="random-variables.html"><a href="random-variables.html#rules-of-expectation-and-variance"><i class="fa fa-check"></i><b>4.4</b> Rules of expectation and variance</a></li>
+<li class="chapter" data-level="4.5" data-path="random-variables.html"><a href="random-variables.html#normal-random-variables"><i class="fa fa-check"></i><b>4.5</b> Normal random variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>5</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="estimation.html"><a href="estimation.html#estimation-1"><i class="fa fa-check"></i><b>5.1</b> Estimation</a></li>
+<li class="chapter" data-level="5.2" data-path="estimation.html"><a href="estimation.html#sampling-distributions"><i class="fa fa-check"></i><b>5.2</b> Sampling distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="estimation.html"><a href="estimation.html#central-limit-theorem"><i class="fa fa-check"></i><b>5.3</b> Central Limit Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#z-confidence-interval"><i class="fa fa-check"></i><b>6.1</b> Z confidence interval</a></li>
+<li class="chapter" data-level="6.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-interpretation"><i class="fa fa-check"></i><b>6.2</b> Confidence interval interpretation</a></li>
+<li class="chapter" data-level="6.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#t-confidence-interval"><i class="fa fa-check"></i><b>6.3</b> T confidence interval</a></li>
+<li class="chapter" data-level="6.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#proportion-ci"><i class="fa fa-check"></i><b>6.4</b> Proportion CI</a></li>
+<li class="chapter" data-level="6.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-confidence-interval"><i class="fa fa-check"></i><b>6.5</b> Bootstrap confidence interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-t-test"><i class="fa fa-check"></i><b>7.1</b> One-sample T test</a></li>
+<li class="chapter" data-level="7.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors"><i class="fa fa-check"></i><b>7.2</b> Errors</a></li>
+<li class="chapter" data-level="7.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sided-tests"><i class="fa fa-check"></i><b>7.3</b> One-sided tests</a></li>
+<li class="chapter" data-level="7.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#one-sample-z-test"><i class="fa fa-check"></i><b>7.4</b> One-sample Z test</a></li>
+<li class="chapter" data-level="7.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#power"><i class="fa fa-check"></i><b>7.5</b> Power</a></li>
+<li class="chapter" data-level="7.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#bootstrap-test"><i class="fa fa-check"></i><b>7.6</b> Bootstrap test</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html"><i class="fa fa-check"></i><b>8</b> Other One-Sample Tests</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html#one-sample-proportion-test"><i class="fa fa-check"></i><b>8.1</b> One-sample proportion test</a></li>
+<li class="chapter" data-level="8.2" data-path="other-one-sample-tests.html"><a href="other-one-sample-tests.html#median-test"><i class="fa fa-check"></i><b>8.2</b> Median test</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="two-sample-testing.html"><a href="two-sample-testing.html"><i class="fa fa-check"></i><b>9</b> Two-Sample Testing</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="two-sample-testing.html"><a href="two-sample-testing.html#equal-variances-t-test"><i class="fa fa-check"></i><b>9.1</b> Equal variances T test</a></li>
+<li class="chapter" data-level="9.2" data-path="two-sample-testing.html"><a href="two-sample-testing.html#unequal-variances-t-test"><i class="fa fa-check"></i><b>9.2</b> Unequal variances T test</a></li>
+<li class="chapter" data-level="9.3" data-path="two-sample-testing.html"><a href="two-sample-testing.html#two-sample-proportion-test"><i class="fa fa-check"></i><b>9.3</b> Two-sample proportion test</a></li>
+<li class="chapter" data-level="9.4" data-path="two-sample-testing.html"><a href="two-sample-testing.html#two-sample-bootstrap-test"><i class="fa fa-check"></i><b>9.4</b> Two-sample bootstrap test</a></li>
+<li class="chapter" data-level="9.5" data-path="two-sample-testing.html"><a href="two-sample-testing.html#rank-sum-test"><i class="fa fa-check"></i><b>9.5</b> Rank sum test</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="testing-paired-data.html"><a href="testing-paired-data.html"><i class="fa fa-check"></i><b>10</b> Testing Paired Data</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="testing-paired-data.html"><a href="testing-paired-data.html#paired-t-test"><i class="fa fa-check"></i><b>10.1</b> Paired T test</a></li>
+<li class="chapter" data-level="10.2" data-path="testing-paired-data.html"><a href="testing-paired-data.html#signed-rank-test"><i class="fa fa-check"></i><b>10.2</b> Signed rank test</a></li>
+<li class="chapter" data-level="10.3" data-path="testing-paired-data.html"><a href="testing-paired-data.html#median-test-1"><i class="fa fa-check"></i><b>10.3</b> Median test</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>11</b> Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#more-than-two-groups"><i class="fa fa-check"></i><b>11.1</b> More than two groups</a></li>
+<li class="chapter" data-level="11.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#variance-decomposition"><i class="fa fa-check"></i><b>11.2</b> Variance decomposition</a></li>
+<li class="chapter" data-level="11.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#anova-test"><i class="fa fa-check"></i><b>11.3</b> ANOVA test</a></li>
+<li class="chapter" data-level="11.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#post-hoc-analysis"><i class="fa fa-check"></i><b>11.4</b> Post-hoc analysis</a></li>
+<li class="chapter" data-level="11.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#non-normal-data"><i class="fa fa-check"></i><b>11.5</b> Non-normal data</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>12</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="linear-regression.html"><a href="linear-regression.html#correlation"><i class="fa fa-check"></i><b>12.1</b> Correlation</a></li>
+<li class="chapter" data-level="12.2" data-path="linear-regression.html"><a href="linear-regression.html#linear-modeling"><i class="fa fa-check"></i><b>12.2</b> Linear modeling</a></li>
+<li class="chapter" data-level="12.3" data-path="linear-regression.html"><a href="linear-regression.html#testing-slope"><i class="fa fa-check"></i><b>12.3</b> Testing slope</a></li>
+<li class="chapter" data-level="12.4" data-path="linear-regression.html"><a href="linear-regression.html#prediction"><i class="fa fa-check"></i><b>12.4</b> Prediction</a></li>
+<li class="chapter" data-level="12.5" data-path="linear-regression.html"><a href="linear-regression.html#coefficient-of-determination"><i class="fa fa-check"></i><b>12.5</b> Coefficient of determination</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="categorical-data-analysis.html"><a href="categorical-data-analysis.html"><i class="fa fa-check"></i><b>13</b> Categorical Data Analysis</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="categorical-data-analysis.html"><a href="categorical-data-analysis.html#goodness-of-fit-test"><i class="fa fa-check"></i><b>13.1</b> Goodness-of-fit test</a></li>
+<li class="chapter" data-level="13.2" data-path="categorical-data-analysis.html"><a href="categorical-data-analysis.html#independence-test"><i class="fa fa-check"></i><b>13.2</b> Independence test</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics 371 Full Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="categorical-data-analysis" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Categorical Data Analysis<a href="categorical-data-analysis.html#categorical-data-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="figs/comics/ch13.jpg" width="400px" style="display: block; margin: auto;" /></p>
+<p>All of the methods we’ve discussed so far are applied to numeric data (possibly across multiple groups). Now, we will discuss a method specific to categorical data.</p>
+<p>We actually sort of did this in chapters 8 and 9 with a proportion test. A proportion test essentially tests a categorical variable with 2 categories, or levels. If there are only 2 levels, we can recode the data as 0-1 and make use of numeric methods.</p>
+<p>If we have a categorical variable with more than 2 levels, a proportion test will no longer work.</p>
+<div id="goodness-of-fit-test" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Goodness-of-fit test<a href="categorical-data-analysis.html#goodness-of-fit-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In general, when working with a categorical response variable, we want to check if we observe the different categories at the rates we expect. For example, a bulk container of trail mix is advertised as having 25% peanuts, 20% M&amp;Ms, 20% pecans, 20% almonds, and 15% raisins.</p>
+<p>Suppose we took several scoops of trail mix and counted the contents:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Peanuts</th>
+<th align="center">M&amp;Ms</th>
+<th align="center">Pecans</th>
+<th align="center">Almonds</th>
+<th align="center">Raisins</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">85</td>
+<td align="center">58</td>
+<td align="center">61</td>
+<td align="center">60</td>
+<td align="center">55</td>
+<td align="center">319</td>
+</tr>
+</tbody>
+</table>
+<p>We want to check if the contents match the advertising. If we wanteed to use a proportion test, we would have to separately check every single ingredient against its expected percentage. 85/319 versus 0.25, 58/319 versus 0.2, etc. Instead, we will develop a test to check all of the categories at once.</p>
+<hr />
+<p>If the advertising were correct, what would we expect our sample of 319 to look like? We would expect <span class="math inline">\(0.25\times 319 = 79.75\)</span> peanuts. For this calculation, we ignore the observed count and multiply the total by the advertised value. We would expect <span class="math inline">\(0.25 \times 319 = 79.75\)</span>.</p>
+<p>We can make a table of all of the <em>expected counts</em> under the assumption that the advertising is correct.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center">Peanuts</th>
+<th align="center">M&amp;Ms</th>
+<th align="center">Pecans</th>
+<th align="center">Almonds</th>
+<th align="center">Raisins</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Observed</td>
+<td align="center">85</td>
+<td align="center">58</td>
+<td align="center">61</td>
+<td align="center">60</td>
+<td align="center">55</td>
+<td align="center">319</td>
+</tr>
+<tr class="even">
+<td align="left">Expected</td>
+<td align="center">79.75</td>
+<td align="center">63.8</td>
+<td align="center">63.8</td>
+<td align="center">63.8</td>
+<td align="center">47.85</td>
+<td align="center">319</td>
+</tr>
+</tbody>
+</table>
+<p>These expected counts add up to the same total as before. We will compare the observed and expected counts to make a decision about our hypotheses in a chi-squared (chi pronounced “kai”) goodness of fit test. Formally, our null hypothesis is expressed in terms of a model on the population. In this case we have,
+<span class="math display">\[\begin{align*}
+H_0: \;\; &amp; \text{The true proportions match } (0.25, 0.2, 0.2, 0.2, 0.2, 0.15). \\
+H_A: \;\; &amp; \text{The true proportions do not match } (0.25, 0.2, 0.2, 0.2, 0.2, 0.15).
+\end{align*}\]</span></p>
+<p>The expected counts represent the case where <span class="math inline">\(H_0\)</span> is true. We find evidence against <span class="math inline">\(H_0\)</span> by comparing the observed and expected counts for each category. If the observed count is very different from the expected count, that is strong evidence against <span class="math inline">\(H_0\)</span> being true.</p>
+<hr />
+<p>The chi-squared test statistic is called <span class="math inline">\(\chi^2\)</span>, after the greek letter “chi”. It compares the squared differences between the counts for each category. We first calculate
+<span class="math display">\[\frac{(\text{Observed - Expected})^2}{\text{Expected}}\]</span>
+for each category. For example,
+<span class="math display">\[\frac{(\text{85 - 79.75})^2}{\text{79.75}} \;=\; 0.346\]</span>
+is the contribution from the “peanuts” category. The test statistic is computed by adding this quantity across all levels of our variable.
+<span class="math display">\[\chi^2 \;=\; \sum_{levels} \frac{(\text{Observed - Expected})^2}{\text{Expected}}\]</span>
+If the null hypothesis is true, then we expect this quantity to be small for all of the categories.</p>
+<div class="infobox exer">
+<p>Finish calculcating the chi-squared test statistic for the trail mix example.</p>
+<p><span style="color:#8601AF">
+We take the difference (Observed - Expected) for each category, square it, then divide by Expected to standardize. We then have to add this up for all five levels.
+<span class="math display">\[\begin{align*}
+\chi^2_{obs} =\; &amp; \frac{(85 - 79.75)^2}{79.75} +  \frac{(58 - 63.8)^2}{63.8} + \frac{(61 - 63.8)^2}{63.8} \\
+&amp;+ \frac{(60 - 63.8)^2}{63.8} + \frac{(55 - 47.85)^2}{47.85} \\ \\
+= \; &amp;  2.29
+\end{align*}\]</span>
+</span></p>
+</div>
+<hr />
+<p>How do we use <span class="math inline">\(\chi^2\)</span> to gather evidence against the null? If <span class="math inline">\(H_0\)</span> is true, then the differences between observed and expected counts should be small, and so <span class="math inline">\(\chi^2\)</span> should be a small positive number. On the other hand, if there is a big difference between observed and expected counts, <span class="math inline">\(\chi^2\)</span> should be a large positive number.</p>
+<p>A larger value of <span class="math inline">\(\chi^2\)</span> means we have stronger evidence against <span class="math inline">\(H_0\)</span>, so we always use the positive direction when we conclude this test. Formally, if <span class="math inline">\(H_0\)</span> is true, <span class="math inline">\(\chi^2\)</span> follows a <strong>chi-squared</strong> distribution. This is a positive, continuous distribution with a long right tail. Here is a visual from Wikipedia.</p>
+<p><img src="figs/categorical/chisquared.png" width="400px" style="display: block; margin: auto;" /></p>
+<p>The exact shape depends on the degrees of freedom, which we need to provide.</p>
+<hr />
+<p>Before we complete our test, we need to check that the necessary assumptions are met. Like the proportion test, the chi-squared test is an approximate test based on the CLT. In order for it to be accurate, we want to observe at least 5 items in each category. This is certainly true for our data, so we are safe to use a chi-squared null distribution for our test statistic.</p>
+<p>Let’s figure out the degrees of freedom for our test. When we were working with numeric data, the df was based on the number of observations. In this context, it is based on the number of <em>categories</em>. The df is given by <span class="math inline">\(\# levels - 1\)</span>. There are 5 categories in the trail mix data, so we have 4 degrees of freedom.</p>
+<p>The p-value for our test is the area above <span class="math inline">\(\chi^2_{obs} = 2.29\)</span> on the chi-squared curve with 4 degrees of freedom. We can find this with the R command <code>pchisq</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="categorical-data-analysis.html#cb1-1" tabindex="-1"></a><span class="fu">pchisq</span>(<span class="fl">2.29</span>, <span class="at">df =</span> <span class="dv">4</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
+<pre><code>## [1] 0.6825903</code></pre>
+<p>With such a large p-value, there is no evidence that the trail mix contents are different from what is advertised. Note that for this type of test, the p-value is always calculated by finding the area above the test statistic. This is because larger test statistic values give us more evidence against the null.</p>
+<hr />
+<div class="infobox deff">
+<p>In general, a <strong>chi-squared goodness of fit test</strong> tests a single categorical variable. The hypotheses are
+<span class="math display">\[\begin{align*}
+H_0: \;\; &amp; \text{The true proportions match a certain model.} \\
+H_A: \;\; &amp; \text{The true proportions do not match the model.}
+\end{align*}\]</span>
+and the test statistic is
+<span class="math display">\[\chi^2 \;=\; \sum_{levels} \frac{(\text{Observed - Expected})^2}{\text{Expected}}.\]</span>
+The null distribution is a chi-squared distribution with <span class="math inline">\(\# levels - 1\)</span> degrees of freedom, and the p-value is the area above the test statistic on the null distribution.</p>
+</div>
+<p>We can also complete this test automatically in R. We provide the observed counts, but instead of expected counts, we provide the probabilities under the null. The <code>chisq.test</code> command performs the test automatically.</p>
+<p>There is a correction/adjustment that is sometimes made to the chi-squared test to correct some of the error introduced by approximation. If we want R to match our by-hand work, we don’t want to make this correction.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="categorical-data-analysis.html#cb3-1" tabindex="-1"></a><span class="co"># Observed counts</span></span>
+<span id="cb3-2"><a href="categorical-data-analysis.html#cb3-2" tabindex="-1"></a>obs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">58</span>, <span class="dv">61</span>, <span class="dv">60</span>, <span class="dv">55</span>)</span>
+<span id="cb3-3"><a href="categorical-data-analysis.html#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="categorical-data-analysis.html#cb3-4" tabindex="-1"></a><span class="co"># Keep expected counts as probabilities</span></span>
+<span id="cb3-5"><a href="categorical-data-analysis.html#cb3-5" tabindex="-1"></a>exp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.15</span>)</span>
+<span id="cb3-6"><a href="categorical-data-analysis.html#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="categorical-data-analysis.html#cb3-7" tabindex="-1"></a><span class="co"># Use chisq.test to perform test automatically</span></span>
+<span id="cb3-8"><a href="categorical-data-analysis.html#cb3-8" tabindex="-1"></a><span class="fu">chisq.test</span>(obs, <span class="at">p =</span> exp, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  obs
+## X-squared = 2.2905, df = 4, p-value = 0.6825</code></pre>
+<hr />
+<p>Let’s look at another example. Many university classes are offered to students across multiple years. We might wonder, are freshmen and sophomores equally likely to attend lecture? Our null hypothesis is that the population matches the model that the two groups are equally likely to attend class.
+<span class="math display">\[\begin{align*}
+H_0: &amp;\text{ Freshmen and sophomores are equally likely to attend.} \\
+H_A: &amp;\text{ Freshmen and sophomores are not equally likely to attend.}
+\end{align*}\]</span></p>
+<p>Let’s look at the actual class attendance to see if it is consistent with <span class="math inline">\(H_0\)</span>. In a (fake!) class of 75 attendees, 39 are freshmen and 36 are sophomores. Out of <em>all</em> of the enrolled students in class, 30.5% are freshmen and 69.5% are sophomores.</p>
+<div class="infobox exer">
+<p>Perform a chi-squared goodness of fit test on the freshmen and sophomore data, using <span class="math inline">\(\alpha = 0.1\)</span>.</p>
+<ul>
+<li>What are the expected counts of freshmen and sophomores in the 75 attendees, if <span class="math inline">\(H_0\)</span> were true?</li>
+</ul>
+<p><span style="color:#8601AF">
+If the null were true, then the distribution of freshmen and sophomores in class would match the overall distribution of 30.5% to 69.5%. The expected count of freshmen is <span class="math inline">\(75(0.305) = 22.875\)</span> and the expected count of sophomores is <span class="math inline">\(75(0.695) = 52.125\)</span>.
+</span></p>
+<ul>
+<li>Calculate the chi-squared test statistic.</li>
+</ul>
+<p><span style="color:#8601AF">
+Here are the counts for the class attendance data.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Freshmen</th>
+<th>Sophomores</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Observed</td>
+<td>39</td>
+<td>36</td>
+<td>75</td>
+</tr>
+<tr class="even">
+<td>Expected</td>
+<td>22.875</td>
+<td>52.125</td>
+<td>75</td>
+</tr>
+</tbody>
+</table>
+<p>The chi-squared test statistic is
+<span class="math display">\[\chi^2_{obs} \;=\; \sum_{levels}\frac{(\text{Obs } - \text{Exp})^2}{\text{Exp}} \;=\; \frac{(39-22.875)^2}{22.875} + \frac{(36-52.125)^2}{52.125} \;=\; 16.355.\]</span>
+</span></p>
+<ul>
+<li>Identify the degrees of freedom and calculate a p-value to finish the test.</li>
+</ul>
+<p><span style="color:#8601AF">
+The degrees of freedom for this test are given by the number of levels minus 1. Since there are only two categories, we have 1 df, so we use <span class="math inline">\(\chi^2_1\)</span> as our null distribution. Our p-value is the area above the observed test statistic of 16.355.
+</span></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="categorical-data-analysis.html#cb5-1" tabindex="-1"></a><span class="fu">pchisq</span>(<span class="fl">16.355</span>, <span class="at">df =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
+<pre><code>## [1] 5.251743e-05</code></pre>
+<p><span style="color:#8601AF">
+We get a very small p-value of <span class="math inline">\(5.25\times 10^{-5}\)</span>, which is much smaller than <span class="math inline">\(\alpha = 0.1\)</span>. So, we reject the null hypothesis. This data gives us evidence that freshmen and sophomores are not equally likely to attend class.
+</span></p>
+</div>
+<div class="infobox pond">
+<p>How could the above hypothesis test be re-phrased in terms of a one-sample proportion test of <span class="math inline">\(\pi_{F}\)</span>, the proportion of class attendees who are freshmen?</p>
+</div>
+</div>
+<div id="independence-test" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Independence test<a href="categorical-data-analysis.html#independence-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The goodness-of-fit test is used to analyze a single categorical variable. There is another type of chi-squared test that can be used to test the relationship between two categorical variables.</p>
+<p>A sample of 250 students majoring in business and a sample of 500 business executives were asked: “Should corporations become more directly involved with social issues?” The two categorical variables are the group and the response.</p>
+<p>If those two groups (students and executives) are independent, then the distribution of responses across the two groups should be about the same. If we know whether someone is a student or an executive, does that change what type of answer they will give to this question?</p>
+<hr />
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center">Yes</th>
+<th align="center">No</th>
+<th align="center">Unsure</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Executives</td>
+<td align="center">345</td>
+<td align="center">135</td>
+<td align="center">20</td>
+<td align="center">500</td>
+</tr>
+<tr class="even">
+<td align="left">Students</td>
+<td align="center">222</td>
+<td align="center">20</td>
+<td align="center">8</td>
+<td align="center">250</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">567</td>
+<td align="center">155</td>
+<td align="center">28</td>
+<td align="center">750</td>
+</tr>
+</tbody>
+</table>
+<p>Under the null hypothesis, the variables are not related, and we assume executives and students give the same type of responses. We can write this formally as a statement of the proportion of each answer type.
+<span class="math display">\[H_0: \pi_{E, Yes} = \pi_{S, Yes},\quad \pi_{E, No} = \pi_{S, No},\quad \pi_{E, Unsure} = \pi_{S, Unsure}\]</span>
+This is equivalently expressed in terms of independence.
+<span class="math display">\[H_0: \text{ the two categorical variables are independent.}\]</span>
+These two null hypotheses say exactly the same thing. If the variables are independent, then that would mean the probability of “Yes”, “No”, and “Unsure” would have to be the same across both executives and students.</p>
+<hr />
+<p>Like the previous test, the table above shows the observed counts from the people that were surveyed. We need to calculate the expected counts under the null. This is easiest to do by considering the expected <em>probability</em> of each specific category.</p>
+<p>If the variables are independent, what is <span class="math inline">\(P(\text{Student AND Yes})\)</span>? For independent events, we can find the probability of both happening by multiplying the individual probabilities.
+<span class="math display">\[P(\text{Student AND Yes}) \;=\; P(\text{Student})P(\text{Yes}) \;=\; \frac{250}{750}\cdot \frac{567}{750} \;=\; 0.252.\]</span>
+Under the null assumption of independence, 25.2% of the 750 respondents should fall in the “Student + Yes” category. Thus the expected count is <span class="math inline">\(0.252\times 750 = 189\)</span>.</p>
+<p>This calculation simplifies to
+<span class="math display">\[\text{Expected count} \;=\; P(\text{Student})P(\text{Yes})\cdot \text{Total} \;=\; \frac{250}{750}\cdot \frac{567}{750}\cdot 750 \;=\; \frac{250\times 567}{750}.\]</span>
+So, to find the expected count of a particular cell in the table, we take the row total times the column total, divided by the overall total.</p>
+<div class="infobox exer">
+<p>Finish calculating the expected counts for the survey data.</p>
+<p><span style="color:#8601AF">
+<span class="math display">\[\begin{align*}
+\text{Executives, Yes } &amp;= \frac{500 \times 567}{750} = 378 \\ \\
+\text{Executives, No } &amp;= \frac{500 \times 155}{750} = 103.33 \\ \\
+\text{Executives, Unsure } &amp;= \frac{500 \times 28}{750} = 18.67 \\ \\
+\text{Students, No } &amp;= \frac{250\times 155}{750} = 51.67 \\ \\
+\text{Students, Unsure } &amp;= \frac{250\times 28}{750} = 9.33
+\end{align*}\]</span>
+</span></p>
+</div>
+<hr />
+<p>The table of observed and epxected counts is given below. Note that if we add up expected counts, the row and column totals all stay the same.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Yes</th>
+<th align="center">No</th>
+<th align="center">Unsure</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Executives</td>
+<td align="center">345 (378)</td>
+<td align="center">135 (103.33)</td>
+<td align="center">20 (18.67)</td>
+<td align="center">500</td>
+</tr>
+<tr class="even">
+<td>Students</td>
+<td align="center">222 (189)</td>
+<td align="center">20 (51.67)</td>
+<td align="center">8 (9.33)</td>
+<td align="center">250</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td align="center">567</td>
+<td align="center">155</td>
+<td align="center">28</td>
+<td align="center">750</td>
+</tr>
+</tbody>
+</table>
+<p>Our chi-squared independence test statistic is still based on the squared difference between the observed and expected counts. Since we are working with two variables, we need to take a sum over all <em>cells</em>, or each combination of the two variables. The test statistic is
+<span class="math display">\[\chi^2 \;=\; \sum_{cells} \frac{(\text{Observed - Expected})^2}{\text{Expected}}.\]</span>
+In this example, we would need to add up six terms. The observed chi-squared test statistic is
+<span class="math display">\[\begin{align*}
+\chi^2_{obs} &amp;= \sum_{cells} \frac{(\text{Observed counts} - \text{Expected counts})^2}{\text{Expected counts}} \\ \\
+\chi^2_{obs} &amp;= \frac{(345-378)^2}{378} + \frac{(135-103.33)^2}{103.33} + \cdots = 38.042
+\end{align*}\]</span></p>
+<p>The relationship between <span class="math inline">\(\chi^2_{obs}\)</span> and the null hypothesis is the same. A larger test statistic corresponds to a bigger difference between observed and expected counts, which means we have stronger evidence against the null of independence.</p>
+<hr />
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="linear-regression.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/13-categorical.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
