@@ -122,7 +122,7 @@ Fill out the rest of the table by finding the results and probabilities for $X =
 $X = 1$ means that one plant out of three breedings had the RY type.  There are three ways this can happen: SFF, FSF, FFS.  Each one of those individual results has probability 
 $$\frac{9}{16}\cdot \frac{7}{16}\cdot \frac{7}{16}.$$
 So, the overall probability $P(X = 1)$ is 
-$$P(SFF) + P(FSF) + P(FFS) \;=\; 3\cdot \frac{7}{16}\cdot \frac{7}{16}\cdot \frac{7}{16} \;=\; 0.323.$$
+$$P(SFF) + P(FSF) + P(FFS) \;=\; 3\cdot \frac{9}{16}\cdot \frac{7}{16}\cdot \frac{7}{16} \;=\; 0.323.$$
 </span>
 
 <span style="color:#8601AF">

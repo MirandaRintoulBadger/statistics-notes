@@ -311,9 +311,9 @@ The IQR is $22$ and the range is $49-20 = 29$.  For this data, the IQR and range
 
 The most common measure of spread in statistics is the **standard deviation** (sd). This measure doesn't look at finding the range across differnt values.  Instead, it's concerned with whether the data is close to its mean. The sd tells us how far apart the observations are from the mean, on average.  
 
-Suppose we have data $x_1, x_2, \ldots , x_n$ that have mean $\bar{x}$.  The distance from point $x_1$ to the mean is $x_1 - \bar{x}$.  We want the average distance, so the sensible thing to do is to add up all of the distances, and divide by $n$.
+Suppose we have data $x_1, x_2, \ldots , x_n$ that have mean $\bar{x}$.  The distance from point $x_1$ to the mean is $x_1 - \bar{x}$.  We want the average distance, so the sensible thing to do is to add up all of the distances, and divide by $n-1$.
 
-$$\frac{1}{n}\sum_{i=1}^n(x_i - \bar{x})$$
+$$\frac{1}{n-1}\sum_{i=1}^n(x_i - \bar{x})$$
 
 But there's a problem here.  From the definition of the mean, we have that the sum of the direct distances $\sum(x_i - \bar{x})$ must always be 0.  These distances are either positive or negative, depending on whether the point is above or below the mean, and they all cancel each other out.  The measure defined above is equal to 0 for any set of data, so it is not terribly useful.
 
@@ -321,22 +321,22 @@ But there's a problem here.  From the definition of the mean, we have that the s
 Try to calculate $\sum(x_i - \bar{x})$ for the dataset {-5, -1, 3, 6} and see what happens.
 ::::
 
-Instead of working with direct distances, we look at *squared* distances.  The squared distance from $x_1$ to the mean is $(x_1 - \bar{x})^2$.  This quantity is always positive, so when we add it all up and divide by $n$:
+Instead of working with direct distances, we look at *squared* distances.  The squared distance from $x_1$ to the mean is $(x_1 - \bar{x})^2$.  This quantity is always positive, so when we add it all up and divide by $n-1$:
 
-$$\frac{1}{n}\sum_{i=1}^n(x_i - \bar{x})^2$$
+$$\frac{1}{n-1}\sum_{i=1}^n(x_i - \bar{x})^2$$
 
 we get a positive number.  The last step is to "undo" the squaring we did.  So we take a square root of the entire thing.  
 
 :::: {.infobox .deff data-latex=""}
 The standard deviation of a set of data is given by 
-$$s = \sqrt{\frac{1}{n}\sum_{i=1}^n(x_i - \bar{x})^2}.$$
+$$s = \sqrt{\frac{1}{n-1}\sum_{i=1}^n(x_i - \bar{x})^2}.$$
 ::::
 
 The un-rooted version is called **variance**.  
 
 :::: {.infobox .deff data-latex=""}
 The variance of a set of data is given by 
-$$s^2 = \frac{1}{n}\sum_{i=1}^n(x_i - \bar{x})^2.$$
+$$s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \bar{x})^2.$$
 ::::
 
 So the square root of the variance is sd, and sd squared is variance.  The two measures provide the exact same information.  However, sd is in the original units of the data, and variance is in squared units.  

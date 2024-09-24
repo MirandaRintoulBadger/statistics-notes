@@ -95,7 +95,7 @@ Consider the following statistics we could calculate from our sample of 2:
 - Sample mean
 $$\bar{X} = \frac{X_1 + X_2}{2}$$
 - Sample standard deviation 
-$$S = \sqrt{\frac{1}{1}\sum(X-\bar{X})^2$$
+$$S = \sqrt{\frac{1}{1}\sum(X-\bar{X})^2}$$
 - Sample maximum
 $$\text{whichever of }X_1, X_2 \text{ is larger}$$
 - Sample total
