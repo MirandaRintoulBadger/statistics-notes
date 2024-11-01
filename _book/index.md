@@ -1,7 +1,7 @@
 --- 
 title: "Statistics 371 Full Notes"
 author: "Miranda Rintoul"
-date: "2024-09-24"
+date: "2024-11-01"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
