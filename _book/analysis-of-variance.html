@@ -23,7 +23,7 @@
 <meta name="author" content="Miranda Rintoul" />
 
 
-<meta name="date" content="2024-09-24" />
+<meta name="date" content="2024-11-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -884,7 +884,7 @@ This quantity approaches 0 as <span class="math inline">\(m\)</span> gets bigger
 <div class="infobox deff">
 <p>The <strong>familywise error rate</strong> is the probability of making at least one type I (false positive) error across <span class="math inline">\(m\)</span> tests. It is given by
 <span class="math display">\[1 - (1-\alpha)^m\]</span>
-and it approaches 0 as <span class="math inline">\(m\)</span> increases.</p>
+and it approaches 1 as <span class="math inline">\(m\)</span> increases.</p>
 </div>
 <hr />
 <p>Let’s demonstrate with <span class="math inline">\(\alpha = 0.05\)</span>. For a single test, the probability of not making an error is <span class="math inline">\(0.95\)</span>. For two tests, this probability becomes <span class="math inline">\((0.95)^2 = 0.9025.\)</span> So the probability of making at least one error is <span class="math inline">\(1 - 0.9025 = 0.0975\)</span>. Here is a table showing how the familywise error rate (FWER) increases with <span class="math inline">\(m\)</span>.</p>

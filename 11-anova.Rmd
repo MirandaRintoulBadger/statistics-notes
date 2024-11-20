@@ -652,7 +652,7 @@ This quantity approaches 0 as $m$ gets bigger. In this context, we want to find 
 :::: {.infobox .deff data-latex=""}
 The **familywise error rate** is the probability of making at least one type I (false positive) error across $m$ tests.  It is given by 
 $$1 - (1-\alpha)^m$$
-and it approaches 0 as $m$ increases.
+and it approaches 1 as $m$ increases.
 ::::
 
 ---
