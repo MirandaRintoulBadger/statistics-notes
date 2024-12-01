@@ -680,7 +680,7 @@ sample(cotanine, size = 15, replace = T)
 ```
 
 ```
-##  [1]  21 117  53  12  30 115 117  30 289 289  58  58  53  21 287
+##  [1]  75  30  12  58 119  34 289  29 289  75 119  29  34  58 115
 ```
 
 Some values in the original data can appear more than once, and some might appear not at all.  These 15 points are a *re-sample* of our original data, and they approximate a sample of size 15 from the full cotanine population.  It's important that we sample with replacement, otherwise we would just get our original data!
