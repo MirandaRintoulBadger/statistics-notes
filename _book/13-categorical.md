@@ -129,7 +129,8 @@ chisq.test(obs, p = exp, correct = FALSE)
 ## X-squared = 2.2905, df = 4, p-value = 0.6825
 ```
 
----
+
+## One-sample proportion test
 
 Let's look at another example.  Many university classes are offered to students across multiple years.  We might wonder, are freshmen and sophomores equally likely to attend lecture?  Our null hypothesis is that the population matches the model that the two groups are equally likely to attend class.
 \begin{align*}
@@ -182,9 +183,48 @@ We get a very small p-value of $5.25\times 10^{-5}$, which is much smaller than 
 </span>
 ::::
 
-:::: {.infobox .pond data-latex=""}
-How could the above hypothesis test be re-phrased in terms of a one-sample proportion test of $\pi_{F}$, the proportion of class attendees who are freshmen?
+---
+
+What if we performed this test as a proportion test?  Since there are only two categories, we can re-write our hypotheses in terms of $\pi_{Fr}$, the proportion of students who attend class who are freshmen. 
+
+$$H_0: \pi_{Fr} = 0.305 \quad \text{versus} \quad H_A: \pi_{Fr} \neq 0.305$$
+
+This pair of hypotheses is equivalent to the chi-squared hypotheses from before:
+\begin{align*}
+H_0: &\text{ Freshmen and sophomores are equally likely to attend.} \\
+H_A: &\text{ Freshmen and sophomores are not equally likely to attend.}
+\end{align*}
+
+If freshmen and sophomores are equally likely to attend class, then the proportion of freshmen students in attendance must match the overall proportion of enrolled freshmen, which is 0.305. 
+
+If the proportion of freshmen students in attendnace is different from 0.305, then that means freshmen are either more or less likely to attend class compared to sophomores.
+
+---
+
+The one-sample proportion Z test is covered in chapter 8.  Out of 75 students in attendance, 39 of them were freshmen, giving us an observed Z test statistic of 
+$$z_{obs} \;=\; \frac{\hat{p} - \pi_0}{\sqrt{\frac{\pi_0(1-\pi_0)}{n}}} \;=\; \frac{(39/75) - 0.305}{\sqrt{\frac{0.305(1-0.305)}{75}}} \;=\; 4.044$$
+The Z test statsitic is equal to the square root of the chi-squared test statistic.  $\sqrt{16.355} = 4.044$.  Now, let's calculate a two-sided Z test p-value.
+
+
+```r
+2*pnorm(4.044, lower.tail = F)
+```
+
+```
+## [1] 5.254692e-05
+```
+
+The p-value is the same as the observed p-value for the chi-squared goodess of fit test.  Thus, the two methods are equivalent for this set of data.
+
+:::: {.infobox .deff data-latex=""}
+A chi-squared goodness of fit test with 1 degree of freedom (two levels of the categorical variable) is equivalent to a one-sample proportion Z test.  We have
+$$z_{obs}^2 \;=\; \chi^2_{obs}$$
+and equivalent p-values based on the corresponding null distributions.
 ::::
+
+The chi-squared goodness of fit test generalizes the one-sample proportion test, since the chi-squared test can handle categorical variables with more than two levels.  If we were comparing the observed and expected counts of freshmen, sophomores, *and* juniors in attendance, we would not be able to use a proportion test.
+
+However, the proportion test can handle one-sided alternatives.  If we had a question like "Freshmen are more likely to attend class than sophomores", we would not be able to use a chi-squared test.  The chi-squared test is inherently two-sided.
 
 ## Independence test
 
@@ -256,6 +296,159 @@ In this example, we would need to add up six terms.  The observed chi-squared te
 The relationship between $\chi^2_{obs}$ and the null hypothesis is the same.  A larger test statistic corresponds to a bigger difference between observed and expected counts, which means we have stronger evidence against the null of independence.
 
 ---
+
+The degrees of freedom for the chi-squared null distribution are based on the number of levels of *both* categorical variables.  It is given by $(\# columns − 1)\times(\# rows − 1)$.
+
+We have 3 possible responses, and 2 groups of people, so the df is (3 − 1)(2 − 1) = 2.
+
+Now, let's complete our test, with $\alpha = 0.05$.  Our p-value is the area above 38.042 on a chi-squared curve with 2 df.
+
+
+```r
+pchisq(38.042, df = 2, lower.tail = F)
+```
+
+```
+## [1] 5.486365e-09
+```
+
+We observe a very small p-value, and so we reject $H_0$.  We have evidence that the two categorical variables are related.  In other words, business executives and students tend to answer this question differently.
+
+---
+
+:::: {.infobox .deff data-latex=""}
+In general, a **chi-squared independence test** is used to test whether two categorical variables are related.  The hypotheses are
+\begin{align*}
+H_0: \;\; & \text{The two variables are independent.} \\
+H_A: \;\; & \text{The two variables are related.}
+\end{align*}
+and the test statistic is
+$$\chi^2 \;=\; \sum_{cells} \frac{(\text{Observed - Expected})^2}{\text{Expected}}.$$
+The null distribution is a chi-squared distribution with $(\# columns − 1)\times(\# rows − 1)$ degrees of freedom, and the p-value is the area above the test statistic on the null distribution.
+::::
+
+---
+
+We can also perform this type of test with R's `chisq.test`, but we need to set up our data in an object called a **matrix**.  A matrix is how R represents a two-way table such as the one we set up for executives' vs students' responses.
+
+We put a vector of all of the numbers in the `matrix` function, then specify the dimensions with `nrow` and `ncol`.  We then specify how we want the matrix to be filled in.  In my vector, I put the three executive counts followed by the three student counts, so I want to fill the matrix in by each row.
+
+
+```r
+survey <- matrix(c(345, 135, 20, 222, 20, 8),
+                 nrow = 2, ncol = 3, byrow = T)
+
+survey
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]  345  135   20
+## [2,]  222   20    8
+```
+
+Then, we can put our matrix into `chisq.test`.  We don't need to specify expected counts or probabilities, since R can calculate them from the observed values.
+
+
+```r
+chisq.test(survey, correct = F)
+```
+
+```
+## 
+## 	Pearson's Chi-squared test
+## 
+## data:  survey
+## X-squared = 38.041, df = 2, p-value = 5.488e-09
+```
+
+
+## Two-sample proportion test
+
+The chi-squared goodness of fit test is related to the one-sample proportion Z test.  Similarly, the chi-squared independence test is related to the two-sample proportion Z test. 
+
+Recall the sex versus handedness example we studied in notes 9.  Several male and female participants were asked to indicate their dominant hand.  We can organize the results in a two-way table:
+
+| Sex    | Left | Right | Total |
+|:------:|:----:|:-----:|:-----:|
+| Female | 12   | 9     | 21    |
+| Male   | 23   | 31    | 54    |
+| Total  | 35   | 40    | 75    |
+
+Our research question was, "does handedness differ according to sex", or "do females and males show the same proportion of left-handedness"?  We saw an observed Z test statistic of 1.134 and a p-value of 0.257.
+
+---
+
+Our hypotheses for the two-sample proportion test were
+$$H_0: \pi_{FL} - \pi_{ML} = 0\quad\quad\text{versus}\quad\quad H_A: \pi_{FL} - \pi_{ML} \neq 0$$ 
+But we can equivalently express the hypotheses in terms of independence between sex and handedness.
+\begin{align*}
+H_0: & \text{ Sex and handedness are independent.} \\
+H_A: & \text{ Sex and handedness are related.}
+\end{align*}
+
+If sex and handedness are independent, then knowing a person's sex tells us nothing about their probability of being left handed (and vice versa).  So, independence implies $\pi_{FL} - \pi_{ML} = 0$.
+
+On the other hand, if sex and handedness are related, then that means the probability of being left-handed must be different for males and females.  This implies $\pi_{FL} - \pi_{ML} \neq 0$.
+
+Thus, the two pairs of hypotheses are equivalent.  The second pair implies a chi-squared independence test should be used.
+
+---
+
+The expected counts under the null are found based on the totals.  There are 75 total participants, with 35 left-handed participants and 21 female participants.  So, the expected number of female left-handed participants under the null is
+$$\frac{35\times 21}{75} \;=\; 9.8.$$
+
+:::: {.infobox .exer data-latex=""}
+The full table of observed and expected counts is
+
+| Sex    | Left      | Right     | Total |
+|:------:|:---------:|:---------:|:-----:|
+| Female | 12 (9.8)  | 9 (11.2)  | 21    |
+| Male   | 23 (25.2) | 31 (28.8) | 54    |
+| Total  | 35        | 40        | 75    |
+
+- Complete the $\chi^2$ independence test with $\alpha = 0.05$.
+
+<span style="color:#8601AF">
+The observed chi-squared test statistic is  \begin{align*}
+\chi^2_{obs} &= \sum_{cells}\frac{(\text{Observed - Expected})^2}{\text{Expected}} \\
+&= \frac{(12-9.8)^2}{9.8} + \frac{(9-11.2)^2}{11.2} + \frac{(23-25.2)^2}{25.2} + \frac{(31 - 28.8)^2}{28.8} \\
+&= 1.286
+\end{align*}
+The degrees of freedom are $(\# columns − 1)\times(\# rows − 1) = (2-1)(2-1) = 1$ and the p-value is 0.257.  With a large p-value, we fail to reject the null.  We have no evidence that sex and handedness are related.
+</span>
+
+
+```r
+pchisq(1.286, df = 1, lower.tail = F)
+```
+
+```
+## [1] 0.2567864
+```
+
+
+- Compare the results to $z_{obs} = 1.134$ and the Z test p-value 0.257.
+
+<span style="color:#8601AF">
+The observed chi-squared test statistic is the square of the observed Z test statistic.  $1.134^2 = 1.286$.  Both tests returned a p-value of 0.257, which means they give the same evidence against the null.  The two tests are equivalent.
+</span>
+
+::::
+
+:::: {.infobox .deff data-latex=""}
+A chi-squared independence test with 1 degree of freedom (a $2\times 2$ table) is equivalent to a two-sample proportion Z test.  We have
+$$z_{obs}^2 \;=\; \chi^2_{obs}$$
+and equivalent p-values based on the corresponding null distributions.
+::::
+
+---
+
+The mathematical reason for the two tests being equivalent is the fact that the square of a standard normal RV is a chi-squared RV with 1 degree of freedom.  So
+$$Z^2 \;=\; \chi^2_1.$$
+Under the null hypothesis, 1.134 is a realization of the standard normal, and $1.134^2 = 1.286$ is a realization of the chi-squared with 1 degree of freedom.
+
+The chi-squared test is more general, because it can handle categorical variables with more than two levels, such as the executives versus students example.  But the Z proportion test can handle one-sided alternatives, while the chi-squared cannot.
 
 
 

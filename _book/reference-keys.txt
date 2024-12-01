@@ -80,3 +80,5 @@ a-ksajdflka
 categorical-data-analysis
 goodness-of-fit-test
 independence-test
+one-sample-proportion-test-1
+two-sample-proportion-test-1
